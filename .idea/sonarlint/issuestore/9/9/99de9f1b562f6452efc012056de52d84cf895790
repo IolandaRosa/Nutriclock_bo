@@ -1,0 +1,6 @@
+
+l	php:S1192/"PDefine a constant instead of duplicating this literal "required|string" 3 times.(Ö÷Ù8 ‡¢ÑÆ.
+b	php:S1192"FDefine a constant instead of duplicating this literal "error" 6 times.(‘À©ó8Í©ÌÆ.
+e	php:S1192/"IDefine a constant instead of duplicating this literal "password" 3 times.(Ö÷Ù8©®­ÑÆ.
+b	php:S1192"FDefine a constant instead of duplicating this literal "email" 3 times.(Ÿ âù8·‹²ÌÆ.
+k	php:S1142-"OReduce the number of returns of this function 4, down to the maximum allowed 3.(ôäÇı8Œ­ĞÆ.

@@ -1,0 +1,5 @@
+
+l	php:S1192"KDefine a constant instead of duplicating this literal "users/{id}" 3 times.(“ï»·úÿÿÿÿ8í€ÄÖÌ.
+r	php:S11924"QDefine a constant instead of duplicating this literal "medications/{id}" 3 times.(ïìöúÿÿÿÿ8ğ÷ÊôÑ.
+h	php:S1192"GDefine a constant instead of duplicating this literal "admin" 12 times.(ú›ô­üÿÿÿÿ8³Åš×Å.
+f	php:S1192"JDefine a constant instead of duplicating this literal "auth:api" 26 times.(‡÷Çõ8ğ†‘ÔÅ.
