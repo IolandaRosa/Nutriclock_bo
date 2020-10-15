@@ -150,7 +150,7 @@ class UserControllerAPI extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|string',
             'avatar' => 'nullable|image|mimes:jpg,jpeg,png',
-            'gender' => Rule::in(['MALE', 'FEMALE']),
+            'gender' => Rule::in(['MALE', 'FEMALE','NONE']),
         ]);
 
         $user = new User();

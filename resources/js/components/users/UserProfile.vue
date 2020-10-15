@@ -63,6 +63,11 @@
                                    value="FEMALE" v-model="gender">
                             <label class="form-check-label text-secondary" for="user-profile-input-gender-female">Feminino</label>
                         </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="user-profile-input-gender-none"
+                                   value="NONE" v-model="gender">
+                            <label class="form-check-label text-secondary" for="user-profile-input-gender-none">Não me identifico</label>
+                        </div>
                     </div>
                 </div>
             </div>
