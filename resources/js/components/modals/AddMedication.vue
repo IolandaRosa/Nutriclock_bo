@@ -120,6 +120,9 @@
                     label: 'De 24 em 24h',
                 }],
                 timesAWeek: [{
+                    value: 'ALL',
+                    label: 'Todos os dias',
+                }, {
                     value: '2',
                     label: 'Segunda',
                 }, {
@@ -180,9 +183,13 @@
 
                 let strTimes = '';
 
-                this.selectedTimesAWeek.forEach(t => {
-                    strTimes += `${t}, `;
-                });
+                if (this.selectedTimesAWeek.includes('ALL')) {
+                    strTimes='1,2,3,4,5,6,7,';
+                } else {
+                    this.selectedTimesAWeek.forEach(t => {
+                        strTimes += `${t}, `;
+                    });
+                }
 
                 this.isFetching = true;
 
@@ -239,9 +246,10 @@
                     }
                     if (response.data.data.timesAWeek) {
                         const strArray = response.data.data.timesAWeek.replace(/,\s*$/, "").split(',');
-                        this.selectedTimesAWeek = strArray;
+                        strArray.forEach(s => {
+                            this.selectedTimesAWeek.push(s.trim());
+                        });
                     }
-
                 }).catch();
             }
         },

@@ -25,6 +25,7 @@ export const equalFields =  (fieldOne, fieldTwo) => {
 export const ERROR_MESSAGES = {
     mandatoryField: 'Campo obrigatório!',
     invalidFormat: 'Formato inválido!',
+    invalidNegative: 'O valor não pode ser negativo',
     invalidCredentials: 'Credenciais inválidas!',
     unknownError: 'Woops! Algo correu mal!',
     matchField: 'Os campos devem ser iguais!',

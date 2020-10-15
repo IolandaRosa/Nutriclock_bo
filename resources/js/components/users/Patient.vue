@@ -135,6 +135,26 @@
                         Nenhum registado
                     </div>
                     <div style="display: flex">
+                        <select
+                            class="form-control mb-2"
+                            style="height: 40px"
+                            v-bind:class="{ 'is-invalid': errors.newDisease !== null }"
+                            v-model="newDiseaseSelected">
+                            <option v-for="d in diseasesList" :value="d.value">{{d.label}}</option>
+                        </select>
+                        <button class="el-button el-button--success" style="height: 40px" @click="addSelectedDisease"><em class="el-icon-plus" /></button>
+                    </div>
+                    <div style="display: flex">
+                        <select
+                            class="form-control mb-2"
+                            style="height: 40px"
+                            v-bind:class="{ 'is-invalid': errors.newDisease !== null }"
+                            v-model="newAllergySelected">
+                            <option v-for="d in allergiesList" :value="d.value">{{d.label}}</option>
+                        </select>
+                        <button class="el-button el-button--success" style="height: 40px" @click="addAllergy"><em class="el-icon-plus" /></button>
+                    </div>
+                    <div style="display: flex">
                         <input
                             type="text"
                             class="form-control"
@@ -142,7 +162,7 @@
                             style="height: 40px"
                             v-bind:class="{ 'is-invalid': errors.newDisease !== null }"
                         >
-                        <button class="el-button el-button--success" style="height: 40px" @click="addDisease"><em class="el-icon-plus" /></button>
+                        <button class="el-button el-button--success" style="height: 40px" @click="addNewDisease"><em class="el-icon-plus" /></button>
                     </div>
                     <div v-if="errors.newDisease" class="invalid-feedback">
                         {{errors.newDisease}}
@@ -226,6 +246,8 @@
                 selectedId: '',
                 selectedIndex: null,
                 newDisease: '',
+                newDiseaseSelected: null,
+                newAllergySelected: null,
                 pt: ptBR,
                 user: null,
                 ufsName: '',
@@ -236,6 +258,8 @@
                 birthday: '',
                 weight: '',
                 height: '',
+                diseasesList: [],
+                allergiesList: [],
                 diseases: [],
                 medication: [],
                 imc: '',
@@ -251,6 +275,30 @@
             };
         },
         methods: {
+            getDiseases() {
+                const diseasesList = [];
+                const allergiesList = [];
+                axios.get(`api/diseases`).then(response => {
+                    if(response.data.data) {
+                        response.data.data.forEach(d => {
+                            if (d.type === 'A') {
+                                allergiesList.push({
+                                    value: d.name,
+                                    label: d.name,
+                                });
+                            } else {
+                                diseasesList.push({
+                                    value: d.name,
+                                    label: d.name,
+                                });
+                            }
+                        });
+                    }
+
+                    this.allergiesList = allergiesList;
+                    this.diseasesList = diseasesList;
+                }).catch();
+            },
             getUser() {
                 if (this.isFetching) return;
 
@@ -299,7 +347,43 @@
                     this.isFetching = false;
                 });
             },
+            validateWeightAndHeight() {
+                let hasErrors = false;
+                if (isEmptyField(this.weight)) {
+                    hasErrors = true;
+                    this.errors.weight = ERROR_MESSAGES.mandatoryField;
+                }
+
+                if (isEmptyField(this.height)) {
+                    hasErrors = true;
+                    this.errors.height = ERROR_MESSAGES.mandatoryField;
+                }
+
+                if (isNaN(this.weight)) {
+                    hasErrors = true;
+                    this.errors.weight = ERROR_MESSAGES.invalidFormat;
+                }
+
+                if (isNaN(this.height)) {
+                    hasErrors = true;
+                    this.errors.height = ERROR_MESSAGES.invalidFormat;
+                }
+
+                if (this.weight <= 0) {
+                    hasErrors = true;
+                    this.errors.weight = ERROR_MESSAGES.invalidNegative;
+                }
+
+                if (this.height <= 0) {
+                    hasErrors = true;
+                    this.errors.height = ERROR_MESSAGES.invalidNegative;
+                }
+
+                return hasErrors;
+            },
             updateIMC() {
+                if (this.validateWeightAndHeight()) return;
+
                 if (this.weight && this.weight !== '' && this.height && this.height !== '') {
                     let h = Number(this.height)/100.0;
                     this.imc =  Number(Number(this.weight) / (h*h)).toFixed(2);
@@ -373,19 +457,45 @@
                 });
 
                 return str.replace(/,\s*$/, "");
-
             },
-            addDisease() {
+            addNewDisease() {
                 this.errors.newDisease = null;
-                let hasErrors = false;
 
                 if (isEmptyField(this.newDisease)) {
                     this.errors.newDisease = ERROR_MESSAGES.mandatoryField;
                     return;
                 }
 
+                this.addDisease(this.newDisease);
+                this.newDisease = '';
+            },
+            addAllergy() {
+                this.errors.newDisease = null;
+
+                if (isEmptyField(this.newAllergySelected)) {
+                    this.errors.newDisease = ERROR_MESSAGES.mandatoryField;
+                    return;
+                }
+
+                this.addDisease(this.newAllergySelected);
+                this.newAllergySelected = null;
+            },
+            addSelectedDisease() {
+                this.errors.newDisease = null;
+
+                if (isEmptyField(this.newDiseaseSelected)) {
+                    this.errors.newDisease = ERROR_MESSAGES.mandatoryField;
+                    return;
+                }
+
+                this.addDisease(this.newDiseaseSelected);
+                this.newDiseaseSelected = null;
+            },
+            addDisease(disease) {
+                let hasErrors = false;
+
                 this.diseases.forEach(d => {
-                    if (d.name.toLowerCase() === this.newDisease.toLowerCase()) hasErrors = true;
+                    if (d.name.toLowerCase() === disease.toLowerCase()) hasErrors = true;
                 });
 
                 if (hasErrors) {
@@ -394,10 +504,8 @@
                 }
 
                 this.diseases.push({
-                    name: this.newDisease,
+                    name: disease,
                 });
-
-                this.newDisease = '';
             },
             onCloseClick() {
                 this.showConfirmationModal = false;
@@ -406,6 +514,8 @@
                 this.selectedId = null;
             },
             savePatient() {
+                if (this.validateWeightAndHeight()) return;
+
                 let diseasesStr = '';
 
                 this.diseases.forEach(d => {
@@ -431,7 +541,7 @@
                         closeOnSwipe: true,
                         theme: 'toasted-primary'
                     });
-                }).catch((error) => {
+                }).catch(() => {
                     this.isFetching = false;
                     this.$toasted.show(ERROR_MESSAGES.unknownError, {
                         type: 'error',
@@ -440,18 +550,18 @@
                         closeOnSwipe: true,
                         theme: 'toasted-primary'
                     });
-                    console.log(error);
                 })
             }
         },
         mounted() {
             this.getUser();
+            this.getDiseases();
         },
         components: {
             Datepicker,
             ConfirmationModal,
             AddMedication,
-        }
+        },
     };
 </script>
 
