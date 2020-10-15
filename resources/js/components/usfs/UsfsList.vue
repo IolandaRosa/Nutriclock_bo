@@ -5,7 +5,8 @@
                 Unidades de Saúde Familiar
             </div>
             <div class="component-wrapper-right">
-                <button class="btn-bold btn btn-primary" v-on:click.prevent="add" type="button" data-toggle="tooltip" title="Nova USF">
+                <button class="btn-bold btn btn-primary" v-on:click.prevent="add" type="button" data-toggle="tooltip"
+                        title="Nova USF">
                     <span v-if="isFetching" class="spinner-border spinner-border-sm" role="status"
                           aria-hidden="true"></span>
                     <span class="full-text">Nova USF</span>
@@ -15,7 +16,8 @@
         </div>
         <div class="component-wrapper-body">
             <data-tables :data="data" :pagination-props="{ pageSizes: [8] }" :action-col="actionCol">
-                <el-table-column v-for="title in titles" :prop="title.prop" :label="title.label" :key="title.label" :sortable="true">
+                <el-table-column v-for="title in titles" :prop="title.prop" :label="title.label" :key="title.label"
+                                 :sortable="true">
                 </el-table-column>
             </data-tables>
         </div>
@@ -49,7 +51,7 @@
     import { COLUMN_NAME } from '../../utils/table_elements';
     import ConfirmationModal from '../modals/ConfirmationModal';
 
-    export default{
+    export default {
         data() {
             return {
                 isFetching: false,
@@ -78,21 +80,25 @@
                             type: 'primary is-circle',
                             icon: 'el-icon-edit'
                         },
-                        handler: row => { this.onEditClick(row); },
+                        handler: row => {
+                            this.onEditClick(row);
+                        },
                         label: ''
                     }, {
                         props: {
                             type: 'danger is-circle',
                             icon: 'el-icon-delete'
                         },
-                        handler: row => { this.onDeleteClick(row); },
+                        handler: row => {
+                            this.onDeleteClick(row);
+                        },
                         label: ''
                     }]
                 }
             };
         },
-        methods:{
-            add(){
+        methods: {
+            add() {
                 this.showModal = true;
                 this.modalTitle = 'Nova USF';
             },
@@ -106,7 +112,7 @@
                 this.selectedRow = row;
                 this.showConfirmationModal = true;
             },
-            deleteUsf(){
+            deleteUsf() {
                 if (this.isFetching) return;
 
                 this.isFetching = true;
@@ -160,7 +166,7 @@
             },
             handleError(error) {
                 this.isFetching = false;
-                const { response } = error;
+                const {response} = error;
                 let message = ERROR_MESSAGES.unknownError;
                 if (response) {
                     const {data} = response;
@@ -202,77 +208,3 @@
         }
     };
 </script>
-
-<style>
-    .sidebar {
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-        position: absolute;
-        top:45px;
-        bottom: 0;
-        background: white;
-        max-width: 200px;
-        box-shadow: 0 3px 6px #0f0f0f28;
-        z-index: 1;
-        flex-direction: column;
-    }
-
-    a {
-        color: #cceee1;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 16px;
-        font-size: 14px;
-        width: 100%;
-        text-decoration: none;
-    }
-
-    .sidebar-item-text {
-        margin-left: 16px;
-    }
-
-    a:hover {
-        color: white;
-        background: #cceee1;
-        text-decoration: none;
-    }
-
-    .active {
-        color: white;
-        background: #cceee1;
-        opacity: 0.7;
-        box-shadow: 0 3px 6px #0f0f0f28;
-    }
-
-    @media only screen and (max-width: 900px) {
-        .sidebar-item-text {
-            display: none;
-        }
-
-        a {
-            justify-content: center;
-        }
-    }
-
-    @media only screen and (max-width: 500px) {
-        .sidebar {
-            justify-content: center;
-            left: 0;
-            bottom: unset;
-            right: 0;
-            max-width: unset;
-            flex-direction: row;
-        }
-
-        .sidebar-item-text {
-            display: none;
-        }
-    }
-
-    .el-select {
-        display: none !important;
-    }
-</style>

@@ -128,7 +128,7 @@
 
 <script type="text/javascript">
     import FileUpload from '../utils/FileUpload';
-    import {getCategoryNameById, renderGender, renderRole} from "../../utils/misc";
+    import {getCategoryNameById, renderRole} from "../../utils/misc";
     import {equalFields, ERROR_MESSAGES, isEmailFormatInvalid, isEmptyField} from "../../utils/validations";
 
     export default {

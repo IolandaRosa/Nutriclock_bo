@@ -147,7 +147,7 @@ class UserControllerAPI extends Controller
     public function store(Request $request) {
         $request->validate([
             'name' => 'required|min:3',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:users',
             'password' => 'required|string',
             'avatar' => 'nullable|image|mimes:jpg,jpeg,png',
             'gender' => Rule::in(['MALE', 'FEMALE']),

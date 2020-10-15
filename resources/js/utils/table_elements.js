@@ -7,4 +7,5 @@ export const COLUMN_NAME = {
     Email: 'Email',
     Birthday: 'Data de Nascimento',
     Usf: 'USF',
+    Type: 'Tipo',
 };

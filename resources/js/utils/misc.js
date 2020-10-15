@@ -31,3 +31,23 @@ export const getCategoryNameById = (id, categories) => {
     return category;
 };
 
+export const renderDiseaseType = type => {
+    if (type === 'A') {
+        return 'Alergia';
+    }
+
+    if (type === 'D') {
+        return 'Doença';
+    }
+};
+
+export const renderDiseaseStringToType = type => {
+    if (type === 'Alergia') {
+        return 'A';
+    }
+
+    if (type === 'Doença') {
+        return 'D';
+    }
+};
+

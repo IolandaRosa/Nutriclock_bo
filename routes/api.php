@@ -57,3 +57,10 @@ Route::middleware(['auth:api'])->get('medication/{id}', 'MedicationControllerAPI
 // Acceptance Terms API
 Route::get('terms', 'AcceptanceTermsControllerAPI@getTerms');
 Route::middleware(['auth:api','admin'])->put('terms/{id}', 'AcceptanceTermsControllerAPI@update');
+
+// Diseases API
+Route::middleware(['auth:api'])->get('diseases', 'DiseaseControllerAPI@index');
+Route::middleware(['auth:api','admin'])->post('diseases', 'DiseaseControllerAPI@store');
+Route::middleware(['auth:api','admin'])->put('diseases/{id}', 'DiseaseControllerAPI@update');
+Route::middleware(['auth:api','admin'])->delete('diseases/{id}', 'DiseaseControllerAPI@destroy');
+

@@ -26,6 +26,12 @@
             </svg>
             <div class="sidebar-item-text">USF</div>
         </router-link>
+        <router-link v-show="this.$store.state.user && this.$store.state.user.role === 'ADMIN'" class="menu-item" active-class="active" :to="diseasesRoute" data-toggle="tooltip" title="Doenças">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+            </svg>
+            <div class="sidebar-item-text">Doenças</div>
+        </router-link>
         <router-link v-show="this.$store.state.user && this.$store.state.user.role === 'ADMIN'" class="menu-item" active-class="active" :to="acceptanceTermsRoute" data-toggle="tooltip" title="Termos de Aceitação">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list-check" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
@@ -45,7 +51,6 @@
 <script type="text/javascript">
     /*jshint esversion: 6 */
     import { ROUTE } from '../../utils/routes';
-    import { UserRoles } from '../../constants/misc';
 
     export default{
         data() {
@@ -56,6 +61,7 @@
                 profileRoute: ROUTE.Profile,
                 patientsRoute: ROUTE.Patients,
                 acceptanceTermsRoute: ROUTE.AcceptanceTerms,
+                diseasesRoute: ROUTE.Diseases,
             };
         },
     };

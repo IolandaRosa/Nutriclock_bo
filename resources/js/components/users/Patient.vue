@@ -128,7 +128,7 @@
                                 v-model="disease.name"
                                 style="height: 40px"
                             >
-                            <button class="el-button el-button--danger" style="height: 40px" @click="() => {removeDisease(index)}"><i class="el-icon-delete" /></button>
+                            <button class="el-button el-button--danger" style="height: 40px" @click="() => {removeDisease(index)}"><em class="el-icon-delete" /></button>
                         </div>
                     </div>
                     <div class="text-secondary" v-else>
@@ -142,7 +142,7 @@
                             style="height: 40px"
                             v-bind:class="{ 'is-invalid': errors.newDisease !== null }"
                         >
-                        <button class="el-button el-button--success" style="height: 40px" @click="addDisease"><i class="el-icon-plus" /></button>
+                        <button class="el-button el-button--success" style="height: 40px" @click="addDisease"><em class="el-icon-plus" /></button>
                     </div>
                     <div v-if="errors.newDisease" class="invalid-feedback">
                         {{errors.newDisease}}
@@ -153,19 +153,19 @@
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <div style="display: flex" class="mb-2">
-                        <label class="white-label flex-grow-1">Medicação Regular</label>
-                        <button class="el-button el-button--success" style="height: 40px" @click="addMedication"><i class="el-icon-plus" /></button>
+                        <label class="white-label flex-grow-1">Medicação Habitual</label>
+                        <button class="el-button el-button--success" style="height: 40px" @click="addMedication"><em class="el-icon-plus" /></button>
                     </div>
                     <div v-if="medication && medication.length > 0">
                         <div v-for="(m, index) in medication" :key="m.name" style="display: flex; margin-bottom: 8px;">
                             <div class="flex-grow-1 medication-container">
                                 <span class="text-secondary mr-3">{{m.name}}</span>
-                                <span class="text-secondary mr-5">{{m.posology}} mg</span>
+                                <span class="text-secondary mr-5">{{m.posology}} mg/ml</span>
                                 <span class="text-secondary mr-3">{{m.timesADay}}</span>
                                 <span class="text-secondary mr-3">{{renderTimesAWeek(m.timesAWeek)}}</span>
                             </div>
-                            <button class="el-button el-button--primary" style="height: 40px" @click="() => {updateMedication(index)}"><i class="el-icon-edit" /></button>
-                            <button class="el-button el-button--danger" style="height: 40px; margin-left: 0" @click="() => {removeMedication(index)}"><i class="el-icon-delete" /></button>
+                            <button class="el-button el-button--primary" style="height: 40px" @click="() => {updateMedication(index)}"><em class="el-icon-edit" /></button>
+                            <button class="el-button el-button--danger" style="height: 40px; margin-left: 0" @click="() => {removeMedication(index)}"><em class="el-icon-delete" /></button>
                         </div>
                     </div>
                     <div class="text-secondary" v-else>

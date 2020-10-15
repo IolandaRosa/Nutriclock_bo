@@ -28,7 +28,7 @@
                                 </div>
                             </div>
                             <div class="form-group col-sm-6">
-                                <label for="add-medication-modal-input-posology" class="green-label">Posologia (mg)</label>
+                                <label for="add-medication-modal-input-posology" class="green-label">Posologia (mg/ml)</label>
                                 <div>
                                     <input
                                         type="text"
@@ -36,7 +36,7 @@
                                         v-bind:class="{ 'is-invalid': errors.posology !== null }"
                                         id="add-medication-modal-input-posology"
                                         v-model.trim="posology"
-                                        placeholder='Posologia (mg)'
+                                        placeholder='Posologia (mg/ml)'
                                     >
                                     <div v-if="errors.posology" class="invalid-feedback">
                                         {{errors.posology}}
@@ -90,10 +90,7 @@
     /*jshint esversion: 6 */
     import {
         ERROR_MESSAGES,
-        isEmailFormatInvalid,
         isEmptyField,
-        isStringBiggerThanMax,
-        isStringLowerThanMin
     } from '../../utils/validations';
 
 
@@ -107,14 +104,20 @@
                 selectedTimesAWeek:[],
                 medicationId: null,
                 timesADay: [{
-                    value: 'Das 6h ao 12h',
-                    label: 'Das 6h ao 12h',
+                    value: 'De 4 em 4h',
+                    label: 'De 4 em 4h',
                 }, {
-                    value: 'Do 12h às 18h',
-                    label: 'Do 12h às 18h',
+                    value: 'De 6 em 6h',
+                    label: 'De 6 em 6h',
                 }, {
-                    value: 'Das 18h às 6h',
-                    label: 'Das 18h às 6h',
+                    value: 'De 8 em 8h',
+                    label: 'De 8 em 8h',
+                }, {
+                    value: 'De 12 em 12h',
+                    label: 'De 12 em 12h',
+                }, {
+                    value: 'De 24 em 24h',
+                    label: 'De 24 em 24h',
                 }],
                 timesAWeek: [{
                     value: '2',
@@ -184,7 +187,6 @@
                 this.isFetching = true;
 
                 if (this.medicationId) {
-                    console.log('put')
                     axios.put(`api/medications/${this.medicationId}`, {
                         name: this.name,
                         posology: this.posology,
@@ -200,7 +202,6 @@
                     return;
                 }
 
-                console.log('post')
                 axios.post(`api/medications/${this.user_id}`, {
                     name: this.name,
                     posology: this.posology,
@@ -241,9 +242,7 @@
                         this.selectedTimesAWeek = strArray;
                     }
 
-                }).catch((e) => {
-                    console.log(e)
-                });
+                }).catch();
             }
         },
         watch: {
