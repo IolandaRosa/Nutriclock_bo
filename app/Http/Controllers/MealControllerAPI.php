@@ -16,13 +16,33 @@ class MealControllerAPI extends Controller
         return MealResource::collection(Meal::all());
     }
 
-    public function getMealsFromUser(Request $request, $id) {
+    public function userMealsCount(Request $request, $id) {
         $user = User::find($id);
 
         if (!$user) {
             return Response::json(['error' => 'O utilizador não existe.'], 404);
         }
 
+        $count = Meal::where('userId', $id)->count();
+
+        if (!$count) {
+            return Response::json(['error' => 'A refeição não existe.'], 404);
+        }
+
+        return Response::json(['meals' => $count], 200);
+     }
+
+    public function getAuthUserMeals(Request $request) {
+        $meals = Meal::where('userId', auth()->id())->get();
+
+        if (!$meals) {
+            return Response::json(['error' => 'Não há ufcs'], 400);
+        }
+
+        return MealResource::collection($meals);
+    }
+
+    public function getMealsByUser(Request $request, $id) {
         $meals = Meal::where('userId', $id)->get();
 
         if (!$meals) {
@@ -30,7 +50,7 @@ class MealControllerAPI extends Controller
         }
 
         return MealResource::collection($meals);
-     }
+    }
 
     public function show(Request $request, $id) {
         $meal = Meal::find($id);

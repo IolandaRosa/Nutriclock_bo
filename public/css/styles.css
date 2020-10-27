@@ -255,3 +255,7 @@ a:hover {
     border-top: 1px solid #FFF;
     margin: 20px 0;
 }
+
+.tab-wrapper {
+    padding: 16px;
+}

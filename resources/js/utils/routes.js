@@ -1,3 +1,5 @@
+import PatientTabs from "../components/patients/PatientTabs";
+
 window.Vue = require('vue');
 
 import Login from '../components/authentication/Login';
@@ -8,8 +10,8 @@ import CategoriesList from '../components/categories/CategoriesList';
 // Usfs
 import UsfsList from '../components/usfs/UsfsList';
 import UserProfile from '../components/users/UserProfile';
-import PatientsList from '../components/users/PatientsList';
-import Patient from '../components/users/Patient';
+import PatientsList from '../components/patients/PatientsList';
+import Patient from '../components/patients/Patient';
 import AcceptanceTerms from '../components/utils/AcceptanceTerms';
 import DiseasesList from '../components/diseases/DiseasesList';
 
@@ -29,7 +31,7 @@ Vue.component('UserProfile', UserProfile);
 
 Vue.component('PatientsList', PatientsList);
 
-Vue.component('Patient', Patient);
+Vue.component('PatientTabs', PatientTabs);
 
 Vue.component('AcceptanceTerms', AcceptanceTerms);
 
@@ -59,7 +61,7 @@ export const routes = [
     {path: '/admin/users', component: AdminUsersList, name: 'AdminUsersList'},
     {path: '/profile', component: UserProfile, name: 'UserProfile'},
     {path: '/patients', component: PatientsList, name: 'PatientsList'},
-    {path: '/patients/:id', component: Patient, name: 'Patient', props: true},
+    {path: '/patients/:id', component: PatientTabs, name: 'PatientTabs', props: true},
     {path: '/terms', component: AcceptanceTerms, name: 'AcceptanceTerms'},
     {path: '/diseases', component: DiseasesList, name: 'DiseasesList'},
 ];

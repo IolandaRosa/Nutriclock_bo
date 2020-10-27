@@ -8,4 +8,7 @@ export const COLUMN_NAME = {
     Birthday: 'Data de Nascimento',
     Usf: 'USF',
     Type: 'Tipo',
+    Date: 'Data',
+    Time: 'Horas',
+    Quantity: 'Quantidade'
 };
