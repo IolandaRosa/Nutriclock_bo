@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Resources\Meal as MealResource;
+use Carbon\Carbon;
 use App\Meal;
 use App\User;
+use App\NutritionalInfoStatic;
+use App\NutritionalInfo;
 use Response;
 
 class MealControllerAPI extends Controller
@@ -16,21 +19,38 @@ class MealControllerAPI extends Controller
         return MealResource::collection(Meal::all());
     }
 
-    public function userMealsCount(Request $request, $id) {
+    public function mealDaysCount(Request $request, $id) {
         $user = User::find($id);
 
         if (!$user) {
             return Response::json(['error' => 'O utilizador não existe.'], 404);
         }
 
+        $date = Meal::where('userId', $id)->min('date');
+        $dates = Meal::where('userId', $id)->select('date')->get();
         $count = Meal::where('userId', $id)->count();
 
-        if (!$count) {
+        if (!$date) {
             return Response::json(['error' => 'A refeição não existe.'], 404);
         }
 
-        return Response::json(['meals' => $count], 200);
-     }
+        $days = Carbon::parse($date)->diffInDays(Carbon::now());
+
+        if (count($dates) == 0) {
+            return Response::json(['days' => 0], 200);
+        }
+
+        $parsedDates = [];
+        $i = 0;
+
+        foreach ($dates as $d) {
+            $parsed = Carbon::parse($d->date)->format('Y-m-d');
+            $parsedDates[$i] = $parsed;
+            $i++;
+        }
+
+        return Response::json(['daysFromInitialDate' => $days, 'totalDaysRegistered' => count(array_unique($parsedDates)), 'meals' => $count], 200);
+    }
 
     public function getAuthUserMeals(Request $request) {
         $meals = Meal::where('userId', auth()->id())->get();
@@ -73,7 +93,7 @@ class MealControllerAPI extends Controller
             case "Colher de chá": $value = 5; break;
             case "Colher de café": $value = 2.5; break;
             case "Colher de servir": $value = 30; break;
-            case "Copo": $value = 250; break;
+            case "Copo": $value = 200; break;
             case "Chavena de chá": $value = 240; break;
             case "Pires": $value = 200; break;
             case "Prato": $value = 40; break;
@@ -119,6 +139,8 @@ class MealControllerAPI extends Controller
             $meal->nutritionalInfoPhotoUrl = basename($path);
         }
 
+        $grams = MealControllerAPI::computeNumericUnit($request);
+
         $meal->name = $request->name;
         $meal->quantity = $request->quantity;
         $meal->relativeUnit = $request->relativeUnit;
@@ -126,9 +148,155 @@ class MealControllerAPI extends Controller
         $meal->date = $request->date;
         $meal->time = $request->time;
         $meal->userId = $id;
-        $meal->numericUnit = MealControllerAPI::computeNumericUnit($request);
+        $meal->numericUnit = $grams;
 
         $meal->save();
+
+        $nutritionalInfo = NutritionalInfoStatic::where('name', $request->name)->first();
+        $infoToInsert = [];
+
+        if ($nutritionalInfo) {
+            $infoToInsert[0] = [
+                'label'=> 'energy_kcal',
+                'value'=> (($nutritionalInfo->energy_kcal*$grams)/100)*$request->quantity,
+                'unit'=> 'kcal',
+                'mealId'=> $meal->id
+            ];
+            $infoToInsert[1] = [
+                'label'=> 'energy_kJ',
+                'value'=> ($nutritionalInfo->energy_kJ*$grams)/100,
+                'unit'=> 'kJ',
+                'mealId'=> $meal->id
+            ];
+            $infoToInsert[2] = [
+                'label'=> 'water_g',
+                'value'=> (($nutritionalInfo->water_g*$grams)/100)*$request->quantity,
+                'unit'=> 'g',
+                'mealId'=> $meal->id
+            ];
+            $infoToInsert[3] = [
+                'label'=> 'protein_g',
+                'value'=> (($nutritionalInfo->protein_g*$grams)/100)*$request->quantity,
+                'unit'=> 'g',
+                'mealId'=> $meal->id
+            ];
+            $infoToInsert[4] = [
+                'label'=> 'fats_g',
+                'value'=> (($nutritionalInfo->fats_g*$grams)/100)*$request->quantity,
+                'unit'=> 'g',
+                'mealId'=> $meal->id
+            ];
+            $infoToInsert[5] = [
+                'label'=> 'carbo_hidrats_g',
+                'value'=> (($nutritionalInfo->carbo_hidrats_g*$grams)/100)*$request->quantity,
+                'unit'=> 'g',
+                'mealId'=> $meal->id
+            ];
+            $infoToInsert[6] = [
+                'label'=> 'fiber_g',
+                'value'=> (($nutritionalInfo->fiber_g*$grams)/100)*$request->quantity,
+                'unit'=> 'g',
+                'mealId'=> $meal->id
+            ];
+            $infoToInsert[7] = [
+                'label'=> 'colesterol_mg',
+                'value'=> (($nutritionalInfo->colesterol_mg*$grams)/100)*$request->quantity,
+                'unit'=> 'mg',
+                'mealId'=> $meal->id
+            ];
+            $infoToInsert[8] = [
+                'label'=> 'vitA_mg',
+                'value'=> (($nutritionalInfo->vitA_mg*$grams)/100)*$request->quantity,
+                'unit'=> 'mg',
+                'mealId'=> $meal->id
+            ];
+            $infoToInsert[9] = [
+                'label'=> 'vitD_pg',
+                'value'=> (($nutritionalInfo->vitD_pg*$grams)/100)*$request->quantity,
+                'unit'=> 'μm',
+                'mealId'=> $meal->id
+            ];
+            $infoToInsert[10] = [
+                'label'=> 'tiamina_mg',
+                'value'=> (($nutritionalInfo->tiamina_mg*$grams)/100)*$request->quantity,
+                'unit'=> 'mg',
+                'mealId'=> $meal->id
+            ];
+            $infoToInsert[11] = [
+                'label'=> 'riboflavina_mg',
+                'value'=> (($nutritionalInfo->riboflavina_mg*$grams)/100)*$request->quantity,
+                'unit'=> 'mg',
+                'mealId'=> $meal->id
+            ];
+            $infoToInsert[12] = [
+                'label'=> 'niacina_mg',
+                'value'=> (($nutritionalInfo->niacina_mg*$grams)/100)*$request->quantity,
+                'unit'=> 'mg',
+                'mealId'=> $meal->id
+            ];
+            $infoToInsert[13] = [
+                'label'=> 'vitB6_mg',
+                'value'=> (($nutritionalInfo->vitB6_mg*$grams)/100)*$request->quantity,
+                'unit'=> 'mg',
+                'mealId'=> $meal->id
+            ];
+            $infoToInsert[14] = [
+                'label'=> 'vit_B12_pg',
+                'value'=> (($nutritionalInfo->vit_B12_pg*$grams)/100)*$request->quantity,
+                'unit'=> 'mg',
+                'mealId'=> $meal->id
+            ];
+            $infoToInsert[15] = [
+                'label'=> 'vitC_mg',
+                'value'=> (($nutritionalInfo->vitC_mg*$grams)/100)*$request->quantity,
+                'unit'=> 'mg',
+                'mealId'=> $meal->id
+            ];
+            $infoToInsert[16] = [
+                'label'=> 'niacina_mg',
+                'value'=> (($nutritionalInfo->na_mg*$grams)/100)*$request->quantity,
+                'unit'=> 'mg',
+                'mealId'=> $meal->id
+            ];
+            $infoToInsert[17] = [
+                'label'=> 'k_mg',
+                'value'=> (($nutritionalInfo->k_mg*$grams)/100)*$request->quantity,
+                'unit'=> 'mg',
+                'mealId'=> $meal->id
+            ];
+            $infoToInsert[18] = [
+                'label'=> 'ca_mg',
+                'value'=> (($nutritionalInfo->ca_mg*$grams)/100)*$request->quantity,
+                'unit'=> 'mg',
+                'mealId'=> $meal->id
+            ];
+            $infoToInsert[19] = [
+                'label'=> 'p_mg',
+                'value'=> (($nutritionalInfo->p_mg*$grams)/100)*$request->quantity,
+                'unit'=> 'mg',
+                'mealId'=> $meal->id
+            ];
+            $infoToInsert[20] = [
+                'label'=> 'mg_mg',
+                'value'=> (($nutritionalInfo->mg_mg*$grams)/100)*$request->quantity,
+                'unit'=> 'mg',
+                'mealId'=> $meal->id
+            ];
+            $infoToInsert[21] = [
+                'label'=> 'fe_mg',
+                'value'=> (($nutritionalInfo->fe_mg*$grams)/100)*$request->quantity,
+                'unit'=> 'mg',
+                'mealId'=> $meal->id
+            ];
+            $infoToInsert[22] = [
+                'label'=> 'zn_mg',
+                'value'=> (($nutritionalInfo->zn_mg*$grams)/100)*$request->quantity,
+                'unit'=> 'mg',
+                'mealId'=> $meal->id
+            ];
+
+            NutritionalInfo::insert($infoToInsert);
+        }
 
         return new MealResource($meal);
     }
