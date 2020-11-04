@@ -44,7 +44,7 @@ class MealControllerAPI extends Controller
         $i = 0;
 
         foreach ($dates as $d) {
-            $parsed = Carbon::parse($d->date)->format('Y-m-d');
+            $parsed = Carbon::parse($d->date)->format('d/m/Y');
             $parsedDates[$i] = $parsed;
             $i++;
         }
@@ -63,13 +63,45 @@ class MealControllerAPI extends Controller
     }
 
     public function getMealsByUser(Request $request, $id) {
-        $meals = Meal::where('userId', $id)->get();
+        $dates = Meal::where('userId', $id)->select('date')->get();
 
-        if (!$meals) {
-            return Response::json(['error' => 'Não há ufcs'], 400);
+        if (count($dates) == 0) {
+            return Response::json(['days' => 0], 200);
         }
 
-        return MealResource::collection($meals);
+        $parsedDates = [];
+        $mealsByType = [
+            'P' => [],
+            'A' => [],
+            'J' => [],
+            'S' => [],
+            'L' => [],
+        ];
+
+        $i = 0;
+
+        foreach ($dates as $d) {
+            $nutritionalArray = [];
+            $parsed = Carbon::parse($d->date)->format('d/m/Y');
+            if (!in_array($parsed, $parsedDates)) {
+                $meals = Meal::whereDate('date','=',Carbon::createFromFormat('d/m/Y',$parsed))->get();
+
+                foreach($meals as $m) {
+                    $nutritionalInfo = NutritionalInfo::where('mealId', $m->id)->get();
+                    $obj['name'] = $m->name;
+                    $obj['quantity'] = $m->quantity * $m->numericUnit;
+                    $obj['nutritionalInfo'] = $nutritionalInfo;
+                    array_push($nutritionalArray, $obj);
+                    array_push($mealsByType[$m->type], $m);
+                }
+                $mealsByType['info']=$nutritionalArray;
+                $parsedDates[$parsed] = $mealsByType;
+            }
+
+            $i++;
+        }
+
+        return Response::json(['meals' => $parsedDates], 200);
     }
 
     public function show(Request $request, $id) {

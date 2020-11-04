@@ -1,33 +1,166 @@
 <template>
     <div class="tab-wrapper">
         <p class="return" v-on:click="this.returnToMealList"><strong>< Retroceder para Diário de Refeições</strong></p>
-        <div class="component-wrapper-header">
-            <div class="component-wrapper-left">
-                {{this.data.name}}
+        <div class="meal-detail-title">
+            <span class="flex-grow-1">Características Gerais das Refeições de {{this.date}}</span>
+            <span class="px-4" style="cursor: pointer;"
+                  v-on:click="() => { this.showGeralInformation = !this.showGeralInformation}">{{showGeralInformation ? '-': '+'}}</span>
+        </div>
+        <div v-show="showGeralInformation" v-if="this.data">
+            <div v-show="this.data['P'].length > 0" class="meal-detail-geral-container">
+                <div class="meal-detail-geral-container-title">Pequeno Almoço</div>
+                <div v-for="m in this.data['P']" :key="m.id">
+                    <MealDetailsGeralInfoItem
+                        :data="m"
+                        @show-zoom="showZoomModal"/>
+                </div>
+            </div>
+            <div v-show="this.data['A'].length > 0" class="meal-detail-geral-container">
+                <div class="meal-detail-geral-container-title">Almoço</div>
+                <div v-for="m in this.data['A']" :key="m.id">
+                    <MealDetailsGeralInfoItem
+                        :data="m"
+                        @show-zoom="showZoomModal"/>
+                </div>
+            </div>
+
+            <div v-show="this.data['L'].length > 0" class="meal-detail-geral-container">
+                <div class="meal-detail-geral-container-title">Lanche</div>
+                <div v-for="m in this.data['L']" :key="m.id">
+                    <MealDetailsGeralInfoItem
+                        :data="m"
+                        @show-zoom="showZoomModal"/>
+                </div>
+            </div>
+
+            <div v-show="this.data['J'].length > 0" class="meal-detail-geral-container">
+                <div class="meal-detail-geral-container-title">Jantar</div>
+                <div v-for="m in this.data['J']" :key="m.id">
+                    <MealDetailsGeralInfoItem
+                        :data="m"
+                        @show-zoom="showZoomModal"/>
+                </div>
+            </div>
+
+            <div v-show="this.data['S'].length > 0" class="meal-detail-geral-container">
+                <div class="meal-detail-geral-container-title">Snacks</div>
+                <div v-for="m in this.data['S']" :key="m.id">
+                    <MealDetailsGeralInfoItem
+                        :data="m"
+                        @show-zoom="showZoomModal"/>
+                </div>
             </div>
         </div>
-        <div class="component-wrapper-body">
-            <div class="row">
-                <div v-show="this.data.foodPhotoUrl != null" class="col-md-3" v-on:click="() => { showZoomModal(`/food/${this.data.foodPhotoUrl}`) }">
-                    <img :src="`http://nutriclock.test:81/storage/food/${this.data.foodPhotoUrl}`" alt="" class="img-container" />
-                </div>
-                <div v-show="this.data.nutritionalInfoPhotoUrl != null" class="col-md-9" v-on:click="() => { showZoomModal(`/nutritionalInfo/${this.data.nutritionalInfoPhotoUrl}`) }">
-                    <img :src="`http://nutriclock.test:81/storage/nutritionalInfo/${this.data.nutritionalInfoPhotoUrl}`" alt="" class="img-container" />
-                </div>
+
+        <div class="meal-detail-simple-title">
+            Informação Nutricional
+        </div>
+
+        <div v-if="this.data">
+            <div class="meal-detail-title mt-4">
+                <span class="flex-grow-1">Gorduras e Macronutrientes</span>
+                <span class="px-4" style="cursor: pointer;"
+                      v-on:click="() => { this.showNutritionalInformation= !this.showNutritionalInformation}">{{showNutritionalInformation ? '-': '+'}}</span>
             </div>
-            <div class="row">
-                <span class="text-secondary label-small col-md-12">Registado a {{this.data.parsedDate}} pelas {{this.data.hour}} horas</span>
+
+            <div v-show="showNutritionalInformation" class="table-responsive">
+                <table class="table table-hover bg-white">
+                    <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Quant. (g)</th>
+                        <th scope="col">kcal</th>
+                        <th scope="col">Àgua (g)</th>
+                        <th scope="col">Proteína (g)</th>
+                        <th scope="col">Gordura (g)</th>
+                        <th scope="col">Hid. Carb. (g)</th>
+                        <th scope="col">Fibra (g)</th>
+                        <th scope="col">Colesterol (mg)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="nutri in this.data['info']" :key="nutri.id">
+                        <td>{{nutri.name}}</td>
+                        <td>{{nutri.quantity}}</td>
+                        <td v-for="n in 7">
+                            {{nutri.nutritionalInfo[n] ?
+                            (nutri.nutritionalInfo[n].value * nutri.quantity) / 100 : 0
+                            }}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="row">
-                <span class="text-secondary label-small col-md-12">Tipo de Refeição: {{this.data.parsedType}}</span>
+            <div class="meal-detail-title mt-4">
+                <span class="flex-grow-1">Vitaminas</span>
+                <span class="px-4" style="cursor: pointer;"
+                      v-on:click="() => { this.showVitamins= !this.showVitamins}">{{showVitamins ? '-': '+'}}</span>
             </div>
-            <div class="row">
-                <span class="text-secondary label-small col-md-12">Quantidate: {{this.data.parsedQuantity}}</span>
+            <div v-show="showVitamins" class="table-responsive">
+                <table class="table table-hover bg-white">
+                    <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Quant. (g)</th>
+                        <th scope="col">Vit A (mg)</th>
+                        <th scope="col">Vit D (μg)</th>
+                        <th scope="col">Tiamina (mg)</th>
+                        <th scope="col">Riboflavina (mg)</th>
+                        <th scope="col">Niacina (mg)</th>
+                        <th scope="col">Vit B6 (mg)</th>
+                        <th scope="col">Vit B12 (μg)</th>
+                        <th scope="col">Vit C (mg)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="nutri in this.data['info']" :key="nutri.id">
+                        <td>{{nutri.name}}</td>
+                        <td>{{nutri.quantity}}</td>
+                        <td v-for="n in 15" v-if="n >= 8">
+                            {{nutri.nutritionalInfo[n] ?
+                            (nutri.nutritionalInfo[n].value * nutri.quantity) / 100 : 0
+                            }}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-            <div class="row">
-                <span class="text-secondary label-small col-md-12">Informação Nutricional</span>
+            <div class="meal-detail-title mt-4">
+                <span class="flex-grow-1">Sais Minerais</span>
+                <span class="px-4" style="cursor: pointer;"
+                      v-on:click="() => { this.showMinerals = !this.showMinerals}">{{showMinerals ? '-': '+'}}</span>
+            </div>
+            <div v-show="showMinerals" class="table-responsive">
+                <table class="table table-hover bg-white">
+                    <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Quant. (g)</th>
+                        <th scope="col">Sódio (mg)</th>
+                        <th scope="col">Potássio (mg)</th>
+                        <th scope="col">Cálcio (mg)</th>
+                        <th scope="col">Fósforo (mg)</th>
+                        <th scope="col">Magnésio (mg)</th>
+                        <th scope="col">Ferro (mg)</th>
+                        <th scope="col">Zinco (mg)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="nutri in this.data['info']" :key="nutri.id">
+                        <td>{{nutri.name}}</td>
+                        <td>{{nutri.quantity}}</td>
+                        <td v-for="n in 22" v-if="n >= 16">
+                            {{nutri.nutritionalInfo[n] ?
+                            (nutri.nutritionalInfo[n].value * nutri.quantity) / 100 : 0
+                            }}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
+
+
         <ImageZoomModal v-show="zoomModal" :image-to-show="imageToZoom" @close="closeModal"/>
     </div>
 </template>
@@ -35,26 +168,32 @@
 <script type="text/javascript">
     /*jshint esversion: 6 */
     import ImageZoomModal from '../../modals/ImageZoomModal';
+    import MealDetailsGeralInfoItem from './MealDetailsGeralInfoItem';
 
-    export default{
-        props: ['meal'],
+    export default {
+        props: ['meal', 'date'],
         data() {
             return {
                 isFetching: false,
                 data: null,
                 zoomModal: false,
                 imageToZoom: '',
+                date: "",
+                showGeralInformation: true,
+                showNutritionalInformation: true,
+                showVitamins: true,
+                showMinerals: true,
             }
         },
         methods: {
-            returnToMealList () {
+            returnToMealList() {
                 this.$emit('close-details');
             },
             showZoomModal(imageToZoom) {
                 this.zoomModal = true;
                 this.imageToZoom = imageToZoom;
             },
-            closeModal(){
+            closeModal() {
                 this.zoomModal = false;
                 this.imageToZoom = '';
             }
@@ -62,9 +201,14 @@
         watch: {
             meal: function (newVal, oldVal) {
                 this.data = newVal;
+                console.log(newVal['info'])
+            },
+            date: function (newVal, oldVal) {
+                this.date = newVal;
             },
         },
         components: {
+            MealDetailsGeralInfoItem,
             ImageZoomModal,
         }
     };
@@ -78,9 +222,36 @@
         font-weight: 700;
     }
 
-    .img-container {
-        height: 200px;
-        width: 100%;
-        object-fit: cover;
+    .meal-detail-title {
+        background: #FFFFFF90;
+        color: green;
+        font-size: 16px;
+        font-weight: bolder;
+        font-family: "Nunito", sans-serif;
+        padding: 8px;
+        border-radius: 4px;
+        margin-bottom: 16px;
+        display: flex;
+    }
+
+    .meal-detail-geral-container {
+        background: #FFFFFF;
+        color: dimgrey;
+        margin-bottom: 32px;
+    }
+
+    .meal-detail-geral-container-title {
+        padding: 8px 8px 4px;
+        border-bottom: 2px solid lightgray;
+        color: black;
+        font-size: 14px;
+        font-weight: 900;
+    }
+
+    .meal-detail-simple-title {
+        font-size: 14px;
+        color: green;
+        font-weight: 900;
+        margin-top: 48px;
     }
 </style>

@@ -10,5 +10,12 @@ export const COLUMN_NAME = {
     Type: 'Tipo',
     Date: 'Data',
     Time: 'Horas',
-    Quantity: 'Quantidade'
+    Quantity: 'Quantidade',
+    energy_kcal: 'kcal',
+    water_g: 'Água (g)',
+    protein_g: 'Proteínas (g)',
+    fats_g: 'Gorduras (g)',
+    carbo_hidrats_g: 'Hid. Carb. (g)',
+    fiber_g: 'Fibra (g)',
+    colesterol_mg: 'Colesterol (mg)'
 };

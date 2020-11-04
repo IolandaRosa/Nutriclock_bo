@@ -7,7 +7,7 @@
                         <button class="btn-bold btn btn-light" @click="onCloseClick" style="position: absolute; right: 0;">
                             X
                         </button>
-                        <img :src="`http://nutriclock.test:81/storage${imageToShow}`" alt="" />
+                        <img class="image-modal-class" :src="`http://nutriclock.test:81/storage${imageToShow}`" alt="" />
                     </div>
                 </div>
             </div>
@@ -42,5 +42,9 @@
     .zoom-body {
         display: flex;
         justify-content: center;
+    }
+
+    .image-modal-class {
+        max-width: 100%;
     }
 </style>

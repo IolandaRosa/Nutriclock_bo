@@ -14,7 +14,7 @@
             </div>
             <div class="tab-pane fade" id="meals" role="tabpanel" aria-labelledby="profile-tab" style="minHeight: 100%; background: linear-gradient(#68d03d50, transparent)">
                 <MealsList :id="this.$route.params.id" @meal-details="showMeal" v-show="!showMealDetails"/>
-                <MealDetails :meal="selectedMeal" @close-details="closeMeal" v-show="showMealDetails"/>
+                <MealDetails :meal="selectedMeal" :date="date" @close-details="closeMeal" v-show="showMealDetails"/>
             </div>
         </div>
     </div>
@@ -31,6 +31,7 @@
           return {
               showMealDetails: false,
               selectedMeal: null,
+              date: null,
           };
         },
         components: {
@@ -38,9 +39,10 @@
             MealsList,
             MealDetails,
         }, methods: {
-            showMeal(row) {
+            showMeal(row, date) {
                 this.showMealDetails = true;
                 this.selectedMeal = row;
+                this.date = date;
             },
             closeMeal(){
                 this.showMealDetails = false;

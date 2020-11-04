@@ -6,22 +6,15 @@
             </div>
         </div>
         <div class="component-wrapper-body">
-            <data-tables :data="meals" :pagination-props="{ pageSizes: [8] }" :action-col="actionCol">
-                <el-table-column
-                    v-for="title in titles"
-                    :prop="title.prop"
-                    :label="title.label"
-                    :key="title.label"
-                    :sortable="true">
-                </el-table-column>
-            </data-tables>
+            <MealListItem :key="index" v-for="(d, index) in meals" :meal="d" :date="index" @show-details="showDetails"/>
         </div>
 
     </div>
 </template>
-
+m
 <script type="text/javascript">
     /*jshint esversion: 6 */
+    import MealListItem from './MealListItem';
     import { COLUMN_NAME } from '../../../utils/table_elements';
     import { parseDateToString, parseMealTypeToString } from '../../../utils/misc';
 
@@ -33,44 +26,11 @@
                 showMealModal: false,
                 selectedRow: null,
                 meals: [],
-                actionCol: {
-                    label: ' ',
-                    props: {
-                        align: 'center',
-                    },
-                    buttons: [{
-                        props: {
-                            type: 'info is-circle',
-                            icon: 'el-icon-view'
-                        },
-                        handler: row => {
-                            this.showDetails(row);
-                        },
-                        label: ''
-                    }]
-                },
-                titles: [{
-                    prop: "parsedDate",
-                    label: COLUMN_NAME.Date,
-                }, {
-                    prop: "time",
-                    label: COLUMN_NAME.Time,
-                }, {
-                    prop: "name",
-                    label: COLUMN_NAME.Name,
-                }, {
-                    prop: "parsedQuantity",
-                    label: COLUMN_NAME.Quantity
-                }, {
-                    prop: "parsedType",
-                    label: COLUMN_NAME.Type
-                }],
             }
         },
         methods: {
-            showDetails(row) {
-                console.log('emit')
-                this.$emit('meal-details', row);
+            showDetails(row, date) {
+                this.$emit('meal-details', row, date);
             },
             getUserMeals() {
                 axios.get(`api/meals/${this.id}/user`).then(response => {
@@ -78,23 +38,20 @@
 
                     this.isFetching = true;
 
-                    response.data.data.map(meal => {
-                        meal.parsedDate = parseDateToString(new Date(meal.date));
-                        meal.parsedQuantity = `${meal.quantity} ${meal.relativeUnit}`;
-                        meal.parsedType = parseMealTypeToString(meal.type);
-                        return meal;
-                    });
-
-                    this.meals = response.data.data;
+                    this.meals = response.data.meals;
                     this.isFetching = false;
                 }).catch((e) => {
-                    console.log(e);
+                    console.log('meals', e);
                     this.isFetching = false;
                 });
             },
         },
         mounted() {
+            console.log('mount')
             this.getUserMeals();
-        }
+        },
+        components: {
+            MealListItem,
+        },
     };
 </script>
