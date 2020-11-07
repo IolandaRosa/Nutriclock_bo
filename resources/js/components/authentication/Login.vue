@@ -53,6 +53,7 @@
         isEmptyField,
     } from '../../utils/validations';
     import {ROUTE} from "../../utils/routes";
+    import {UserRoles} from "../../constants/misc";
 
     export default {
         data: function () {
@@ -100,6 +101,7 @@
                     this.$store.commit('setToken', response.data.access_token);
                     return axios.get('api/users/me');
                 }).then(response => {
+                    if (response.data.data.role === UserRoles.Patient) throw new Error();
                     this.$store.commit('setUser', response.data.data);
                     this.$router.push({path: ROUTE.AdminUsers});
                     this.isFetching = false;
