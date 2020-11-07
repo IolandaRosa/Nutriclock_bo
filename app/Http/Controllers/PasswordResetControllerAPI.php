@@ -72,23 +72,44 @@ class PasswordResetControllerAPI extends Controller
     }
 
     public function update (Request $request, $id) {
-            $request->validate([
-                'newPassword' => 'required|string',
-                'password' => 'required|string|different:newPassword',
-            ]);
+        $request->validate([
+            'newPassword' => 'required|string',
+            'password' => 'required|string|different:newPassword',
+        ]);
 
-            $user=User::findOrFail($id);
+        $user=User::findOrFail($id);
 
-            if(Auth::guard('api')->user()->id != $user->id){
-                 return Response::json(['error' => 'Access forbidden!'], 401);
-            }
-
-            if (!(Hash::check($request->input('password'), $user->password))) {
-                return Response::json(['error' => 'Insere a password correta'], 422);
-            }
-
-            $user->password = Hash::make($request->newPassword);
-            $user->save();
-            return new UserResource($user);
+        if(Auth::guard('api')->user()->id != $user->id){
+            return Response::json(['error' => 'Access forbidden!'], 401);
         }
+
+        if (!(Hash::check($request->input('password'), $user->password))) {
+            return Response::json(['error' => 'Insere a password correta'], 422);
+        }
+
+        $user->password = Hash::make($request->newPassword);
+        $user->save();
+        return new UserResource($user);
+    }
+
+    public function updateEmail (Request $request, $id) {
+        $request->validate([
+            'newEmail' => 'required|email',
+            'email' => 'required|email|different:newEmail',
+        ]);
+
+        $user=User::findOrFail($id);
+
+        if(Auth::guard('api')->user()->id != $user->id){
+            return Response::json(['error' => 'Access forbidden!'], 401);
+        }
+
+        if ($request->email != $user->email) {
+            return Response::json(['error' => 'Insere o email correcto'], 422);
+        }
+
+        $user->email = $request->newEmail;
+        $user->save();
+        return new UserResource($user);
+    }
 }

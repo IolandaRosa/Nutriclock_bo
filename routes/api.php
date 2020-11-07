@@ -44,6 +44,7 @@ Route::middleware(['auth:api'])->get('users/{id}/ufcs', 'UfcControllerAPI@getUse
 // Reset Password
 Route::post('password', 'PasswordResetControllerAPI@store');
 Route::put('password/{id}', 'PasswordResetControllerAPI@update');
+Route::put('email/{id}', 'PasswordResetControllerAPI@updateEmail');
 Route::post('reset-password', 'PasswordResetControllerAPI@reset');
 
 // Medication API
