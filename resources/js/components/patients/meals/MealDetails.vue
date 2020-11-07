@@ -1,6 +1,6 @@
 <template>
     <div class="tab-wrapper">
-        <p class="return" v-on:click="this.returnToMealList"><strong>< Retroceder para Diário de Refeições</strong></p>
+        <p class="return" v-on:click="this.returnToMealList"><strong>< Retroceder para Diário Alimentar</strong></p>
         <div class="meal-detail-title">
             <span class="flex-grow-1">Características Gerais das Refeições de {{this.date}}</span>
             <span class="px-4" style="cursor: pointer;"
@@ -178,7 +178,6 @@
                 data: null,
                 zoomModal: false,
                 imageToZoom: '',
-                date: "",
                 showGeralInformation: true,
                 showNutritionalInformation: true,
                 showVitamins: true,
@@ -201,7 +200,6 @@
         watch: {
             meal: function (newVal, oldVal) {
                 this.data = newVal;
-                console.log(newVal['info'])
             },
             date: function (newVal, oldVal) {
                 this.date = newVal;

@@ -5,7 +5,7 @@
                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="home" aria-selected="true">Perfil</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#meals" role="tab" aria-controls="profile" aria-selected="false">Diário de Refeições</a>
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#meals" role="tab" aria-controls="profile" aria-selected="false">Diário Alimentar</a>
             </li>
         </ul>
         <div class="tab-content" id="myTabContent" style="height: calc(100% - 28px); background: linear-gradient(#68d03d50, transparent);">

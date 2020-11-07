@@ -2,14 +2,14 @@
     <div class="row geral-centered">
         <div v-if="data.foodPhotoUrl != null" class="col max-w-100"
              v-on:click="() => { showZoomModal(`/food/${data.foodPhotoUrl}`) }">
-            <img :src="`http://nutriclock.test:81/storage/food/${data.foodPhotoUrl}`" alt=""
+            <img :src="`http://nutriclock.test:81/storage/food/thumb_${data.foodPhotoUrl}`" alt=""
                  class="img-container"/>
         </div>
         <div class="col max-w-100 pl-4" v-else>N/A</div>
 
         <div v-if="data.nutritionalInfoPhotoUrl != null" class="col max-w-100"
              v-on:click="() => { showZoomModal(`/nutritionalInfo/${data.nutritionalInfoPhotoUrl}`) }">
-            <img :src="`http://nutriclock.test:81/storage/nutritionalInfo/${data.nutritionalInfoPhotoUrl}`"
+            <img :src="`http://nutriclock.test:81/storage/nutritionalInfo/thumb_${data.nutritionalInfoPhotoUrl}`"
                  alt="" class="img-container"/>
         </div>
         <div class="col max-w-100 pl-4" v-else>N/A</div>

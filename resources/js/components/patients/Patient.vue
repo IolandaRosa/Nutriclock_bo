@@ -35,6 +35,7 @@
                         v-bind:class="{ 'is-invalid': errors.name !== null }"
                         placeholder="Nome"
                         v-model="name"
+                        :disabled="readonly"
                     >
                     <div v-if="errors.name" class="invalid-feedback">
                         {{errors.name}}
@@ -48,6 +49,7 @@
                         calendar-class="text-secondary"
                         :disabledDates="disabledDates"
                         :language="pt"
+                        :disabled="readonly"
                     />
                     <div v-if="errors.birthday" class="invalid-feedback">
                         {{errors.birthday}}
@@ -58,17 +60,17 @@
                     <div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" id="user-profile-input-gender-male"
-                                   value="MALE" v-model="gender">
+                                   value="MALE" v-model="gender" :disabled="readonly">
                             <label class="form-check-label text-secondary" for="user-profile-input-gender-male">Masculino</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" id="user-profile-input-gender-female"
-                                   value="FEMALE" v-model="gender">
+                                   value="FEMALE" v-model="gender" :disabled="readonly">
                             <label class="form-check-label text-secondary" for="user-profile-input-gender-female">Feminino</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" id="user-profile-input-gender-none"
-                                   value="NONE" v-model="gender">
+                                   value="NONE" v-model="gender" :disabled="readonly">
                             <label class="form-check-label text-secondary" for="user-profile-input-gender-none">Não me identifico</label>
                         </div>
                     </div>
@@ -85,6 +87,7 @@
                         v-bind:class="{ 'is-invalid': errors.weight !== null }"
                         placeholder="weight"
                         v-model="weight"
+                        :disabled="readonly"
                     >
                     <div v-if="errors.weight" class="invalid-feedback">
                         {{errors.weight}}
@@ -99,6 +102,7 @@
                         v-bind:class="{ 'is-invalid': errors.height !== null }"
                         placeholder="height"
                         v-model="height"
+                        :disabled="readonly"
                     >
                     <div v-if="errors.height" class="invalid-feedback">
                         {{errors.height}}
@@ -130,14 +134,15 @@
                                 class="form-control"
                                 v-model="disease.name"
                                 style="height: 40px"
+                                :disabled="readonly"
                             >
-                            <button class="el-button el-button--danger" style="height: 40px" @click="() => {removeDisease(index)}"><em class="el-icon-delete" /></button>
+                            <button class="el-button el-button--danger" style="height: 40px" @click="() => {removeDisease(index)}" v-show="!readonly" ><em class="el-icon-delete" /></button>
                         </div>
                     </div>
                     <div class="text-secondary" v-else>
                         Nenhum registado
                     </div>
-                    <div style="display: flex">
+                    <div style="display: flex" v-show="!readonly">
                         <select
                             class="form-control mb-2"
                             style="height: 40px"
@@ -147,7 +152,7 @@
                         </select>
                         <button class="el-button el-button--success" style="height: 40px" @click="addSelectedDisease"><em class="el-icon-plus" /></button>
                     </div>
-                    <div style="display: flex">
+                    <div style="display: flex" v-show="!readonly">
                         <select
                             class="form-control mb-2"
                             style="height: 40px"
@@ -157,7 +162,7 @@
                         </select>
                         <button class="el-button el-button--success" style="height: 40px" @click="addAllergy"><em class="el-icon-plus" /></button>
                     </div>
-                    <div style="display: flex">
+                    <div style="display: flex" v-show="!readonly">
                         <input
                             type="text"
                             class="form-control"
@@ -177,7 +182,7 @@
                 <div class="form-group col-md-12">
                     <div style="display: flex" class="mb-2">
                         <label class="white-label flex-grow-1">Medicação Habitual</label>
-                        <button class="el-button el-button--success" style="height: 40px" @click="addMedication"><em class="el-icon-plus" /></button>
+                        <button class="el-button el-button--success" style="height: 40px" @click="addMedication" v-show="!readonly"><em class="el-icon-plus" /></button>
                     </div>
                     <div v-if="medication && medication.length > 0">
                         <div v-for="(m, index) in medication" :key="m.name" style="display: flex; margin-bottom: 8px;">
@@ -187,8 +192,8 @@
                                 <span class="text-secondary mr-3">{{m.timesADay}}</span>
                                 <span class="text-secondary mr-3">{{renderTimesAWeek(m.timesAWeek)}}</span>
                             </div>
-                            <button class="el-button el-button--primary" style="height: 40px" @click="() => {updateMedication(index)}"><em class="el-icon-edit" /></button>
-                            <button class="el-button el-button--danger" style="height: 40px; margin-left: 0" @click="() => {removeMedication(index)}"><em class="el-icon-delete" /></button>
+                            <button v-show="!readonly" class="el-button el-button--primary" style="height: 40px" @click="() => {updateMedication(index)}"><em class="el-icon-edit" /></button>
+                            <button v-show="!readonly" class="el-button el-button--danger" style="height: 40px; margin-left: 0" @click="() => {removeMedication(index)}"><em class="el-icon-delete" /></button>
                         </div>
                     </div>
                     <div class="text-secondary" v-else>
@@ -198,7 +203,7 @@
             </div>
         </div>
         <div>
-            <button class="btn-bold btn btn-primary" v-on:click="this.savePatient" type="button"
+            <button v-show="!readonly" class="btn-bold btn btn-primary" v-on:click="this.savePatient" type="button"
                     data-toggle="tooltip"
                     title="Guardar alterações">
                     <span v-if="isFetching" class="spinner-border spinner-border-sm" role="status"
@@ -234,11 +239,13 @@
     import { ERROR_MESSAGES, isEmptyField } from '../../utils/validations';
     import ConfirmationModal from '../modals/ConfirmationModal';
     import AddMedication from '../modals/AddMedication';
+    import {UserRoles} from "../../constants/misc";
 
     export default {
         props: ['id'],
         data: function () {
             return {
+                readonly: false,
                 disabledDates: {
                     from: new Date(),
                 },
@@ -565,6 +572,9 @@
         mounted() {
             this.getUser();
             this.getDiseases();
+            if (this.$store.state.user) {
+                this.readonly = this.$store.state.user.role === UserRoles.Intern
+            }
         },
         components: {
             Datepicker,

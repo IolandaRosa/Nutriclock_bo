@@ -11,6 +11,8 @@ use App\User;
 use App\NutritionalInfoStatic;
 use App\NutritionalInfo;
 use Response;
+use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\Storage;
 
 class MealControllerAPI extends Controller
 {
@@ -64,44 +66,52 @@ class MealControllerAPI extends Controller
 
     public function getMealsByUser(Request $request, $id) {
         $dates = Meal::where('userId', $id)->select('date')->get();
+        $meals = Meal::where('userId',$id)->get();
 
         if (count($dates) == 0) {
             return Response::json(['days' => 0], 200);
         }
 
         $parsedDates = [];
-        $mealsByType = [
-            'P' => [],
-            'A' => [],
-            'J' => [],
-            'S' => [],
-            'L' => [],
-        ];
-
         $i = 0;
+        $k = 0;
 
         foreach ($dates as $d) {
-            $nutritionalArray = [];
             $parsed = Carbon::parse($d->date)->format('d/m/Y');
-            if (!in_array($parsed, $parsedDates)) {
-                $meals = Meal::whereDate('date','=',Carbon::createFromFormat('d/m/Y',$parsed))->get();
-
-                foreach($meals as $m) {
-                    $nutritionalInfo = NutritionalInfo::where('mealId', $m->id)->get();
-                    $obj['name'] = $m->name;
-                    $obj['quantity'] = $m->quantity * $m->numericUnit;
-                    $obj['nutritionalInfo'] = $nutritionalInfo;
-                    array_push($nutritionalArray, $obj);
-                    array_push($mealsByType[$m->type], $m);
-                }
-                $mealsByType['info']=$nutritionalArray;
-                $parsedDates[$parsed] = $mealsByType;
-            }
-
+            $parsedDates[$i] = $parsed;
             $i++;
         }
 
-        return Response::json(['meals' => $parsedDates], 200);
+        $parsedDates = array_unique($parsedDates);
+        $data = [];
+
+        foreach ($parsedDates as $d) {
+            $nutritionalArray = [];
+            $mealsByType = [
+                'P' => [],
+                'A' => [],
+                'J' => [],
+                'S' => [],
+                'L' => [],
+                'O' => [],
+            ];
+
+            foreach($meals as $m) {
+                $nutritionalInfo = NutritionalInfo::where('mealId', $m->id)->get();
+                $obj['name'] = $m->name;
+                $obj['quantity'] = $m->quantity * $m->numericUnit;
+                $obj['nutritionalInfo'] = $nutritionalInfo;
+                if (Carbon::parse($m->date)->format('d/m/Y') == $d) {
+                    array_push($nutritionalArray, $obj);
+                    array_push($mealsByType[$m->type], $m);
+                }
+            }
+
+            $mealsByType['info']=$nutritionalArray;
+            $data[$d] = $mealsByType;
+        }
+
+        return Response::json(['meals' => $data], 200);
     }
 
     public function show(Request $request, $id) {
@@ -161,13 +171,24 @@ class MealControllerAPI extends Controller
 
         if($request->foodPhoto != null) {
             $image = $request->file('foodPhoto');
+            $thumbnail= Image::make($image);
+            $thumbnail->resize(null, 200, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
             $path = basename($image->store('food', 'public'));
+            Storage::put('public\food\thumb_'.$path, $thumbnail->stream());
             $meal->foodPhotoUrl = basename($path);
         }
 
         if($request->nutritionalInfoPhoto != null) {
             $image = $request->file('nutritionalInfoPhoto');
+            $thumbnail= Image::make($image);
+            $thumbnail->resize(null, 200, function ($constraint) {
+                $constraint->aspectRatio();
+            });
             $path = basename($image->store('nutritionalInfo', 'public'));
+            Storage::put('public\nutritionalInfo\thumb_'.$path, $thumbnail->stream());
             $meal->nutritionalInfoPhotoUrl = basename($path);
         }
 

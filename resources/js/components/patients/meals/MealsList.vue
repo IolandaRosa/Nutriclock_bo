@@ -2,13 +2,12 @@
     <div class="tab-wrapper">
         <div class="component-wrapper-header">
             <div class="component-wrapper-left">
-                Diário de Refeições
+                Diário Alimentar
             </div>
         </div>
         <div class="component-wrapper-body">
             <MealListItem :key="index" v-for="(d, index) in meals" :meal="d" :date="index" @show-details="showDetails"/>
         </div>
-
     </div>
 </template>
 m

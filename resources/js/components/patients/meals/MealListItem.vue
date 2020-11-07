@@ -1,57 +1,68 @@
 <template>
     <div class="list-item" v-on:click="this.showDetails">
         <div class="list-item-date">{{this.date}}</div>
-        <div class="list-item-container">
+        <div class="list-item-container" v-if="this.meal['P'].length > 0">
             <div class="list-item-type">
                 Pequeno-almoço
             </div>
             <div class="list-item-images">
                 <div v-for="m in this.meal['P']" class="list-item-img">
-                    <img :src="`http://nutriclock.test:81/storage/food/${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <img :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
                     <div class="list-item-time">{{m.time}}h</div>
                 </div>
             </div>
         </div>
-        <div class="list-item-container">
+        <div class="list-item-container" v-if="this.meal['A'].length > 0">
             <div class="list-item-type">
                 Almoço
             </div>
             <div class="list-item-images">
                 <div v-for="m in this.meal['A']" class="list-item-img">
-                    <img :src="`http://nutriclock.test:81/storage/food/${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <img :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
                     <div class="list-item-time">{{m.time}}h</div>
                 </div>
             </div>
         </div>
-        <div class="list-item-container">
+        <div class="list-item-container" v-if="this.meal['L'].length > 0">
             <div class="list-item-type">
                 Lanche
             </div>
             <div class="list-item-images">
                 <div v-for="m in this.meal['L']" class="list-item-img">
-                    <img :src="`http://nutriclock.test:81/storage/food/${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <img :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
                     <div class="list-item-time">{{m.time}}h</div>
                 </div>
             </div>
         </div>
-        <div class="list-item-container">
+        <div class="list-item-container" v-if="this.meal['J'].length > 0">
             <div class="list-item-type">
                 Jantar
             </div>
             <div class="list-item-images">
                 <div v-for="m in this.meal['J']" class="list-item-img">
-                    <img :src="`http://nutriclock.test:81/storage/food/${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <img :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
                     <div class="list-item-time">{{m.time}}h</div>
                 </div>
             </div>
         </div>
-        <div class="list-item-container">
+        <div class="list-item-container" v-if="this.meal['S'].length > 0">
             <div class="list-item-type">
                 Snacks
             </div>
             <div class="list-item-images">
                 <div v-for="m in this.meal['S']" class="list-item-img">
-                    <img :src="`http://nutriclock.test:81/storage/food/${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <img :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <div class="list-item-time">{{m.time}}h</div>
+                </div>
+            </div>
+        </div>
+        <div class="list-item-container" v-if="this.meal['O'].length > 0">
+            <div class="list-item-type">
+                Outro
+            </div>
+            <div class="list-item-images">
+                <div v-for="m in this.meal['O']" class="list-item-img">
+                    <img :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
                     <div class="list-item-time">{{m.time}}h</div>
                 </div>
             </div>
