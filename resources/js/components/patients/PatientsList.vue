@@ -38,10 +38,11 @@
 <script type="text/javascript">
     /*jshint esversion: 6 */
 
-    import {getCategoryNameById, parseDateToString, renderGender} from '../../utils/misc';
+    import { getCategoryNameById, parseDateToString, renderGender } from '../../utils/misc';
     import { COLUMN_NAME } from '../../utils/table_elements';
+    import { ROUTE } from '../../utils/routes';
 
-    export default{
+    export default {
         data() {
             return {
                 isFetching: false,
@@ -93,7 +94,7 @@
                 }
             };
         },
-        methods:{
+        methods: {
             filterByUsf() {
                 const filtered = [];
 
@@ -111,8 +112,8 @@
                 this.data = filtered;
             },
             getUsers() {
+                if (!this.$store.state.user) this.$router.push(ROUTE.Login);
                 this.isFetching = true;
-
                 axios.get(`api/users/${this.$store.state.user.id}/ufcs`).then(response => {
                     const ufcsIds = [];
                     const dataArray = [];
@@ -125,7 +126,7 @@
                         ufcsIds.push(ufc.id);
                     });
 
-                    axios.post('api/patients', { ufcsIds }).then(res => {
+                    axios.post('api/patients', {ufcsIds}).then(res => {
                         this.isFetching = false;
 
                         res.data.data.forEach(d => {
@@ -144,9 +145,11 @@
                     });
                 }).catch(() => {
                     this.isFetching = false;
+                    if (error.response && error.response.status === 401) {
+                        this.$router.push(ROUTE.Login)
+                    }
                 });
             },
-
         },
         mounted() {
             this.getUsers();

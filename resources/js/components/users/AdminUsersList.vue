@@ -191,7 +191,7 @@
                     return;
                 }
                 this.originalData.forEach(obj => {
-                    if (obj.role === this.selectedRole) {
+                    if (obj && obj.role === this.selectedRole) {
                         filtered.push(obj);
                     }
                 });
@@ -204,6 +204,8 @@
                     this.isFetching = false;
                     this.categories = response.data.data;
 
+                    console.log('get categories')
+
                     usersArray.forEach(d => {
                         const obj = d;
                         obj.gender = renderGender(d.gender);
@@ -214,8 +216,11 @@
 
                     this.data = dataArray;
                     this.originalData = dataArray;
-                }).catch(() => {
+                }).catch((error) => {
                     this.isFetching = false;
+                    if (error.response && error.response.status === 401) {
+                        this.$router.push(ROUTE.Login)
+                    }
                 });
             },
             add() {
@@ -243,8 +248,11 @@
 
                     this.data = dataArray;
                     this.originalData = dataArray;
-                }).catch(() => {
+                }).catch((error) => {
                     this.isFetching = false;
+                    if (error.response && error.response.status === 401) {
+                        this.$router.push(ROUTE.Login)
+                    }
                 });
             },
             onClickResendEmail(row) {
@@ -353,7 +361,7 @@
             }
         },
         mounted() {
-            if (this.$store.state.user.role !== UserRoles.Admin) {
+            if (this.$store.state.user && this.$store.state.user.role !== UserRoles.Admin) {
                 this.$router.push(ROUTE.Patients);
                 return;
             }
@@ -369,20 +377,6 @@
 </script>
 
 <style>
-    .sidebar {
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-        position: absolute;
-        top:45px;
-        bottom: 0;
-        background: white;
-        max-width: 200px;
-        box-shadow: 0 3px 6px #0f0f0f28;
-        z-index: 1;
-        flex-direction: column;
-    }
-
     a {
         color: #cceee1;
         font-weight: 700;
@@ -395,49 +389,9 @@
         text-decoration: none;
     }
 
-    .sidebar-item-text {
-        margin-left: 16px;
-    }
-
     a:hover {
         color: white;
         background: #cceee1;
         text-decoration: none;
-    }
-
-    .active {
-        color: white;
-        background: #cceee1;
-        opacity: 0.7;
-        box-shadow: 0 3px 6px #0f0f0f28;
-    }
-
-    @media only screen and (max-width: 900px) {
-        .sidebar-item-text {
-            display: none;
-        }
-
-        a {
-            justify-content: center;
-        }
-    }
-
-    @media only screen and (max-width: 500px) {
-        .sidebar {
-            justify-content: center;
-            left: 0;
-            bottom: unset;
-            right: 0;
-            max-width: unset;
-            flex-direction: row;
-        }
-
-        .sidebar-item-text {
-            display: none;
-        }
-    }
-
-    .el-select {
-        display: none !important;
     }
 </style>
