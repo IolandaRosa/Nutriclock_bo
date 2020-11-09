@@ -206,150 +206,64 @@ class MealControllerAPI extends Controller
         $meal->save();
 
         $nutritionalInfo = NutritionalInfoStatic::where('name', $request->name)->first();
-        $infoToInsert = [];
+        $infoToInsert = array(
+            array('label'=> 'energy_kcal', 'unit'=> 'kcal'),
+            array('label'=> 'energy_kJ', 'unit'=> 'kJ'),
+            array('label'=> 'water_g', 'unit'=> 'g'),
+            array('label'=> 'protein_g', 'unit'=> 'g'),
+            array('label'=> 'fats_g', 'unit'=> 'g'),
+            array('label'=> 'carbo_hidrats_g', 'unit'=> 'g'),
+            array('label'=> 'fiber_g', 'unit'=> 'g'),
+            array('label'=> 'colesterol_mg', 'unit'=> 'mg'),
+            array('label'=> 'vitA_mg', 'unit'=> 'mg'),
+            array('label'=> 'vitD_pg', 'unit'=> 'μg'),
+            array('label'=> 'tiamina_mg', 'unit'=> 'mg'),
+            array('label'=> 'riboflavina_mg', 'unit'=> 'mg'),
+            array('label'=> 'niacina_mg', 'unit'=> 'mg'),
+            array('label'=> 'vitB6_mg', 'unit'=> 'mg'),
+            array('label'=> 'vit_B12_pg', 'unit'=> 'μg'),
+            array('label'=> 'vitC_mg', 'unit'=> 'mg'),
+            array('label'=> 'na_mg', 'unit'=> 'mg'),
+            array('label'=> 'k_mg', 'unit'=> 'mg'),
+            array('label'=> 'ca_mg', 'unit'=> 'mg'),
+            array('label'=> 'p_mg', 'unit'=> 'mg'),
+            array('label'=> 'mg_mg', 'unit'=> 'mg'),
+            array('label'=> 'fe_mg', 'unit'=> 'mg'),
+            array('label'=> 'zn_mg', 'unit'=> 'mg'),
+        );
+
+        for($i = 0, $size = count($infoToInsert); $i < $size; ++$i) {
+            $infoToInsert[$i]['value'] = 0;
+            $infoToInsert[$i]['mealId'] = $meal->id;
+        }
 
         if ($nutritionalInfo) {
-            $infoToInsert[0] = [
-                'label'=> 'energy_kcal',
-                'value'=> (($nutritionalInfo->energy_kcal*$grams)/100)*$request->quantity,
-                'unit'=> 'kcal',
-                'mealId'=> $meal->id
-            ];
-            $infoToInsert[1] = [
-                'label'=> 'energy_kJ',
-                'value'=> ($nutritionalInfo->energy_kJ*$grams)/100,
-                'unit'=> 'kJ',
-                'mealId'=> $meal->id
-            ];
-            $infoToInsert[2] = [
-                'label'=> 'water_g',
-                'value'=> (($nutritionalInfo->water_g*$grams)/100)*$request->quantity,
-                'unit'=> 'g',
-                'mealId'=> $meal->id
-            ];
-            $infoToInsert[3] = [
-                'label'=> 'protein_g',
-                'value'=> (($nutritionalInfo->protein_g*$grams)/100)*$request->quantity,
-                'unit'=> 'g',
-                'mealId'=> $meal->id
-            ];
-            $infoToInsert[4] = [
-                'label'=> 'fats_g',
-                'value'=> (($nutritionalInfo->fats_g*$grams)/100)*$request->quantity,
-                'unit'=> 'g',
-                'mealId'=> $meal->id
-            ];
-            $infoToInsert[5] = [
-                'label'=> 'carbo_hidrats_g',
-                'value'=> (($nutritionalInfo->carbo_hidrats_g*$grams)/100)*$request->quantity,
-                'unit'=> 'g',
-                'mealId'=> $meal->id
-            ];
-            $infoToInsert[6] = [
-                'label'=> 'fiber_g',
-                'value'=> (($nutritionalInfo->fiber_g*$grams)/100)*$request->quantity,
-                'unit'=> 'g',
-                'mealId'=> $meal->id
-            ];
-            $infoToInsert[7] = [
-                'label'=> 'colesterol_mg',
-                'value'=> (($nutritionalInfo->colesterol_mg*$grams)/100)*$request->quantity,
-                'unit'=> 'mg',
-                'mealId'=> $meal->id
-            ];
-            $infoToInsert[8] = [
-                'label'=> 'vitA_mg',
-                'value'=> (($nutritionalInfo->vitA_mg*$grams)/100)*$request->quantity,
-                'unit'=> 'mg',
-                'mealId'=> $meal->id
-            ];
-            $infoToInsert[9] = [
-                'label'=> 'vitD_pg',
-                'value'=> (($nutritionalInfo->vitD_pg*$grams)/100)*$request->quantity,
-                'unit'=> 'μm',
-                'mealId'=> $meal->id
-            ];
-            $infoToInsert[10] = [
-                'label'=> 'tiamina_mg',
-                'value'=> (($nutritionalInfo->tiamina_mg*$grams)/100)*$request->quantity,
-                'unit'=> 'mg',
-                'mealId'=> $meal->id
-            ];
-            $infoToInsert[11] = [
-                'label'=> 'riboflavina_mg',
-                'value'=> (($nutritionalInfo->riboflavina_mg*$grams)/100)*$request->quantity,
-                'unit'=> 'mg',
-                'mealId'=> $meal->id
-            ];
-            $infoToInsert[12] = [
-                'label'=> 'niacina_mg',
-                'value'=> (($nutritionalInfo->niacina_mg*$grams)/100)*$request->quantity,
-                'unit'=> 'mg',
-                'mealId'=> $meal->id
-            ];
-            $infoToInsert[13] = [
-                'label'=> 'vitB6_mg',
-                'value'=> (($nutritionalInfo->vitB6_mg*$grams)/100)*$request->quantity,
-                'unit'=> 'mg',
-                'mealId'=> $meal->id
-            ];
-            $infoToInsert[14] = [
-                'label'=> 'vit_B12_pg',
-                'value'=> (($nutritionalInfo->vit_B12_pg*$grams)/100)*$request->quantity,
-                'unit'=> 'mg',
-                'mealId'=> $meal->id
-            ];
-            $infoToInsert[15] = [
-                'label'=> 'vitC_mg',
-                'value'=> (($nutritionalInfo->vitC_mg*$grams)/100)*$request->quantity,
-                'unit'=> 'mg',
-                'mealId'=> $meal->id
-            ];
-            $infoToInsert[16] = [
-                'label'=> 'niacina_mg',
-                'value'=> (($nutritionalInfo->na_mg*$grams)/100)*$request->quantity,
-                'unit'=> 'mg',
-                'mealId'=> $meal->id
-            ];
-            $infoToInsert[17] = [
-                'label'=> 'k_mg',
-                'value'=> (($nutritionalInfo->k_mg*$grams)/100)*$request->quantity,
-                'unit'=> 'mg',
-                'mealId'=> $meal->id
-            ];
-            $infoToInsert[18] = [
-                'label'=> 'ca_mg',
-                'value'=> (($nutritionalInfo->ca_mg*$grams)/100)*$request->quantity,
-                'unit'=> 'mg',
-                'mealId'=> $meal->id
-            ];
-            $infoToInsert[19] = [
-                'label'=> 'p_mg',
-                'value'=> (($nutritionalInfo->p_mg*$grams)/100)*$request->quantity,
-                'unit'=> 'mg',
-                'mealId'=> $meal->id
-            ];
-            $infoToInsert[20] = [
-                'label'=> 'mg_mg',
-                'value'=> (($nutritionalInfo->mg_mg*$grams)/100)*$request->quantity,
-                'unit'=> 'mg',
-                'mealId'=> $meal->id
-            ];
-            $infoToInsert[21] = [
-                'label'=> 'fe_mg',
-                'value'=> (($nutritionalInfo->fe_mg*$grams)/100)*$request->quantity,
-                'unit'=> 'mg',
-                'mealId'=> $meal->id
-            ];
-            $infoToInsert[22] = [
-                'label'=> 'zn_mg',
-                'value'=> (($nutritionalInfo->zn_mg*$grams)/100)*$request->quantity,
-                'unit'=> 'mg',
-                'mealId'=> $meal->id
-            ];
-
-            NutritionalInfo::insert($infoToInsert);
+            $infoToInsert[0]['value'] = (($nutritionalInfo->energy_kcal*$grams)/100)*$request->quantity;
+            $infoToInsert[1]['value'] = (($nutritionalInfo->energy_kJ*$grams)/100)*$request->quantity;
+            $infoToInsert[2]['value'] = (($nutritionalInfo->water_g*$grams)/100)*$request->quantity;
+            $infoToInsert[3]['value'] = (($nutritionalInfo->protein_g*$grams)/100)*$request->quantity;
+            $infoToInsert[4]['value'] = (($nutritionalInfo->fats_g*$grams)/100)*$request->quantity;
+            $infoToInsert[5]['value'] = (($nutritionalInfo->carbo_hidrats_g*$grams)/100)*$request->quantity;
+            $infoToInsert[6]['value'] = (($nutritionalInfo->fiber_g*$grams)/100)*$request->quantity;
+            $infoToInsert[7]['value'] = (($nutritionalInfo->colesterol_mg*$grams)/100)*$request->quantity;
+            $infoToInsert[8]['value'] = (($nutritionalInfo->vitA_mg*$grams)/100)*$request->quantity;
+            $infoToInsert[9]['value'] = (($nutritionalInfo->vitD_pg*$grams)/100)*$request->quantity;
+            $infoToInsert[10]['value'] = (($nutritionalInfo->tiamina_mg*$grams)/100)*$request->quantity;
+            $infoToInsert[11]['value'] = (($nutritionalInfo->riboflavina_mg*$grams)/100)*$request->quantity;
+            $infoToInsert[12]['value'] = (($nutritionalInfo->niacina_mg*$grams)/100)*$request->quantity;
+            $infoToInsert[13]['value'] = (($nutritionalInfo->vitB6_mg*$grams)/100)*$request->quantity;
+            $infoToInsert[14]['value'] = (($nutritionalInfo->vit_B12_pg*$grams)/100)*$request->quantity;
+            $infoToInsert[15]['value'] = (($nutritionalInfo->vitC_mg*$grams)/100)*$request->quantity;
+            $infoToInsert[16]['value'] = (($nutritionalInfo->na_mg*$grams)/100)*$request->quantity;
+            $infoToInsert[17]['value'] = (($nutritionalInfo->k_mg*$grams)/100)*$request->quantity;
+            $infoToInsert[18]['value'] = (($nutritionalInfo->ca_mg*$grams)/100)*$request->quantity;
+            $infoToInsert[19]['value'] = (($nutritionalInfo->p_mg*$grams)/100)*$request->quantity;
+            $infoToInsert[20]['value'] = (($nutritionalInfo->mg_mg*$grams)/100)*$request->quantity;
+            $infoToInsert[21]['value'] = (($nutritionalInfo->fe_mg*$grams)/100)*$request->quantity;
+            $infoToInsert[22]['value'] = (($nutritionalInfo->zn_mg*$grams)/100)*$request->quantity;
         }
+
+        NutritionalInfo::insert($infoToInsert);
 
         return new MealResource($meal);
     }

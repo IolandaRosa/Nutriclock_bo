@@ -58,7 +58,7 @@
 
         <div v-if="this.data">
             <div class="meal-detail-title mt-4">
-                <span class="flex-grow-1">Gorduras e Macronutrientes</span>
+                <span class="flex-grow-1">Macroconstituintes</span>
                 <span class="px-4" style="cursor: pointer;"
                       v-on:click="() => { this.showNutritionalInformation= !this.showNutritionalInformation}">{{showNutritionalInformation ? '-': '+'}}</span>
             </div>
@@ -83,9 +83,14 @@
                         <td>{{nutri.name}}</td>
                         <td>{{nutri.quantity}}</td>
                         <td v-for="n in 7">
-                            {{nutri.nutritionalInfo[n] ?
-                            (nutri.nutritionalInfo[n].value * nutri.quantity) / 100 : 0
-                            }}
+                            <input
+                                type="text"
+                                class="form-control"
+                                :id="nutri.nutritionalInfo[n].id"
+                                :name="nutri.nutritionalInfo[n].id"
+                                v-model="nutri.nutritionalInfo[n].value"
+                                v-on:change="() => updateINutritionalValue(nutri.nutritionalInfo[n].id, nutri.nutritionalInfo[n].value)"
+                            >
                         </td>
                     </tr>
                     </tbody>
@@ -117,16 +122,20 @@
                         <td>{{nutri.name}}</td>
                         <td>{{nutri.quantity}}</td>
                         <td v-for="n in 15" v-if="n >= 8">
-                            {{nutri.nutritionalInfo[n] ?
-                            (nutri.nutritionalInfo[n].value * nutri.quantity) / 100 : 0
-                            }}
+                            <input
+                                type="text"
+                                class="form-control"
+                                :id="nutri.nutritionalInfo[n].id"
+                                :name="nutri.nutritionalInfo[n].id"
+                                v-model="nutri.nutritionalInfo[n].value"
+                            >
                         </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <div class="meal-detail-title mt-4">
-                <span class="flex-grow-1">Sais Minerais</span>
+                <span class="flex-grow-1">Minerais</span>
                 <span class="px-4" style="cursor: pointer;"
                       v-on:click="() => { this.showMinerals = !this.showMinerals}">{{showMinerals ? '-': '+'}}</span>
             </div>
@@ -150,9 +159,13 @@
                         <td>{{nutri.name}}</td>
                         <td>{{nutri.quantity}}</td>
                         <td v-for="n in 22" v-if="n >= 16">
-                            {{nutri.nutritionalInfo[n] ?
-                            (nutri.nutritionalInfo[n].value * nutri.quantity) / 100 : 0
-                            }}
+                            <input
+                                type="text"
+                                class="form-control"
+                                :id="nutri.nutritionalInfo[n].id"
+                                :name="nutri.nutritionalInfo[n].id"
+                                v-model="nutri.nutritionalInfo[n].value"
+                            >
                         </td>
                     </tr>
                     </tbody>
@@ -182,6 +195,7 @@
                 showNutritionalInformation: true,
                 showVitamins: true,
                 showMinerals: true,
+                readonly: false,
             }
         },
         methods: {
@@ -195,6 +209,25 @@
             closeModal() {
                 this.zoomModal = false;
                 this.imageToZoom = '';
+            },
+            updateINutritionalValue(id, value) {
+                axios.put(`api/nutritional-info/${id}`, { "value": value }).then(() =>{
+                    this.$toasted.show('A informação foi atualizada com sucesso!', {
+                        type: 'success',
+                        duration: 2000,
+                        position: 'top-right',
+                        closeOnSwipe: true,
+                        theme: 'toasted-primary'
+                    });
+                }).catch(() => {
+                    this.$toasted.show('Ocorreu um erro durante a atualização da informação', {
+                        type: 'error',
+                        duration: 3000,
+                        position: 'top-right',
+                        closeOnSwipe: true,
+                        theme: 'toasted-primary'
+                    });
+                });
             }
         },
         watch: {
