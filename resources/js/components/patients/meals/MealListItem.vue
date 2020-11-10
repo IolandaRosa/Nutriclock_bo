@@ -7,7 +7,8 @@
             </div>
             <div class="list-item-images">
                 <div v-for="m in this.meal['P']" class="list-item-img">
-                    <img :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <img v-if="m.foodPhotoUrl !== null" :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <div v-else class="list-item-image">N/A</div>
                     <div class="list-item-time">{{m.time}}h</div>
                 </div>
             </div>
@@ -18,7 +19,8 @@
             </div>
             <div class="list-item-images">
                 <div v-for="m in this.meal['A']" class="list-item-img">
-                    <img :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <img v-if="m.foodPhotoUrl !== null" :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <div v-else class="list-item-image">N/A</div>
                     <div class="list-item-time">{{m.time}}h</div>
                 </div>
             </div>
@@ -29,7 +31,8 @@
             </div>
             <div class="list-item-images">
                 <div v-for="m in this.meal['L']" class="list-item-img">
-                    <img :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <img v-if="m.foodPhotoUrl !== null" :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <div v-else class="list-item-image">N/A</div>
                     <div class="list-item-time">{{m.time}}h</div>
                 </div>
             </div>
@@ -40,7 +43,8 @@
             </div>
             <div class="list-item-images">
                 <div v-for="m in this.meal['J']" class="list-item-img">
-                    <img :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <img v-if="m.foodPhotoUrl !== null" :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <div v-else class="list-item-image">N/A</div>
                     <div class="list-item-time">{{m.time}}h</div>
                 </div>
             </div>
@@ -51,7 +55,8 @@
             </div>
             <div class="list-item-images">
                 <div v-for="m in this.meal['S']" class="list-item-img">
-                    <img :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <img v-if="m.foodPhotoUrl !== null" :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <div v-else class="list-item-image">N/A</div>
                     <div class="list-item-time">{{m.time}}h</div>
                 </div>
             </div>
@@ -62,7 +67,8 @@
             </div>
             <div class="list-item-images">
                 <div v-for="m in this.meal['O']" class="list-item-img">
-                    <img :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <img v-if="m.foodPhotoUrl !== null" :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <div v-else class="list-item-image">N/A</div>
                     <div class="list-item-time">{{m.time}}h</div>
                 </div>
             </div>
@@ -130,11 +136,18 @@
         max-width: 100px;
     }
 
-    img.list-item-image {
+    .list-item-image {
         height: 100px;
         width: 100px;
         object-fit: cover;
-        opacity: 0.7
+        opacity: 0.7;
+        background: white;
+        color: black;
+        font-weight: 900;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .list-item-images {
