@@ -15,7 +15,9 @@
         <div class="col max-w-100 pl-4" v-else>N/A</div>
 
         <div class="col ml-4">{{data.name}}</div>
-        <div class="col">{{data.quantity}} {{data.relativeUnit}} - {{data.quantity * data.numericUnit}} g</div>
+        <div class="col">{{data.quantity}} {{data.relativeUnit}} - {{data.numericUnit}} g</div>
+        <div class="col" v-if="data.observations != null">{{data.observations}}</div>
+        <div class="col" v-else>Sem observações</div>
     </div>
 </template>
 

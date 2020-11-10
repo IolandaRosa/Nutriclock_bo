@@ -211,6 +211,17 @@
                 this.imageToZoom = '';
             },
             updateINutritionalValue(id, value) {
+                if (isNaN(value) || value < 0) {
+                    this.$toasted.show('Valor inválido. Deve ser um número positivo!', {
+                        type: 'error',
+                        duration: 3000,
+                        position: 'top-right',
+                        closeOnSwipe: true,
+                        theme: 'toasted-primary'
+                    });
+                    return
+                }
+
                 axios.put(`api/nutritional-info/${id}`, { "value": value }).then(() =>{
                     this.$toasted.show('A informação foi atualizada com sucesso!', {
                         type: 'success',

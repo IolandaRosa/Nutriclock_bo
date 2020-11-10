@@ -99,7 +99,7 @@ class MealControllerAPI extends Controller
             foreach($meals as $m) {
                 $nutritionalInfo = NutritionalInfo::where('mealId', $m->id)->get();
                 $obj['name'] = $m->name;
-                $obj['quantity'] = $m->quantity * $m->numericUnit;
+                $obj['quantity'] = $m->numericUnit;
                 $obj['nutritionalInfo'] = $nutritionalInfo;
                 if (Carbon::parse($m->date)->format('d/m/Y') == $d) {
                     array_push($nutritionalArray, $obj);
@@ -130,19 +130,19 @@ class MealControllerAPI extends Controller
         switch($request->relativeUnit) {
             case "Gramas":
             case "Mililitros": $value = $request->quantity; break;
-            case "Colher de sopa": $value = 15; break;
-            case "Colher de sobremesa": $value = 7.5; break;
-            case "Colher de chá": $value = 5; break;
-            case "Colher de café": $value = 2.5; break;
-            case "Colher de servir": $value = 30; break;
-            case "Copo": $value = 200; break;
-            case "Chavena de chá": $value = 240; break;
-            case "Pires": $value = 200; break;
-            case "Prato": $value = 40; break;
-            case "Caneca": $value = 300; break;
-            case "Concha de sopa": $value = 160; break;
-            case "Tigela média": $value = 350; break;
-            case "Chavena de café": $value = 40; break;
+            case "Colher de sopa": $value = 15 * $request->quantity; break;
+            case "Colher de sobremesa": $value = 7.5 * $request->quantity; break;
+            case "Colher de chá": $value = 5 * $request->quantity; break;
+            case "Colher de café": $value = 2.5 * $request->quantity; break;
+            case "Colher de servir": $value = 30 * $request->quantity; break;
+            case "Copo": $value = 200 * $request->quantity; break;
+            case "Chavena de chá": $value = 240 * $request->quantity; break;
+            case "Pires": $value = 200 * $request->quantity; break;
+            case "Prato": $value = 400 * $request->quantity; break;
+            case "Caneca": $value = 300 * $request->quantity; break;
+            case "Concha de sopa": $value = 160 * $request->quantity; break;
+            case "Tigela média": $value = 350 * $request->quantity; break;
+            case "Chavena de café": $value = 40 * $request->quantity; break;
             default: $value = 0;
         }
 
@@ -200,6 +200,7 @@ class MealControllerAPI extends Controller
         $meal->type = $request->type;
         $meal->date = $request->date;
         $meal->time = $request->time;
+        $meal->observations = $request->observations;
         $meal->userId = $id;
         $meal->numericUnit = $grams;
 
