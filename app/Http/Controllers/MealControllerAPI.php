@@ -268,4 +268,16 @@ class MealControllerAPI extends Controller
 
         return new MealResource($meal);
     }
+
+    public function updateQuantity(Request $request, $id) {
+        $meal = Meal::find($id);
+
+        if (!$meal) {
+            return Response::json(['error' => 'A refeição não existe.'], 404);
+        }
+
+        $meal->numericUnit = $request->quantity;
+        $meal->update();
+        return new MealResource($meal);
+    }
 }

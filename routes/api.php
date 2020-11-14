@@ -69,6 +69,7 @@ Route::middleware(['auth:api','admin'])->delete('diseases/{id}', 'DiseaseControl
 Route::middleware(['auth:api'])->get('meals', 'MealControllerAPI@index');
 Route::middleware(['auth:api'])->get('meals/{id}', 'MealControllerAPI@show');
 Route::middleware(['auth:api'])->post('meals/{id}', 'MealControllerAPI@store');
+Route::middleware(['auth:api'])->put('meals/{id}', 'MealControllerAPI@updateQuantity');
 Route::middleware(['auth:api'])->get('meals/{id}/user', 'MealControllerAPI@getMealsByUser');
 Route::middleware(['auth:api'])->get('meals-user', 'MealControllerAPI@getAuthUserMeals');
 Route::middleware(['auth:api'])->get('meals/stats/{id}', 'MealControllerAPI@mealDaysCount');
@@ -78,3 +79,4 @@ Route::get('meal-names', 'NutritionalInfoStaticControllerAPI@getNames');
 
 // Nutritional info
 Route::middleware(['auth:api'])->put('nutritional-info/{id}', 'NutritionalInfoControllerAPI@update');
+Route::middleware(['auth:api'])->put('nutrititional-info/meal/{id}', 'NutritionalInfoControllerAPI@updateByMeal');
