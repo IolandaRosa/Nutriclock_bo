@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-define('SERVER_URL', 'http://nutriclock.test:81');
+// define('SERVER_URL', 'http://nutriclock.test:81');
+define('SERVER_URL', 'https://nutriclock.herokuapp.com');
 define('CLIENT_ID', '2');
 define('CLIENT_SECRET', 'Duc2Pacdpd2C3IrSt2rx1gIDANlk8VaTk5RJOozd');
 
