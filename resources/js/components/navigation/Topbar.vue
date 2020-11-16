@@ -1,7 +1,7 @@
 <template>
     <div class="top-bar">
         <div class="top-bar-container">
-            <img :src="'images/logo_text_horizontal.png'" alt="" height="30px"/>
+            <img src="https://nutriclock.herokuapp.com/images/logo_text_horizontal.png" alt="" height="30px"/>
             <div style="display: flex">
                 <div class="top-bar-info">
                     <div class="top-bar-avatar" v-if="!this.$store.state.user || !this.$store.state.user.avatarUrl">
