@@ -2,7 +2,7 @@
     <div class="wrapper-center">
         <div id="login-form-container" class="white-container">
             <div class="mb-3">
-                <img src="http://nutriclock.test:81/images/logo_text_horizontal.png" alt=""/>
+                <img :src="'images/logo_text_horizontal.png'" alt=""/>
             </div>
             <form class="needs-validation login-form" novalidate>
                 <div class="col-md-8 mb-3">
