@@ -13,7 +13,7 @@ class UpdateMedicationsTableAddId extends Migration
      */
     public function up()
     {
-        DB::statement('ALTER Table medications add id INTEGER NOT NULL UNIQUE AUTO_INCREMENT;');
+        DB::statement('ALTER Table medications add id INTEGER NOT NULL SERIAL;');
     }
 
     /**
