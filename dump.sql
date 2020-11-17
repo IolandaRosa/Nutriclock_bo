@@ -1010,3 +1010,4 @@
 --	(2, NULL, 'Laravel Password Grant Client', 'Duc2Pacdpd2C3IrSt2rx1gIDANlk8VaTk5RJOozd', 'users', 'https://nutriclock.herokuapp.com', false, true, false, '2020-10-11 16:48:16', '2020-10-11 16:48:16');
 
 --INSERT INTO users VALUES (1, 'Admin', 'NONE', NULL, NULL, 'admin@nutriclock.pt', NULL, '$2y$10$zN1ByMC0P8lkk/TPg1Met.PGgXNH8kpISUkyqpwSdbaKVTP0.p9qW', 'ADMIN', 1, '9IqK2JTvB8KLMhztQ3fCvIpBAb2KztGPifA6OQVL.png', NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-15 21:07:56', 0, 1);
+--INSERT INTO users VALUES (1, 'Iolanda Rosa', 'NONE', NULL, NULL, 'iolanda.rosa777@gmail.com', NULL, '$2y$10$zN1ByMC0P8lkk/TPg1Met.PGgXNH8kpISUkyqpwSdbaKVTP0.p9qW', 'ADMIN', true, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-10-15 21:07:56', 0, true);
