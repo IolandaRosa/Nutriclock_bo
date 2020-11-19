@@ -18,7 +18,8 @@
         "laravel/passport": "^9.3",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.2",
-        "nesbot/carbon": "^2.39"
+        "nesbot/carbon": "^2.39",
+        "ext-gd": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
