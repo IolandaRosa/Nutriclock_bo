@@ -177,7 +177,7 @@ class MealControllerAPI extends Controller
             });
 
             $path = basename($image->store('food', 'public'));
-            Storage::put('public\food\thumb_'.$path, $thumbnail->stream());
+            Storage::put('public/food/thumb_'.$path, $thumbnail->stream());
             $meal->foodPhotoUrl = basename($path);
         }
 
@@ -188,7 +188,7 @@ class MealControllerAPI extends Controller
                 $constraint->aspectRatio();
             });
             $path = basename($image->store('nutritionalInfo', 'public'));
-            Storage::put('public\nutritionalInfo\thumb_'.$path, $thumbnail->stream());
+            Storage::put('public/nutritionalInfo/thumb_'.$path, $thumbnail->stream());
             $meal->nutritionalInfoPhotoUrl = basename($path);
         }
 
