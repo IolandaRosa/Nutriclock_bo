@@ -7,7 +7,7 @@
             </div>
             <div class="list-item-images">
                 <div v-for="m in this.meal['P']" class="list-item-img">
-                    <img v-if="m.foodPhotoUrl !== null" :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <img v-if="m.foodPhotoUrl !== null" :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
                     <div v-else class="list-item-image">N/A</div>
                     <div class="list-item-time">{{m.time}}h</div>
                 </div>
@@ -19,7 +19,7 @@
             </div>
             <div class="list-item-images">
                 <div v-for="m in this.meal['A']" class="list-item-img">
-                    <img v-if="m.foodPhotoUrl !== null" :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <img v-if="m.foodPhotoUrl !== null" :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
                     <div v-else class="list-item-image">N/A</div>
                     <div class="list-item-time">{{m.time}}h</div>
                 </div>
@@ -31,7 +31,7 @@
             </div>
             <div class="list-item-images">
                 <div v-for="m in this.meal['L']" class="list-item-img">
-                    <img v-if="m.foodPhotoUrl !== null" :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <img v-if="m.foodPhotoUrl !== null" :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
                     <div v-else class="list-item-image">N/A</div>
                     <div class="list-item-time">{{m.time}}h</div>
                 </div>
@@ -43,7 +43,7 @@
             </div>
             <div class="list-item-images">
                 <div v-for="m in this.meal['J']" class="list-item-img">
-                    <img v-if="m.foodPhotoUrl !== null" :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <img v-if="m.foodPhotoUrl !== null" :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
                     <div v-else class="list-item-image">N/A</div>
                     <div class="list-item-time">{{m.time}}h</div>
                 </div>
@@ -55,7 +55,7 @@
             </div>
             <div class="list-item-images">
                 <div v-for="m in this.meal['S']" class="list-item-img">
-                    <img v-if="m.foodPhotoUrl !== null" :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <img v-if="m.foodPhotoUrl !== null" :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
                     <div v-else class="list-item-image">N/A</div>
                     <div class="list-item-time">{{m.time}}h</div>
                 </div>
@@ -67,7 +67,7 @@
             </div>
             <div class="list-item-images">
                 <div v-for="m in this.meal['O']" class="list-item-img">
-                    <img v-if="m.foodPhotoUrl !== null" :src="`http://nutriclock.test:81/storage/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
+                    <img v-if="m.foodPhotoUrl !== null" :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
                     <div v-else class="list-item-image">N/A</div>
                     <div class="list-item-time">{{m.time}}h</div>
                 </div>

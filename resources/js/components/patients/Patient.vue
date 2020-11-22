@@ -329,9 +329,9 @@
                 if (this.id) {
                     axios.get(`api/users/${this.id}`).then(response => {
                         if (!response.data.data.avatarUrl) {
-                            this.avatarUrl = 'http://nutriclock.test:81/images/avatar.png';
+                            this.avatarUrl = 'https://nutriclock.herokuapp.com/images/avatar.png';
                         } else {
-                            this.avatarUrl = `http://nutriclock.test:81/storage/avatars/${response.data.data.avatarUrl}`;
+                            this.avatarUrl = `https://nutriclock.s3-eu-west-1.amazonaws.com/avatars/${response.data.data.avatarUrl}`;
                         }
 
                         let diseasesArray = [];

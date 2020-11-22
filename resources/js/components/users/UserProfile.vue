@@ -246,7 +246,7 @@
         },
         mounted() {
             this.name = this.$store.state.user.name;
-            this.avatarUrl = this.$store.state.user.avatarUrl ? `http://nutriclock.test:81/storage/avatars/${this.$store.state.user.avatarUrl}` : 'http://nutriclock.test:81/images/avatar.png';
+            this.avatarUrl = this.$store.state.user.avatarUrl ? `https://nutriclock.s3-eu-west-1.amazonaws.com/avatars/${this.$store.state.user.avatarUrl}` : 'https://nutriclock.herokuapp.com/images/avatar.png';
             this.email = this.$store.state.user.email;
             this.role = renderRole(this.$store.state.user.role);
             this.gender = this.$store.state.user.gender;
