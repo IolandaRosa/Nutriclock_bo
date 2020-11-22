@@ -12,8 +12,7 @@
                         </svg>
                     </div>
                     <div v-else>
-                        <!--img class="top-bar-avatar" :src="`http://nutriclock.test:81/storage/avatars/${this.$store.state.user.avatarUrl}`" alt="" /-->
-                        <img class="top-bar-avatar" :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/avatars/ ${this.$store.state.user.avatarUrl}`" alt="" />
+                        <img class="top-bar-avatar" :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/avatars/${this.$store.state.user.avatarUrl}`" alt="" />
                     </div>
                     <span class="top-bar-text">Bem vindo, {{this.$store.state.user ? this.$store.state.user.name : ''}}</span>
                 </div>
