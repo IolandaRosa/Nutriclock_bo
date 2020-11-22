@@ -176,8 +176,10 @@ class MealControllerAPI extends Controller
                 $constraint->aspectRatio();
             });
 
-            $path = basename($image->store('food', 'public'));
-            Storage::put('public/food/thumb_'.$path, $thumbnail->stream());
+            // $path = basename($image->store('food', 'public'));
+            $path = basename($image->store('food', 's3'));
+            Storage::disk('s3')->put('food/thumb_'.$path, $thumbnail->stream());
+            // Storage::put('public/food/thumb_'.$path, $thumbnail->stream());
             $meal->foodPhotoUrl = basename($path);
         }
 
@@ -187,8 +189,10 @@ class MealControllerAPI extends Controller
             $thumbnail->resize(null, 200, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            $path = basename($image->store('nutritionalInfo', 'public'));
-            Storage::put('public/nutritionalInfo/thumb_'.$path, $thumbnail->stream());
+            // $path = basename($image->store('nutritionalInfo', 'public'));
+            $path = basename($image->store('nutritionalInfo', 's3'));
+            Storage::disk('s3')->put('nutritionalInfo/thumb_'.$path, $thumbnail->stream());
+            // Storage::put('public/nutritionalInfo/thumb_'.$path, $thumbnail->stream());
             $meal->nutritionalInfoPhotoUrl = basename($path);
         }
 
