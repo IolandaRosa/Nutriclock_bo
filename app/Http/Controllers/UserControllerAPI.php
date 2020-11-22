@@ -71,11 +71,11 @@ class UserControllerAPI extends Controller
             }
 
             if($request->avatar != null) {
-                // Storage::disk('s3')->delete('avatars/'.$user->avatarUrl);
+                Storage::disk('s3')->delete('avatars/'.$user->avatarUrl);
                 // Storage::disk('public')->delete('avatars/'.$user->avatarUrl);
                 $image = $request->file('avatar');
-                Storage::disk('s3')->put($filename, file_get_contents($image));
-                //$path = basename($image->store('avatars', 'public'));
+                // Storage::disk('s3')->put($filename, file_get_contents($image));
+                $path = basename($image->store('avatars', 's3'));
                 $user->avatarUrl = basename($path);
             }
 
