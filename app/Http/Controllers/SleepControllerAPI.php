@@ -25,7 +25,6 @@ class SleepControllerAPI extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -132,6 +131,37 @@ class SleepControllerAPI extends Controller
        $minutes = $time[1]/60;
 
        return $time[0]+$minutes;
+    }
+
+    public static function getSleepStatsForAuthUser(Request $request) {
+        if($request->user()->role != 'PATIENT') {
+            return Response::json(['error' => 'Accesso proibido!'], 401);
+        }
+
+        $sleeps = Sleep::where('userId', Auth::guard('api')->user()->id)->get();
+
+        if (!$sleeps || count($sleeps) == 0) {
+            return Response::json(['error' => 'Não existem registos de sono.'], 404);
+        }
+
+        $valuesToFilter = [];
+
+        foreach($sleeps as $sleep) {
+            $parsedDate = explode('/', $sleep->date);
+            $valuesToFilter[$parsedDate[2]][$parsedDate[1]] = [];
+        }
+
+        foreach($sleeps as $sleep) {
+            $w = SleepControllerAPI::computeTimeInHours($sleep->wakeUpTime);
+            $s = SleepControllerAPI::computeTimeInHours($sleep->sleepTime);
+            $parsedDate = explode('/', $sleep->date);
+            array_push($valuesToFilter[$parsedDate[2]][$parsedDate[1]], [
+                'label' => $parsedDate[0],
+                'value' => abs($s - $w),
+            ]);
+        }
+
+        return Response::json(['data' => $valuesToFilter]);
     }
 
     /**
