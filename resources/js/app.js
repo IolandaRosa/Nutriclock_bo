@@ -1,5 +1,6 @@
 /*jshint esversion: 6 */
 require('./bootstrap');
+require('datatables.net-responsive-bs4');
 window.Vue = require('vue');
 
 import { routes } from './utils/routes';
@@ -13,7 +14,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
-// set language to EN
+// set language to PT
 import lang from 'element-ui/lib/locale/lang/pt';
 import locale from 'element-ui/lib/locale';
 

@@ -63,6 +63,7 @@
 
 <script type="text/javascript">
     import { ERROR_MESSAGES, isEmptyField } from '../../utils/validations';
+    import { ROUTE } from '../../utils/routes';
 
     export default {
         data: function () {
@@ -97,7 +98,7 @@
                 axios.put(`api/terms/${this.version}`, {
                     title: this.title,
                     description: this.description,
-                }).then(response => {
+                }).then(() => {
                     this.isFetching = false;
                     this.getTermsAndConditions();
                     this.$toasted.show('A informação foi atualizada com sucesso!', {
@@ -131,7 +132,9 @@
                     this.version = response.data.data.version;
                 }).catch(error => {
                     this.isFetching = false;
-                    console.log(error);
+                    if (error.response && error.response.status === 401) {
+                        this.$router.push(ROUTE.Login)
+                    }
                 });
             }
         },

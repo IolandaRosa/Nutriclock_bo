@@ -22,7 +22,7 @@ export const renderRole = role => {
 };
 
 export const getCategoryNameById = (id, categories) => {
-    let category = 'Não Atribuída';
+    let category = '--';
     categories.forEach(cat => {
         if (cat.id === id) {
             category = cat.name;

@@ -1,0 +1,178 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\User;
+use Response;
+use Illuminate\Support\Facades\Auth;
+use App\Sleep;
+use App\Http\Resources\Sleep as SleepResource;
+
+class SleepControllerAPI extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        if(Auth::guard('api')->user()->role != 'PATIENT') {
+            return Response::json(['error' => 'Accesso proibido!'], 401);
+        }
+
+        $request->validate([
+            'date' => 'required',
+            'userId' => 'required',
+            'wakeUpTime' => 'required',
+            'sleepTime' => 'required',
+            'hasWakeUp' => 'required',
+        ]);
+
+        $user=User::find($request->userId);
+
+        if (!$user) {
+            return Response::json(['error' => 'O utilizador não existe.'], 404);
+        }
+
+        $sleep = new Sleep();
+
+        $motives = "";
+
+        $sleep->date = $request->date;
+        $sleep->userId = $request->userId;
+        $sleep->wakeUpTime = $request->wakeUpTime;
+        $sleep->sleepTime = $request->sleepTime;
+        $sleep->hasWakeUp = $request->hasWakeUp;
+        $sleep->activities = null;
+        $sleep->motives = null;
+
+        if ($request->activities && count($request->activities) > 0) {
+            $activities = $request->activities[0];
+            for($i = 1; $i < count($request->activities); $i++) {
+                $activities=$activities.", ".$request->activities[$i];
+            }
+
+            $sleep->activities = $activities;
+        }
+
+        if ($request->motives && count($request->motives) > 0) {
+            $motives = $request->motives[0];
+
+            for($i = 1; $i < count($request->motives); $i++) {
+                $motives=$motives.", ".$request->motives[$i];
+            }
+
+            $sleep->motives = $motives;
+        }
+
+        $sleep->save();
+
+        return new SleepResource($sleep);
+    }
+
+    public function getSleepStatsByUser($id)
+    {
+        $user=User::find($id);
+
+        if (!$user) {
+             return Response::json(['error' => 'O utilizador não existe.'], 404);
+        }
+
+        $sleeps = Sleep::where('userId', $id)->get();
+
+        if (!$sleeps || count($sleeps) == 0) {
+            return Response::json(['error' => 'Não existem registos de sono.'], 404);
+        }
+
+        $sleepsSum = 0;
+        $sleepsCount = count($sleeps);
+        $valuesToFilter = [];
+
+        foreach($sleeps as $sleep) {
+            $parsedDate = explode('/', $sleep->date);
+            $valuesToFilter[$parsedDate[2]][$parsedDate[1]] = [];
+        }
+
+        foreach($sleeps as $sleep) {
+            $w = SleepControllerAPI::computeTimeInHours($sleep->wakeUpTime);
+            $s = SleepControllerAPI::computeTimeInHours($sleep->sleepTime);
+            $sleepsSum += abs($s - $w);
+            $parsedDate = explode('/', $sleep->date);
+            array_push($valuesToFilter[$parsedDate[2]][$parsedDate[1]], [
+                'label' => $parsedDate[0],
+                'value' => abs($s - $w),
+            ]);
+        }
+
+        $average = $sleepsSum/$sleepsCount;
+
+        return Response::json(['stats' => [
+            'totalRegisters'=>$sleepsCount,
+            'averageTime'=>$average,
+            'chartStats' => $valuesToFilter
+        ]]);
+    }
+
+    public static function computeTimeInHours($value) {
+       $time = explode(':', $value);
+
+       $minutes = $time[1]/60;
+
+       return $time[0]+$minutes;
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $user=User::find($id);
+
+        if (!$user) {
+             return Response::json(['error' => 'O utilizador não existe.'], 404);
+        }
+
+        $sleeps = Sleep::where('userId', $id)->get();
+
+        return SleepResource::collection($sleeps);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}

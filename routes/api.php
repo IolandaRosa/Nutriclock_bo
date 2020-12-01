@@ -24,9 +24,9 @@ Route::put('users/{id}/activate', 'UserControllerAPI@activate');
 Route::middleware(['auth:api'])->post('patients', 'UserControllerAPI@getPatients');
 Route::middleware(['auth:api','admin'])->delete('users/{id}', 'UserControllerAPI@destroy');
 Route::middleware(['auth:api','admin'])->delete('users/{id}/status', 'UserControllerAPI@toggleActive');
-Route::middleware(['auth:api'])->put('users/{id}', 'UserControllerAPI@updateProfessional');
-Route::middleware(['auth:api'])->put('users/profile/{id}', 'UserControllerAPI@updateProfessionalProfile');
-Route::middleware(['auth:api'])->put('users/terms/{id}', 'UserControllerAPI@updateAcceptanceTerms');
+Route::middleware(['auth:api','professional'])->put('users/{id}', 'UserControllerAPI@updateProfessional');
+Route::middleware(['auth:api','professional'])->put('users/profile/{id}', 'UserControllerAPI@updateProfessionalProfile');
+Route::middleware(['auth:api','admin'])->put('users/terms/{id}', 'UserControllerAPI@updateAcceptanceTerms');
 
 // ProfessionalCategory API
 Route::middleware(['auth:api'])->get('professionalCategories', 'ProfessionalCategoryControllerAPI@index');
@@ -68,15 +68,20 @@ Route::middleware(['auth:api','admin'])->delete('diseases/{id}', 'DiseaseControl
 // Meals API
 Route::middleware(['auth:api'])->get('meals', 'MealControllerAPI@index');
 Route::middleware(['auth:api'])->get('meals/{id}', 'MealControllerAPI@show');
-Route::middleware(['auth:api'])->post('meals/{id}', 'MealControllerAPI@store');
-Route::middleware(['auth:api'])->put('meals/{id}', 'MealControllerAPI@updateQuantity');
-Route::middleware(['auth:api'])->get('meals/{id}/user', 'MealControllerAPI@getMealsByUser');
-Route::middleware(['auth:api'])->get('meals-user', 'MealControllerAPI@getAuthUserMeals');
+Route::middleware(['auth:api','patient'])->post('meals/{id}', 'MealControllerAPI@store');
+Route::middleware(['auth:api','professional'])->put('meals/{id}', 'MealControllerAPI@updateQuantity');
+Route::middleware(['auth:api','professional'])->get('meals/{id}/user', 'MealControllerAPI@getMealsByUser');
+Route::middleware(['auth:api','patient'])->get('meals-user', 'MealControllerAPI@getAuthUserMeals');
 Route::middleware(['auth:api'])->get('meals/stats/{id}', 'MealControllerAPI@mealDaysCount');
 
 // Static nutritional info
 Route::get('meal-names', 'NutritionalInfoStaticControllerAPI@getNames');
 
 // Nutritional info
-Route::middleware(['auth:api'])->put('nutritional-info/{id}', 'NutritionalInfoControllerAPI@update');
-Route::middleware(['auth:api'])->put('nutrititional-info/meal/{id}', 'NutritionalInfoControllerAPI@updateByMeal');
+Route::middleware(['auth:api','professional'])->put('nutritional-info/{id}', 'NutritionalInfoControllerAPI@update');
+Route::middleware(['auth:api','professional' ])->put('nutrititional-info/meal/{id}', 'NutritionalInfoControllerAPI@updateByMeal');
+
+// Sleep API
+Route::middleware(['auth:api','patient'])->post('sleeps', 'SleepControllerAPI@store');
+Route::middleware(['auth:api','professional'])->get('sleeps/{id}', 'SleepControllerAPI@show');
+Route::middleware(['auth:api','professional'])->get('sleeps/stats/{id}', 'SleepControllerAPI@getSleepStatsByUser');

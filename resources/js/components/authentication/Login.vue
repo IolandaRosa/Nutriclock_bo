@@ -105,7 +105,7 @@
                     this.$store.commit('setUser', response.data.data);
                     this.$router.push({path: ROUTE.AdminUsers});
                     this.isFetching = false;
-                }).catch(error => {
+                }).catch(() => {
                     this.$store.commit('clearUserAndToken');
                     this.errors.email = ERROR_MESSAGES.invalidCredentials;
                     this.errors.password = ERROR_MESSAGES.invalidCredentials;

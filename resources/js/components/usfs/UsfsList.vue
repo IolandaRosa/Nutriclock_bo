@@ -50,6 +50,7 @@
     import { ERROR_MESSAGES } from '../../utils/validations';
     import { COLUMN_NAME } from '../../utils/table_elements';
     import ConfirmationModal from '../modals/ConfirmationModal';
+    import { ROUTE } from '../../utils/routes';
 
     export default {
         data() {
@@ -196,6 +197,9 @@
                     this.data = response.data.data;
                 }).catch((error) => {
                     this.isFetching = false;
+                    if (error.response && error.response.status === 401) {
+                        this.$router.push(ROUTE.Login)
+                    }
                 });
             }
         },

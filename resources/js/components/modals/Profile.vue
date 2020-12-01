@@ -218,7 +218,7 @@
                             })
                         }
                         this.userUfcs = array;
-                    }).catch(error => {});
+                    }).catch(() => {});
 
                     axios.get(`api/users/${this.id}`).then(response => {
                         const user = response.data.data;
