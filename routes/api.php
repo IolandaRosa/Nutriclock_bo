@@ -72,7 +72,6 @@ Route::middleware(['auth:api','patient'])->post('meals/{id}', 'MealControllerAPI
 Route::middleware(['auth:api','professional'])->put('meals/{id}', 'MealControllerAPI@updateQuantity');
 Route::middleware(['auth:api','professional'])->get('meals/{id}/user', 'MealControllerAPI@getMealsByUser');
 Route::middleware(['auth:api','patient'])->get('meals-user', 'MealControllerAPI@getAuthUserMeals');
-Route::middleware(['auth:api'])->get('meals/stats/{id}', 'MealControllerAPI@mealDaysCount');
 
 // Static nutritional info
 Route::get('meal-names', 'NutritionalInfoStaticControllerAPI@getNames');
@@ -86,3 +85,6 @@ Route::middleware(['auth:api','patient'])->post('sleeps', 'SleepControllerAPI@st
 Route::middleware(['auth:api','patient'])->get('sleeps/myStats', 'SleepControllerAPI@getSleepStatsForAuthUser');
 Route::middleware(['auth:api','professional'])->get('sleeps/{id}', 'SleepControllerAPI@show');
 Route::middleware(['auth:api','professional'])->get('sleeps/stats/{id}', 'SleepControllerAPI@getSleepStatsByUser');
+
+//Mobile Stats
+Route::middleware(['auth:api', 'patient'])->get('/stats', 'MobileStatsControllerAPI@getStats');

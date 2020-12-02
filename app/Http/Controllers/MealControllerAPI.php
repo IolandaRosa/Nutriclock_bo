@@ -21,39 +21,6 @@ class MealControllerAPI extends Controller
         return MealResource::collection(Meal::all());
     }
 
-    public function mealDaysCount(Request $request, $id) {
-        $user = User::find($id);
-
-        if (!$user) {
-            return Response::json(['error' => 'O utilizador não existe.'], 404);
-        }
-
-        $date = Meal::where('userId', $id)->min('date');
-        $dates = Meal::where('userId', $id)->select('date')->get();
-        $count = Meal::where('userId', $id)->count();
-
-        if (!$date) {
-            return Response::json(['error' => 'A refeição não existe.'], 404);
-        }
-
-        $days = Carbon::parse($date)->diffInDays(Carbon::now());
-
-        if (count($dates) == 0) {
-            return Response::json(['days' => 0], 200);
-        }
-
-        $parsedDates = [];
-        $i = 0;
-
-        foreach ($dates as $d) {
-            $parsed = Carbon::parse($d->date)->format('d/m/Y');
-            $parsedDates[$i] = $parsed;
-            $i++;
-        }
-
-        return Response::json(['daysFromInitialDate' => $days, 'totalDaysRegistered' => count(array_unique($parsedDates)), 'meals' => $count], 200);
-    }
-
     public function getAuthUserMeals(Request $request) {
         $meals = Meal::where('userId', auth()->id())->get();
 

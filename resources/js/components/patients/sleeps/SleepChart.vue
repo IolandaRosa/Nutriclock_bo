@@ -20,11 +20,11 @@
                 <div><strong>Média total de horas dormidas: </strong>{{ this.totalAverage }} hora(s)</div>
                 <div><strong>Média mensal de horas dormidas: </strong>{{ this.monthAverage }} hora(s)</div>
                 <div><strong>Máximo mensal de horas dormidas: </strong>{{ this.monthMaximum }} hora(s)</div>
-                <div><strong>Máximo mensal de horas dormidas: </strong>{{ this.monthMinimum }} hora(s)</div>
+                <div><strong>Minimo mensal de horas dormidas: </strong>{{ this.monthMinimum }} hora(s)</div>
             </div>
 
-            <div class="table-wrapper" style="padding: 8px">
-                <div class="row mb-2">
+            <div class="table-wrapper p-4">
+                <div class="row mb-4">
                     <div class="col-4"/>
                     <div class="col-4">
                         <span><strong>Filtrar Ano: </strong></span>
@@ -54,7 +54,29 @@
                         Não existem registos.
                     </div>
                     <line-chart v-else :chart-data="chartData"
-                                :options="{ responsive: true, maintainAspectRatio: false }" :height="200"></line-chart>
+                                :options="{
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        legend: {
+                        display: false
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Dias do mês'
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Horas de Sono'
+                            }
+                        }]
+                    }
+                    }" :height="200"></line-chart>
                 </div>
             </div>
         </div>
@@ -65,6 +87,7 @@
 
 import LineChart from './LineChart';
 import {ROUTE} from '../../../utils/routes';
+import {parseMonth} from '../../../utils/misc';
 
 export default {
     props: ['id', 'stats'],
@@ -91,7 +114,7 @@ export default {
             this.months = [];
             Object.keys(this.statsData.chartStats[this.selectedYear]).map(monthKey => {
                 this.months.push({
-                        label: monthKey,
+                        label: parseMonth(monthKey),
                         value: monthKey,
                     }
                 );
@@ -157,7 +180,7 @@ export default {
                             if (key === year) {
                                 Object.keys(this.statsData.chartStats[key]).map(monthKey => {
                                     this.months.push({
-                                            label: monthKey,
+                                            label: parseMonth(monthKey),
                                             value: monthKey,
                                         }
                                     );
