@@ -27,6 +27,7 @@ class SleepTipControllerAPI extends Controller
 
         $tip = new SleepTip();
         $tip->description = $request->input('description');
+        $tip->save();
         return new SleepTipResource($tip);
     }
 

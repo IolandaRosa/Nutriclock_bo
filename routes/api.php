@@ -89,11 +89,10 @@ Route::middleware(['auth:api', 'professional'])->get('sleeps/stats/{id}', 'Sleep
 Route::middleware(['auth:api', 'patient'])->get('/stats', 'MobileStatsControllerAPI@getStats');
 
 // SleepTips API
-Route::middleware(['auth:api'])->get('tips', 'SleepControllerAPI@index');
-Route::middleware(['auth:api', 'admin'])->post('tips', 'SleepControllerAPI@store');
-Route::middleware(['auth:api', 'admin'])->put('tips', 'SleepControllerAPI@update');
-Route::middleware(['auth:api', 'admin'])->delete('tips', 'SleepControllerAPI@destroy');
+Route::middleware(['auth:api'])->get('tips', 'SleepTipControllerAPI@index');
+Route::middleware(['auth:api', 'admin'])->post('tips', 'SleepTipControllerAPI@store');
+Route::middleware(['auth:api', 'admin'])->put('tips/{id}', 'SleepTipControllerAPI@update');
+Route::middleware(['auth:api', 'admin'])->delete('tips/{id}', 'SleepTipControllerAPI@destroy');
 
 //Configurations API
-Route::middleware(['auth:api'])->get('tips', 'SleepControllerAPI@index');
 Route::middleware(['auth:api', 'admin'])->put('configs/tips-enabled', 'SleepControllerAPI@updateTipEnabled');

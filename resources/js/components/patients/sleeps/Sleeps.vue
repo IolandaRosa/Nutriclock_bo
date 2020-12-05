@@ -6,22 +6,22 @@
             </div>
             <div class="component-wrapper-right">
                 <button class="btn-bold btn btn-success" type="button" data-toggle="tooltip"
-                        v-on:click="showStats" title="Estatísticas" >
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-graph-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5z"/>
+                        v-on:click="showStats" title="Estatísticas">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-graph-up" fill="currentColor"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M0 0h1v15h15v1H0V0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5z"/>
                     </svg>
                 </button>
             </div>
         </div>
-        <div class="component-wrapper-body pt-4" style="color: gray">
+        <div class="component-wrapper-body pt-4 text-secondary">
             <table id="sleepsTable" class="table-wrapper table table-hover dt-responsive w-100">
                 <thead>
                 <tr>
-                    <th>Data</th>
-                    <th>Hora de Deitar</th>
-                    <th>Hora de Levantar</th>
-                    <th class="text-center">Qualidade do Sono</th>
-                    <th/>
+                    <th v-for="title in titles" :class="title.className">
+                        {{ title.label }}
+                    </th>
                 </tr>
                 </thead>
                 <tbody/>
@@ -31,8 +31,9 @@
 </template>
 
 <script type="text/javascript">
-import {ROUTE} from '../../../utils/routes';
-import {COLUMN_NAME} from '../../../utils/table_elements';
+import { ROUTE } from '../../../utils/routes';
+import { COLUMN_NAME } from '../../../utils/table_elements';
+import { initDataTable } from '../../../utils/dataTables';
 
 export default {
     props: ['id'],
@@ -40,6 +41,50 @@ export default {
         return {
             isFetching: false,
             data: [],
+            titles: [
+                {
+                    label: COLUMN_NAME.Date,
+                    className: '',
+                },
+                {
+                    label: COLUMN_NAME.SleepTime,
+                    className: '',
+                },
+                {
+                    label: COLUMN_NAME.WakeUpTime,
+                    className: '',
+                },
+                {
+                    label: COLUMN_NAME.HasWakeUp,
+                    className: 'text-center',
+                },
+                {
+                    label: '',
+                    className: '',
+                },
+            ],
+            columns: [
+                { data: 'date' },
+                { data: 'sleepTime' },
+                { data: 'wakeUpTime' },
+                {
+                    data: 'hasWakeUp',
+                    orderable: false,
+                    render: function (data) {
+                        if (data) return '<div class="dot green-dot" />';
+                        return '<div class="dot red-dot" />';
+                    }
+                },
+                {
+                    className: 'details-control text-center',
+                    orderable: false,
+                    data: null,
+                    defaultContent: '',
+                    render: function () {
+                        return '<img src="/images/next.png" height="20" width="20" />';
+                    }
+                },
+            ],
         };
     },
     methods: {
@@ -68,74 +113,15 @@ export default {
             if (this.isFetching) return;
             this.isFetching = true;
 
-            const that = this;
-
-            axios.get(`api/sleeps/${this.id}`).then(sleepsResponse => {
+            axios.get(`api/sleeps/${this.id}`).then(response => {
                 this.isFetching = false;
-                const sleepsTable = $('#sleepsTable').DataTable({
-                        data: sleepsResponse.data.data,
-                        columns: [
-                            {data: 'date'},
-                            {data: 'sleepTime'},
-                            {data: 'wakeUpTime'},
-                            {
-                                data: 'hasWakeUp',
-                                orderable: false,
-                                render: function (data) {
-                                    if (data) return '<div class="dot green-dot" />';
-                                    return '<div class="dot red-dot" />';
-                                }
-                            },
-                            {
-                                className: 'details-control text-center',
-                                orderable: false,
-                                data: null,
-                                defaultContent: '',
-                                render: function () {
-                                    return '<img src="/images/next.png" height="20" width="20" />';
-                                }
-                            },
-                        ],
-                        "language": {
-                            "lengthMenu": "Ver _MENU_ registos por página",
-                            "zeroRecords": "Não encontrado",
-                            "info": "Página _PAGE_ de _PAGES_",
-                            "infoEmpty": "Sem registos",
-                            "infoFiltered": "(filtrado de _MAX_ registos)",
-                            "emptyTable": "Não existem dados",
-                            "loadingRecords": "Carregando...",
-                            "processing": "Processando...",
-                            "search": "Pesquisa",
-                            "paginate": {
-                                "first": "<<",
-                                "last": ">>",
-                                "next": ">",
-                                "previous": "<"
-                            },
-                            "aria": {
-                                "sortAscending": ": Ordem crescente",
-                                "sortDescending": ": Ordem decrescente"
-                            }
-                        }
-                    },
+                const sleepsTable = initDataTable(
+                    '#sleepsTable',
+                    response.data.data,
+                    this.columns,
                 );
 
-
-                $('#sleepsTable tbody').on('click', 'td.details-control', function () {
-                    const tr = $(this).closest('tr');
-
-                    const row = sleepsTable.row(tr);
-
-                    if (row.child.isShown()) {
-                        row.child.hide();
-                        tr.removeClass('gray-bg');
-                        $(this).removeClass('shown');
-                    } else {
-                        $(this).addClass('shown');
-                        tr.addClass('gray-bg');
-                        row.child(that.formatDetailRow(row.data())).show();
-                    }
-                });
+                this.setupDetailsRow(sleepsTable, this);
             }).catch((error) => {
                 this.isFetching = false;
                 if (error.response && error.response.status === 401) {
@@ -143,6 +129,23 @@ export default {
                 }
             });
         },
+        setupDetailsRow(table, that) {
+            $('#sleepsTable tbody').on('click', 'td.details-control', function () {
+                const tr = $(this).closest('tr');
+
+                const row = table.row(tr);
+
+                if (row.child.isShown()) {
+                    row.child.hide();
+                    tr.removeClass('gray-bg');
+                    $(this).removeClass('shown');
+                } else {
+                    $(this).addClass('shown');
+                    tr.addClass('gray-bg');
+                    row.child(that.formatDetailRow(row.data())).show();
+                }
+            });
+        }
     },
     mounted() {
         this.getSleepByUser();

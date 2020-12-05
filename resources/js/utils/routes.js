@@ -1,5 +1,3 @@
-import PatientTabs from "../components/patients/PatientTabs";
-
 window.Vue = require('vue');
 
 import Login from '../components/authentication/Login';
@@ -12,7 +10,9 @@ import UserProfile from '../components/users/UserProfile';
 import PatientsList from '../components/patients/PatientsList';
 import AcceptanceTerms from '../components/utils/AcceptanceTerms';
 import DiseasesList from '../components/diseases/DiseasesList';
+import PatientTabs from '../components/patients/PatientTabs';
 import SleepTipsList from '../components/tips/SleepTipsList';
+import ConfigurationList from '../components/configurations/ConfigurationList';
 
 Vue.component('Login', Login);
 
@@ -38,6 +38,8 @@ Vue.component('DiseasesList', DiseasesList);
 
 Vue.component('SleepTipsList', SleepTipsList);
 
+Vue.component('ConfigurationList', ConfigurationList);
+
 export const ROUTE = {
     Index: '/',
     Login: '/login',
@@ -51,6 +53,7 @@ export const ROUTE = {
     AcceptanceTerms: '/terms',
     SleepTips: '/sleep-tips',
     Diseases: '/diseases',
+    Configurations: '/configurations',
 };
 
 export const routes = [
@@ -67,4 +70,5 @@ export const routes = [
     {path: '/terms', component: AcceptanceTerms, name: 'AcceptanceTerms'},
     {path: '/sleep-tips', component: SleepTipsList, name: 'SleepTipsList'},
     {path: '/diseases', component: DiseasesList, name: 'DiseasesList'},
+    {path: '/configurations', component: ConfigurationList, name: 'ConfigurationList'},
 ];

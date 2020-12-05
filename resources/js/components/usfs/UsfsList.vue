@@ -61,7 +61,7 @@
                 selectedRow: null,
                 modalTitle: '',
                 selectedUsfName: null,
-                placeholderName: 'Nome (Ex: Usf Xpto)',
+                placeholderName: 'Ex: USF Leiria',
                 selectedUsfId: null,
                 data: [],
                 titles: [{

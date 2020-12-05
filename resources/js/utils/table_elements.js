@@ -20,5 +20,6 @@ export const COLUMN_NAME = {
     colesterol_mg: 'Colesterol (mg)',
     SleepTime: 'Hora Deitar',
     WakeUpTime: 'Hora Levantar',
-    HasWakeUp: 'Acordou durante a noite?'
+    HasWakeUp: 'Qualidade do Sono',
+    Description: 'Descrição',
 };
