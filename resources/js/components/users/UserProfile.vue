@@ -21,7 +21,6 @@
                             class="form-control"
                             id="name"
                             v-bind:class="{ 'is-invalid': errors.name !== null }"
-                            placeholder="Nome"
                             v-model="name"
                         >
                         <div v-if="errors.name" class="invalid-feedback">
@@ -35,7 +34,7 @@
                             class="form-control"
                             v-bind:class="{ 'is-invalid': errors.name !== null }"
                             id="user-profile-input-email"
-                            placeholder="Email"
+                            placeholder="email@mail.pt"
                             v-model="email">
                         <div v-if="errors.email" class="invalid-feedback">
                             {{ errors.email }}
@@ -48,7 +47,6 @@
                                 class="form-control mb-2"
                                 style="height: 40px"
                                 v-bind:class="{ 'is-invalid': errors.gender !== null }"
-                                :disabled="readonly"
                                 v-model="gender">
                                 <option value="MALE">Masculino</option>
                                 <option value="FEMALE">Feminino</option>
@@ -75,7 +73,8 @@
                             </div>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="user-profile-new-password" class="small-text text-secondary">Nova Password</label>
+                            <label for="user-profile-new-password" class="small-text text-secondary">Nova
+                                Password</label>
                             <input
                                 type="password"
                                 class="form-control"
@@ -89,7 +88,8 @@
                             </div>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="user-profile-password" class="small-text text-secondary">Confirmação de Password</label>
+                            <label for="user-profile-password" class="small-text text-secondary">Confirmação de
+                                Password</label>
                             <input
                                 type="password"
                                 class="form-control"
@@ -223,6 +223,10 @@ export default {
                 axios.put(`api/password/${this.$store.state.user.id}`, {
                     password: this.password,
                     newPassword: this.newPassword,
+                }).then(() => {
+                    this.password = '';
+                    this.newPassword = '';
+                    this.confirmationPassword = '';
                 }).catch(error => {
                     if (error && error.response && error.response.status === 422) {
                         this.errors.password = error.response.data.error;

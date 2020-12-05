@@ -15,7 +15,6 @@
                         class="form-control"
                         id="title"
                         v-bind:class="{ 'is-invalid': errors.title !== null }"
-                        placeholder="Título"
                         v-model="title"
                     >
                     <div v-if="errors.name" class="invalid-feedback">

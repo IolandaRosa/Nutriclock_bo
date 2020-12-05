@@ -23,7 +23,6 @@
                             class="form-control"
                             id="name"
                             v-bind:class="{ 'is-invalid': errors.name !== null }"
-                            placeholder="Nome"
                             v-model="name"
                             :disabled="readonly"
                         >
@@ -69,7 +68,7 @@
                             class="form-control"
                             id="weight"
                             v-bind:class="{ 'is-invalid': errors.weight !== null }"
-                            placeholder="weight"
+                            placeholder="50"
                             v-model="weight"
                             :disabled="readonly"
                         >
@@ -84,7 +83,7 @@
                             class="form-control"
                             id="height"
                             v-bind:class="{ 'is-invalid': errors.height !== null }"
-                            placeholder="height"
+                            placeholder="165"
                             v-model="height"
                             :disabled="readonly"
                         >
@@ -98,7 +97,7 @@
                             type="text"
                             class="form-control"
                             id="imc"
-                            placeholder="IMC"
+                            placeholder="0"
                             v-model="imc"
                             disabled
                         >

@@ -10,7 +10,7 @@
                            class="form-control"
                            v-bind:class="{ 'is-invalid': errors.email !== null }"
                            id="login-form-input-email"
-                           placeholder="email"
+                           placeholder="email@mail.pt"
                            v-model.trim="email"
                     >
                     <div v-if="errors.email" class="invalid-feedback">

@@ -26,7 +26,6 @@
                                         class="form-control"
                                         id="profile-modal-input-name"
                                         v-model.trim="name"
-                                        placeholder="Nome"
                                         :readonly="userId !== -1"
                                     >
                                 </div>
@@ -40,7 +39,6 @@
                                         id="profile-modal-input-email"
                                         readonly=""
                                         :value="email"
-                                        placeholder="Email"
                                     >
                                 </div>
                             </div>
@@ -53,7 +51,6 @@
                                     class="form-control mt-1"
                                     readonly=""
                                     v-for="ufs in userUfcs" :value="ufs.name"
-                                    placeholder="USF"
                                 >
                             </div>
                         </div>

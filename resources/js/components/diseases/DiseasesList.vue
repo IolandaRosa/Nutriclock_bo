@@ -58,7 +58,7 @@
                 isFetching: false,
                 showModal: false,
                 modalTitle: '',
-                placeholderName: 'Doença Cardíaca',
+                placeholderName: 'Ex: Doença Cardíaca',
                 selectedDiseaseName: null,
                 selectedDiseaseId: null,
                 selectedDiseaseType: null,

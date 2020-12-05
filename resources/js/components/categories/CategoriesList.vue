@@ -58,7 +58,7 @@ export default {
             isFetching: false,
             showModal: false,
             modalTitle: '',
-            placeholderName: 'Nome (Ex: Médico)',
+            placeholderName: 'Ex: Médico',
             selectedCategoryName: null,
             selectedCategoryId: null,
             data: [],
