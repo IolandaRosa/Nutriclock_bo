@@ -95,4 +95,5 @@ Route::middleware(['auth:api', 'admin'])->put('tips/{id}', 'SleepTipControllerAP
 Route::middleware(['auth:api', 'admin'])->delete('tips/{id}', 'SleepTipControllerAPI@destroy');
 
 //Configurations API
-Route::middleware(['auth:api', 'admin'])->put('configs/tips-enabled', 'SleepControllerAPI@updateTipEnabled');
+Route::middleware(['auth:api', 'admin'])->get('configs', 'ConfigurationControllerAPI@index');
+Route::middleware(['auth:api', 'admin'])->put('configs/{id}', 'ConfigurationControllerAPI@update');

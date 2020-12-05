@@ -15,7 +15,7 @@ class ConfigurationControllerAPI extends Controller
         return ConfigurationResource::collection(Configuration::all());
     }
 
-    public function updateTipEnabled(Request $request)
+    public function update(Request $request, $id)
     {
         if (Auth::guard('api')->user()->role != 'ADMIN') {
             return Response::json(['error' => 'Accesso proibido!'], 401);
@@ -25,7 +25,7 @@ class ConfigurationControllerAPI extends Controller
             'value' => 'required',
         ]);
 
-        $configuration = Configuration::where('key', 'SLEEP_TIP_ENABLED')->first();
+        $configuration = Configuration::find($id);
 
         if (!$configuration) {
             return Response::json(['error' => 'A configuração não existe!'], 404);

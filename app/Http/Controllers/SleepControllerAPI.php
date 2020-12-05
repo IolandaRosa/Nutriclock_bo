@@ -11,21 +11,6 @@ use App\Http\Resources\Sleep as SleepResource;
 
 class SleepControllerAPI extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     */
     public function store(Request $request)
     {
         if(Auth::guard('api')->user()->role != 'PATIENT') {
@@ -47,8 +32,6 @@ class SleepControllerAPI extends Controller
         }
 
         $sleep = new Sleep();
-
-        $motives = "";
 
         $sleep->date = $request->date;
         $sleep->userId = $request->userId;
@@ -112,7 +95,7 @@ class SleepControllerAPI extends Controller
             $parsedDate = explode('/', $sleep->date);
             array_push($valuesToFilter[$parsedDate[2]][$parsedDate[1]], [
                 'label' => $parsedDate[0],
-                'value' => abs($s - $w),
+                'value' => round(abs($s - $w), 2),
             ]);
         }
 
@@ -120,7 +103,7 @@ class SleepControllerAPI extends Controller
 
         return Response::json(['stats' => [
             'totalRegisters'=>$sleepsCount,
-            'averageTime'=>$average,
+            'averageTime'=>round($average, 2),
             'chartStats' => $valuesToFilter
         ]]);
     }
@@ -180,29 +163,12 @@ class SleepControllerAPI extends Controller
 
         $sleeps = Sleep::where('userId', $id)->get();
 
+        foreach($sleeps as $sleep) {
+            $w = SleepControllerAPI::computeTimeInHours($sleep->wakeUpTime);
+            $s = SleepControllerAPI::computeTimeInHours($sleep->sleepTime);
+            $sleep->totalHours = round(abs($s - $w),2);
+        }
+
         return SleepResource::collection($sleeps);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

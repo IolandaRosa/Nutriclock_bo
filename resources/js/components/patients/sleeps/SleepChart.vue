@@ -17,10 +17,10 @@
         </div>
         <div class="component-wrapper-body pt-4" style="color: gray">
             <div class="table-wrapper" style="padding: 8px; margin-bottom: 16px">
-                <div><strong>Média total de horas dormidas: </strong>{{ this.totalAverage }} hora(s)</div>
-                <div><strong>Média mensal de horas dormidas: </strong>{{ this.monthAverage }} hora(s)</div>
-                <div><strong>Máximo mensal de horas dormidas: </strong>{{ this.monthMaximum }} hora(s)</div>
-                <div><strong>Minimo mensal de horas dormidas: </strong>{{ this.monthMinimum }} hora(s)</div>
+                <div><strong>Média total de horas dormidas: </strong>{{ this.totalAverage.toFixed(2) }}</div>
+                <div><strong>Média mensal de horas dormidas: </strong>{{ this.monthAverage.toFixed(2) }}</div>
+                <div><strong>Máximo mensal de horas dormidas: </strong>{{ this.monthMaximum.toFixed(2) }}</div>
+                <div><strong>Minimo mensal de horas dormidas: </strong>{{ this.monthMinimum.toFixed(2) }}</div>
             </div>
 
             <div class="table-wrapper p-4">

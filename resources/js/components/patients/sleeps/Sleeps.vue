@@ -33,7 +33,7 @@
 <script type="text/javascript">
 import { ROUTE } from '../../../utils/routes';
 import { COLUMN_NAME } from '../../../utils/table_elements';
-import { initDataTable } from '../../../utils/dataTables';
+import { EmptyObject, initDataTable } from '../../../utils/dataTables';
 
 export default {
     props: ['id'],
@@ -55,18 +55,20 @@ export default {
                     className: '',
                 },
                 {
+                    label: COLUMN_NAME.TotalHours,
+                    className: '',
+                },
+                {
                     label: COLUMN_NAME.HasWakeUp,
                     className: 'text-center',
                 },
-                {
-                    label: '',
-                    className: '',
-                },
+                EmptyObject
             ],
             columns: [
                 { data: 'date' },
                 { data: 'sleepTime' },
                 { data: 'wakeUpTime' },
+                { data: 'totalHours' },
                 {
                     data: 'hasWakeUp',
                     orderable: false,

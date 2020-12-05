@@ -22,4 +22,5 @@ export const COLUMN_NAME = {
     WakeUpTime: 'Hora Levantar',
     HasWakeUp: 'Qualidade do Sono',
     Description: 'Descrição',
+    TotalHours: 'Total de Horas de Sono'
 };
