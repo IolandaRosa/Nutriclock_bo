@@ -5,6 +5,14 @@
                 Diário do Sono
             </div>
             <div class="component-wrapper-right">
+                <button class="btn-bold btn btn-success mr-2" type="button" data-toggle="tooltip"
+                        v-on:click="exportData" title="Exportar">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-bar-down" fill="currentColor"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                              d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6z"/>
+                    </svg>
+                </button>
                 <button class="btn-bold btn btn-success" type="button" data-toggle="tooltip"
                         v-on:click="showStats" title="Estatísticas">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-graph-up" fill="currentColor"
@@ -31,9 +39,9 @@
 </template>
 
 <script type="text/javascript">
-import { ROUTE } from '../../../utils/routes';
-import { COLUMN_NAME } from '../../../utils/table_elements';
-import { EmptyObject, initDataTable } from '../../../utils/dataTables';
+import {ROUTE} from '../../../utils/routes';
+import {COLUMN_NAME} from '../../../utils/table_elements';
+import {EmptyObject, initDataTable} from '../../../utils/dataTables';
 
 export default {
     props: ['id'],
@@ -65,10 +73,10 @@ export default {
                 EmptyObject
             ],
             columns: [
-                { data: 'date' },
-                { data: 'sleepTime' },
-                { data: 'wakeUpTime' },
-                { data: 'totalHours' },
+                {data: 'date'},
+                {data: 'sleepTime'},
+                {data: 'wakeUpTime'},
+                {data: 'totalHours'},
                 {
                     data: 'hasWakeUp',
                     orderable: false,
@@ -110,6 +118,33 @@ export default {
                 '<td style="font-size: 13px">' + mot + '</td>' +
                 '</tr>' +
                 '</table>';
+        },
+        exportData() {
+            if (this.isFetching) return;
+            this.isFetching = true;
+
+            axios.get('api/sleeps/export', {
+                responseType: 'blob',
+            }).then((response) => {
+                this.isFetching = false;
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'sleeps.xlsx');
+                link.click();
+            }).catch((error) => {
+                this.isFetching = false;
+                this.$toasted.show('Ocorreu um erro durente o download do ficheiro', {
+                    type: 'error',
+                    duration: 2000,
+                    position: 'top-right',
+                    closeOnSwipe: true,
+                    theme: 'toasted-primary'
+                });
+                if (error.response && error.response.status === 401) {
+                    this.$router.push(ROUTE.Login)
+                }
+            });
         },
         getSleepByUser() {
             if (this.isFetching) return;

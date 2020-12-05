@@ -15,6 +15,11 @@ class ConfigurationControllerAPI extends Controller
         return ConfigurationResource::collection(Configuration::all());
     }
 
+    public function getTipStatus() {
+        $configuration = Configuration::where('key', 'SLEEP_TIP_ENABLED')->first();
+        return new ConfigurationResource($configuration);
+    }
+
     public function update(Request $request, $id)
     {
         if (Auth::guard('api')->user()->role != 'ADMIN') {

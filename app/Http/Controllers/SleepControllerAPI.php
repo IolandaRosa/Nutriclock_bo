@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SleepsExport;
 use Illuminate\Http\Request;
 use App\User;
+use Maatwebsite\Excel\Facades\Excel;
 use Response;
 use Illuminate\Support\Facades\Auth;
 use App\Sleep;
@@ -11,6 +13,12 @@ use App\Http\Resources\Sleep as SleepResource;
 
 class SleepControllerAPI extends Controller
 {
+//    public function __construct()
+//    {
+//        $this->middleware('auth:api');
+//        $this->middleware('patient')->only('store','getSleepStatsForAuthUser');
+//    }
+
     public function store(Request $request)
     {
         if(Auth::guard('api')->user()->role != 'PATIENT') {
@@ -170,5 +178,10 @@ class SleepControllerAPI extends Controller
         }
 
         return SleepResource::collection($sleeps);
+    }
+
+    public function export()
+    {
+        return Excel::download(new SleepsExport, 'sleeps.xlsx');
     }
 }
