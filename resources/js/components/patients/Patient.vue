@@ -68,7 +68,6 @@
                             class="form-control"
                             id="weight"
                             v-bind:class="{ 'is-invalid': errors.weight !== null }"
-                            placeholder="50"
                             v-model="weight"
                             :disabled="readonly"
                         >
@@ -83,7 +82,6 @@
                             class="form-control"
                             id="height"
                             v-bind:class="{ 'is-invalid': errors.height !== null }"
-                            placeholder="165"
                             v-model="height"
                             :disabled="readonly"
                         >
@@ -372,32 +370,32 @@ export default {
             this.errors.weight = null;
             this.errors.height = null;
 
-            if (isEmptyField(this.weight)) {
+            if (this.weight && isEmptyField(this.weight)) {
                 hasErrors = true;
                 this.errors.weight = ERROR_MESSAGES.mandatoryField;
             }
 
-            if (isEmptyField(this.height)) {
+            if (this.height && isEmptyField(this.height)) {
                 hasErrors = true;
                 this.errors.height = ERROR_MESSAGES.mandatoryField;
             }
 
-            if (isNaN(this.weight)) {
+            if (this.weight && isNaN(this.weight)) {
                 hasErrors = true;
                 this.errors.weight = ERROR_MESSAGES.invalidFormat;
             }
 
-            if (isNaN(this.height)) {
+            if (this.height && isNaN(this.height)) {
                 hasErrors = true;
                 this.errors.height = ERROR_MESSAGES.invalidFormat;
             }
 
-            if (this.weight <= 0) {
+            if (this.weight && this.weight <= 0) {
                 hasErrors = true;
                 this.errors.weight = ERROR_MESSAGES.invalidNegative;
             }
 
-            if (this.height <= 0) {
+            if (this.height && this.height <= 0) {
                 hasErrors = true;
                 this.errors.height = ERROR_MESSAGES.invalidNegative;
             }
