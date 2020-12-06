@@ -23,7 +23,7 @@ class MobileStatsControllerAPI extends Controller
         $totalMeals= Meal::where('userId', $id)->count();
         $sleeps = Sleep::where('userId', Auth::guard('api')->user()->id)->get();
         $totalSleeps = count($sleeps);
-        $averageSleepHours = 0;
+        $averageSleepHours = 0.0;
         $sum = 0;
 
         foreach($sleeps as $sleep) {
@@ -61,7 +61,7 @@ class MobileStatsControllerAPI extends Controller
             'totalDaysRegistered' => count(array_unique($parsedDates)),
             'meals' => $totalMeals,
             'totalSleepDays' => $totalSleeps,
-            'averageSleepHours' => $averageSleepHours,
+            'averageSleepHours' => number_format($averageSleepHours, 2),
         ], 200);
     }
 }
