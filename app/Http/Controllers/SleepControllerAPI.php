@@ -13,12 +13,6 @@ use App\Http\Resources\Sleep as SleepResource;
 
 class SleepControllerAPI extends Controller
 {
-//    public function __construct()
-//    {
-//        $this->middleware('auth:api');
-//        $this->middleware('patient')->only('store','getSleepStatsForAuthUser');
-//    }
-
     public function store(Request $request)
     {
         if(Auth::guard('api')->user()->role != 'PATIENT') {
@@ -155,27 +149,36 @@ class SleepControllerAPI extends Controller
         return Response::json(['data' => $valuesToFilter]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        $user=User::find($id);
-
-        if (!$user) {
-             return Response::json(['error' => 'O utilizador não existe.'], 404);
-        }
-
         $sleeps = Sleep::where('userId', $id)->get();
+
+        if (!$sleeps) {
+            return Response::json(['error' => 'O registo nao existe para o utilizador.'], 404);
+        }
 
         foreach($sleeps as $sleep) {
             $w = SleepControllerAPI::computeTimeInHours($sleep->wakeUpTime);
             $s = SleepControllerAPI::computeTimeInHours($sleep->sleepTime);
             $sleep->totalHours = round(abs($s - $w),2);
         }
+
+        return SleepResource::collection($sleeps);
+    }
+
+    public function getSleepDates(Request $request)
+    {
+        if(Auth::guard('api')->user()->role != 'PATIENT') {
+            return Response::json(['error' => 'Accesso proibido!'], 401);
+        }
+
+        $user=User::find($request->userId);
+
+        if (!$user) {
+            return Response::json(['error' => 'O utilizador não existe.'], 404);
+        }
+
+        $sleeps = Sleep::where('userId', $user->id)->get(['date']);
 
         return SleepResource::collection($sleeps);
     }
