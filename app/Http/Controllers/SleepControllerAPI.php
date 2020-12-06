@@ -172,13 +172,7 @@ class SleepControllerAPI extends Controller
             return Response::json(['error' => 'Accesso proibido!'], 401);
         }
 
-        $user=User::find($request->userId);
-
-        if (!$user) {
-            return Response::json(['error' => 'O utilizador não existe.'], 404);
-        }
-
-        $sleeps = Sleep::where('userId', $user->id)->get(['date']);
+        $sleeps = Sleep::where('userId', Auth::guard('api')->user()->id)->get(['date']);
 
         return SleepResource::collection($sleeps);
     }
