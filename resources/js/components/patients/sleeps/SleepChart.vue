@@ -72,7 +72,7 @@
                             display: true,
                             scaleLabel: {
                                 display:true,
-                                labelString: 'Dias do mês'
+                                labelString: 'Horas de sono'
                             },
                             ticks: {
                                 beginAtZero: true
