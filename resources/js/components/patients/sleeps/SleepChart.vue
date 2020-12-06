@@ -74,6 +74,10 @@
                                 display: true,
                                 labelString: 'Horas de Sono'
                             }
+                           ,
+                           ticks: {
+                                beginAtZero: true,
+                           }
                         }]
                     }
                     }" :height="200"></line-chart>
