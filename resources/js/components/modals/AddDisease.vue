@@ -19,7 +19,7 @@
                                     v-bind:class="{ 'is-invalid': errors.name !== null }"
                                     id="add-disease-modal-input-name"
                                     v-model.trim="name"
-                                    placeholder="Nome"
+                                    placeholder="Ex: Doença Cardíaca"
                                 >
                                 <div v-if="errors.name" class="invalid-feedback">
                                     {{errors.name}}

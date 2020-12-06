@@ -20,7 +20,7 @@
                                     v-bind:class="{ 'is-invalid': errors.email !== null }"
                                     id="resend-email-modal-input-name"
                                     v-model.trim="email"
-                                    placeholder="Email"
+                                    placeholder="email@mail.pt"
                                 >
                                 <div v-if="errors.email" class="invalid-feedback">
                                     {{errors.email}}

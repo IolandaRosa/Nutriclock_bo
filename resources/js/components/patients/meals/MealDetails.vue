@@ -254,6 +254,15 @@
             }
         },
         methods: {
+            showToast(message, messageType) {
+                this.$toasted.show(message, {
+                    type: messageType,
+                    duration: 2000,
+                    position: 'top-right',
+                    closeOnSwipe: true,
+                    theme: 'toasted-primary'
+                });
+            },
             returnToMealList() {
                 this.$emit('close-details');
             },
@@ -270,30 +279,22 @@
 
                 this.isFetching = true;
                 axios.put(`api/nutrititional-info/meal/${nutritionalInfo.nutritionalInfo[0].mealId}`, {
-                    "name": nutritionalInfo.name,
-                    "quantity": nutritionalInfo.quantity,
-                    "nutritionalInfo": nutritionalInfo.nutritionalInfo,
+                    name: nutritionalInfo.name,
+                    quantity: nutritionalInfo.quantity,
+                    nutritionalInfo: nutritionalInfo.nutritionalInfo,
                 }).then(response => {
                     this.isFetching = false;
                     this.data.info[index].nutritionalInfo = [
                         ...response.data.data,
                     ];
-                    console.log(this.data.info[index].nutritionalInfo)
                     this.$forceUpdate();
                 }).catch((error) => {
-                    console.log(error)
                     this.isFetching = false;
                 });
             },
             updateIQuantityValue(id, value) {
                 if (isNaN(value) || value < 0) {
-                    this.$toasted.show('Valor inválido. Deve ser um número positivo!', {
-                        type: 'error',
-                        duration: 3000,
-                        position: 'top-right',
-                        closeOnSwipe: true,
-                        theme: 'toasted-primary'
-                    });
+                    this.showToast('Valor inválido. Deve ser um número positivo!', 'error');
                     return
                 }
 
@@ -303,24 +304,12 @@
 
                 axios.put(`api/meals/${id}`, { "quantity": value }).then(() => {
                     this.isFetching = false;
-                    this.$toasted.show('A informação foi atualizada com sucesso!', {
-                        type: 'success',
-                        duration: 2000,
-                        position: 'top-right',
-                        closeOnSwipe: true,
-                        theme: 'toasted-primary'
-                    });
+                    this.showToast('A informação foi atualizada com sucesso!', 'success');
                 }).catch(() => { this.isFetching = false; });
             },
             updateINutritionalValue(id, value) {
                 if (isNaN(value) || value < 0) {
-                    this.$toasted.show('Valor inválido. Deve ser um número positivo!', {
-                        type: 'error',
-                        duration: 3000,
-                        position: 'top-right',
-                        closeOnSwipe: true,
-                        theme: 'toasted-primary'
-                    });
+                    this.showToast('Valor inválido. Deve ser um número positivo!', 'error');
                     return
                 }
 
@@ -330,22 +319,10 @@
 
                 axios.put(`api/nutritional-info/${id}`, { "value": value }).then(() =>{
                     this.isFetching = false;
-                    this.$toasted.show('A informação foi atualizada com sucesso!', {
-                        type: 'success',
-                        duration: 2000,
-                        position: 'top-right',
-                        closeOnSwipe: true,
-                        theme: 'toasted-primary'
-                    });
+                    this.showToast('A informação foi atualizada com sucesso!', 'success');
                 }).catch(() => {
                     this.isFetching = false;
-                    this.$toasted.show('Ocorreu um erro durante a atualização da informação', {
-                        type: 'error',
-                        duration: 3000,
-                        position: 'top-right',
-                        closeOnSwipe: true,
-                        theme: 'toasted-primary'
-                    });
+                    this.showToast('Ocorreu um erro durante a atualização da informação', 'error');
                 });
             }
         },

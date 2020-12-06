@@ -10,7 +10,7 @@
                            class="form-control"
                            v-bind:class="{ 'is-invalid': errors.email !== null }"
                            id="login-form-input-email"
-                           placeholder="email"
+                           placeholder="email@mail.pt"
                            v-model.trim="email"
                     >
                     <div v-if="errors.email" class="invalid-feedback">
@@ -105,7 +105,7 @@
                     this.$store.commit('setUser', response.data.data);
                     this.$router.push({path: ROUTE.AdminUsers});
                     this.isFetching = false;
-                }).catch(error => {
+                }).catch(() => {
                     this.$store.commit('clearUserAndToken');
                     this.errors.email = ERROR_MESSAGES.invalidCredentials;
                     this.errors.password = ERROR_MESSAGES.invalidCredentials;

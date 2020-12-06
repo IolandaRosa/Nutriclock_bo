@@ -45,162 +45,166 @@
 </template>
 
 <script type="text/javascript">
-    /*jshint esversion: 6 */
-    import AddCategory from '../modals/AddCategory';
-    import { ERROR_MESSAGES } from '../../utils/validations';
-    import { COLUMN_NAME } from '../../utils/table_elements';
-    import ConfirmationModal from '../modals/ConfirmationModal';
+/*jshint esversion: 6 */
+import AddCategory from '../modals/AddCategory';
+import { ERROR_MESSAGES } from '../../utils/validations';
+import { COLUMN_NAME } from '../../utils/table_elements';
+import ConfirmationModal from '../modals/ConfirmationModal';
+import { ROUTE } from '../../utils/routes';
 
-    export default {
-        data() {
-            return {
-                isFetching: false,
-                showModal: false,
-                modalTitle: '',
-                placeholderName: 'Nome (Ex: Médico)',
-                selectedCategoryName: null,
-                selectedCategoryId: null,
-                data: [],
-                showConfirmationModal: false,
-                selectedRow: null,
-                titles: [{
-                    prop: "id",
-                    label: COLUMN_NAME.Id,
-                }, {
-                    prop: "name",
-                    label: COLUMN_NAME.Name,
-                }],
-                actionCol: {
-                    label: ' ',
+export default {
+    data() {
+        return {
+            isFetching: false,
+            showModal: false,
+            modalTitle: '',
+            placeholderName: 'Ex: Médico',
+            selectedCategoryName: null,
+            selectedCategoryId: null,
+            data: [],
+            showConfirmationModal: false,
+            selectedRow: null,
+            titles: [{
+                prop: "id",
+                label: COLUMN_NAME.Id,
+            }, {
+                prop: "name",
+                label: COLUMN_NAME.Name,
+            }],
+            actionCol: {
+                label: ' ',
+                props: {
+                    align: 'center',
+                },
+                buttons: [{
                     props: {
-                        align: 'center',
+                        type: 'primary is-circle',
+                        icon: 'el-icon-edit'
                     },
-                    buttons: [{
-                        props: {
-                            type: 'primary is-circle',
-                            icon: 'el-icon-edit'
-                        },
-                        handler: row => {
-                            this.onEditClick(row);
-                        },
-                        label: ''
-                    }, {
-                        props: {
-                            type: 'danger is-circle',
-                            icon: 'el-icon-delete'
-                        },
-                        handler: row => {
-                            this.onDeleteClick(row);
-                        },
-                        label: ''
-                    }]
-                }
-            };
+                    handler: row => {
+                        this.onEditClick(row);
+                    },
+                    label: ''
+                }, {
+                    props: {
+                        type: 'danger is-circle',
+                        icon: 'el-icon-delete'
+                    },
+                    handler: row => {
+                        this.onDeleteClick(row);
+                    },
+                    label: ''
+                }]
+            }
+        };
+    },
+    methods: {
+        add() {
+            this.showModal = true;
+            this.modalTitle = 'Nova Categoria Profissional';
         },
-        methods: {
-            add() {
-                this.showModal = true;
-                this.modalTitle = 'Nova Categoria Profissional';
-            },
-            onEditClick(row) {
-                this.selectedCategoryId = row.id;
-                this.selectedCategoryName = row.name;
-                this.modalTitle = `Editar Categoria ${row.name}`;
-                this.showModal = true;
-            },
-            onDeleteClick(row) {
-                this.selectedRow = row;
-                this.showConfirmationModal = true;
-            },
-            deleteCategory() {
-                if (this.isFetching) return;
+        onEditClick(row) {
+            this.selectedCategoryId = row.id;
+            this.selectedCategoryName = row.name;
+            this.modalTitle = `Editar Categoria ${row.name}`;
+            this.showModal = true;
+        },
+        onDeleteClick(row) {
+            this.selectedRow = row;
+            this.showConfirmationModal = true;
+        },
+        deleteCategory() {
+            if (this.isFetching) return;
 
-                this.isFetching = true;
-                if (this.selectedRow) {
-                    axios.delete(`api/professionalCategories/${this.selectedRow.id}`).then(() => {
-                        this.isFetching = false;
-                        this.data.splice(this.data.indexOf(this.selectedRow), 1);
-                        this.showConfirmationModal = false;
-                    }).catch(error => {
-                        this.handleError(error);
-                    });
-                }
-            },
-            onCloseClick() {
-                this.showModal = false;
-                this.selectedCategoryId = null;
-                this.selectedCategoryName = '';
-                this.showConfirmationModal = false;
-                this.selectedRow = null;
-            },
-            onSaveClick(name, id) {
-                this.showModal = false;
-                if (this.isFetching) return;
+            this.isFetching = true;
+            if (this.selectedRow) {
+                axios.delete(`api/professionalCategories/${this.selectedRow.id}`).then(() => {
+                    this.isFetching = false;
+                    this.data.splice(this.data.indexOf(this.selectedRow), 1);
+                    this.showConfirmationModal = false;
+                }).catch(error => {
+                    this.handleError(error);
+                });
+            }
+        },
+        onCloseClick() {
+            this.showModal = false;
+            this.selectedCategoryId = null;
+            this.selectedCategoryName = '';
+            this.showConfirmationModal = false;
+            this.selectedRow = null;
+        },
+        onSaveClick(name, id) {
+            this.showModal = false;
+            if (this.isFetching) return;
 
-                this.isFetching = true;
+            this.isFetching = true;
 
-                if (id) {
-                    axios.put(`api/professionalCategories/${id}`, {
-                        name,
-                    }).then(() => {
-                        this.handleSuccess();
-                    }).catch(error => {
-                        this.handleError(error);
-                    });
-                    return;
-                }
-
-                axios.post('api/professionalCategories', {
+            if (id) {
+                axios.put(`api/professionalCategories/${id}`, {
                     name,
                 }).then(() => {
                     this.handleSuccess();
                 }).catch(error => {
                     this.handleError(error);
                 });
-            },
-            handleSuccess() {
-                this.isFetching = false;
-                this.selectedCategoryName = '';
-                this.selectedCategoryId = '';
-                this.getCategories();
-            },
-            handleError(error) {
-                this.isFetching = false;
-                const {response} = error;
-                let message = ERROR_MESSAGES.unknownError;
-                if (response) {
-                    const {data} = response;
-                    if (data && data.errors && data.errors.name) {
-                        message = ERROR_MESSAGES.alreadyExistingProfessionalCategory;
-                    }
-                }
-
-                this.$toasted.show(message, {
-                    type: 'error',
-                    duration: 3000,
-                    position: 'top-right',
-                    closeOnSwipe: true,
-                    theme: 'toasted-primary'
-                });
-            },
-            getCategories() {
-                if (this.isFetching) return;
-                this.isFetching = true;
-
-                axios.get('api/professionalCategories').then((response) => {
-                    this.isFetching = false;
-                    this.data = response.data.data;
-                }).catch((error) => {
-                    this.isFetching = false;
-                });
+                return;
             }
+
+            axios.post('api/professionalCategories', {
+                name,
+            }).then(() => {
+                this.handleSuccess();
+            }).catch(error => {
+                this.handleError(error);
+            });
         },
-        mounted() {
+        handleSuccess() {
+            this.isFetching = false;
+            this.selectedCategoryName = '';
+            this.selectedCategoryId = '';
             this.getCategories();
         },
-        components: {
-            AddCategory,
-            ConfirmationModal,
+        handleError(error) {
+            this.isFetching = false;
+            const {response} = error;
+            let message = ERROR_MESSAGES.unknownError;
+            if (response) {
+                const {data} = response;
+                if (data && data.errors && data.errors.name) {
+                    message = ERROR_MESSAGES.alreadyExistingProfessionalCategory;
+                }
+            }
+
+            this.$toasted.show(message, {
+                type: 'error',
+                duration: 3000,
+                position: 'top-right',
+                closeOnSwipe: true,
+                theme: 'toasted-primary'
+            });
+        },
+        getCategories() {
+            if (this.isFetching) return;
+            this.isFetching = true;
+
+            axios.get('api/professionalCategories').then((response) => {
+                this.isFetching = false;
+                this.data = response.data.data;
+            }).catch((error) => {
+                this.isFetching = false;
+                if (error.response && error.response.status === 401) {
+                    this.$router.push(ROUTE.Login)
+                }
+            });
         }
-    };
+    },
+    mounted() {
+        this.getCategories();
+    },
+    components: {
+        AddCategory,
+        ConfirmationModal,
+    }
+};
 </script>

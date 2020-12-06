@@ -172,6 +172,8 @@ class UserControllerAPI extends Controller
         $user->diseases = $request->diseases;
         $user->birthday = $request->birthday;
         $user->ufc_id = $request->ufc_id;
+        $user->height = $request->height;
+        $user->weight = $request->weight;
 
         $user->save();
 

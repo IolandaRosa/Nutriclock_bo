@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(UsersUfc::class, 'user_id');
     }
+
+    public function sleeps()
+    {
+        return $this->hasMany('App\Sleep');
+    }
 }
