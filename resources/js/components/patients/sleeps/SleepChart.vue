@@ -71,15 +71,13 @@
                         yAxes: [{
                             display: true,
                             scaleLabel: {
-                                display: true,
-                                labelString: 'Horas de Sono'
+                                display:true,
+                                labelString: 'Dias do mês'
+                            },
+                            ticks: {
+                                beginAtZero: true
                             }
-                           ,
-                           ticks: {
-                                beginAtZero: true,
-                                min: 0,
-                           }
-                        }]
+                       }]
                     }
                     }" :height="200"></line-chart>
                 </div>
