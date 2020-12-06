@@ -77,6 +77,7 @@
                            ,
                            ticks: {
                                 beginAtZero: true,
+                                min: 0,
                            }
                         }]
                     }
