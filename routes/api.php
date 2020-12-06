@@ -81,7 +81,7 @@ Route::middleware(['auth:api', 'professional'])->put('nutrititional-info/meal/{i
 
 // Sleep API
 Route::middleware(['auth:api', 'patient'])->post('sleeps', 'SleepControllerAPI@store');
-Route::middleware(['auth:api', 'patient'])->get('sleeps/date', 'SleepControllerAPI@getSleepDates');
+Route::middleware(['auth:api', 'patient'])->get('sleepsByDate', 'SleepControllerAPI@getSleepDates');
 Route::middleware(['auth:api', 'patient'])->get('sleeps/myStats', 'SleepControllerAPI@getSleepStatsForAuthUser');
 Route::middleware(['auth:api', 'professional'])->get('sleeps/export', 'SleepControllerAPI@export');
 Route::middleware(['auth:api', 'professional'])->get('sleeps/{id}', 'SleepControllerAPI@show');
