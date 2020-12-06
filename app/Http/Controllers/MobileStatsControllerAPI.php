@@ -61,7 +61,7 @@ class MobileStatsControllerAPI extends Controller
             'totalDaysRegistered' => count(array_unique($parsedDates)),
             'meals' => $totalMeals,
             'totalSleepDays' => $totalSleeps,
-            'averageSleepHours' => floatval(number_format($averageSleepHours, 2)),
+            'averageSleepHours' => number_format($averageSleepHours, 2),
         ], 200);
     }
 }
