@@ -71,9 +71,11 @@ class UserControllerAPI extends Controller
             }
 
             if($request->avatar != null) {
-                Storage::disk('public')->delete('avatars/'.$user->avatarUrl);
+                Storage::disk('s3')->delete('avatars/'.$user->avatarUrl);
+                // Storage::disk('public')->delete('avatars/'.$user->avatarUrl);
                 $image = $request->file('avatar');
-                $path = basename($image->store('avatars', 'public'));
+                // $path = basename($image->store('avatars', 'public'));
+                $path = basename($image->store('avatars', 's3'));
                 $user->avatarUrl = basename($path);
             }
 
@@ -170,6 +172,8 @@ class UserControllerAPI extends Controller
         $user->diseases = $request->diseases;
         $user->birthday = $request->birthday;
         $user->ufc_id = $request->ufc_id;
+        $user->height = $request->height;
+        $user->weight = $request->weight;
 
         $user->save();
 

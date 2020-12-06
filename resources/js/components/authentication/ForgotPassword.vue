@@ -2,7 +2,7 @@
     <div class="wrapper-center">
         <div id="forgot-password-form-container" class="white-container">
             <div class="mb-3">
-                <img src="http://nutriclock.test:81/images/logo_text_horizontal.png" alt="" />
+                <img :src="'images/logo_text_horizontal.png'" alt="" />
             </div>
             <form class="needs-validation login-form" novalidate >
                 <div class="col-md-8 mb-3">
@@ -10,7 +10,7 @@
                            class="form-control"
                            v-bind:class="{ 'is-invalid': errors.email !== null }"
                            id="forgot-password-form-input-email"
-                           placeholder="email"
+                           placeholder="email@mail.pt"
                            v-model.trim="email"
                     >
                     <div v-if="errors.email" class="invalid-feedback">

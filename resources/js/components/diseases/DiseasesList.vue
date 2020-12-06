@@ -2,14 +2,14 @@
     <div class="component-wrapper">
         <div class="component-wrapper-header">
             <div class="component-wrapper-left">
-                Doenças
+                Patologias
             </div>
             <div class="component-wrapper-right">
                 <button class="btn-bold btn btn-primary" v-on:click.prevent="add" type="button" data-toggle="tooltip"
-                        title="Nova Categoria">
+                        title="Nova Patologia">
                     <span v-if="isFetching" class="spinner-border spinner-border-sm" role="status"
                           aria-hidden="true"></span>
-                    <span class="full-text">Nova Doença</span>
+                    <span class="full-text">Nova Patologia</span>
                     <span class="min-text">+</span>
                 </button>
             </div>
@@ -24,12 +24,12 @@
         <ConfirmationModal
             v-show="showConfirmationModal"
             @close="this.onCloseClick"
-            title="Eliminar Doença / Alergia"
+            title="Eliminar Patologia / Alergia"
             cancel-button-text="Cancelar"
             save-button-class="btn btn-bold btn-danger"
             save-button-text="Eliminar"
             @save="this.deleteDisease"
-            message="Tem a certeza que deseja eliminar a doença / alergia selecionada?"
+            message="Tem a certeza que deseja eliminar a patologia / alergia selecionada?"
         />
         <AddDisease
             v-show="showModal"
@@ -50,6 +50,7 @@
     import {COLUMN_NAME} from '../../utils/table_elements';
     import ConfirmationModal from '../modals/ConfirmationModal';
     import {renderDiseaseStringToType, renderDiseaseType} from "../../utils/misc";
+    import { ROUTE } from '../../utils/routes';
 
     export default {
         data() {
@@ -57,7 +58,7 @@
                 isFetching: false,
                 showModal: false,
                 modalTitle: '',
-                placeholderName: 'Nome (Ex: Doença Cardíaca)',
+                placeholderName: 'Ex: Doença Cardíaca',
                 selectedDiseaseName: null,
                 selectedDiseaseId: null,
                 selectedDiseaseType: null,
@@ -104,13 +105,13 @@
         methods: {
             add() {
                 this.showModal = true;
-                this.modalTitle = 'Adicionar Doença / Alergia';
+                this.modalTitle = 'Adicionar Patologia / Alergia';
             },
             onEditClick(row) {
                 this.selectedDiseaseName = row.name;
                 this.selectedDiseaseId = row.id;
                 this.selectedDiseaseType = renderDiseaseStringToType(row.type);
-                this.modalTitle = "Editar Doença / Alergia";
+                this.modalTitle = "Editar Patologia / Alergia";
                 this.showModal = true;
             },
             onDeleteClick(row) {
@@ -203,6 +204,9 @@
                     this.data = response.data.data;
                 }).catch((error) => {
                     this.isFetching = false;
+                    if (error.response && error.response.status === 401) {
+                        this.$router.push(ROUTE.Login)
+                    }
                 });
             }
         },

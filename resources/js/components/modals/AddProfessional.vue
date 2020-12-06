@@ -4,7 +4,7 @@
             <div class="modal-wrapper">
                 <div class="modal-container">
                     <div class="modal-logo">
-                        <img class="modal-logo" src="http://nutriclock.test:81/images/only_logo.png" alt=""/>
+                        <img class="modal-logo" :src="'images/only_logo.png'" alt=""/>
                     </div>
                     <div class="modal-header">
                         <span class="title">Registar Utilizador</span>
@@ -20,7 +20,6 @@
                                         v-bind:class="{ 'is-invalid': errors.name !== null }"
                                         id="add-professional-modal-input-name"
                                         v-model.trim="name"
-                                        placeholder='Nome'
                                     >
                                     <div v-if="errors.name" class="invalid-feedback">
                                         {{errors.name}}
@@ -36,7 +35,7 @@
                                         v-bind:class="{ 'is-invalid': errors.email !== null }"
                                         id="add-professional-modal-input-email"
                                         v-model.trim="email"
-                                        placeholder='Email'
+                                        placeholder='email@mail.pt'
                                     >
                                     <div v-if="errors.email" class="invalid-feedback">
                                         {{errors.email}}

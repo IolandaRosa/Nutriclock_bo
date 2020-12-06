@@ -21,39 +21,6 @@ class MealControllerAPI extends Controller
         return MealResource::collection(Meal::all());
     }
 
-    public function mealDaysCount(Request $request, $id) {
-        $user = User::find($id);
-
-        if (!$user) {
-            return Response::json(['error' => 'O utilizador não existe.'], 404);
-        }
-
-        $date = Meal::where('userId', $id)->min('date');
-        $dates = Meal::where('userId', $id)->select('date')->get();
-        $count = Meal::where('userId', $id)->count();
-
-        if (!$date) {
-            return Response::json(['error' => 'A refeição não existe.'], 404);
-        }
-
-        $days = Carbon::parse($date)->diffInDays(Carbon::now());
-
-        if (count($dates) == 0) {
-            return Response::json(['days' => 0], 200);
-        }
-
-        $parsedDates = [];
-        $i = 0;
-
-        foreach ($dates as $d) {
-            $parsed = Carbon::parse($d->date)->format('d/m/Y');
-            $parsedDates[$i] = $parsed;
-            $i++;
-        }
-
-        return Response::json(['daysFromInitialDate' => $days, 'totalDaysRegistered' => count(array_unique($parsedDates)), 'meals' => $count], 200);
-    }
-
     public function getAuthUserMeals(Request $request) {
         $meals = Meal::where('userId', auth()->id())->get();
 
@@ -176,8 +143,10 @@ class MealControllerAPI extends Controller
                 $constraint->aspectRatio();
             });
 
-            $path = basename($image->store('food', 'public'));
-            Storage::put('public\food\thumb_'.$path, $thumbnail->stream());
+            // $path = basename($image->store('food', 'public'));
+            $path = basename($image->store('food', 's3'));
+            Storage::disk('s3')->put('food/thumb_'.$path, $thumbnail->stream());
+            // Storage::put('public/food/thumb_'.$path, $thumbnail->stream());
             $meal->foodPhotoUrl = basename($path);
         }
 
@@ -187,8 +156,10 @@ class MealControllerAPI extends Controller
             $thumbnail->resize(null, 200, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            $path = basename($image->store('nutritionalInfo', 'public'));
-            Storage::put('public\nutritionalInfo\thumb_'.$path, $thumbnail->stream());
+            // $path = basename($image->store('nutritionalInfo', 'public'));
+            $path = basename($image->store('nutritionalInfo', 's3'));
+            Storage::disk('s3')->put('nutritionalInfo/thumb_'.$path, $thumbnail->stream());
+            // Storage::put('public/nutritionalInfo/thumb_'.$path, $thumbnail->stream());
             $meal->nutritionalInfoPhotoUrl = basename($path);
         }
 

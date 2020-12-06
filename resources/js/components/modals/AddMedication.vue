@@ -4,7 +4,7 @@
             <div class="modal-wrapper">
                 <div class="modal-container">
                     <div class="modal-logo">
-                        <img class="modal-logo" src="http://nutriclock.test:81/images/only_logo.png" alt=""/>
+                        <img class="modal-logo" :src="'images/only_logo.png'" alt=""/>
                     </div>
                     <div class="modal-header">
                         <span class="title">{{title}}</span>
@@ -20,7 +20,6 @@
                                         v-bind:class="{ 'is-invalid': errors.name !== null }"
                                         id="add-medication-modal-input-name"
                                         v-model.trim="name"
-                                        placeholder='Nome'
                                     >
                                     <div v-if="errors.name" class="invalid-feedback">
                                         {{errors.name}}
@@ -36,7 +35,7 @@
                                         v-bind:class="{ 'is-invalid': errors.posology !== null }"
                                         id="add-medication-modal-input-posology"
                                         v-model.trim="posology"
-                                        placeholder='Posologia (mg/ml)'
+                                        placeholder='20'
                                     >
                                     <div v-if="errors.posology" class="invalid-feedback">
                                         {{errors.posology}}

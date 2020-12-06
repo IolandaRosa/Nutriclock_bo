@@ -17,5 +17,10 @@ export const COLUMN_NAME = {
     fats_g: 'Gorduras (g)',
     carbo_hidrats_g: 'Hid. Carb. (g)',
     fiber_g: 'Fibra (g)',
-    colesterol_mg: 'Colesterol (mg)'
+    colesterol_mg: 'Colesterol (mg)',
+    SleepTime: 'Hora Deitar',
+    WakeUpTime: 'Hora Levantar',
+    HasWakeUp: 'Qualidade do Sono',
+    Description: 'Descrição',
+    TotalHours: 'Total de Horas de Sono'
 };

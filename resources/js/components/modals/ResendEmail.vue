@@ -4,7 +4,7 @@
             <div class="modal-wrapper">
                 <div class="modal-container">
                     <div class="modal-logo">
-                        <img class="modal-logo" src="http://nutriclock.test:81/images/only_logo.png" alt=""/>
+                        <img class="modal-logo" :src="`/images/only_logo.png`" alt=""/>
                     </div>
                     <div class="modal-header">
                         <span class="title">Reenviar Email</span>
@@ -20,7 +20,7 @@
                                     v-bind:class="{ 'is-invalid': errors.email !== null }"
                                     id="resend-email-modal-input-name"
                                     v-model.trim="email"
-                                    placeholder="Email"
+                                    placeholder="email@mail.pt"
                                 >
                                 <div v-if="errors.email" class="invalid-feedback">
                                     {{errors.email}}

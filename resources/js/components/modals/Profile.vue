@@ -26,7 +26,6 @@
                                         class="form-control"
                                         id="profile-modal-input-name"
                                         v-model.trim="name"
-                                        placeholder="Nome"
                                         :readonly="userId !== -1"
                                     >
                                 </div>
@@ -40,7 +39,6 @@
                                         id="profile-modal-input-email"
                                         readonly=""
                                         :value="email"
-                                        placeholder="Email"
                                     >
                                 </div>
                             </div>
@@ -53,7 +51,6 @@
                                     class="form-control mt-1"
                                     readonly=""
                                     v-for="ufs in userUfcs" :value="ufs.name"
-                                    placeholder="USF"
                                 >
                             </div>
                         </div>
@@ -218,13 +215,13 @@
                             })
                         }
                         this.userUfcs = array;
-                    }).catch(error => {});
+                    }).catch(() => {});
 
                     axios.get(`api/users/${this.id}`).then(response => {
                         const user = response.data.data;
                         this.name = user.name;
                         this.email = user.email;
-                        this.avatarUrl = user.avatarUrl ? user.avatarUrl : 'http://nutriclock.test:81/images/avatar.png';
+                        this.avatarUrl = user.avatarUrl ? 'https://nutriclock.s3-eu-west-1.amazonaws.com/avatars/'+ user.avatarUrl : 'https://nutriclock.herokuapp.com/images/avatar.png';
                         this.professionalCategoryId = user.professionalCategoryId;
                         this.role = user.role;
                         this.email = user.email;

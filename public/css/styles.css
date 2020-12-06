@@ -79,7 +79,6 @@ a:hover {
     margin-top: 45px;
     margin-left: 200px;
     padding: 16px;
-    background: linear-gradient(#68d03d50, transparent);
     width: calc(100vw - 200px);
     height: calc(100vh - 61px);
 }
@@ -258,4 +257,22 @@ a:hover {
 
 .tab-wrapper {
     padding: 16px;
+}
+
+.page-item.active .page-link {
+    background-color: #7dce65;
+    border-color: #7dce65;
+    box-shadow: 0 3px 6px #0f0f0f28;
+}
+
+.details-control:focus {
+    outline: 0px !important;
+}
+
+.page-link, .page-link:hover {
+    color: #7dce65;
+}
+
+.w-20 {
+    width: 20px;
 }

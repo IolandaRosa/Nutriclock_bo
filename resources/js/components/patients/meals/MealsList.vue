@@ -12,45 +12,45 @@
 </template>
 m
 <script type="text/javascript">
-    /*jshint esversion: 6 */
-    import MealListItem from './MealListItem';
-    import { COLUMN_NAME } from '../../../utils/table_elements';
-    import { parseDateToString, parseMealTypeToString } from '../../../utils/misc';
+/*jshint esversion: 6 */
+import MealListItem from './MealListItem';
+import {ROUTE} from '../../../utils/routes';
 
-    export default{
-        props: ['id'],
-        data() {
-            return {
-                isFetching: false,
-                showMealModal: false,
-                selectedRow: null,
-                meals: [],
-            }
+export default {
+    props: ['id'],
+    data() {
+        return {
+            isFetching: false,
+            showMealModal: false,
+            selectedRow: null,
+            meals: [],
+        }
+    },
+    methods: {
+        showDetails(row, date) {
+            this.$emit('meal-details', row, date);
         },
-        methods: {
-            showDetails(row, date) {
-                this.$emit('meal-details', row, date);
-            },
-            getUserMeals() {
-                axios.get(`api/meals/${this.id}/user`).then(response => {
-                    if (this.isFetching) return;
+        getUserMeals() {
+            axios.get(`api/meals/${this.id}/user`).then(response => {
+                if (this.isFetching) return;
 
-                    this.isFetching = true;
+                this.isFetching = true;
 
-                    this.meals = response.data.meals;
-                    this.isFetching = false;
-                }).catch((e) => {
-                    console.log('meals', e);
-                    this.isFetching = false;
-                });
-            },
+                this.meals = response.data.meals;
+                this.isFetching = false;
+            }).catch((error) => {
+                this.isFetching = false;
+                if (error.response && error.response.status === 401) {
+                    this.$router.push(ROUTE.Login)
+                }
+            });
         },
-        mounted() {
-            console.log('mount')
-            this.getUserMeals();
-        },
-        components: {
-            MealListItem,
-        },
-    };
+    },
+    mounted() {
+        this.getUserMeals();
+    },
+    components: {
+        MealListItem,
+    },
+};
 </script>

@@ -52,6 +52,7 @@ class PasswordResetRequest extends Notification
     {
         $url = url('/#/reset-password/'.$this->token);
         return (new MailMessage)
+               ->from('cas.ipl.2020@gmail.com','Nutriclock')
                ->subject('Nutriclock - '.$this->title)
                ->greeting('Caro '.$this->user->name.',')
                ->line($this->message)

@@ -1,5 +1,3 @@
-import PatientTabs from "../components/patients/PatientTabs";
-
 window.Vue = require('vue');
 
 import Login from '../components/authentication/Login';
@@ -7,13 +5,14 @@ import ForgotPassword from '../components/authentication/ForgotPassword';
 import ResetPassword from '../components/authentication/ResetPassword';
 import AdminUsersList from '../components/users/AdminUsersList';
 import CategoriesList from '../components/categories/CategoriesList';
-// Usfs
 import UsfsList from '../components/usfs/UsfsList';
 import UserProfile from '../components/users/UserProfile';
 import PatientsList from '../components/patients/PatientsList';
-import Patient from '../components/patients/Patient';
 import AcceptanceTerms from '../components/utils/AcceptanceTerms';
 import DiseasesList from '../components/diseases/DiseasesList';
+import PatientTabs from '../components/patients/PatientTabs';
+import SleepTipsList from '../components/tips/SleepTipsList';
+import ConfigurationList from '../components/configurations/ConfigurationList';
 
 Vue.component('Login', Login);
 
@@ -37,6 +36,10 @@ Vue.component('AcceptanceTerms', AcceptanceTerms);
 
 Vue.component('DiseasesList', DiseasesList);
 
+Vue.component('SleepTipsList', SleepTipsList);
+
+Vue.component('ConfigurationList', ConfigurationList);
+
 export const ROUTE = {
     Index: '/',
     Login: '/login',
@@ -48,7 +51,9 @@ export const ROUTE = {
     Profile: '/profile',
     Patients: '/patients',
     AcceptanceTerms: '/terms',
+    SleepTips: '/sleep-tips',
     Diseases: '/diseases',
+    Configurations: '/configurations',
 };
 
 export const routes = [
@@ -63,5 +68,7 @@ export const routes = [
     {path: '/patients', component: PatientsList, name: 'PatientsList'},
     {path: '/patients/:id', component: PatientTabs, name: 'PatientTabs', props: true},
     {path: '/terms', component: AcceptanceTerms, name: 'AcceptanceTerms'},
+    {path: '/sleep-tips', component: SleepTipsList, name: 'SleepTipsList'},
     {path: '/diseases', component: DiseasesList, name: 'DiseasesList'},
+    {path: '/configurations', component: ConfigurationList, name: 'ConfigurationList'},
 ];

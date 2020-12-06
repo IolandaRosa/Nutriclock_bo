@@ -7,7 +7,7 @@
                         <button class="btn-bold btn btn-light" @click="onCloseClick" style="position: absolute; right: 0;">
                             X
                         </button>
-                        <img class="image-modal-class" :src="`http://nutriclock.test:81/storage${imageToShow}`" alt="" />
+                        <img class="image-modal-class" :src="`https://nutriclock.s3-eu-west-1.amazonaws.com${imageToShow}`" alt="" />
                     </div>
                 </div>
             </div>
