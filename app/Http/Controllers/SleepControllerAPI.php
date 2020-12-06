@@ -172,9 +172,15 @@ class SleepControllerAPI extends Controller
             return Response::json(['error' => 'Accesso proibido!'], 401);
         }
 
+        $dates = [];
+
         $sleeps = Sleep::where('userId', Auth::guard('api')->user()->id)->get(['date']);
 
-        return SleepResource::collection($sleeps);
+        foreach($sleeps as $sleep) {
+            array_push($dates, $sleep->date);
+        }
+
+        return Response::json(['data' => $dates]);
     }
 
     public function export()
