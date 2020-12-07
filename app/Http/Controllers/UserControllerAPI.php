@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Sleep;
+use App\Meal;
+use App\NutritionalInfo;
 use Illuminate\Http\Request;
 use App\User;
 use App\UsersUfc;
 use App\Http\Resources\User as UserResource;
-use App\Http\Resources\Ufc as UfcResource;
-use App\Http\Resources\UsersUfc as UsersUfcResource;
 use Illuminate\Support\Facades\Auth;
 use Response;
 use Hash;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\Medication;
 
@@ -277,6 +277,46 @@ class UserControllerAPI extends Controller
 
         if (!$user) {
             return Response::json(['error' => 'O utilizador não existe!'], 400);
+        }
+
+        $user->forceDelete();
+
+        return new UserResource($user);
+    }
+
+    public function deletePatient($id)
+    {
+        if(Auth::guard('api')->user()->role != 'ADMIN'){
+            return Response::json(['error' => 'Accesso proibido!'], 401);
+        }
+
+        $user = User::withTrashed()->find($id);
+
+        if (!$user) {
+            return Response::json(['error' => 'O utilizador não existe!'], 400);
+        }
+
+        $meals = Meal::where('userId', $user->id)->get();
+        $sleeps = Sleep::where('userId', $user->id)->get();
+
+        if ($meals) {
+            foreach ($meals as $meal) {
+                $nutritionalInfos = NutritionalInfo::where('mealId', $meal->id);
+
+                if ($nutritionalInfos) {
+                    foreach ($nutritionalInfos as $nutritionalInfo) {
+                        $nutritionalInfo->forceDelete();
+                    }
+                }
+
+                $meal->forceDelete();
+            }
+        }
+
+        if ($sleeps) {
+            foreach ($sleeps as $sleep) {
+                $sleep->forceDelete();
+            }
         }
 
         $user->forceDelete();

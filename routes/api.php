@@ -21,6 +21,7 @@ Route::middleware(['auth:api'])->get('users/{id}', 'UserControllerAPI@show');
 Route::post('users', 'UserControllerAPI@store');
 Route::put('users/{id}/activate', 'UserControllerAPI@activate');
 Route::middleware(['auth:api'])->post('patients', 'UserControllerAPI@getPatients');
+Route::middleware(['auth:api', 'professional'])->delete('patients/{id}', 'UserControllerAPI@deletePatient');
 Route::middleware(['auth:api', 'admin'])->delete('users/{id}', 'UserControllerAPI@destroy');
 Route::middleware(['auth:api', 'admin'])->delete('users/{id}/status', 'UserControllerAPI@toggleActive');
 Route::middleware(['auth:api', 'professional'])->put('users/{id}', 'UserControllerAPI@updateProfessional');
