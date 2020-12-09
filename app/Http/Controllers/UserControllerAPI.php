@@ -279,6 +279,11 @@ class UserControllerAPI extends Controller
             return Response::json(['error' => 'O utilizador não existe!'], 400);
         }
 
+        if ($user->avatarUrl) {
+            Storage::disk('s3')->delete('avatars/'.$user->avatarUrl);
+            // Storage::disk('public')->delete('avatars/'.$user->avatarUrl);
+        }
+
         $user->forceDelete();
 
         return new UserResource($user);
@@ -317,6 +322,11 @@ class UserControllerAPI extends Controller
             foreach ($sleeps as $sleep) {
                 $sleep->forceDelete();
             }
+        }
+
+        if ($user->avatarUrl) {
+            Storage::disk('s3')->delete('avatars/'.$user->avatarUrl);
+            // Storage::disk('public')->delete('avatars/'.$user->avatarUrl);
         }
 
         $user->forceDelete();

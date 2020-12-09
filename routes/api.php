@@ -69,6 +69,7 @@ Route::middleware(['auth:api', 'admin'])->delete('diseases/{id}', 'DiseaseContro
 Route::middleware(['auth:api'])->get('meals', 'MealControllerAPI@index');
 Route::middleware(['auth:api'])->get('meals/{id}', 'MealControllerAPI@show');
 Route::middleware(['auth:api', 'patient'])->post('meals/{id}', 'MealControllerAPI@store');
+Route::middleware(['auth:api', 'patient'])->delete('meals/{id}', 'MealControllerAPI@destroy');
 Route::middleware(['auth:api', 'professional'])->put('meals/{id}', 'MealControllerAPI@updateQuantity');
 Route::middleware(['auth:api', 'professional'])->get('meals/{id}/user', 'MealControllerAPI@getMealsByUser');
 Route::middleware(['auth:api', 'patient'])->get('meals-user', 'MealControllerAPI@getAuthUserMeals');

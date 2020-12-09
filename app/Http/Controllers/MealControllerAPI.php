@@ -23,12 +23,50 @@ class MealControllerAPI extends Controller
 
     public function getAuthUserMeals(Request $request) {
         $meals = Meal::where('userId', auth()->id())->get();
+        $date = Meal::where('userId', auth()->id())->min('date');
+        $days = Carbon::parse($date)->diffInDays(Carbon::now());
+
+        $parsedDates = [];
+        $data = [];
+        $i = 0;
 
         if (!$meals) {
             return Response::json(['error' => 'Não há ufcs'], 400);
         }
 
-        return MealResource::collection($meals);
+        foreach ($meals as $meal) {
+            $parsed = Carbon::parse($meal->date)->format('d/m/Y');
+            $parsedDates[$i] = $parsed;
+            $i++;
+        }
+
+        $parsedDates = array_unique($parsedDates);
+
+        foreach ($parsedDates as $d) {
+            $mealsByType = [
+                'P' => [],
+                'A' => [],
+                'J' => [],
+                'S' => [],
+                'L' => [],
+                'O' => [],
+            ];
+
+            foreach($meals as $m) {
+                if (Carbon::parse($m->date)->format('d/m/Y') == $d) {
+                    array_push($mealsByType[$m->type], $m);
+                }
+            }
+
+            $mealsByType['date'] = $d;
+
+            array_push($data, $mealsByType);
+        }
+
+        return Response::json([
+            'daysFromInitialDate' => $days,
+            'meals' => $data,
+        ], 200);
     }
 
     public function getMealsByUser(Request $request, $id) {
@@ -41,7 +79,6 @@ class MealControllerAPI extends Controller
 
         $parsedDates = [];
         $i = 0;
-        $k = 0;
 
         foreach ($dates as $d) {
             $parsed = Carbon::parse($d->date)->format('d/m/Y');
@@ -249,6 +286,39 @@ class MealControllerAPI extends Controller
 
         $meal->numericUnit = $request->quantity;
         $meal->update();
+        return new MealResource($meal);
+    }
+
+    public function destroy ($id)
+    {
+        $meal = Meal::find($id);
+
+        if (!$meal) {
+            return Response::json(['error' => 'A refeição não existe.'], 404);
+        }
+
+        $nutritionalInfo = NutritionalInfo::where('mealId', $meal->id)->get();
+
+        if($meal->foodPhotoUrl) {
+            Storage::disk('s3')->delete('food/'.$meal->foodPhotoUrl);
+            Storage::disk('s3')->delete('food/thumb_'.$meal->foodPhotoUrl);
+            // Storage::disk('public')->delete('food/'.$meal->foodPhotoUrl);
+            // Storage::disk('public')->delete('food/thumb_'.$meal->foodPhotoUrl);
+        }
+
+        if ($meal->nutritionalInfoPhotoUrl) {
+            Storage::disk('s3')->delete('nutritionalInfo/'.$meal->nutritionalInfoPhotoUrl);
+            Storage::disk('s3')->delete('nutritionalInfo/thumb_'.$meal->nutritionalInfoPhotoUrl);
+            // Storage::disk('public')->delete('nutritionalInfo/'.$meal->nutritionalInfoPhotoUrl);
+            // Storage::disk('public')->delete('nutritionalInfo/thumb_'.$meal->nutritionalInfoPhotoUrl);
+        }
+
+        foreach ($nutritionalInfo as $nutri){
+            $nutri->forceDelete();
+        }
+
+        $meal->forceDelete();
+
         return new MealResource($meal);
     }
 }

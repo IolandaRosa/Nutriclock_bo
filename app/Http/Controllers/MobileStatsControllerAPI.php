@@ -18,7 +18,6 @@ class MobileStatsControllerAPI extends Controller
 
         $id = Auth::guard('api')->user()->id;
 
-        $date = Meal::where('userId', $id)->min('date');
         $dates = Meal::where('userId', $id)->select('date')->get();
         $totalMeals= Meal::where('userId', $id)->count();
         $sleeps = Sleep::where('userId', Auth::guard('api')->user()->id)->get();
@@ -37,12 +36,6 @@ class MobileStatsControllerAPI extends Controller
         }
 
 
-        if (!$date) {
-            return Response::json(['error' => 'A refeição não existe.'], 404);
-        }
-
-        $days = Carbon::parse($date)->diffInDays(Carbon::now());
-
         if (count($dates) == 0) {
             return Response::json(['days' => 0], 200);
         }
@@ -57,7 +50,6 @@ class MobileStatsControllerAPI extends Controller
         }
 
         return Response::json([
-            'daysFromInitialDate' => $days,
             'totalDaysRegistered' => count(array_unique($parsedDates)),
             'meals' => $totalMeals,
             'totalSleepDays' => $totalSleeps,
