@@ -75,10 +75,11 @@ import {UserRoles} from '../../constants/misc';
 import {
     EmptyObject,
     initDataTable,
-    onClickHandler, redrawTable,
+    onClickHandler,
+    redrawTable,
     TableActionClasses,
     TableActionColumns
-} from "../../utils/dataTables";
+} from '../../utils/dataTables';
 
 export default {
     data() {

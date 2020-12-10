@@ -1,25 +1,35 @@
 <template>
     <div class="component-wrapper">
-        <div class="component-wrapper-header">
-            <div class="component-wrapper-left">
-                Categorias Profissionais
-            </div>
-            <div class="component-wrapper-right">
-                <button class="btn-bold btn btn-primary" v-on:click.prevent="add" type="button" data-toggle="tooltip"
-                        title="Nova Categoria">
+        <div class="container pt-5">
+            <div class="p-4 bg-light rounded with-shadow">
+                <div class="component-wrapper-header">
+                    <h3 class="component-wrapper-left">
+                        Categorias Profissionais
+                    </h3>
+                    <div class="component-wrapper-right">
+                        <button class="btn-bold btn btn-primary" v-on:click.prevent="add" type="button"
+                                data-toggle="tooltip"
+                                title="Nova Categoria">
                     <span v-if="isFetching" class="spinner-border spinner-border-sm" role="status"
                           aria-hidden="true"></span>
-                    <span class="full-text">Nova Categoria Profissional</span>
-                    <span class="min-text">+</span>
-                </button>
+                            <span class="full-text">Nova Categoria Profissional</span>
+                            <span class="min-text">+</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="component-wrapper-body text-dark mt-2">
+                    <table id="categoriesTable" class="table-wrapper table table-hover dt-responsive w-100">
+                        <thead>
+                        <tr>
+                            <th v-for="title in titles" :class="title.className">
+                                {{ title.label }}
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody/>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="component-wrapper-body">
-            <data-tables :data="data" :pagination-props="{ pageSizes: [8] }" :action-col="actionCol">
-                <el-table-column v-for="title in titles" :prop="title.prop" :label="title.label" :key="title.label"
-                                 :sortable="true">
-                </el-table-column>
-            </data-tables>
         </div>
         <AddCategory
             v-show="showModal"
@@ -47,10 +57,17 @@
 <script type="text/javascript">
 /*jshint esversion: 6 */
 import AddCategory from '../modals/AddCategory';
-import { ERROR_MESSAGES } from '../../utils/validations';
-import { COLUMN_NAME } from '../../utils/table_elements';
+import {ERROR_MESSAGES} from '../../utils/validations';
+import {COLUMN_NAME} from '../../utils/table_elements';
 import ConfirmationModal from '../modals/ConfirmationModal';
-import { ROUTE } from '../../utils/routes';
+import {ROUTE} from '../../utils/routes';
+import {
+    EmptyObject,
+    initDataTable,
+    onClickHandler, redrawTable,
+    TableActionClasses,
+    TableActionColumns
+} from "../../utils/dataTables";
 
 export default {
     data() {
@@ -64,38 +81,16 @@ export default {
             data: [],
             showConfirmationModal: false,
             selectedRow: null,
+            dataTable: null,
             titles: [{
-                prop: "id",
-                label: COLUMN_NAME.Id,
-            }, {
-                prop: "name",
                 label: COLUMN_NAME.Name,
-            }],
-            actionCol: {
-                label: ' ',
-                props: {
-                    align: 'center',
-                },
-                buttons: [{
-                    props: {
-                        type: 'primary is-circle',
-                        icon: 'el-icon-edit'
-                    },
-                    handler: row => {
-                        this.onEditClick(row);
-                    },
-                    label: ''
-                }, {
-                    props: {
-                        type: 'danger is-circle',
-                        icon: 'el-icon-delete'
-                    },
-                    handler: row => {
-                        this.onDeleteClick(row);
-                    },
-                    label: ''
-                }]
-            }
+                className: '',
+            }, EmptyObject, EmptyObject],
+            columns: [
+                {data: 'name'},
+                TableActionColumns.Edit,
+                TableActionColumns.Delete,
+            ],
         };
     },
     methods: {
@@ -119,9 +114,8 @@ export default {
             this.isFetching = true;
             if (this.selectedRow) {
                 axios.delete(`api/professionalCategories/${this.selectedRow.id}`).then(() => {
-                    this.isFetching = false;
                     this.data.splice(this.data.indexOf(this.selectedRow), 1);
-                    this.showConfirmationModal = false;
+                    this.handleSuccess('Categoria eliminada com sucesso!');
                 }).catch(error => {
                     this.handleError(error);
                 });
@@ -144,7 +138,7 @@ export default {
                 axios.put(`api/professionalCategories/${id}`, {
                     name,
                 }).then(() => {
-                    this.handleSuccess();
+                    this.handleSuccess('Categoria atualizada com sucesso!');
                 }).catch(error => {
                     this.handleError(error);
                 });
@@ -159,11 +153,12 @@ export default {
                 this.handleError(error);
             });
         },
-        handleSuccess() {
+        async handleSuccess(message) {
             this.isFetching = false;
-            this.selectedCategoryName = '';
-            this.selectedCategoryId = '';
-            this.getCategories();
+            if (message) this.showMessage(message, 'success');
+            this.onCloseClick();
+            await this.getCategories();
+            redrawTable(this.dataTable, this.data);
         },
         handleError(error) {
             this.isFetching = false;
@@ -175,32 +170,38 @@ export default {
                     message = ERROR_MESSAGES.alreadyExistingProfessionalCategory;
                 }
             }
-
+            this.showMessage(message, 'error');
+        },
+        showMessage(message, className) {
             this.$toasted.show(message, {
-                type: 'error',
+                type: className,
                 duration: 3000,
                 position: 'top-right',
                 closeOnSwipe: true,
                 theme: 'toasted-primary'
             });
         },
-        getCategories() {
+        async getCategories() {
             if (this.isFetching) return;
             this.isFetching = true;
 
-            axios.get('api/professionalCategories').then((response) => {
+            try {
+                const response = await axios.get('api/professionalCategories');
                 this.isFetching = false;
                 this.data = response.data.data;
-            }).catch((error) => {
+            } catch (error) {
                 this.isFetching = false;
                 if (error.response && error.response.status === 401) {
                     this.$router.push(ROUTE.Login)
                 }
-            });
+            }
         }
     },
-    mounted() {
-        this.getCategories();
+    async mounted() {
+        await this.getCategories();
+        this.dataTable = await initDataTable('#categoriesTable', this.data, this.columns);
+        onClickHandler(this.dataTable, this.onDeleteClick, '#categoriesTable', TableActionClasses.Delete);
+        onClickHandler(this.dataTable, this.onEditClick, '#categoriesTable', TableActionClasses.Edit);
     },
     components: {
         AddCategory,
