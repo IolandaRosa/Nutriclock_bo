@@ -1,5 +1,11 @@
 <template>
     <div class="sidebar">
+        <div class="sidebar-image-container">
+            <img :src="'images/logo_text_horizontal.png'" alt="" height="40px"/>
+        </div>
+        <div class="sidebar-image-small-container">
+            <img :src="'images/only_logo.png'" alt="" height="30px"/>
+        </div>
         <router-link v-show="this.$store.state.user && this.$store.state.user.role === 'ADMIN'" class="menu-item" active-class="active" :to="adminUsersRoute" data-toggle="tooltip" title="Utilizadores">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-lines-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7 1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm2 9a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
@@ -87,13 +93,22 @@
         justify-content: flex-start;
         align-items: flex-start;
         position: fixed;
-        top:45px;
+        top: 0;
         bottom: 0;
         background: white;
         width: 200px;
         box-shadow: 0 3px 6px #0f0f0f28;
         z-index: 1;
         flex-direction: column;
+        padding-top: 60px;
+    }
+
+    .sidebar-image-container {
+        width: 100%;
+        padding: 8px 0 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     a.menu-item {
@@ -124,6 +139,10 @@
         box-shadow: 0 3px 6px #0f0f0f28;
     }
 
+    .sidebar-image-small-container {
+        display:none;
+    }
+
     @media only screen and (max-width: 900px) {
         .sidebar {
             width: unset;
@@ -136,20 +155,17 @@
         a {
             justify-content: center;
         }
-    }
 
-    @media only screen and (max-width: 500px) {
-        .sidebar {
-            justify-content: center;
-            left: 0;
-            bottom: unset;
-            right: 0;
-            width: unset;
-            flex-direction: row;
+        .sidebar-image-container {
+            display: none;
         }
 
-        .sidebar-item-text {
-            display: none;
+        .sidebar-image-small-container {
+            width: 100%;
+            padding: 8px 0 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 </style>

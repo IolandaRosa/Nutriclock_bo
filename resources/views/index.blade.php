@@ -16,7 +16,6 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap4.min.css">
         <style>
             html, body {
-                background-image:url({{url('images/background.jpg')}});
                 color: #FFF;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;

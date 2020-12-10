@@ -107,7 +107,7 @@ export default {
                     this.data.splice(this.data.indexOf(this.selectedRow), 1);
                     redrawTable(this.dataTable, this.data);
                     this.onCloseClick();
-                }).catch(error => {
+                }).catch(() => {
                     this.$toasted.show('Não foi possivel eliminar o utente selecionado', {
                         type: 'error',
                         duration: 3000,
