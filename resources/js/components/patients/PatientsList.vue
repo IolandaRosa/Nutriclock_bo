@@ -1,40 +1,44 @@
 <template>
     <div class="component-wrapper">
-        <div class="component-wrapper-header">
-            <div class="component-wrapper-left">
-                Utentes
+        <div class="container pt-5">
+            <div class="p-4 bg-light rounded with-shadow">
+                <div class="component-wrapper-header">
+                    <h3 class="component-wrapper-left">
+                        Utentes
+                    </h3>
+                </div>
+                <div class="component-wrapper-body text-dark mt-2">
+                    <table id="patientsTable" class="table-wrapper table table-hover dt-responsive w-100">
+                        <thead>
+                        <tr>
+                            <th v-for="title in titles" :class="title.className">
+                                {{ title.label }}
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody/>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="component-wrapper-body">
-            <table id="patientsTable" class="table-wrapper table table-hover dt-responsive w-100">
-                <thead>
-                <tr>
-                    <th v-for="title in titles" :class="title.className">
-                        {{ title.label }}
-                    </th>
-                </tr>
-                </thead>
-                <tbody/>
-            </table>
         </div>
         <ConfirmationModal
             v-show="showConfirmationModal"
             @close="this.onCloseClick"
-            title="Eliminar Dica de Sono"
+            title="Eliminar Utente"
             cancel-button-text="Cancelar"
             save-button-class="btn btn-bold btn-danger"
             save-button-text="Eliminar"
             @save="this.deletePatient"
-            message="Tem a certeza que deseja eliminar a dica de sono selecionada?"
+            message="Tem a certeza que deseja eliminar o utente selecionado?"
         />
     </div>
 </template>
 
 <script type="text/javascript">
 /*jshint esversion: 6 */
-import { getCategoryNameById, parseDateToString, renderGender } from '../../utils/misc';
-import { COLUMN_NAME } from '../../utils/table_elements';
-import { ROUTE } from '../../utils/routes';
+import {getCategoryNameById, parseDateToString, renderGender} from '../../utils/misc';
+import {COLUMN_NAME} from '../../utils/table_elements';
+import {ROUTE} from '../../utils/routes';
 import ConfirmationModal from '../modals/ConfirmationModal';
 import {
     EmptyObject,
