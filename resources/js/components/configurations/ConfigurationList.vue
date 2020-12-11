@@ -1,42 +1,46 @@
 <template>
     <div class="component-wrapper">
-        <div class="component-wrapper-header">
-            <div class="component-wrapper-left">
-                Configurações
-            </div>
-        </div>
-        <div class="component-wrapper-body">
-            <div class="table-responsive">
-                <table class="table table-hover bg-white">
-                    <thead>
-                    <tr>
-                        <th scope="col" colspan="2">Configuração</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr v-for="d in data">
-                        <td>{{parseConfigurationKey(d.key)}}</td>
-                        <td>
-                            <input
-                                v-if="d.key !== 'SLEEP_TIP_ENABLED'"
-                                type="text"
-                                class="form-control"
-                                v-model="d.value"
-                                v-on:change="() => updateConfiguration(d.id, d.value)"
-                            >
-                            <div v-else class="form-check">
-                                <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    v-model="d.value"
-                                    id="enableTipCheck"
-                                    v-on:change="() => updateConfiguration(d.id, d.value)"
-                                >
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+        <div class="container pt-5">
+            <div class="p-4 bg-light rounded with-shadow">
+                <div class="component-wrapper-header">
+                    <h3 class="component-wrapper-left">
+                        Configurações
+                    </h3>
+                </div>
+                <div class="component-wrapper-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover bg-white">
+                            <thead>
+                            <tr>
+                                <th scope="col" colspan="2">Configuração</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="d in data">
+                                <td>{{ parseConfigurationKey(d.key) }}</td>
+                                <td>
+                                    <input
+                                        v-if="d.key !== 'SLEEP_TIP_ENABLED'"
+                                        type="text"
+                                        class="form-control"
+                                        v-model="d.value"
+                                        v-on:change="() => updateConfiguration(d.id, d.value)"
+                                    >
+                                    <div v-else class="form-check">
+                                        <input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            v-model="d.value"
+                                            id="enableTipCheck"
+                                            v-on:change="() => updateConfiguration(d.id, d.value)"
+                                        >
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -44,7 +48,7 @@
 
 <script type="text/javascript">
 /*jshint esversion: 6 */
-import { ROUTE } from '../../utils/routes';
+import {ROUTE} from '../../utils/routes';
 
 export default {
     data() {
@@ -92,10 +96,12 @@ export default {
                 theme: 'toasted-primary'
             });
         },
-        parseConfigurationKey (key) {
+        parseConfigurationKey(key) {
             switch (key) {
-                case 'SLEEP_TIP_ENABLED': return 'Ativar Dicas de Sono';
-                case 'GERAL_EMAIL': return 'Email Geral';
+                case 'SLEEP_TIP_ENABLED':
+                    return 'Ativar Dicas de Sono';
+                case 'GERAL_EMAIL':
+                    return 'Email Geral';
             }
         }
 

@@ -18,12 +18,6 @@
                     </div>
                 </div>
                 <div class="component-wrapper-body text-dark mt-2">
-                    <!--data-tables :data="data" :pagination-props="{ pageSizes: [8] }" :action-col="actionCol">
-                        <el-table-column v-for="title in titles" :prop="title.prop" :label="title.label"
-                                         :key="title.label"
-                                         :sortable="true">
-                        </el-table-column>
-                    </data-tables-->
                     <table id="diseasesTable" class="table-wrapper table table-hover dt-responsive w-100">
                         <thead>
                         <tr>

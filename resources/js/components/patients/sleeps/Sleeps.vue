@@ -1,11 +1,13 @@
 <template>
     <div class="tab-wrapper">
+        <div class="container">
+            <div class="p-4 bg-light rounded with-shadow">
         <div class="component-wrapper-header">
-            <div class="component-wrapper-left">
+            <h3 class="component-wrapper-left">
                 Diário do Sono
-            </div>
+            </h3>
             <div class="component-wrapper-right">
-                <button class="btn-bold btn btn-success mr-2" type="button" data-toggle="tooltip"
+                <button class="btn-bold btn btn-primary mr-2" type="button" data-toggle="tooltip"
                         v-on:click="exportData" title="Exportar">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-bar-down" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg">
@@ -13,7 +15,7 @@
                               d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6z"/>
                     </svg>
                 </button>
-                <button class="btn-bold btn btn-success" type="button" data-toggle="tooltip"
+                <button class="btn-bold btn btn-primary" type="button" data-toggle="tooltip"
                         v-on:click="showStats" title="Estatísticas">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-graph-up" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg">
@@ -23,7 +25,7 @@
                 </button>
             </div>
         </div>
-        <div class="component-wrapper-body pt-4 text-secondary">
+        <div class="component-wrapper-body pt-4 text-dark">
             <table id="sleepsTable" class="table-wrapper table table-hover dt-responsive w-100">
                 <thead>
                 <tr>
@@ -34,6 +36,8 @@
                 </thead>
                 <tbody/>
             </table>
+        </div>
+            </div>
         </div>
     </div>
 </template>

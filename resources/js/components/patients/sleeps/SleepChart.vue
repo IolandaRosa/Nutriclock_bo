@@ -1,60 +1,63 @@
 <template>
     <div class="tab-wrapper">
-        <div class="component-wrapper-header">
-            <div class="component-wrapper-left">
-                Diário do Sono
-            </div>
-            <div class="component-wrapper-right">
-                <button class="btn-bold btn btn-success" type="button" data-toggle="tooltip" v-on:click="closeStats"
-                        title="Tabela">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-table" fill="currentColor"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                              d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <div class="component-wrapper-body pt-4" style="color: gray">
-            <div class="table-wrapper" style="padding: 8px; margin-bottom: 16px">
-                <div><strong>Média total de horas dormidas: </strong>{{ this.totalAverage.toFixed(2) }}</div>
-                <div><strong>Média mensal de horas dormidas: </strong>{{ this.monthAverage.toFixed(2) }}</div>
-                <div><strong>Máximo mensal de horas dormidas: </strong>{{ this.monthMaximum.toFixed(2) }}</div>
-                <div><strong>Minimo mensal de horas dormidas: </strong>{{ this.monthMinimum.toFixed(2) }}</div>
-            </div>
-
-            <div class="table-wrapper p-4">
-                <div class="row mb-4">
-                    <div class="col-4"/>
-                    <div class="col-4">
-                        <span><strong>Filtrar Ano: </strong></span>
-                        <select
-                            style="height: 40px"
-                            class="form-control"
-                            id="stats-year-select"
-                            v-on:change="onYearChange"
-                            v-model="selectedYear">
-                            <option v-for="y in years" :value="y.value">{{ y.label }}</option>
-                        </select>
-                    </div>
-                    <div class="col-4">
-                        <span><strong>Filtrar meses: </strong></span>
-                        <select
-                            style="height: 40px"
-                            class="form-control"
-                            id="stats-month-select"
-                            v-on:change="() => fillStatsByMonth(this.selectedYear, this.selectedMonth)"
-                            v-model="selectedMonth">
-                            <option v-for="m in months" :value="m.value">{{ m.label }}</option>
-                        </select>
+        <div class="container">
+            <div class="p-4 bg-light rounded with-shadow">
+                <div class="component-wrapper-header">
+                    <h3 class="component-wrapper-left">
+                        Diário do Sono
+                    </h3>
+                    <div class="component-wrapper-right">
+                        <button class="btn-bold btn btn-success" type="button" data-toggle="tooltip"
+                                v-on:click="closeStats"
+                                title="Tabela">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-table" fill="currentColor"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                      d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z"/>
+                            </svg>
+                        </button>
                     </div>
                 </div>
-                <div>
-                    <div v-if="chartData == null" class="no-data">
-                        Não existem registos.
+                <div class="component-wrapper-body pt-4" style="color: gray">
+                    <div class="table-wrapper" style="padding: 8px; margin-bottom: 16px">
+                        <div><strong>Média total de horas dormidas: </strong>{{ this.totalAverage.toFixed(2) }}</div>
+                        <div><strong>Média mensal de horas dormidas: </strong>{{ this.monthAverage.toFixed(2) }}</div>
+                        <div><strong>Máximo mensal de horas dormidas: </strong>{{ this.monthMaximum.toFixed(2) }}</div>
+                        <div><strong>Minimo mensal de horas dormidas: </strong>{{ this.monthMinimum.toFixed(2) }}</div>
                     </div>
-                    <line-chart v-else :chart-data="chartData"
-                                :options="{
+
+                    <div class="table-wrapper p-4">
+                        <div class="row mb-4">
+                            <div class="col-4"/>
+                            <div class="col-4">
+                                <span><strong>Filtrar Ano: </strong></span>
+                                <select
+                                    style="height: 40px"
+                                    class="form-control"
+                                    id="stats-year-select"
+                                    v-on:change="onYearChange"
+                                    v-model="selectedYear">
+                                    <option v-for="y in years" :value="y.value">{{ y.label }}</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <span><strong>Filtrar meses: </strong></span>
+                                <select
+                                    style="height: 40px"
+                                    class="form-control"
+                                    id="stats-month-select"
+                                    v-on:change="() => fillStatsByMonth(this.selectedYear, this.selectedMonth)"
+                                    v-model="selectedMonth">
+                                    <option v-for="m in months" :value="m.value">{{ m.label }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <div v-if="chartData == null" class="no-data">
+                                Não existem registos.
+                            </div>
+                            <line-chart v-else :chart-data="chartData"
+                                        :options="{
                         responsive: true,
                         maintainAspectRatio: false,
                         legend: {
@@ -80,6 +83,8 @@
                        }]
                     }
                     }" :height="200"></line-chart>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

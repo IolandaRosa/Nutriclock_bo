@@ -1,117 +1,123 @@
 <template>
     <div class="component-wrapper">
-        <div class="profile-wrapper" style="margin-right: -2px">
-            <div class="profile-wrapper-header">
-                <FileUpload
-                    :image-url="avatarUrl"
-                    @onFileSelected="this.onFileSelected"
-                    :disabled="false"
-                />
-                <div class="mt-2 mb-4 d-flex flex-column align-items-center justify-content-center">
-                    <div class="text-secondary small-text">{{ role }}</div>
-                    <div class="text-secondary small-text">{{ userCategory }}</div>
-                </div>
-            </div>
-            <div class="component-wrapper-body">
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="name" class="small-text text-secondary">Nome</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="name"
-                            v-bind:class="{ 'is-invalid': errors.name !== null }"
-                            v-model="name"
-                        >
-                        <div v-if="errors.name" class="invalid-feedback">
-                            {{ errors.name }}
-                        </div>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="user-profile-input-email" class="small-text text-secondary">Email</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            v-bind:class="{ 'is-invalid': errors.name !== null }"
-                            id="user-profile-input-email"
-                            placeholder="email@mail.pt"
-                            v-model="email">
-                        <div v-if="errors.email" class="invalid-feedback">
-                            {{ errors.email }}
-                        </div>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label class="small-text text-secondary">Género</label>
-                        <div>
-                            <select
-                                class="form-control mb-2"
-                                style="height: 40px"
-                                v-bind:class="{ 'is-invalid': errors.gender !== null }"
-                                v-model="gender">
-                                <option value="MALE">Masculino</option>
-                                <option value="FEMALE">Feminino</option>
-                                <option value="NONE">Não me identifico</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="text-secondary mb-2 mt-4">Alteração de Password</h4>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="user-profile-password" class="small-text text-secondary">Password</label>
-                            <input
-                                type="password"
-                                class="form-control"
-                                id="user-profile-password"
-                                v-bind:class="{ 'is-invalid': errors.password !== null }"
-                                placeholder="password"
-                                v-model="password"
-                            >
-                            <div v-if="errors.password" class="invalid-feedback">
-                                {{ errors.password }}
-                            </div>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="user-profile-new-password" class="small-text text-secondary">Nova
-                                Password</label>
-                            <input
-                                type="password"
-                                class="form-control"
-                                id="user-profile-new-password"
-                                v-bind:class="{ 'is-invalid': errors.newPassword !== null }"
-                                placeholder="nova password"
-                                v-model="newPassword"
-                            >
-                            <div v-if="errors.newPassword" class="invalid-feedback">
-                                {{ errors.newPassword }}
-                            </div>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="user-profile-password" class="small-text text-secondary">Confirmação de
-                                Password</label>
-                            <input
-                                type="password"
-                                class="form-control"
-                                id="user-profile-passwordConfirmation"
-                                v-bind:class="{ 'is-invalid': errors.confirmationPassword !== null }"
-                                placeholder="confirmação password"
-                                v-model="confirmationPassword"
-                            >
-                            <div v-if="errors.confirmationPassword" class="invalid-feedback">
-                                {{ errors.confirmationPassword }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-4">
-                <button class="btn-bold btn btn-primary" v-on:click.prevent="save" type="button" data-toggle="tooltip"
-                        title="Guardar alterações">
+        <div class="container pt-5">
+            <div class="p-4 bg-light rounded with-shadow">
+                <div class="component-wrapper-header">
+                    <div class="component-wrapper-left"/>
+                    <div class="component-wrapper-right">
+                        <button class="btn-bold btn btn-primary" v-on:click.prevent="save" type="button"
+                                data-toggle="tooltip"
+                                title="Guardar alterações">
                     <span v-if="isFetching" class="spinner-border spinner-border-sm" role="status"
                           aria-hidden="true"></span>
-                    <span>Guardar alterações</span>
-                </button>
+                            <span>Guardar alterações</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="profile-wrapper-header">
+                    <FileUpload
+                        :image-url="avatarUrl"
+                        @onFileSelected="this.onFileSelected"
+                        :disabled="false"
+                    />
+                    <div class="mt-2 mb-4 d-flex flex-column align-items-center justify-content-center">
+                        <div class="text-secondary small-text">{{ role }}</div>
+                        <div class="text-secondary small-text">{{ userCategory }}</div>
+                    </div>
+                </div>
+                <div class="component-wrapper-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="name" class="small-text text-secondary">Nome</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="name"
+                                v-bind:class="{ 'is-invalid': errors.name !== null }"
+                                v-model="name"
+                            >
+                            <div v-if="errors.name" class="invalid-feedback">
+                                {{ errors.name }}
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="user-profile-input-email" class="small-text text-secondary">Email</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                v-bind:class="{ 'is-invalid': errors.name !== null }"
+                                id="user-profile-input-email"
+                                placeholder="email@mail.pt"
+                                v-model="email">
+                            <div v-if="errors.email" class="invalid-feedback">
+                                {{ errors.email }}
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="small-text text-secondary">Género</label>
+                            <div>
+                                <select
+                                    class="form-control mb-2"
+                                    style="height: 40px"
+                                    v-bind:class="{ 'is-invalid': errors.gender !== null }"
+                                    v-model="gender">
+                                    <option value="MALE">Masculino</option>
+                                    <option value="FEMALE">Feminino</option>
+                                    <option value="NONE">Não me identifico</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="text-secondary mb-2 mt-4">Alteração de Password</h4>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="user-profile-password" class="small-text text-secondary">Password</label>
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    id="user-profile-password"
+                                    v-bind:class="{ 'is-invalid': errors.password !== null }"
+                                    placeholder="password"
+                                    v-model="password"
+                                >
+                                <div v-if="errors.password" class="invalid-feedback">
+                                    {{ errors.password }}
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="user-profile-new-password" class="small-text text-secondary">Nova
+                                    Password</label>
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    id="user-profile-new-password"
+                                    v-bind:class="{ 'is-invalid': errors.newPassword !== null }"
+                                    placeholder="nova password"
+                                    v-model="newPassword"
+                                >
+                                <div v-if="errors.newPassword" class="invalid-feedback">
+                                    {{ errors.newPassword }}
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="user-profile-password" class="small-text text-secondary">Confirmação de
+                                    Password</label>
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    id="user-profile-passwordConfirmation"
+                                    v-bind:class="{ 'is-invalid': errors.confirmationPassword !== null }"
+                                    placeholder="confirmação password"
+                                    v-model="confirmationPassword"
+                                >
+                                <div v-if="errors.confirmationPassword" class="invalid-feedback">
+                                    {{ errors.confirmationPassword }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
