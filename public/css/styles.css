@@ -1,5 +1,6 @@
 .wrapper-center {
-    background-image:url('http://localhost:81/images/background.jpg');
+    background-image:url('http://localhost:81/images/green1.jpg');
+    background-size: cover;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -93,8 +94,9 @@ a:hover {
     margin-top: 60px;
     margin-left: 200px;
     width: calc(100vw - 200px);
-    height: calc(100vh - 61px);
-    background: linear-gradient(#c0ebad, #FFF);
+    min-height: calc(100vh - 60px);
+    background-image: url("http://localhost:81/images/blue5.jpg");
+    background-size: cover;
 }
 
 @media only screen and (max-width: 900px) {
@@ -114,10 +116,10 @@ a:hover {
 
 @media only screen and (max-width: 500px) {
     .component-wrapper {
-        margin-left: 0;
-        width:100vw;
+        margin-left: 46px;
+        width: calc(100vw - 46px);
         margin-top: 60px;
-        height: calc(100vh - 107px);
+        min-height: calc(100vh - 60px);
     }
 
     .full-text {
@@ -286,4 +288,17 @@ a:hover {
 
 .with-shadow {
     box-shadow: 0 3px 6px #0f0f0f28;
+}
+
+table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td.dtr-control:before, table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th.dtr-control:before {
+    border: 0.01em solid #FFF !important;
+    background-color: #afafae !important;
+}
+
+table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td.dtr-control:before, table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th.dtr-control:before {
+    background-color: #706f6f !important;
+}
+
+.pointer {
+    cursor: pointer;
 }

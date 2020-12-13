@@ -1,5 +1,5 @@
 <template>
-    <div class="file-upload-center mb-2">
+    <div>
         <input
             type="file"
             style="display: none"
@@ -48,20 +48,22 @@
 
 <style>
     .profile-img {
-        height: 45px;
-        width: 45px;
+        height: 100px;
+        width: 100px;
         object-fit: cover;
         border-radius: 50%;
         cursor: pointer;
     }
 
-    .profile-img:hover {
-        filter: grayscale(100%);
+    @media only screen and (max-width: 600px) {
+        .profile-img {
+            height: 60px;
+            width: 60px;
+            margin-right: 16px;
+        }
     }
 
-    .file-upload-center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .profile-img:hover {
+        filter: grayscale(100%);
     }
 </style>

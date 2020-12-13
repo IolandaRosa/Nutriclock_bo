@@ -1,6 +1,6 @@
 <template>
     <div class="component-wrapper">
-        <div class="container pt-5">
+        <div class="container pt-5 pb-2">
             <div class="p-4 bg-light rounded with-shadow">
                 <div class="component-wrapper-header">
                     <h3 class="component-wrapper-left">
@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="component-wrapper-body text-dark mt-2">
-                    <table id="professionalsTable" class="table-wrapper table table-hover dt-responsive w-100">
+                    <table id="professionalsTable" class="table-wrapper responsive table table-hover w-100">
                         <thead>
                         <tr>
                             <th v-for="title in titles" :class="title.className">
@@ -114,14 +114,14 @@ export default {
                 className: '',
             }, EmptyObject, EmptyObject, EmptyObject, EmptyObject],
             columns: [
-                {data: 'name'},
-                {data: 'email'},
-                {data: 'role'},
-                {data: 'category'},
-                TableActionColumns.Edit,
-                TableActionColumns.Resend,
-                TableActionColumns.Block,
-                TableActionColumns.Delete,
+                {data: 'name', responsivePriority: 5},
+                {data: 'email', responsivePriority: 6},
+                {data: 'role', responsivePriority: 7},
+                {data: 'category', responsivePriority: 8},
+                {...TableActionColumns.Edit, responsivePriority: 1},
+                {...TableActionColumns.Resend, responsivePriority: 4},
+                {...TableActionColumns.Block, responsivePriority: 3},
+                {...TableActionColumns.Delete, responsivePriority: 2},
             ],
         };
     },

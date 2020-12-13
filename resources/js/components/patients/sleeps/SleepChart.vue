@@ -1,13 +1,13 @@
 <template>
     <div class="tab-wrapper">
-        <div class="container">
+        <div class="container pb-2">
             <div class="p-4 bg-light rounded with-shadow">
                 <div class="component-wrapper-header">
                     <h3 class="component-wrapper-left">
                         Diário do Sono
                     </h3>
                     <div class="component-wrapper-right">
-                        <button class="btn-bold btn btn-success" type="button" data-toggle="tooltip"
+                        <button class="btn-bold btn btn-primary" type="button" data-toggle="tooltip"
                                 v-on:click="closeStats"
                                 title="Tabela">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-table" fill="currentColor"
@@ -19,13 +19,12 @@
                     </div>
                 </div>
                 <div class="component-wrapper-body pt-4" style="color: gray">
-                    <div class="table-wrapper" style="padding: 8px; margin-bottom: 16px">
-                        <div><strong>Média total de horas dormidas: </strong>{{ this.totalAverage.toFixed(2) }}</div>
-                        <div><strong>Média mensal de horas dormidas: </strong>{{ this.monthAverage.toFixed(2) }}</div>
-                        <div><strong>Máximo mensal de horas dormidas: </strong>{{ this.monthMaximum.toFixed(2) }}</div>
-                        <div><strong>Minimo mensal de horas dormidas: </strong>{{ this.monthMinimum.toFixed(2) }}</div>
+                    <div class="table-wrapper mb-2 p-2 pt-3 mt-2 text-dark">
+                        <div class="card-text"><strong>Média total de horas dormidas: </strong>{{ this.totalAverage.toFixed(2) }}</div>
+                        <div class="card-text"><strong>Média mensal de horas dormidas: </strong>{{ this.monthAverage.toFixed(2) }}</div>
+                        <div class="card-text"><strong>Máximo mensal de horas dormidas: </strong>{{ this.monthMaximum.toFixed(2) }}</div>
+                        <div class="card-text"><strong>Mínimo mensal de horas dormidas: </strong>{{ this.monthMinimum.toFixed(2) }}</div>
                     </div>
-
                     <div class="table-wrapper p-4">
                         <div class="row mb-4">
                             <div class="col-4"/>

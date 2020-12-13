@@ -1,6 +1,6 @@
 <template>
     <div class="component-wrapper">
-        <div class="container pt-5">
+        <div class="container pt-5 pb-2">
             <div class="p-4 bg-light rounded with-shadow">
                 <div class="component-wrapper-header">
                     <h3 class="component-wrapper-left">
@@ -91,10 +91,10 @@ export default {
                 className: '',
             }, EmptyObject, EmptyObject],
             columns: [
-                {data: 'name'},
-                {data: 'type'},
-                TableActionColumns.Edit,
-                TableActionColumns.Delete,
+                {data: 'name', responsivePriority: 3 },
+                { data: 'type', responsivePriority: 4 },
+                { ...TableActionColumns.Edit, responsivePriority: 1 },
+                { ...TableActionColumns.Delete, responsivePriority: 2 },
             ],
         };
     },

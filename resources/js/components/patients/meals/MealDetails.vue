@@ -2,13 +2,20 @@
     <div class="tab-wrapper">
         <div class="container">
             <div class="p-4 bg-light rounded with-shadow">
-                <p class="return" v-on:click="this.returnToMealList"><strong>< Retroceder para Diário Alimentar</strong>
-                </p>
-                <h3 class="meal-detail-title">
-                    <span class="flex-grow-1">Características Gerais das Refeições de {{ this.date }}</span>
-                    <span class="px-4" style="cursor: pointer;"
-                          v-on:click="() => { this.showGeralInformation = !this.showGeralInformation}">{{ showGeralInformation ? '-' : '+' }}</span>
-                </h3>
+                <button class="btn btn-sm btn-outline-secondary mb-4" v-on:click="this.returnToMealList">
+                    🡄 Diário Alimentar
+                </button>
+                <button class="btn btn-dark w-100" v-on:click="() => { this.showGeralInformation = !this.showGeralInformation}">
+                    <svg v-show="!showGeralInformation" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    </svg>
+                    <svg v-show="showGeralInformation" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                    </svg>
+                    Características Gerais das Refeições de {{ this.date }}
+                </button>
                 <div v-show="showGeralInformation" v-if="this.data">
                     <div v-show="this.data['P'].length > 0" class="meal-detail-geral-container">
                         <div class="meal-detail-geral-container-title">Pequeno Almoço</div>
@@ -55,17 +62,18 @@
                     </div>
                 </div>
 
-                <div class="meal-detail-simple-title">
-                    Informação Nutricional
-                </div>
-
                 <div v-if="this.data">
-                    <div class="meal-detail-title mt-4">
-                        <span class="flex-grow-1">Macroconstituintes</span>
-                        <span class="px-4" style="cursor: pointer;"
-                              v-on:click="() => { this.showNutritionalInformation= !this.showNutritionalInformation}">{{ showNutritionalInformation ? '-' : '+' }}</span>
-                    </div>
-
+                    <button class="btn btn-dark w-100" v-on:click="() => { this.showNutritionalInformation= !this.showNutritionalInformation}">
+                        <svg v-show="!showNutritionalInformation" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>
+                        <svg v-show="showNutritionalInformation" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                        </svg>
+                        Macroconstituintes
+                    </button>
                     <div v-show="showNutritionalInformation" class="table-responsive">
                         <table class="table table-hover bg-white">
                             <thead>
@@ -121,11 +129,17 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="meal-detail-title mt-4">
-                        <span class="flex-grow-1">Vitaminas</span>
-                        <span class="px-4" style="cursor: pointer;"
-                              v-on:click="() => { this.showVitamins= !this.showVitamins}">{{ showVitamins ? '-' : '+' }}</span>
-                    </div>
+                    <button class="btn btn-dark w-100" v-on:click="() => {  this.showVitamins= !this.showVitamins}">
+                        <svg v-show="!showVitamins" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>
+                        <svg v-show="showVitamins" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                        </svg>
+                        Vitaminas
+                    </button>
                     <div v-show="showVitamins" class="table-responsive">
                         <table class="table table-hover bg-white">
                             <thead>
@@ -181,11 +195,17 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="meal-detail-title mt-4">
-                        <span class="flex-grow-1">Minerais</span>
-                        <span class="px-4" style="cursor: pointer;"
-                              v-on:click="() => { this.showMinerals = !this.showMinerals}">{{ showMinerals ? '-' : '+' }}</span>
-                    </div>
+                    <button class="btn btn-dark w-100" v-on:click="() => {this.showMinerals = !this.showMinerals}">
+                        <svg v-show="!showMinerals" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>
+                        <svg v-show="showMinerals" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                        </svg>
+                        Minerais
+                    </button>
                     <div v-show="showMinerals" class="table-responsive">
                         <table class="table table-hover bg-white">
                             <thead>
