@@ -1,191 +1,200 @@
 <template>
     <div class="tab-wrapper">
-        <div class="profile-wrapper">
-            <div class="profile-wrapper-header">
-                <img
-                    :src="avatarUrl"
-                    alt=""
-                    height="60"
-                    width="60"
-                    style="border-radius: 50%; object-fit: cover"
-                />
-                <div class="mt-2 mb-4 d-flex flex-column align-items-center justify-content-center">
-                    <div class="text-secondary small-text">{{ email }}</div>
-                    <div class="text-secondary small-text">{{ ufsName }}</div>
+        <div class="with-px-4 pb-4 pt-1 bg-light rounded with-shadow">
+            <div class="component-wrapper-header">
+                <div class="component-wrapper-left">
+                    <img
+                        :src="avatarUrl"
+                        alt=""
+                        class="profile-img"
+                    />
+                </div>
+                <div class="component-wrapper-right">
+                    <button v-show="!readonly" class="btn-bold btn btn-primary" v-on:click="this.savePatient"
+                            type="button"
+                            data-toggle="tooltip"
+                            title="Guardar alterações">
+                    <span v-if="isFetching" class="spinner-border spinner-border-sm" role="status"
+                          aria-hidden="true"></span>
+                        <span>Guardar alterações</span>
+                    </button>
                 </div>
             </div>
-            <div class="component-wrapper-body">
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="name" class="small-text text-secondary">Nome</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="name"
-                            v-bind:class="{ 'is-invalid': errors.name !== null }"
-                            v-model="name"
-                            :disabled="readonly"
-                        >
-                        <div v-if="errors.name" class="invalid-feedback">
-                            {{ errors.name }}
-                        </div>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label class="small-text text-secondary">Data de Nascimento</label>
-                        <Datepicker
-                            v-model="birthday"
-                            input-class="form-control"
-                            calendar-class="text-secondary"
-                            :disabledDates="disabledDates"
-                            :language="pt"
-                            :disabled="readonly"
-                        />
-                        <div v-if="errors.birthday" class="invalid-feedback">
-                            {{ errors.birthday }}
-                        </div>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label class="small-text text-secondary">Género</label>
-                        <div>
-                            <select
-                                class="form-control mb-2"
-                                style="height: 40px"
-                                v-bind:class="{ 'is-invalid': errors.gender !== null }"
-                                :disabled="readonly"
-                                v-model="gender">
-                                <option value="MALE">Masculino</option>
-                                <option value="FEMALE">Feminino</option>
-                                <option value="NONE">Não me identifico</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="weight" class="small-text text-secondary">Peso (kg)</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="weight"
-                            v-bind:class="{ 'is-invalid': errors.weight !== null }"
-                            v-model="weight"
-                            :disabled="readonly"
-                        >
-                        <div v-if="errors.weight" class="invalid-feedback">
-                            {{ errors.weight }}
-                        </div>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="height" class="small-text text-secondary">Altura (cm)</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="height"
-                            v-bind:class="{ 'is-invalid': errors.height !== null }"
-                            v-model="height"
-                            :disabled="readonly"
-                        >
-                        <div v-if="errors.height" class="invalid-feedback">
-                            {{ errors.height }}
-                        </div>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="imc" class="small-text text-secondary">Índice de Massa Corporal</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="imc"
-                            placeholder="0"
-                            v-model="imc"
-                            disabled
-                        >
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <div>
-                            <label class="small-text text-secondary">Problemas de Saúde</label>
-                        </div>
-
-                        <div v-if="diseases && diseases.length > 0">
-                            <div v-for="(disease, index) in diseases" :key="disease.name"
-                                 style="display: flex; margin-bottom: 8px">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    v-model="disease.name"
-                                    style="height: 40px"
-                                    :disabled="readonly"
-                                >
-                                <button class="el-button el-button--danger" style="height: 40px"
-                                        @click="() => {removeDisease(index)}" v-show="!readonly"><em
-                                    class="el-icon-delete"/></button>
-                            </div>
-                        </div>
-                        <div class="text-secondary" v-else>
-                            Nenhum registado
-                        </div>
-                        <div style="display: flex" v-show="!readonly">
-                            <select
-                                class="form-control mb-2"
-                                style="height: 40px"
-                                v-bind:class="{ 'is-invalid': errors.newDisease !== null }"
-                                v-model="newDiseaseSelected">
-                                <option v-for="d in diseasesList" :value="d.value">{{ d.label }}</option>
-                            </select>
-                            <button class="el-button el-button--success" style="height: 40px"
-                                    @click="addSelectedDisease">
-                                <em class="el-icon-plus"/></button>
-                        </div>
-                        <div style="display: flex" v-show="!readonly">
-                            <select
-                                class="form-control mb-2"
-                                style="height: 40px"
-                                v-bind:class="{ 'is-invalid': errors.newDisease !== null }"
-                                v-model="newAllergySelected">
-                                <option v-for="d in allergiesList" :value="d.value">{{ d.label }}</option>
-                            </select>
-                            <button class="el-button el-button--success" style="height: 40px" @click="addAllergy"><em
-                                class="el-icon-plus"/></button>
-                        </div>
-                        <div style="display: flex" v-show="!readonly">
+            <div class="card-deck">
+                <div class="card p-2 pt-3 mt-2 text-dark">
+                    <h5 class="card-title">Dados Pessoais</h5>
+                    <p class="card-text"><strong>Email:</strong> {{ email }} </p>
+                    <p class="card-text"><strong>USF:</strong> {{ ufsName }}</p>
+                    <div class="card-text">
+                        <div class="form-group">
+                            <label for="name" class="small-text">Nome</label>
                             <input
                                 type="text"
                                 class="form-control"
-                                v-model="newDisease"
-                                style="height: 40px"
-                                v-bind:class="{ 'is-invalid': errors.newDisease !== null }"
+                                id="name"
+                                v-bind:class="{ 'is-invalid': errors.name !== null }"
+                                v-model="name"
+                                :disabled="readonly"
                             >
-                            <button class="el-button el-button--success" style="height: 40px" @click="addNewDisease"><em
-                                class="el-icon-plus"/></button>
+                            <div v-if="errors.name" class="invalid-feedback">
+                                {{ errors.name }}
+                            </div>
                         </div>
-                        <div v-if="errors.newDisease" class="invalid-feedback">
-                            {{ errors.newDisease }}
+                    </div>
+                    <div class="card-text">
+                        <div class="form-group">
+                            <label class="small-text text-secondary">Data de Nascimento</label>
+                            <Datepicker
+                                v-model="birthday"
+                                input-class="form-control"
+                                calendar-class="text-secondary"
+                                :disabledDates="disabledDates"
+                                :language="pt"
+                                :disabled="readonly"
+                            />
+                            <div v-if="errors.birthday" class="invalid-feedback">
+                                {{ errors.birthday }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-text">
+                        <div class="form-group">
+                            <label class="small-text">Género</label>
+                            <div>
+                                <select
+                                    class="form-control"
+                                    style="height: 40px"
+                                    v-bind:class="{ 'is-invalid': errors.gender !== null }"
+                                    :disabled="readonly"
+                                    v-model="gender">
+                                    <option value="MALE">Masculino</option>
+                                    <option value="FEMALE">Feminino</option>
+                                    <option value="NONE">Não me identifico</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <div style="display: flex" class="mb-2">
-                            <label class="small-text text-secondary flex-grow-1 d-flex align-items-end">Medicação Habitual</label>
-                            <button class="el-button el-button--success" style="height: 40px" @click="addMedication"
-                                    v-show="!readonly"><em class="el-icon-plus"/></button>
+                <div class="card p-2 pt-3 mt-2 text-dark">
+                    <h5 class="card-title">Dados Biométricos</h5>
+                    <div class="card-text">
+                        <div class="form-group">
+                            <label for="weight" class="small-text text-secondary">Peso (kg)</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="weight"
+                                v-bind:class="{ 'is-invalid': errors.weight !== null }"
+                                v-model="weight"
+                                :disabled="readonly"
+                            >
+                            <div v-if="errors.weight" class="invalid-feedback">
+                                {{ errors.weight }}
+                            </div>
                         </div>
+                    </div>
+                    <div class="card-text">
+                        <div class="form-group">
+                            <label for="height" class="small-text text-secondary">Altura (cm)</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="height"
+                                v-bind:class="{ 'is-invalid': errors.height !== null }"
+                                v-model="height"
+                                :disabled="readonly"
+                            >
+                            <div v-if="errors.height" class="invalid-feedback">
+                                {{ errors.height }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-text">
+                        <div class="form-group">
+                            <label for="imc" class="small-text text-secondary">Índice de Massa Corporal</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="imc"
+                                placeholder="0"
+                                v-model="imc"
+                                disabled
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-deck">
+                <div class="card p-2 pt-3 mt-2 text-dark">
+                    <div class="card-title d-flex">
+                        <h5 class="flex-grow-1">Problemas de Saúde</h5>
+                        <button class="btn btn-sm btn-outline-primary" @click="() => {this.showAddDiseaseModal = true}"
+                                v-show="!readonly">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="card-text">
+                        <div class="form-group">
+                            <div v-if="diseases && diseases.length > 0">
+                                <div v-for="(disease, index) in diseases" :key="disease.name"
+                                     style="display: flex; margin-bottom: 8px">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        v-model="disease.name"
+                                        :disabled="readonly"
+                                    >
+                                    <button class="btn btn-sm btn-outline-danger"
+                                            @click="() => {removeDisease(index)}" v-show="!readonly">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div v-else>
+                                Nenhum registado
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="errors.newDisease" class="invalid-feedback">
+                        {{ errors.newDisease }}
+                    </div>
+                </div>
+                <div class="card p-2 pt-3 mt-2 text-dark">
+                    <div class="card-title d-flex">
+                        <h5 class="flex-grow-1">Medicação Habitual</h5>
+                        <button class="btn btn-sm btn-outline-primary" @click="addMedication"
+                                v-show="!readonly">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="form-group">
                         <div v-if="medication && medication.length > 0">
                             <div v-for="(m, index) in medication" :key="m.name"
                                  style="display: flex; margin-bottom: 8px;">
                                 <div class="flex-grow-1 medication-container">
                                     <span class="text-secondary mr-3">{{ m.name }}</span>
-                                    <span class="text-secondary mr-5">{{ m.posology }} mg/ml</span>
-                                    <span class="text-secondary mr-3">{{ m.timesADay }}</span>
-                                    <span class="text-secondary mr-3">{{ renderTimesAWeek(m.timesAWeek) }}</span>
+                                    <span class="text-secondary">{{ m.posology }} mg/ml</span>
                                 </div>
-                                <button v-show="!readonly" class="el-button el-button--primary" style="height: 40px"
-                                        @click="() => {updateMedication(index)}"><em class="el-icon-edit"/></button>
-                                <button v-show="!readonly" class="el-button el-button--danger"
-                                        style="height: 40px; margin-left: 0" @click="() => {removeMedication(index)}">
-                                    <em
-                                        class="el-icon-delete"/></button>
+                                <button v-show="!readonly" class="btn btn-sm btn-outline-info"
+                                        @click="() => {updateMedication(index)}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                                    </svg>
+                                </button>
+                                <button v-show="!readonly" class="btn btn-sm btn-outline-danger"
+                                        @click="() => {removeMedication(index)}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                         <div class="text-secondary" v-else>
@@ -193,15 +202,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div>
-                <button v-show="!readonly" class="btn-bold btn btn-primary" v-on:click="this.savePatient" type="button"
-                        data-toggle="tooltip"
-                        title="Guardar alterações">
-                    <span v-if="isFetching" class="spinner-border spinner-border-sm" role="status"
-                          aria-hidden="true"></span>
-                    <span>Guardar alterações</span>
-                </button>
             </div>
         </div>
         <ConfirmationModal
@@ -222,6 +222,13 @@
             :id="this.selectedId"
             :user_id="this.id"
         />
+        <AddPatientDisease
+            v-show="showAddDiseaseModal"
+            @close="this.onCloseClick"
+            @save="this.addSelectedDisease"
+            :allergiesList="allergiesList"
+            :diseasesList="diseasesList"
+        />
     </div>
 </template>
 
@@ -232,6 +239,7 @@ import {ptBR} from 'vuejs-datepicker/dist/locale'
 import {ERROR_MESSAGES, isEmptyField} from '../../utils/validations';
 import ConfirmationModal from '../modals/ConfirmationModal';
 import AddMedication from '../modals/AddMedication';
+import AddPatientDisease from '../modals/AddPatientDisease';
 import {UserRoles} from '../../constants/misc';
 import {ROUTE} from '../../utils/routes';
 
@@ -247,12 +255,10 @@ export default {
             confirmationModalMessage: '',
             showConfirmationModal: false,
             showAddMedicationModal: false,
+            showAddDiseaseModal: false,
             addMedicationModalTitle: '',
             selectedId: '',
             selectedIndex: null,
-            newDisease: '',
-            newDiseaseSelected: null,
-            newAllergySelected: null,
             pt: ptBR,
             user: null,
             ufsName: '',
@@ -410,7 +416,7 @@ export default {
         },
         addMedication() {
             this.showAddMedicationModal = true;
-            this.addMedicationModalTitle = 'Registar Medicação';
+            this.addMedicationModalTitle = 'Nova Medicação';
         },
         addMedicationToList() {
             this.getMedication();
@@ -469,41 +475,21 @@ export default {
 
             return str.replace(/,\s*$/, "");
         },
-        addNewDisease() {
-            this.errors.newDisease = null;
-
-            if (isEmptyField(this.newDisease)) {
-                this.errors.newDisease = ERROR_MESSAGES.mandatoryField;
-                return;
+        addSelectedDisease(diseaseSelected, allergySelected, disease) {
+            this.onCloseClick();
+            if (!isEmptyField(diseaseSelected)) {
+                this.addDisease(diseaseSelected);
             }
-
-            this.addDisease(this.newDisease);
-            this.newDisease = '';
-        },
-        addAllergy() {
-            this.errors.newDisease = null;
-
-            if (isEmptyField(this.newAllergySelected)) {
-                this.errors.newDisease = ERROR_MESSAGES.mandatoryField;
-                return;
+            if (!isEmptyField(allergySelected)) {
+                this.addDisease(allergySelected);
             }
-
-            this.addDisease(this.newAllergySelected);
-            this.newAllergySelected = null;
-        },
-        addSelectedDisease() {
-            this.errors.newDisease = null;
-
-            if (isEmptyField(this.newDiseaseSelected)) {
-                this.errors.newDisease = ERROR_MESSAGES.mandatoryField;
-                return;
+            if (!isEmptyField(disease)) {
+                this.addDisease(disease);
             }
-
-            this.addDisease(this.newDiseaseSelected);
-            this.newDiseaseSelected = null;
         },
         addDisease(disease) {
             let hasErrors = false;
+            this.errors.newDisease = null;
 
             this.diseases.forEach(d => {
                 if (d.name.toLowerCase() === disease.toLowerCase()) hasErrors = true;
@@ -521,6 +507,7 @@ export default {
         onCloseClick() {
             this.showConfirmationModal = false;
             this.showAddMedicationModal = false;
+            this.showAddDiseaseModal = false;
             this.selectedIndex = null;
             this.selectedId = null;
         },
@@ -577,6 +564,7 @@ export default {
         Datepicker,
         ConfirmationModal,
         AddMedication,
+        AddPatientDisease,
     },
 };
 </script>
@@ -586,32 +574,9 @@ export default {
     display: unset;
 }
 
-.medication-container {
-    display: flex;
-    height: 40px;
-    align-items: center;
-    background: white;
-    padding: 8px;
-    border: lightgrey solid 1px;
-    border-radius: 4px;
-}
-
-.profile-wrapper {
-    background: #fdfdfd;
-    margin-right: 12px;
-    padding: 16px;
-    border-radius: 4px;
-    box-shadow: 0 3px 6px #0f0f0f28;
-}
-
-.profile-wrapper-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .small-text {
     font-size: 12px;
     font-weight: 700;
 }
+
 </style>

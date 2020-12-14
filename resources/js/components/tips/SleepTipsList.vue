@@ -1,30 +1,35 @@
 <template>
     <div class="component-wrapper">
-        <div class="component-wrapper-header">
-            <div class="component-wrapper-left">
-                Dicas de Sono
-            </div>
-            <div class="component-wrapper-right">
-                <button class="btn-bold btn btn-primary" v-on:click.prevent="add" type="button" data-toggle="tooltip"
-                        title="Nova Dica">
+        <div class="container with-pt-5 with-pb-2">
+            <div class="with-p-4 bg-light rounded with-shadow">
+                <div class="component-wrapper-header">
+                    <h3 class="component-wrapper-left">
+                        Dicas de Sono
+                    </h3>
+                    <div class="component-wrapper-right">
+                        <button class="btn-bold btn btn-primary" v-on:click.prevent="add" type="button"
+                                data-toggle="tooltip"
+                                title="Nova Dica">
                     <span v-if="isFetching" class="spinner-border spinner-border-sm" role="status"
                           aria-hidden="true"></span>
-                    <span class="full-text">Nova Dica</span>
-                    <span class="min-text">+</span>
-                </button>
+                            <span class="full-text">Nova Dica</span>
+                            <span class="min-text">+</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="component-wrapper-body text-dark mt-2">
+                    <table id="sleepTipsTable" class="table-wrapper table table-hover dt-responsive w-100">
+                        <thead>
+                        <tr>
+                            <th v-for="title in titles" :class="title.className">
+                                {{ title.label }}
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody/>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="component-wrapper-body pt-4 text-secondary">
-            <table id="sleepTipsTable" class="table-wrapper table table-hover dt-responsive w-100">
-                <thead>
-                <tr>
-                    <th v-for="title in titles" :class="title.className">
-                        {{ title.label }}
-                    </th>
-                </tr>
-                </thead>
-                <tbody/>
-            </table>
         </div>
         <AddCategory
             v-show="showModal"
@@ -51,8 +56,8 @@
 
 <script type="text/javascript">
 /*jshint esversion: 6 */
-import { ROUTE } from '../../utils/routes';
-import { COLUMN_NAME } from '../../utils/table_elements';
+import {ROUTE} from '../../utils/routes';
+import {COLUMN_NAME} from '../../utils/table_elements';
 import {
     EmptyObject,
     initDataTable,
@@ -63,7 +68,7 @@ import {
 } from '../../utils/dataTables';
 import AddCategory from '../modals/AddCategory';
 import ConfirmationModal from '../modals/ConfirmationModal';
-import { ERROR_MESSAGES } from '../../utils/validations';
+import {ERROR_MESSAGES} from '../../utils/validations';
 
 export default {
     data() {
@@ -78,7 +83,7 @@ export default {
             selectedTipId: null,
             selectedRow: null,
             data: [],
-            titles:[
+            titles: [
                 {
                     label: COLUMN_NAME.Description,
                     className: '',
@@ -87,7 +92,7 @@ export default {
                 EmptyObject,
             ],
             columns: [
-                { data: 'description' },
+                {data: 'description'},
                 TableActionColumns.Edit,
                 TableActionColumns.Delete,
             ],
@@ -123,7 +128,7 @@ export default {
                 const response = await axios.get('api/tips');
                 this.isFetching = false;
                 this.data = response.data.data;
-            } catch(error) {
+            } catch (error) {
                 this.isFetching = false;
                 if (error.response && error.response.status === 401) {
                     this.$router.push(ROUTE.Login)

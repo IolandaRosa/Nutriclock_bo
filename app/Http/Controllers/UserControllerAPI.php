@@ -284,6 +284,8 @@ class UserControllerAPI extends Controller
             // Storage::disk('public')->delete('avatars/'.$user->avatarUrl);
         }
 
+        UsersUfc::where('user_id', $user->id)->forceDelete();
+
         $user->forceDelete();
 
         return new UserResource($user);
