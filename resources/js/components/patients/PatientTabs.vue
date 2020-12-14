@@ -1,6 +1,6 @@
 <template>
     <div class="component-wrapper">
-        <div class="container pt-5 pb-2">
+        <div class="container with-pt-5 with-pb-2">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active"
@@ -94,6 +94,12 @@ a.nav-link:hover {
     background-color: #f8fafc !important;
     border-color: #dee2e6 #dee2e6 #f8fafc !important;
     opacity: 0.9;
+}
+
+@media only screen and (max-width: 600px) {
+    .tab-wrapper {
+        padding: 0;
+    }
 }
 
 </style>

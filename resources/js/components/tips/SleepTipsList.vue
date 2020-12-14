@@ -1,7 +1,7 @@
 <template>
     <div class="component-wrapper">
-        <div class="container pt-5 pb-2">
-            <div class="p-4 bg-light rounded with-shadow">
+        <div class="container with-pt-5 with-pb-2">
+            <div class="with-p-4 bg-light rounded with-shadow">
                 <div class="component-wrapper-header">
                     <h3 class="component-wrapper-left">
                         Dicas de Sono

@@ -1,7 +1,7 @@
 <template>
     <div class="tab-wrapper">
         <div class="container">
-            <div class="p-4 bg-light rounded with-shadow">
+            <div class="with-p-4 bg-light rounded with-shadow">
                 <div class="component-wrapper-header">
                     <h3 class="component-wrapper-left">
                         Diário Alimentar

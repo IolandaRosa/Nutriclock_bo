@@ -1,7 +1,7 @@
 <template>
     <div class="tab-wrapper">
         <div class="container">
-            <div class="p-4 bg-light rounded with-shadow">
+            <div class="with-p-4 bg-light rounded with-shadow">
                 <button class="btn btn-sm btn-outline-secondary mb-4" v-on:click="this.returnToMealList">
                     🡄 Diário Alimentar
                 </button>

@@ -1,7 +1,7 @@
 <template>
     <div class="tab-wrapper">
-        <div class="container pb-2">
-            <div class="p-4 bg-light rounded with-shadow">
+        <div class="container with-pb-2">
+            <div class="with-p-4 bg-light rounded with-shadow">
                 <div class="component-wrapper-header">
                     <h3 class="component-wrapper-left">
                         Diário do Sono

@@ -1,7 +1,7 @@
 <template>
     <div class="component-wrapper">
-        <div class="container pt-5 pb-2">
-            <div class="px-4 pb-4 pt-1 bg-light rounded with-shadow">
+        <div class="container with-pt-5 with-pb-2">
+            <div class="with-px-4 pb-4 pt-1 bg-light rounded with-shadow">
                 <div class="component-wrapper-header">
                     <div class="component-wrapper-left">
                         <FileUpload
@@ -278,11 +278,20 @@ export default {
 </script>
 
 <style>
+.with-px-4 {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+}
 @media only screen and (max-width: 600px) {
     .mobile-header-wrapper {
         flex-direction: column !important;
         display: flex;
         align-items: flex-start;
+    }
+
+    .with-px-4 {
+        padding-left: 0.25rem !important;
+        padding-right: 0.25rem !important;
     }
 }
 </style>

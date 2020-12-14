@@ -1,7 +1,7 @@
 <template>
     <div class="component-wrapper">
-        <div class="container pt-5 pb-2">
-            <div class="p-4 bg-light rounded with-shadow">
+        <div class="container with-pt-5 with-pb-2">
+            <div class="with-p-4 bg-light rounded with-shadow">
                 <div class="component-wrapper-header">
                     <h3 class="component-wrapper-left">
                         Utilizadores Backoffice
@@ -319,5 +319,40 @@ a:hover {
     color: white;
     background: #cceee1;
     text-decoration: none;
+}
+
+.with-pt-5 {
+    padding-top: 3rem !important;
+}
+
+.with-p-4 {
+    padding: 1.5rem !important;
+}
+
+.with-pb-2 {
+    padding-bottom: 0.5rem !important;
+}
+
+@media only screen and (max-width: 600px) {
+    .with-pt-5 {
+        padding-top: 0 !important;
+    }
+
+    .with-p-4 {
+        padding: 0.25rem !important;
+    }
+
+    .container, .container-fluid, .container-xl, .container-lg, .container-md, .container-sm {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    .rounded {
+        border-radius: 0 !important;
+    }
+
+    .with-pb-2 {
+        padding-bottom: 0 !important;
+    }
 }
 </style>

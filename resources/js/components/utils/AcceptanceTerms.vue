@@ -1,6 +1,6 @@
 <template>
     <div class="component-wrapper">
-        <div class="container pt-5">
+        <div class="container with-pt-5">
             <div class="p-4 bg-light rounded with-shadow">
                 <div class="component-wrapper-header">
                     <h3 class="component-wrapper-left">

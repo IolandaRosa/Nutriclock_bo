@@ -1,6 +1,6 @@
 <template>
     <div class="tab-wrapper">
-        <div class="px-4 pb-4 pt-1 bg-light rounded with-shadow">
+        <div class="with-px-4 pb-4 pt-1 bg-light rounded with-shadow">
             <div class="component-wrapper-header">
                 <div class="component-wrapper-left">
                     <img
