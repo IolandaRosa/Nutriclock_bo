@@ -1,5 +1,5 @@
 .wrapper-center {
-    background-image:url('http://localhost:81/images/green1.jpg');
+    background-image:url('https://nutriclock.herokuapp.com/images/green1.jpg');
     background-size: cover;
     height: 100vh;
     display: flex;
@@ -95,7 +95,7 @@ a:hover {
     margin-left: 200px;
     width: calc(100vw - 200px);
     min-height: calc(100vh - 60px);
-    background-image: url("http://localhost:81/images/blue5.jpg");
+    background-image: url("https://nutriclock.herokuapp.com//images/blue5.jpg");
     background-size: cover;
 }
 
