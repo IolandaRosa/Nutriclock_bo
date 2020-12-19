@@ -62,11 +62,12 @@ export const parseDateToString = date => {
 export const parseMealTypeToString = (type) => {
     switch (type) {
         case 'P': return 'Pequeno-almoço';
+        case 'M': return 'Meio da manhã'
         case 'A': return 'Almoço';
         case 'J': return 'Jantar';
         case 'L': return 'Lanche';
         case 'S': return 'Snack';
-        default: return 'Outro';
+        default: return 'Ceia';
     }
 };
 

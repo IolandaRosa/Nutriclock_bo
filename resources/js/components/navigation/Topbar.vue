@@ -21,7 +21,12 @@
                     </svg>
                 </div>
                 <div v-else>
-                    <img class="top-bar-avatar" :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/avatars/${this.$store.state.user.avatarUrl}`" alt="" />
+                    <img
+                        class="top-bar-avatar"
+                        :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/avatars/${this.$store.state.user.avatarUrl}`"
+                        alt=""
+                        @error="setAltImage"
+                    />
                 </div>
             </div>
         </div>
@@ -47,6 +52,9 @@
                     this.$router.push({path: ROUTE.Login });
                 });
             },
+            setAltImage(event) {
+                event.target.src = '/images/avatar.jpg'
+            }
         },
         components: {
             Profile,

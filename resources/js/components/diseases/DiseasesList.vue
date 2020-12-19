@@ -2,7 +2,7 @@
     <div class="component-wrapper">
         <div class="container with-pt-5 with-pb-2">
             <div class="with-p-4 bg-light rounded with-shadow">
-                <div class="btn-group btn-group-sm w-100" role="group">
+                <div class="btn-group btn-group-sm w-100"  style="z-index: 0 !important;"  role="group">
                     <button :class="diseaseActive ? 'btn btn-primary w-50' : 'btn btn-outline-primary w-50'"
                             v-on:click.prevent="() => updateTable('Patologia')">
                         Patologia

@@ -1,82 +1,18 @@
 <template>
     <div class="list-item" v-on:click="this.showDetails">
         <div class="list-item-date">{{this.date}}</div>
-        <div class="list-item-container" v-if="this.meal['P'].length > 0">
-            <div class="list-item-type">
-                Pequeno-almoço
-            </div>
-            <div class="list-item-images">
-                <div v-for="m in this.meal['P']" class="list-item-img">
-                    <img v-if="m.foodPhotoUrl !== null" :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
-                    <div v-else class="list-item-image">N/A</div>
-                    <div class="list-item-time">{{m.time}}h</div>
-                </div>
-            </div>
-        </div>
-        <div class="list-item-container" v-if="this.meal['A'].length > 0">
-            <div class="list-item-type">
-                Almoço
-            </div>
-            <div class="list-item-images">
-                <div v-for="m in this.meal['A']" class="list-item-img">
-                    <img v-if="m.foodPhotoUrl !== null" :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
-                    <div v-else class="list-item-image">N/A</div>
-                    <div class="list-item-time">{{m.time}}h</div>
-                </div>
-            </div>
-        </div>
-        <div class="list-item-container" v-if="this.meal['L'].length > 0">
-            <div class="list-item-type">
-                Lanche
-            </div>
-            <div class="list-item-images">
-                <div v-for="m in this.meal['L']" class="list-item-img">
-                    <img v-if="m.foodPhotoUrl !== null" :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
-                    <div v-else class="list-item-image">N/A</div>
-                    <div class="list-item-time">{{m.time}}h</div>
-                </div>
-            </div>
-        </div>
-        <div class="list-item-container" v-if="this.meal['J'].length > 0">
-            <div class="list-item-type">
-                Jantar
-            </div>
-            <div class="list-item-images">
-                <div v-for="m in this.meal['J']" class="list-item-img">
-                    <img v-if="m.foodPhotoUrl !== null" :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
-                    <div v-else class="list-item-image">N/A</div>
-                    <div class="list-item-time">{{m.time}}h</div>
-                </div>
-            </div>
-        </div>
-        <div class="list-item-container" v-if="this.meal['S'].length > 0">
-            <div class="list-item-type">
-                Snacks
-            </div>
-            <div class="list-item-images">
-                <div v-for="m in this.meal['S']" class="list-item-img">
-                    <img v-if="m.foodPhotoUrl !== null" :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
-                    <div v-else class="list-item-image">N/A</div>
-                    <div class="list-item-time">{{m.time}}h</div>
-                </div>
-            </div>
-        </div>
-        <div class="list-item-container" v-if="this.meal['O'].length > 0">
-            <div class="list-item-type">
-                Outro
-            </div>
-            <div class="list-item-images">
-                <div v-for="m in this.meal['O']" class="list-item-img">
-                    <img v-if="m.foodPhotoUrl !== null" :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/food/thumb_${m.foodPhotoUrl}`" alt="" class="list-item-image" />
-                    <div v-else class="list-item-image">N/A</div>
-                    <div class="list-item-time">{{m.time}}h</div>
-                </div>
-            </div>
-        </div>
+            <MealItem :data="this.meal['P']" title="Pequeno-almoço" />
+            <MealItem :data="this.meal['M']" title="Meio da manhã" />
+            <MealItem :data="this.meal['A']" title="Almoço" />
+            <MealItem :data="this.meal['L']" title="Lanche" />
+            <MealItem :data="this.meal['J']" title="Jantar" />
+            <MealItem :data="this.meal['O']" title="Ceia" />
+            <MealItem :data="this.meal['S']" title="Snacks" />
     </div>
 </template>
 
 <script type="text/javascript">
+    import MealItem from './MealItem';
     /*jshint esversion: 6 */
     export default{
         props: ['meal', 'date'],
@@ -94,9 +30,8 @@
                 this.$emit('show-details', this.meal, this.date);
             }
         },
-        mounted() {
-            console.log('mount', this.meal);
-            console.log('date', this.date);
+        components: {
+            MealItem
         }
     };
 </script>

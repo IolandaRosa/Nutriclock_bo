@@ -7,6 +7,7 @@
                         :src="avatarUrl"
                         alt=""
                         class="profile-img"
+                        @error="setAltImage"
                     />
                 </div>
                 <div class="component-wrapper-right">
@@ -298,6 +299,9 @@ export default {
         }
     },
     methods: {
+        setAltImage(event) {
+            event.target.src = '/images/avatar.jpg'
+        },
         getDiseases() {
             const diseasesList = [];
             const allergiesList = [];

@@ -11,6 +11,7 @@
             class="profile-img"
             alt=""
             v-on:click.prevent="onFileSelect"
+            @error="setAltImage"
         />
     </div>
 </template>
@@ -36,6 +37,9 @@
             onFileSelect() {
                 if (this.disabled) return;
                 this.$refs.fileInput.click();
+            },
+            setAltImage (event) {
+                event.target.src = "/images/avatar.jpg"
             }
         },
         watch: {

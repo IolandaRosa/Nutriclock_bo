@@ -8,6 +8,9 @@
                     </h3>
                 </div>
                 <div class="component-wrapper-body">
+                    <div v-show="meals.length === 0" class="text-dark mt-2 font-weight-bold">
+                        Não existem registos.
+                    </div>
                     <MealListItem :key="index" v-for="(d, index) in meals" :meal="d" :date="index"
                                   @show-details="showDetails"/>
                 </div>
@@ -36,12 +39,12 @@ export default {
             this.$emit('meal-details', row, date);
         },
         getUserMeals() {
-            axios.get(`api/meals/${this.id}/user`).then(response => {
+            axios.get(`api/meals/${this.id}/nutritional`).then(response => {
                 if (this.isFetching) return;
 
                 this.isFetching = true;
 
-                this.meals = response.data.meals;
+                this.meals = response.data.data;
                 this.isFetching = false;
             }).catch((error) => {
                 this.isFetching = false;

@@ -50,6 +50,7 @@ class MealControllerAPI extends Controller
                 'S' => [],
                 'L' => [],
                 'O' => [],
+                'M' => [],
             ];
 
             foreach($meals as $m) {
@@ -98,6 +99,7 @@ class MealControllerAPI extends Controller
                 'S' => [],
                 'L' => [],
                 'O' => [],
+                'M' => [],
             ];
 
             foreach($meals as $m) {
@@ -116,6 +118,54 @@ class MealControllerAPI extends Controller
         }
 
         return Response::json(['meals' => $data], 200);
+    }
+
+    public function getNutritionalInfoByUser(Request $request, $id) {
+        $parsedDates = [];
+        $i = 0;
+        $data = [];
+
+        $dates = Meal::where('userId', $id)->select('date')->get();
+
+        if (!$dates || count($dates) == 0) {
+            return Response::json(['meals' => $data], 200);
+        }
+
+        $meals = Meal::where('userId',$id)->get();
+
+        foreach ($dates as $d) {
+            $parsed = Carbon::parse($d->date)->format('d/m/Y');
+            $parsedDates[$i] = $parsed;
+            $i++;
+        }
+
+        $parsedDates = array_unique($parsedDates);
+
+        foreach ($parsedDates as $d) {
+            $mealsByType = [
+                'P' => [],
+                'A' => [],
+                'J' => [],
+                'S' => [],
+                'L' => [],
+                'O' => [],
+                'M' => [],
+            ];
+
+            foreach($meals as $m) {
+                $nutritionalInfo = NutritionalInfo::where('mealId', $m->id)->get();
+                $obj['meal'] = $m;
+                $obj['nutritionalInfo'] = $nutritionalInfo;
+
+                if (Carbon::parse($m->date)->format('d/m/Y') == $d) {
+                    array_push($mealsByType[$m->type], $obj);
+                }
+            }
+
+            $data[$d] = $mealsByType;
+        }
+
+        return Response::json(['data' => $data], 200);
     }
 
     public function show(Request $request, $id) {
@@ -160,7 +210,7 @@ class MealControllerAPI extends Controller
             'foodPhoto' => 'nullable|image|mimes:jpg,jpeg,png',
             'nutritionalInfoPhoto' => 'nullable|image|mimes:jpg,jpeg,png',
             'relativeUnit' => 'required',
-            'type' => Rule::in(['P','A','J','S','O','L']),
+            'type' => Rule::in(['P','A','J','S','O','L','M']),
             'date' => 'required',
             'time' => 'required'
         ]);

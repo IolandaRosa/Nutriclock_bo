@@ -73,6 +73,7 @@ Route::middleware(['auth:api', 'patient'])->delete('meals/{id}', 'MealController
 Route::middleware(['auth:api', 'professional'])->put('meals/{id}', 'MealControllerAPI@updateQuantity');
 Route::middleware(['auth:api', 'professional'])->get('meals/{id}/user', 'MealControllerAPI@getMealsByUser');
 Route::middleware(['auth:api', 'patient'])->get('meals-user', 'MealControllerAPI@getAuthUserMeals');
+Route::middleware(['auth:api', 'professional'])->get('meals/{id}/nutritional', 'MealControllerAPI@getNutritionalInfoByUser');
 
 // Static nutritional info
 Route::get('meal-names', 'NutritionalInfoStaticControllerAPI@getNames');
