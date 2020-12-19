@@ -91,13 +91,12 @@ class SleepControllerAPI extends Controller
         }
 
         foreach($sleeps as $sleep) {
-            $w = SleepControllerAPI::computeTimeInHours($sleep->wakeUpTime);
-            $s = SleepControllerAPI::computeTimeInHours($sleep->sleepTime);
-            $sleepsSum += abs($s - $w);
+            $diff = SleepControllerAPI::computeTimeInHours($sleep->sleepTime, $sleep->wakeUpTime);
+            $sleepsSum += $diff;
             $parsedDate = explode('/', $sleep->date);
             array_push($valuesToFilter[$parsedDate[2]][$parsedDate[1]], [
                 'label' => $parsedDate[0],
-                'value' => round(abs($s - $w), 2),
+                'value' => round($diff, 2),
             ]);
         }
 
@@ -110,12 +109,35 @@ class SleepControllerAPI extends Controller
         ]]);
     }
 
-    public static function computeTimeInHours($value) {
-       $time = explode(':', $value);
+    public static function computeTimeInHours($sleepTime, $wakeUpTime) {
+        if ($sleepTime == $wakeUpTime) return 24.00;
 
-       $minutes = $time[1]/60;
+        $sleepTimeArray = explode(':', $sleepTime); // 22, 23
+        $totalHoursSleep = $sleepTimeArray[0]; // 22
+        $minutes = round($sleepTimeArray[1]/60, 1); // 0.38
+        $beforeMidnight = false;
+        $beforeMidDay = false;
 
-       return $time[0]+$minutes;
+        if ($totalHoursSleep > 12 && $totalHoursSleep < 24) {
+            $beforeMidnight = true;
+            $totalHoursSleep = 24 - $totalHoursSleep; // 2
+        }
+
+        $totalHoursSleep = $totalHoursSleep + $minutes; // 2.38
+
+        $wakeUpTimeArray = explode(':', $wakeUpTime); //7.22
+        $totalHoursWakeUp = $wakeUpTimeArray[0];
+
+        if ($totalHoursWakeUp > 12 && $totalHoursWakeUp < 24) {
+            $beforeMidDay = true;
+        }
+
+        $minutes = round($wakeUpTimeArray[1]/60, 1);
+        $totalHoursWakeUp = $totalHoursWakeUp + $minutes;
+
+        if ($beforeMidnight || (!$beforeMidnight && $beforeMidDay)) return $totalHoursSleep + $totalHoursWakeUp;
+
+        return abs($totalHoursSleep - $totalHoursWakeUp);
     }
 
     public static function getSleepStatsForAuthUser(Request $request) {
@@ -137,12 +159,11 @@ class SleepControllerAPI extends Controller
         }
 
         foreach($sleeps as $sleep) {
-            $w = SleepControllerAPI::computeTimeInHours($sleep->wakeUpTime);
-            $s = SleepControllerAPI::computeTimeInHours($sleep->sleepTime);
+            $diff = SleepControllerAPI::computeTimeInHours($sleep->sleepTime, $sleep->wakeUpTime);
             $parsedDate = explode('/', $sleep->date);
             array_push($valuesToFilter[$parsedDate[2]][$parsedDate[1]], [
                 'label' => $parsedDate[0],
-                'value' => abs($s - $w),
+                'value' => $diff,
             ]);
         }
 
@@ -158,9 +179,8 @@ class SleepControllerAPI extends Controller
         }
 
         foreach($sleeps as $sleep) {
-            $w = SleepControllerAPI::computeTimeInHours($sleep->wakeUpTime);
-            $s = SleepControllerAPI::computeTimeInHours($sleep->sleepTime);
-            $sleep->totalHours = round(abs($s - $w),2);
+            $diff = SleepControllerAPI::computeTimeInHours($sleep->sleepTime, $sleep->wakeUpTime);
+            $sleep->totalHours = round($diff,2);
         }
 
         return SleepResource::collection($sleeps);

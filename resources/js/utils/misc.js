@@ -37,7 +37,7 @@ export const renderDiseaseType = type => {
     }
 
     if (type === 'D') {
-        return 'Doença';
+        return 'Patologia';
     }
 };
 
@@ -46,7 +46,7 @@ export const renderDiseaseStringToType = type => {
         return 'A';
     }
 
-    if (type === 'Doença') {
+    if (type === 'Patologia') {
         return 'D';
     }
 };

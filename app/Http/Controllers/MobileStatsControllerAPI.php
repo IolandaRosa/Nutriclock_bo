@@ -26,9 +26,8 @@ class MobileStatsControllerAPI extends Controller
         $sum = 0;
 
         foreach($sleeps as $sleep) {
-            $w = SleepControllerAPI::computeTimeInHours($sleep->wakeUpTime);
-            $s = SleepControllerAPI::computeTimeInHours($sleep->sleepTime);
-            $sum = $sum + abs($s - $w);
+            $diff = SleepControllerAPI::computeTimeInHours($sleep->sleepTime, $sleep->wakeUpTime);
+            $sum = $sum + $diff;
         }
 
         if ($sum > 0) {

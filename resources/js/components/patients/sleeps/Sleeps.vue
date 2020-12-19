@@ -96,7 +96,7 @@ export default {
                     responsivePriority: 5,
                     orderable: false,
                     render: function (data) {
-                        if (data) return '<div class="dot green-dot" />';
+                        if (!data) return '<div class="dot green-dot" />';
                         return '<div class="dot red-dot" />';
                     }
                 },

@@ -7,7 +7,7 @@
                         Utilizadores Backoffice
                     </h3>
                     <div class="component-wrapper-right">
-                        <button class="btn-bold btn btn-primary" data-toggle="tooltip" title="Registar Utilizador"
+                        <button class="btn-bold btn btn-primary" data-toggle="tooltip" title="Novo Utilizador"
                                 type="button" v-on:click.prevent="add">
                     <span v-if="isFetching" aria-hidden="true" class="spinner-border spinner-border-sm"
                           role="status"></span>

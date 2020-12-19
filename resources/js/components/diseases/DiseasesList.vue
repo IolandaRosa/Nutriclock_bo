@@ -2,17 +2,27 @@
     <div class="component-wrapper">
         <div class="container with-pt-5 with-pb-2">
             <div class="with-p-4 bg-light rounded with-shadow">
+                <div class="btn-group btn-group-sm w-100" role="group">
+                    <button :class="diseaseActive ? 'btn btn-primary w-50' : 'btn btn-outline-primary w-50'"
+                            v-on:click.prevent="() => updateTable('Patologia')">
+                        Patologia
+                    </button>
+                    <button :class="!diseaseActive ? 'btn btn-primary w-50' : 'btn btn-outline-primary w-50'"
+                            v-on:click.prevent="() => updateTable('Alergia')">
+                        Alergia
+                    </button>
+                </div>
                 <div class="component-wrapper-header">
                     <h3 class="component-wrapper-left">
-                        Patologias
+                        {{ mainTitle }}
                     </h3>
                     <div class="component-wrapper-right">
                         <button class="btn-bold btn btn-primary" v-on:click.prevent="add" type="button"
                                 data-toggle="tooltip"
-                                title="Nova Patologia">
+                                :title="tooltip">
                     <span v-if="isFetching" class="spinner-border spinner-border-sm" role="status"
                           aria-hidden="true"></span>
-                            <span class="full-text">Nova Patologia</span>
+                            <span class="full-text">{{ tooltip }}</span>
                             <span class="min-text">+</span>
                         </button>
                     </div>
@@ -56,18 +66,19 @@
 <script type="text/javascript">
 /*jshint esversion: 6 */
 import AddDisease from '../modals/AddDisease';
-import {ERROR_MESSAGES} from '../../utils/validations';
-import {COLUMN_NAME} from '../../utils/table_elements';
+import { ERROR_MESSAGES } from '../../utils/validations';
+import { COLUMN_NAME } from '../../utils/table_elements';
 import ConfirmationModal from '../modals/ConfirmationModal';
-import {renderDiseaseStringToType, renderDiseaseType} from "../../utils/misc";
-import {ROUTE} from '../../utils/routes';
+import { renderDiseaseStringToType, renderDiseaseType } from '../../utils/misc';
+import { ROUTE } from '../../utils/routes';
 import {
     EmptyObject,
     initDataTable,
-    onClickHandler, redrawTable,
+    onClickHandler,
+    redrawTable,
     TableActionClasses,
     TableActionColumns
-} from "../../utils/dataTables";
+} from '../../utils/dataTables';
 
 export default {
     data() {
@@ -79,22 +90,22 @@ export default {
             selectedDiseaseName: null,
             selectedDiseaseId: null,
             selectedDiseaseType: null,
-            data: [],
+            diseaseActive: true,
+            diseasesList: [],
+            allergiesList: [],
+            mainTitle: 'Patologias',
+            tooltip: 'Nova Patologia / Alergia',
             dataTable: null,
             showConfirmationModal: false,
             selectedRow: null,
             titles: [{
                 label: COLUMN_NAME.Name,
                 className: '',
-            }, {
-                label: COLUMN_NAME.Type,
-                className: '',
             }, EmptyObject, EmptyObject],
             columns: [
-                {data: 'name', responsivePriority: 3 },
-                { data: 'type', responsivePriority: 4 },
-                { ...TableActionColumns.Edit, responsivePriority: 1 },
-                { ...TableActionColumns.Delete, responsivePriority: 2 },
+                {data: 'name', responsivePriority: 3},
+                {...TableActionColumns.Edit, responsivePriority: 1},
+                {...TableActionColumns.Delete, responsivePriority: 2},
             ],
         };
     },
@@ -103,37 +114,52 @@ export default {
             this.showModal = true;
             this.modalTitle = 'Adicionar Patologia / Alergia';
         },
+        updateTable(type) {
+            if (type === 'Patologia') {
+                this.diseaseActive = true;
+                this.mainTitle = 'Patologias';
+                redrawTable(this.dataTable, this.diseasesList);
+                return;
+            }
+            this.diseaseActive = false;
+            this.mainTitle = 'Alergias';
+            redrawTable(this.dataTable, this.allergiesList);
+        },
         onEditClick(row) {
             this.selectedDiseaseName = row.name;
             this.selectedDiseaseId = row.id;
             this.selectedDiseaseType = renderDiseaseStringToType(row.type);
             this.modalTitle = "Editar Patologia / Alergia";
             this.showModal = true;
-        },
+        }
+        ,
         onDeleteClick(row) {
             this.selectedRow = row;
             this.showConfirmationModal = true;
-        },
+        }
+        ,
         deleteDisease() {
             if (this.isFetching) return;
 
             this.isFetching = true;
             if (this.selectedRow) {
                 axios.delete(`api/diseases/${this.selectedRow.id}`).then(() => {
-                    this.data.splice(this.data.indexOf(this.selectedRow), 1);
-                    this.handleSuccess('Patologia eliminada com sucesso!');
+                    this.handleSuccess();
                 }).catch(error => {
                     this.handleError(error);
                 });
             }
-        },
+        }
+        ,
         onCloseClick() {
             this.showModal = false;
-            this.selectedCategoryId = null;
-            this.selectedCategoryName = '';
+            this.selectedDiseaseId = null;
+            this.selectedDiseaseName = '';
+            this.selectedDiseaseType = null;
             this.showConfirmationModal = false;
             this.selectedRow = null;
-        },
+        }
+        ,
         onSaveClick(name, type, id) {
             this.showModal = false;
             if (this.isFetching) return;
@@ -145,7 +171,7 @@ export default {
                     name,
                     type,
                 }).then(() => {
-                    this.handleSuccess('Patologia atualizada com sucesso!');
+                    this.handleSuccess('Patologia / alergia atualizada com sucesso!');
                 }).catch(error => {
                     this.handleError(error);
                 });
@@ -159,14 +185,20 @@ export default {
             }).catch(error => {
                 this.handleError(error);
             });
-        },
+        }
+        ,
         async handleSuccess(message) {
             this.isFetching = false;
             if (message) this.showMessage(message, 'success');
             this.onCloseClick();
             await this.getDiseases();
-            redrawTable(this.dataTable, this.data);
-        },
+            if (this.diseaseActive) {
+                redrawTable(this.dataTable, this.diseasesList);
+            } else {
+                redrawTable(this.dataTable, this.allergiesList);
+            }
+        }
+        ,
         handleError(error) {
             this.isFetching = false;
             const {response} = error;
@@ -178,7 +210,8 @@ export default {
                 }
             }
             this.showMessage(message, 'error');
-        },
+        }
+        ,
         showMessage(message, className) {
             this.$toasted.show(message, {
                 type: className,
@@ -187,31 +220,41 @@ export default {
                 closeOnSwipe: true,
                 theme: 'toasted-primary'
             });
-        },
+        }
+        ,
         async getDiseases() {
             if (this.isFetching) return;
             this.isFetching = true;
+            this.diseasesList = [];
+            this.allergiesList = [];
 
             try {
                 const response = await axios.get('api/diseases');
                 this.isFetching = false;
                 if (response.data.data) {
                     response.data.data.forEach(d => {
-                        d.type = renderDiseaseType(d.type);
+                        const type = d.type;
+                        d.type = renderDiseaseType(type);
+
+                        if (type === 'D') {
+                            this.diseasesList.push(d);
+                        } else {
+                            this.allergiesList.push(d);
+                        }
                     });
                 }
-                this.data = response.data.data;
+
             } catch (error) {
                 this.isFetching = false;
                 if (error.response && error.response.status === 401) {
                     this.$router.push(ROUTE.Login)
                 }
             }
-        }
+        },
     },
     async mounted() {
         await this.getDiseases();
-        this.dataTable = await initDataTable('#diseasesTable', this.data, this.columns);
+        this.dataTable = await initDataTable('#diseasesTable', this.diseasesList, this.columns);
         onClickHandler(this.dataTable, this.onDeleteClick, '#diseasesTable', TableActionClasses.Delete);
         onClickHandler(this.dataTable, this.onEditClick, '#diseasesTable', TableActionClasses.Edit);
     },
@@ -219,5 +262,6 @@ export default {
         AddDisease,
         ConfirmationModal,
     }
-};
+}
+;
 </script>

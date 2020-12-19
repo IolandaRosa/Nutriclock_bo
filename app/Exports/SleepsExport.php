@@ -21,9 +21,8 @@ class SleepsExport implements FromCollection, WithHeadings, WithMapping
 
     public function map($sleep): array
     {
-        $w = SleepControllerAPI::computeTimeInHours($sleep->wakeUpTime);
-        $s = SleepControllerAPI::computeTimeInHours($sleep->sleepTime);
-        $sleep->totalSleepHours = abs($s - $w);
+        $diff = SleepControllerAPI::computeTimeInHours($sleep->sleepTime, $sleep->wakeUpTime);
+        $sleep->totalSleepHours = $diff;
         return array_merge(User::where('id',$sleep->userId)->first(['name', 'gender', 'weight', 'height', 'email'])->toArray(), $sleep->toArray());
     }
 
