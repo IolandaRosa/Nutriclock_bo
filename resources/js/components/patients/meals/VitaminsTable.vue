@@ -1,6 +1,6 @@
 <template>
     <div class="table-responsive">
-        <table class="table table-hover bg-white m-0">
+        <table class="table table-sm table-hover bg-white m-0">
             <thead>
             <tr>
                 <th/>
@@ -25,7 +25,8 @@
                         height="50px"
                         width="50px"
                         class="pointer"
-                        :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/food/${item.meal.foodPhotoUrl}`"
+                        style="object-fit: cover"
+                        :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/food/thumb_${item.meal.foodPhotoUrl}`"
                         @click="() => showZoomModal(`/food/${item.meal.foodPhotoUrl}`)"
                         alt=""
                         @error="setAltImage"
@@ -44,7 +45,8 @@
                         height="50px"
                         width="50px"
                         class="pointer"
-                        :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/nutritionalInfo/${item.meal.nutritionalInfoPhotoUrl}`"
+                        style="object-fit: cover"
+                        :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/nutritionalInfo/thumb_${item.meal.nutritionalInfoPhotoUrl}`"
                         @click="() => showZoomModal(`/nutritionalInfo/${item.meal.nutritionalInfoPhotoUrl}`)"
                         alt=""
                         @error="setAltImage"
@@ -91,6 +93,19 @@
                         </svg>
                     </button>
                 </td>
+            </tr>
+            <tr>
+                <td colspan="3"><strong>SUBTOTAL</strong></td>
+                <td>{{this.data.subtotals.sumQuant}}</td>
+                <td>{{this.data.subtotals.sumA}}</td>
+                <td>{{this.data.subtotals.sumD}}</td>
+                <td>{{this.data.subtotals.sumTiamina}}</td>
+                <td>{{this.data.subtotals.sumRiboflavina}}</td>
+                <td>{{this.data.subtotals.sumNiacina}}</td>
+                <td>{{this.data.subtotals.sumB6}}</td>
+                <td>{{this.data.subtotals.sumB12}}</td>
+                <td>{{this.data.subtotals.sumC}}</td>
+                <td/>
             </tr>
             </tbody>
         </table>

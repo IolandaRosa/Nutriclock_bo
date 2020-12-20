@@ -10,6 +10,95 @@
                         Informação Nutricional {{ this.date }}
                     </h5>
                 </div>
+                <h6>Total Diário</h6>
+                <div v-show="macroActive && data" class="table-responsive">
+                    <table class="table table-sm bg-white">
+                        <thead>
+                        <tr>
+                            <th scope="col">Quant. (g)</th>
+                            <th scope="col">Energia (kcal)</th>
+                            <th scope="col">Àgua (ml)</th>
+                            <th scope="col">Proteína (g)</th>
+                            <th scope="col">Gordura (g)</th>
+                            <th scope="col">Hid. Carb. (g)</th>
+                            <th scope="col">Fibra (g)</th>
+                            <th scope="col">Colesterol (mg)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{ this.data.total.quant }}</td>
+                            <td>{{ this.data.total.energy }}</td>
+                            <td>{{ this.data.total.water }}</td>
+                            <td>{{ this.data.total.protein }}</td>
+                            <td>{{ this.data.total.fat }}</td>
+                            <td>{{ this.data.total.carbs }}</td>
+                            <td>{{ this.data.total.fiber }}</td>
+                            <td>{{ this.data.total.coletrol }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div v-show="vitActive && data" class="table-responsive">
+                    <table class="table table-sm bg-white">
+                        <thead>
+                        <tr>
+                            <th scope="col">Quant. (g)</th>
+                            <th scope="col">Vit A (mg)</th>
+                            <th scope="col">Vit D (μg)</th>
+                            <th scope="col">Tiamina (mg)</th>
+                            <th scope="col">Riboflavina (mg)</th>
+                            <th scope="col">Niacina (mg)</th>
+                            <th scope="col">Vit B6 (mg)</th>
+                            <th scope="col">Vit B12 (μg)</th>
+                            <th scope="col">Vit C (mg)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{ this.data.total.quant }}</td>
+                            <td>{{ this.data.total.A }}</td>
+                            <td>{{ this.data.total.D }}</td>
+                            <td>{{ this.data.total.tiamina }}</td>
+                            <td>{{ this.data.total.riboflavina }}</td>
+                            <td>{{ this.data.total.niacina }}</td>
+                            <td>{{ this.data.total.B6 }}</td>
+                            <td>{{ this.data.total.B12 }}</td>
+                            <td>{{ this.data.total.C }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div v-show="minActive && data" class="table-responsive">
+                    <table class="table table-sm bg-white">
+                        <thead>
+                        <tr>
+                            <th scope="col">Quant. (g)</th>
+                            <th scope="col">Sódio (mg)</th>
+                            <th scope="col">Potássio (mg)</th>
+                            <th scope="col">Cálcio (mg)</th>
+                            <th scope="col">Fósforo (mg)</th>
+                            <th scope="col">Magnésio (mg)</th>
+                            <th scope="col">Ferro (mg)</th>
+                            <th scope="col">Zinco (mg)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{ this.data.total.quant }}</td>
+                            <td>{{ this.data.total.Na }}</td>
+                            <td>{{ this.data.total.K }}</td>
+                            <td>{{ this.data.total.Ca }}</td>
+                            <td>{{ this.data.total.P }}</td>
+                            <td>{{ this.data.total.Mg }}</td>
+                            <td>{{ this.data.total.Fe }}</td>
+                            <td>{{ this.data.total.Zn }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <div class="btn-group btn-group-sm w-100" style="z-index: 0 !important;" role="group">
                     <button :class="macroActive ? 'btn btn-primary w-30' : 'btn btn-outline-primary w-30'"
                             v-on:click.prevent="() => {
@@ -48,7 +137,7 @@
                             @update-nutritional-info="(info, index) => updateNutritionalInfo(info, index, 'P')"
                         />
                     </div>
-                    <div v-if="data['M'].length > 0">
+                    <div v-if="data && data['M'].length > 0">
                         <DetailsButton title="Meio da manhã" type="MM" @update-show="updateShow"/>
                         <MacroNutrientsTable
                             v-show="showMacroMidDay"
@@ -59,7 +148,7 @@
                             @update-nutritional-info="(info, index) => updateNutritionalInfo(info, index, 'M')"
                         />
                     </div>
-                    <div v-if="data['A'].length > 0">
+                    <div v-if="data && data['A'].length > 0">
                         <DetailsButton title="Almoço" type="MA" @update-show="updateShow"/>
                         <MacroNutrientsTable
                             v-show="showMacroLunch"
@@ -70,7 +159,7 @@
                             @update-nutritional-info="(info, index) => updateNutritionalInfo(info, index, 'A')"
                         />
                     </div>
-                    <div v-if="data['L'].length > 0">
+                    <div v-if="data && data['L'].length > 0">
                         <DetailsButton title="Lanche" type="ML" @update-show="updateShow"/>
                         <MacroNutrientsTable
                             v-show="showMacroMidAfternoon"
@@ -81,7 +170,7 @@
                             @update-nutritional-info="(info, index) => updateNutritionalInfo(info, index, 'L')"
                         />
                     </div>
-                    <div v-if="data['J'].length > 0">
+                    <div v-if="data && data['J'].length > 0">
                         <DetailsButton title="Jantar" type="MJ" @update-show="updateShow"/>
                         <MacroNutrientsTable
                             v-show="showMacroDinner"
@@ -92,7 +181,7 @@
                             @update-nutritional-info="(info, index) => updateNutritionalInfo(info, index, 'J')"
                         />
                     </div>
-                    <div v-if="data['O'].length > 0">
+                    <div v-if="data && data['O'].length > 0">
                         <DetailsButton title="Ceia" type="MO" @update-show="updateShow"/>
                         <MacroNutrientsTable
                             v-show="showMacroNight"
@@ -105,7 +194,7 @@
                     </div>
                 </div>
                 <div class="mt-2" v-show="vitActive">
-                    <div v-if="data['P'].length > 0">
+                    <div v-if="data && data['P'].length > 0">
                         <DetailsButton title="Pequeno-almoço" type="VP" @update-show="updateShow"/>
                         <VitaminsTable
                             v-show="showVitBreakfast"
@@ -116,7 +205,7 @@
                             @update-nutritional-info="(info, index) => updateNutritionalInfo(info, index, 'P')"
                         />
                     </div>
-                    <div v-if="data['M'].length > 0">
+                    <div v-if="data && data['M'].length > 0">
                         <DetailsButton title="Meio da manhã" type="VM" @update-show="updateShow"/>
                         <VitaminsTable
                             v-show="showVitMidDay"
@@ -127,7 +216,7 @@
                             @update-nutritional-info="(info, index) => updateNutritionalInfo(info, index, 'M')"
                         />
                     </div>
-                    <div v-if="data['A'].length > 0">
+                    <div v-if="data && data['A'].length > 0">
                         <DetailsButton title="Almoço" type="VA" @update-show="updateShow"/>
                         <VitaminsTable
                             v-show="showVitLunch"
@@ -138,7 +227,7 @@
                             @update-nutritional-info="(info, index) => updateNutritionalInfo(info, index, 'A')"
                         />
                     </div>
-                    <div v-if="data['L'].length > 0">
+                    <div v-if="data && data['L'].length > 0">
                         <DetailsButton title="Lanche" type="VL" @update-show="updateShow"/>
                         <VitaminsTable
                             v-show="showVitMidAfternoon"
@@ -149,7 +238,7 @@
                             @update-nutritional-info="(info, index) => updateNutritionalInfo(info, index, 'L')"
                         />
                     </div>
-                    <div v-if="data['J'].length > 0">
+                    <div v-if="data && data['J'].length > 0">
                         <DetailsButton title="Jantar" type="VJ" @update-show="updateShow"/>
                         <VitaminsTable
                             v-show="showVitDinner"
@@ -160,7 +249,7 @@
                             @update-nutritional-info="(info, index) => updateNutritionalInfo(info, index, 'J')"
                         />
                     </div>
-                    <div v-if="data['O'].length > 0">
+                    <div v-if="data && data['O'].length > 0">
                         <DetailsButton title="Ceia" type="VO" @update-show="updateShow"/>
                         <VitaminsTable
                             v-show="showVitNight"
@@ -173,7 +262,7 @@
                     </div>
                 </div>
                 <div class="mt-2" v-show="minActive">
-                    <div v-if="data['P'].length > 0">
+                    <div v-if="data && data['P'].length > 0">
                         <DetailsButton title="Pequeno-almoço" type="MiP" @update-show="updateShow"/>
                         <MineralsTable
                             v-show="showMinBreakfast"
@@ -184,7 +273,7 @@
                             @update-nutritional-info="(info, index) => updateNutritionalInfo(info, index, 'P')"
                         />
                     </div>
-                    <div v-if="data['M'].length > 0">
+                    <div v-if="data && data['M'].length > 0">
                         <DetailsButton title="Meio da manhã" type="MiM" @update-show="updateShow"/>
                         <MineralsTable
                             v-show="showMinMidDay"
@@ -195,7 +284,7 @@
                             @update-nutritional-info="(info, index) => updateNutritionalInfo(info, index, 'M')"
                         />
                     </div>
-                    <div v-if="data['A'].length > 0">
+                    <div v-if="data && data['A'].length > 0">
                         <DetailsButton title="Almoço" type="MiA" @update-show="updateShow"/>
                         <MineralsTable
                             v-show="showMinLunch"
@@ -206,7 +295,7 @@
                             @update-nutritional-info="(info, index) => updateNutritionalInfo(info, index, 'A')"
                         />
                     </div>
-                    <div v-if="data['L'].length > 0">
+                    <div v-if="data && data['L'].length > 0">
                         <DetailsButton title="Lanche" type="MiL" @update-show="updateShow"/>
                         <MineralsTable
                             v-show="showMinMidAfternoon"
@@ -217,7 +306,7 @@
                             @update-nutritional-info="(info, index) => updateNutritionalInfo(info, index, 'L')"
                         />
                     </div>
-                    <div v-if="data['J'].length > 0">
+                    <div v-if="data && data['J'].length > 0">
                         <DetailsButton title="Jantar" type="MiJ" @update-show="updateShow"/>
                         <MineralsTable
                             v-show="showMinDinner"
@@ -228,7 +317,7 @@
                             @update-nutritional-info="(info, index) => updateNutritionalInfo(info, index, 'J')"
                         />
                     </div>
-                    <div v-if="data['O'].length > 0">
+                    <div v-if="data && data['O'].length > 0">
                         <DetailsButton title="Ceia" type="MiO" @update-show="updateShow"/>
                         <MineralsTable
                             v-show="showMinNight"
@@ -379,6 +468,7 @@ export default {
                     ...response.data.data,
                 ];
                 this.$forceUpdate();
+                this.computeSubtotals();
             }).catch((error) => {
                 this.isFetching = false;
             });
@@ -396,6 +486,7 @@ export default {
             axios.put(`api/meals/${id}`, {"quantity": value}).then(() => {
                 this.isFetching = false;
                 this.showToast('A informação foi atualizada com sucesso!', 'success');
+                this.computeSubtotals();
             }).catch(() => {
                 this.isFetching = false;
             });
@@ -413,6 +504,7 @@ export default {
             axios.put(`api/nutritional-info/${id}`, {"value": value}).then(() => {
                 this.isFetching = false;
                 this.showToast('A informação foi atualizada com sucesso!', 'success');
+                this.computeSubtotals();
             }).catch(() => {
                 this.isFetching = false;
                 this.showToast('Ocorreu um erro durante a atualização da informação', 'error');
@@ -420,12 +512,132 @@ export default {
         },
         setAltImage(event) {
             event.target.src = '/images/avatar.jpg'
+        },
+        computeSum(value, object, index) {
+            console.log(Number(object.nutritionalInfo[index].value))
+            console.log(Number(value))
+            return (Number(value) + Number(object.nutritionalInfo[index].value)).toFixed(2);
+        },
+        computeSumTotal(value1, value2) {
+            return (Number(value1) + Number(value2)).toFixed(2);
+        },
+        computeSubtotals() {
+            const totals = {
+                quant: 0,
+                energy: 0,
+                water: 0,
+                protein: 0,
+                fat: 0,
+                carbs: 0,
+                fiber: 0,
+                coletrol: 0,
+                A: 0,
+                D: 0,
+                tiamina: 0,
+                riboflavina: 0,
+                niacina: 0,
+                B6: 0,
+                B12: 0,
+                C: 0,
+                Na: 0,
+                K: 0,
+                Ca: 0,
+                P: 0,
+                Mg: 0,
+                Fe: 0,
+                Zn: 0,
+            };
+
+            Object.keys(this.data).forEach(key => {
+                const subtotals = {
+                    sumQuant: 0,
+                    sumEnergy: 0,
+                    sumWater: 0,
+                    sumProtein: 0,
+                    sumFat: 0,
+                    sumCarbs: 0,
+                    sumFiber: 0,
+                    sumColetrol: 0,
+                    sumA: 0,
+                    sumD: 0,
+                    sumTiamina: 0,
+                    sumRiboflavina: 0,
+                    sumNiacina: 0,
+                    sumB6: 0,
+                    sumB12: 0,
+                    sumC: 0,
+                    sumNa: 0,
+                    sumK: 0,
+                    sumCa: 0,
+                    sumP: 0,
+                    sumMg: 0,
+                    sumFe: 0,
+                    sumZn: 0,
+                };
+
+                this.data[key].forEach(object => {
+                    subtotals.sumQuant = (Number(subtotals.sumQuant) + Number(object.meal.numericUnit)).toFixed(2);
+                    subtotals.sumEnergy = this.computeSum(subtotals.sumEnergy, object, 0);
+                    subtotals.sumWater = this.computeSum(subtotals.sumWater, object, 2);
+                    subtotals.sumProtein = this.computeSum(subtotals.sumProtein, object, 3);
+                    subtotals.sumFat = this.computeSum(subtotals.sumFat, object, 4);
+                    subtotals.sumCarbs = this.computeSum(subtotals.sumCarbs, object, 5);
+                    subtotals.sumFiber = this.computeSum(subtotals.sumFiber, object, 6);
+                    subtotals.sumColetrol = this.computeSum(subtotals.sumColetrol, object, 7);
+                    subtotals.sumA = this.computeSum(subtotals.sumA, object, 8);
+                    subtotals.sumD = this.computeSum(subtotals.sumD, object, 9);
+                    subtotals.sumTiamina = this.computeSum(subtotals.sumTiamina, object, 10);
+                    subtotals.sumRiboflavina = this.computeSum(subtotals.sumRiboflavina, object, 11);
+                    subtotals.sumNiacina = this.computeSum(subtotals.sumNiacina, object, 12);
+                    subtotals.sumB6 = this.computeSum(subtotals.sumB6, object, 13);
+                    subtotals.sumB12 = this.computeSum(subtotals.sumB12, object, 14);
+                    subtotals.sumC = this.computeSum(subtotals.sumC, object, 15);
+                    subtotals.sumNa = this.computeSum(subtotals.sumNa, object, 16);
+                    subtotals.sumK = this.computeSum(subtotals.sumK, object, 17);
+                    subtotals.sumCa = this.computeSum(subtotals.sumCa, object, 18);
+                    subtotals.sumP = this.computeSum(subtotals.sumP, object, 19);
+                    subtotals.sumMg = this.computeSum(subtotals.sumMg, object, 20);
+                    subtotals.sumFe = this.computeSum(subtotals.sumFe, object, 21);
+                    subtotals.sumZn = this.computeSum(subtotals.sumZn, object, 22);
+                });
+
+                totals.quant = (Number(totals.quant) + Number(subtotals.sumQuant)).toFixed(2);
+                totals.energy = this.computeSumTotal(totals.energy, subtotals.sumEnergy);
+                totals.water = this.computeSumTotal(totals.water, subtotals.sumWater);
+                totals.protein = this.computeSumTotal(totals.protein, subtotals.sumProtein);
+                totals.fat = this.computeSumTotal(totals.fat, subtotals.sumFat);
+                totals.carbs = this.computeSumTotal(totals.carbs, subtotals.sumCarbs);
+                totals.fiber = this.computeSumTotal(totals.fiber, subtotals.sumFiber);
+                totals.coletrol = this.computeSumTotal(totals.coletrol, subtotals.sumColetrol);
+                totals.A = this.computeSumTotal(totals.A, subtotals.sumA);
+                totals.D = this.computeSumTotal(totals.D, subtotals.sumD);
+                totals.tiamina = this.computeSumTotal(totals.tiamina, subtotals.sumTiamina);
+                totals.riboflavina = this.computeSumTotal(totals.riboflavina, subtotals.sumRiboflavina);
+                totals.niacina = this.computeSumTotal(totals.niacina, subtotals.sumNiacina);
+                totals.B6 = this.computeSumTotal(totals.B6, subtotals.sumB6);
+                totals.B12 = this.computeSumTotal(totals.B12, subtotals.sumB12);
+                totals.C = this.computeSumTotal(totals.C, subtotals.sumC);
+                totals.Na = this.computeSumTotal(totals.Na, subtotals.sumNa);
+                totals.K = this.computeSumTotal(totals.K, subtotals.sumK);
+                totals.Ca = this.computeSumTotal(totals.Ca, subtotals.sumCa);
+                totals.P = this.computeSumTotal(totals.P, subtotals.sumP);
+                totals.Mg = this.computeSumTotal(totals.Mg, subtotals.sumMg);
+                totals.Fe = this.computeSumTotal(totals.Fe, subtotals.sumFe);
+                totals.Zn = this.computeSumTotal(totals.Zn, subtotals.sumZn);
+
+                this.data[key].subtotals = subtotals;
+            });
+
+            this.data = {
+                ...this.data,
+                total: totals,
+            }
         }
     },
     watch: {
         meal: function (newVal, oldVal) {
             this.data = newVal;
-            console.log(this.data);
+            if (this.data) this.computeSubtotals();
         },
         date: function (newVal, oldVal) {
             this.date = newVal;
@@ -488,6 +700,7 @@ export default {
     font-weight: 900;
     margin-top: 48px;
 }
+
 .btn-group > .btn:hover, .btn-group-vertical > .btn:hover .btn:focus-visible {
     z-index: 0 !important;
 }

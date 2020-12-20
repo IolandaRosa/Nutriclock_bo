@@ -38,12 +38,14 @@ export default {
         showDetails(row, date) {
             this.$emit('meal-details', row, date);
         },
+        calculateSubtotals() {
+
+        },
         getUserMeals() {
+            if (this.isFetching) return;
+            this.isFetching = true;
+
             axios.get(`api/meals/${this.id}/nutritional`).then(response => {
-                if (this.isFetching) return;
-
-                this.isFetching = true;
-
                 this.meals = response.data.data;
                 this.isFetching = false;
             }).catch((error) => {
