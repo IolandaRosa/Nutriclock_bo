@@ -327,6 +327,45 @@ class MealControllerAPI extends Controller
         return new MealResource($meal);
     }
 
+    public function updateMealImage(Request $request, $id) {
+        $meal = Meal::find($id);
+
+        if (!$meal) {
+            return Response::json(['error' => 'A refeição não existe.'], 404);
+        }
+
+        $image = $meal->foodPhotoUrl;
+        $filePath = 'food';
+
+        if ($request->type == 'NUTRI_INFO_PHOTO') {
+            $image = $meal->nutritionalInfoPhotoUrl;
+            $filePath = 'nutritionalInfo';
+        }
+
+        if ($image) {
+            Storage::disk('s3')->delete($filePath.'/'.$image);
+            Storage::disk('s3')->delete($filePath.'/thumb_'.$image);
+        }
+
+        $image = $request->file('file');
+        $thumbnail= Image::make($image);
+        $thumbnail->resize(null, 200, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+
+        $path = basename($image->store($filePath, 's3'));
+        Storage::disk('s3')->put($filePath.'/thumb_'.$path, $thumbnail->stream());
+
+        if ($request->type == 'FOOD_PHOTO') {
+            $meal->foodPhotoUrl = basename($path);
+        } else {
+            $meal->nutritionalInfoPhotoUrl = basename($path);
+        }
+
+        $meal ->save();
+        return Response::json(['data' => basename($path)], 200);
+    }
+
     public function updateQuantity(Request $request, $id) {
         $meal = Meal::find($id);
 
@@ -336,6 +375,29 @@ class MealControllerAPI extends Controller
 
         $meal->numericUnit = $request->quantity;
         $meal->update();
+        return new MealResource($meal);
+    }
+
+    public function update(Request $request, $id) {
+        $meal = Meal::find($id);
+
+        if (!$meal) {
+            return Response::json(['error' => 'A refeição não existe.'], 404);
+        }
+
+        $grams = MealControllerAPI::computeNumericUnit($request);
+
+        $meal->name = $request->name;
+        $meal->quantity = $request->quantity;
+        $meal->relativeUnit = $request->relativeUnit;
+        $meal->type = $request->type;
+        $meal->date = $request->date;
+        $meal->time = $request->time;
+        $meal->observations = $request->observations;
+        $meal->numericUnit = $grams;
+
+        $meal->update();
+
         return new MealResource($meal);
     }
 
