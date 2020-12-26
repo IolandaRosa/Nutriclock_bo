@@ -184,6 +184,7 @@ class UserControllerAPI extends Controller
                 $medication->user_id = $user->id;
                 $medication->name = $drug->name;
                 $medication->posology = $drug->posology;
+                $medication->type = $drug->type;
 
                 if ($drug->timesAWeek != null) {
                     $medication->timesAWeek = $drug->timesAWeek;
