@@ -94,7 +94,7 @@
 
 
     export default{
-        props: ['title', 'id', 'user_id'],
+        props: ['title', 'id', 'user_id', 'type'],
         data() {
             return {
                 name: '',
@@ -198,6 +198,7 @@
                         posology: this.posology,
                         timesADay: this.selectedTimesADay,
                         timesAWeek: strTimes,
+                        type: this.type,
                     }).then(() => {
                         this.isFetching = false;
                         this.$emit('save');
@@ -213,6 +214,7 @@
                     posology: this.posology,
                     timesADay: this.selectedTimesADay,
                     timesAWeek: strTimes,
+                    type: this.type,
                 }).then(() => {
                     this.isFetching = false;
                     this.$emit('save');

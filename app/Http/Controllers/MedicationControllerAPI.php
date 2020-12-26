@@ -59,6 +59,7 @@ class MedicationControllerAPI extends Controller
         $medication->timesADay = $request->timesADay;
         $medication->user_id = $id;
         $medication->posology = $request->posology;
+        $medication->type = $request->type;
 
         $medication->save();
 
@@ -99,6 +100,7 @@ class MedicationControllerAPI extends Controller
         $medication->timesAWeek = $request->timesAWeek;
         $medication->timesADay = $request->timesADay;
         $medication->posology = $request->posology;
+        $medication->type = $request->type;
         $medication->update();
         return new MedicationResource($medication);
     }

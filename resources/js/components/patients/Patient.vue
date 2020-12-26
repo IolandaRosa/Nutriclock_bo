@@ -168,7 +168,7 @@
                 <div class="card p-2 pt-3 mt-2 text-dark">
                     <div class="card-title d-flex">
                         <h5 class="flex-grow-1">Medicação Habitual</h5>
-                        <button class="btn btn-sm btn-outline-primary" @click="addMedication"
+                        <button class="btn btn-sm btn-outline-primary" @click="() => addMedication('M')"
                                 v-show="!readonly">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
@@ -184,13 +184,13 @@
                                     <span class="text-secondary">{{ m.posology }} mg/ml</span>
                                 </div>
                                 <button v-show="!readonly" class="btn btn-sm btn-outline-info"
-                                        @click="() => {updateMedication(index)}">
+                                        @click="() => {updateMedication(index, 'M')}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd" d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
                                     </svg>
                                 </button>
                                 <button v-show="!readonly" class="btn btn-sm btn-outline-danger"
-                                        @click="() => {removeMedication(index)}">
+                                        @click="() => {removeMedication(index, 'M')}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                                         <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
@@ -201,6 +201,51 @@
                         <div class="text-secondary" v-else>
                             Nenhum registado
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-deck">
+                <div class="card p-2 pt-3 mt-2 text-dark">
+                    <div class="card-title d-flex">
+                        <h5 class="flex-grow-1">Suplementos Habituais</h5>
+                        <button class="btn btn-sm btn-outline-primary" @click="() => addMedication('S')"
+                                v-show="!readonly">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="card-text">
+                        <div class="form-group">
+                            <div v-if="suplements && suplements.length > 0">
+                                <div v-for="(s, index) in suplements" :key="s.name"
+                                     style="display: flex; margin-bottom: 8px;">
+                                    <div class="flex-grow-1 medication-container">
+                                        <span class="text-secondary mr-3">{{ s.name }}</span>
+                                        <span class="text-secondary">{{ s.posology }} mg/ml</span>
+                                    </div>
+                                    <button v-show="!readonly" class="btn btn-sm btn-outline-info"
+                                            @click="() => {updateMedication(index, 'S')}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                                        </svg>
+                                    </button>
+                                    <button v-show="!readonly" class="btn btn-sm btn-outline-danger"
+                                            @click="() => {removeMedication(index, 'S')}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div v-else>
+                                Nenhum registado
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="errors.newDisease" class="invalid-feedback">
+                        {{ errors.newDisease }}
                     </div>
                 </div>
             </div>
@@ -222,6 +267,7 @@
             @save="this.addMedicationToList"
             :id="this.selectedId"
             :user_id="this.id"
+            :type="this.medicationType"
         />
         <AddPatientDisease
             v-show="showAddDiseaseModal"
@@ -258,6 +304,8 @@ export default {
             showAddMedicationModal: false,
             showAddDiseaseModal: false,
             addMedicationModalTitle: '',
+            suplements: [],
+            medicationType: 'D',
             selectedId: '',
             selectedIndex: null,
             pt: ptBR,
@@ -370,7 +418,18 @@ export default {
             this.isFetching = true;
             axios.get(`api/medications/${this.id}`).then(medicationResponse => {
                 this.isFetching = false;
-                this.medication = medicationResponse.data.data;
+                const m = [];
+                const s = [];
+                Object.keys(medicationResponse.data.data).forEach(key => {
+                    if (medicationResponse.data.data[key].type === 'M') {
+                        m.push(medicationResponse.data.data[key]);
+                    } else {
+                        s.push(medicationResponse.data.data[key]);
+                    }
+                });
+
+                this.medication = m;
+                this.suplements = s;
             }).catch(() => {
                 this.isFetching = false;
             });
@@ -418,24 +477,28 @@ export default {
             this.confirmationModalMessage = 'Tem a certeza que deseja remover da lista o problema de saúde selecionado?';
             this.selectedIndex = index;
         },
-        addMedication() {
+        addMedication(type) {
+            this.medicationType = type;
             this.showAddMedicationModal = true;
-            this.addMedicationModalTitle = 'Nova Medicação';
+            this.addMedicationModalTitle = `Nov${type === 'M' ? 'a Medicação' : 'o Suplemento'}`;
         },
         addMedicationToList() {
             this.getMedication();
             this.onCloseClick();
         },
-        updateMedication(index) {
-            const med = this.medication[index];
+        updateMedication(index, type) {
+            let med = this.medication[index];
+            this.medicationType = type;
+            if (type === 'S') med = this.suplements[index];
             this.selectedId = med.id;
             this.showAddMedicationModal = true;
-            this.addMedicationModalTitle = 'Editar Medicação';
+            this.addMedicationModalTitle = `Editar ${type === 'M' ? 'Medicação' : 'Suplemento'}`;
         },
-        removeMedication(index) {
+        removeMedication(index, type) {
             this.showConfirmationModal = true;
-            this.confirmationModalTitle = 'Eliminar Medicação';
-            this.confirmationModalMessage = 'Tem a certeza que deseja remover da lista a medicação selecionada?';
+            this.medicationType = type;
+            this.confirmationModalTitle = `Eliminar ${type === 'M' ? 'Medicação' : 'Suplemento'}`;
+            this.confirmationModalMessage = 'Tem a certeza que deseja remover da lista o item selecionado?';
             this.selectedIndex = index;
         },
         saveConfirmationModal() {
@@ -453,7 +516,8 @@ export default {
 
             axios.delete(`api/medications/${m.id}`).then(() => {
                 this.isFetching = false;
-                this.medication.splice(this.selectedIndex, 1);
+                if (this.medicationType === 'M') this.medication.splice(this.selectedIndex, 1);
+                else this.suplements.splice(this.selectedIndex, 1);
                 this.onCloseClick();
             }).catch(() => {
                 this.isFetching = false;
