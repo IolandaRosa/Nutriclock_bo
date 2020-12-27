@@ -5,13 +5,15 @@
         </div>
         <div class="list-item-images">
             <div v-for="m in this.data" class="list-item-img">
-                <img
-                    v-if="m.meal.foodPhotoUrl !== null"
-                    :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/food/thumb_${m.meal.foodPhotoUrl}`"
-                    @error="setAltImage"
-                    alt=""
-                    class="list-item-image"
-                />
+                <div v-if="m.meal.foodPhotoUrl">
+                    <img
+                        :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/food/thumb_${m.meal.foodPhotoUrl}`"
+                        @error="setAltImage"
+                        alt=""
+                        class="list-item-image"
+                    />
+                </div>
+
                 <div v-else class="list-item-image">
                     <img
                         src="/images/placeholder.png"
