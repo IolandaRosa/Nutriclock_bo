@@ -16,7 +16,7 @@
 
                 <div v-else class="list-item-image">
                     <img
-                        src="https://nutriclock.s3-eu-west-1.amazonaws.com/images/placeholder.jpg"
+                        src="https://nutriclock.herokuapp.com/images/placeholder.jpg"
                         alt=""
                         class="list-item-image"
                     />
@@ -33,7 +33,7 @@
         props: ['title', 'data'],
         methods: {
             setAltImage(event) {
-                event.target.src = 'https://nutriclock.s3-eu-west-1.amazonaws.com/images/placeholder.jpg'
+                event.target.src = 'https://nutriclock.herokuapp.com/images/placeholder.jpg'
             }
         },
     };

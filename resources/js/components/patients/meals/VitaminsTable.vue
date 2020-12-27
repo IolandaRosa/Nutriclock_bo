@@ -36,7 +36,7 @@
                     <img
                         height="50px"
                         width="50px"
-                        src="https://nutriclock.s3-eu-west-1.amazonaws.com/images/placeholder.jpg"
+                        src="https://nutriclock.herokuapp.com/images/placeholder.jpg"
                         alt=""
                     />
                 </td>
@@ -56,7 +56,7 @@
                     <img
                         height="50px"
                         width="50px"
-                        src="http://localhost:81/images/placeholder.jpg"
+                        src="https://nutriclock.herokuapp.com/images/placeholder.jpg"
                         alt=""
                     />
                 </td>
@@ -125,7 +125,7 @@ export default{
     },
     methods: {
         setAltImage(event) {
-            event.target.src = '/images/placeholder.jpg'
+            event.target.src = 'https://nutriclock.herokuapp.com/images/placeholder.jpg'
         },
         showZoomModal(image){
             this.$emit('show-zoom-modal', image);
