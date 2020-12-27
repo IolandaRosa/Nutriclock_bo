@@ -35,7 +35,7 @@
                     <img
                         height="50px"
                         width="50px"
-                        src="http://localhost:81/images/placeholder.jpg"
+                        src="https://nutriclock.s3-eu-west-1.amazonaws.com/images/placeholder.jpg"
                         alt=""
                     />
                 </td>

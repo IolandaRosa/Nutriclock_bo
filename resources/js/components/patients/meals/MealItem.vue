@@ -16,7 +16,7 @@
 
                 <div v-else class="list-item-image">
                     <img
-                        src="/images/placeholder.png"
+                        src="https://nutriclock.s3-eu-west-1.amazonaws.com/images/placeholder.jpg"
                         alt=""
                         class="list-item-image"
                     />
