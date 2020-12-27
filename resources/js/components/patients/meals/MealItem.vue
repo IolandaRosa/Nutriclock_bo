@@ -33,7 +33,7 @@
         props: ['title', 'data'],
         methods: {
             setAltImage(event) {
-                event.target.src = '/images/placeholder.jpg'
+                event.target.src = 'https://nutriclock.s3-eu-west-1.amazonaws.com/images/placeholder.jpg'
             }
         },
     };
