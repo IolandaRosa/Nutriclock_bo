@@ -36,7 +36,7 @@
                     <img
                         height="50px"
                         width="50px"
-                        src="https://nutriclock.herokuapp.com/images/placeholder.jpg"
+                        :src="'images/placeholder.jpg'"
                         alt=""
                     />
                 </td>
@@ -56,7 +56,7 @@
                     <img
                         height="50px"
                         width="50px"
-                        src="https://nutriclock.herokuapp.com/images/placeholder.jpg"
+                        :src="'images/placeholder.jpg'"
                         alt=""
                     />
                 </td>

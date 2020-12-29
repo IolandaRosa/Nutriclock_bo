@@ -105,3 +105,10 @@ Route::middleware(['auth:api', 'admin'])->delete('tips/{id}', 'SleepTipControlle
 Route::middleware(['auth:api'])->get('configs/tips', 'ConfigurationControllerAPI@getTipStatus');
 Route::middleware(['auth:api', 'admin'])->get('configs', 'ConfigurationControllerAPI@index');
 Route::middleware(['auth:api', 'admin'])->put('configs/{id}', 'ConfigurationControllerAPI@update');
+
+//Messages API
+Route::middleware(['auth:api', 'professional'])->get('messages/unread', 'MessageControllerAPI@getUnreadMessagesForAuthUser');
+Route::middleware(['auth:api', 'professional'])->get('messages/unread-count', 'MessageControllerAPI@countUnreadMessagesForAuthUser');
+Route::middleware(['auth:api', 'professional'])->put('messages/read/{id}', 'MessageControllerAPI@markAsRead');
+Route::middleware(['auth:api', 'professional'])->post('messages', 'MessageControllerAPI@store');
+Route::get('messages', 'MessageControllerAPI@messagesHistory');

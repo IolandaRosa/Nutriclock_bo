@@ -13,6 +13,7 @@ import DiseasesList from '../components/diseases/DiseasesList';
 import PatientTabs from '../components/patients/PatientTabs';
 import SleepTipsList from '../components/tips/SleepTipsList';
 import ConfigurationList from '../components/configurations/ConfigurationList';
+import MessagesHistory from '../components/messages/MessagesHistory';
 
 Vue.component('Login', Login);
 
@@ -30,6 +31,7 @@ Vue.component('UserProfile', UserProfile);
 
 Vue.component('PatientsList', PatientsList);
 
+
 Vue.component('PatientTabs', PatientTabs);
 
 Vue.component('AcceptanceTerms', AcceptanceTerms);
@@ -39,6 +41,8 @@ Vue.component('DiseasesList', DiseasesList);
 Vue.component('SleepTipsList', SleepTipsList);
 
 Vue.component('ConfigurationList', ConfigurationList);
+
+Vue.component('MessagesHistory', MessagesHistory);
 
 export const ROUTE = {
     Index: '/',
@@ -54,6 +58,7 @@ export const ROUTE = {
     SleepTips: '/sleep-tips',
     Diseases: '/diseases',
     Configurations: '/configurations',
+    Messages: '/messages',
 };
 
 export const routes = [
@@ -71,4 +76,5 @@ export const routes = [
     {path: '/sleep-tips', component: SleepTipsList, name: 'SleepTipsList'},
     {path: '/diseases', component: DiseasesList, name: 'DiseasesList'},
     {path: '/configurations', component: ConfigurationList, name: 'ConfigurationList'},
+    {path: '/messages/:id', component: MessagesHistory, name: 'MessagesHistory', props: true},
 ];

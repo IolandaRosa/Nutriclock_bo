@@ -16,7 +16,7 @@
 
                 <div v-else class="list-item-image">
                     <img
-                        src="https://nutriclock.herokuapp.com/images/placeholder.jpg"
+                        :src="'images/placeholder.jpg'"
                         alt=""
                         class="list-item-image"
                     />

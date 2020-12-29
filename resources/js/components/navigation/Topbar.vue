@@ -10,6 +10,12 @@
                             <path fill-rule="evenodd" d="M15.898 2.223a3.003 3.003 0 0 1-3.679 3.674L5.878 12.15a3 3 0 1 1-2.027-2.027l6.252-6.341A3 3 0 0 1 13.778.1l-2.142 2.142L12 4l1.757.364 2.141-2.141zm-13.37 9.019L3.001 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026z"/>
                         </svg>
                     </button>
+                    <button v-if="$store.state.user && $store.state.user.role === 'PROFESSIONAL'" type="button" data-toggle="tooltip" title="Mensagens" class="btn btn-outline-primary btn-sm mr-2" v-on:click="() => { this.showMessageSidebar = true; }">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text-fill" viewBox="0 0 16 16">
+                            <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+                        </svg>
+                        <span v-show="$store.state.unread" class="badge badge-pill badge-danger">{{ $store.state.unread }}</span>
+                    </button>
                 </div>
             </div>
             <div class="top-bar-info pointer" data-toggle="tooltip" title="Perfil" v-on:click="() => {this.$router.push('/profile')}">
@@ -30,6 +36,10 @@
                 </div>
             </div>
         </div>
+        <MessageSidebar
+            v-show="showMessageSidebar"
+            @close-sidebar-message="() => { this.showMessageSidebar = false }"
+        />
     </div>
 </template>
 
@@ -37,10 +47,13 @@
     /*jshint esversion: 6 */
     import { ROUTE } from '../../utils/routes';
     import Profile from '../modals/Profile';
+    import MessageSidebar from '../messages/MessageSidebar';
 
     export default{
         data() {
-            return {};
+            return {
+                showMessageSidebar: false,
+            };
         },
         methods:{
             logout() {
@@ -58,7 +71,8 @@
         },
         components: {
             Profile,
-        }
+            MessageSidebar,
+        },
     };
 </script>
 
