@@ -2,19 +2,19 @@
     <div class="table-responsive">
         <table class="table table-sm table-hover bg-white m-0">
             <thead>
-            <tr>
+            <tr style="white-space: pre">
                 <th/>
                 <th/>
-                <th scope="col">Nome</th>
-                <th scope="col">Quant. (g)</th>
-                <th scope="col">Vit A (mg)</th>
-                <th scope="col">Vit D (μg)</th>
-                <th scope="col">Tiamina (mg)</th>
-                <th scope="col">Riboflavina (mg)</th>
-                <th scope="col">Niacina (mg)</th>
-                <th scope="col">Vit B6 (mg)</th>
-                <th scope="col">Vit B12 (μg)</th>
-                <th scope="col">Vit C (mg)</th>
+                <th scope="col" class="align-top">Nome</th>
+                <th scope="col" class="align-top">Quant.<br>(g)</th>
+                <th scope="col" class="align-top">Vit A<br>(mg)</th>
+                <th scope="col" class="align-top">Vit D<br>(μg)</th>
+                <th scope="col" class="align-top">Tiamina<br>(mg)</th>
+                <th scope="col" class="align-top">Riboflavina<br>(mg)</th>
+                <th scope="col" class="align-top">Niacina<br>(mg)</th>
+                <th scope="col" class="align-top">Vit B6<br>(mg)</th>
+                <th scope="col" class="align-top">Vit B12<br>(μg)</th>
+                <th scope="col" class="align-top">Vit C<br>(mg)</th>
                 <th/>
             </tr>
             </thead>

@@ -5,15 +5,15 @@
             <tr>
                 <th/>
                 <th/>
-                <th scope="col">Nome</th>
-                <th scope="col">Quant. (g)</th>
-                <th scope="col">Energia (kcal)</th>
-                <th scope="col">Àgua (ml)</th>
-                <th scope="col">Proteína (g)</th>
-                <th scope="col">Gordura (g)</th>
-                <th scope="col">Hid. Carb. (g)</th>
-                <th scope="col">Fibra (g)</th>
-                <th scope="col">Colesterol (mg)</th>
+                <th scope="col" class="align-top">Nome</th>
+                <th scope="col" class="align-top">Quant.<br>(g)</th>
+                <th scope="col" class="align-top">Energia<br>(kcal)</th>
+                <th scope="col" class="align-top">Àgua<br>(ml)</th>
+                <th scope="col" class="align-top">Proteína<br>(g)</th>
+                <th scope="col" class="align-top">Gordura<br>(g)</th>
+                <th scope="col" class="align-top">Hid. Carb.<br>(g)</th>
+                <th scope="col" class="align-top">Fibra<br>(g)</th>
+                <th scope="col" class="align-top">Colesterol<br>(mg)</th>
                 <th/>
             </tr>
             </thead>
