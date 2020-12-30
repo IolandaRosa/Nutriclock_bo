@@ -71,6 +71,8 @@
 <script type="text/javascript">
 /*jshint esversion: 6 */
 
+import {ROUTE} from "../../utils/routes";
+
 export default {
     data() {
         return {
@@ -99,8 +101,12 @@ export default {
             if (response.data.messagesHistory) {
                 this.messagesHistory = response.data.messagesHistory;
             }
-        }).catch(() => {
+        }).catch((error) => {
             this.isFetching = false;
+            if (error.response && error.response.status === 401) {
+                this.$store.commit('clearUserAndToken');
+                this.$router.push({path: ROUTE.Login });
+            }
         });
 
         if (this.$route.params.id) {

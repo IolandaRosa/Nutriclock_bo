@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Message;
 use App\Sleep;
 use App\Meal;
 use App\NutritionalInfo;
@@ -286,6 +287,8 @@ class UserControllerAPI extends Controller
         }
 
         UsersUfc::where('user_id', $user->id)->forceDelete();
+        Message::where('senderId', $user->id)->forceDelete();
+        Message::where('receiverId', $user->id)->forceDelete();
 
         $user->forceDelete();
 

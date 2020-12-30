@@ -165,6 +165,12 @@ export default {
             const {response} = error;
             let message = ERROR_MESSAGES.unknownError;
             if (response) {
+                if (response.status === 401) {
+                    this.$store.commit('clearUserAndToken');
+                    this.$router.push({path: ROUTE.Login });
+                    return;
+                }
+
                 const {data} = response;
                 if (data && data.errors && data.errors.name) {
                     message = ERROR_MESSAGES.alreadyExistingUSF;
