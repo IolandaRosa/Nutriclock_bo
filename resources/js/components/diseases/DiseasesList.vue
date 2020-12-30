@@ -9,7 +9,7 @@
                     </button>
                     <button :class="!diseaseActive ? 'btn btn-primary w-50' : 'btn btn-outline-primary w-50'"
                             v-on:click.prevent="() => updateTable('Alergia')">
-                        Alergia
+                        Alergia Alimentar
                     </button>
                 </div>
                 <div class="component-wrapper-header">
@@ -94,7 +94,7 @@ export default {
             diseasesList: [],
             allergiesList: [],
             mainTitle: 'Patologias',
-            tooltip: 'Nova Patologia / Alergia',
+            tooltip: 'Nova Patologia / Alergia Alimentar',
             dataTable: null,
             showConfirmationModal: false,
             selectedRow: null,
@@ -112,7 +112,7 @@ export default {
     methods: {
         add() {
             this.showModal = true;
-            this.modalTitle = 'Adicionar Patologia / Alergia';
+            this.modalTitle = 'Adicionar Patologia / Alergia Alimentar';
         },
         updateTable(type) {
             if (type === 'Patologia') {
@@ -122,14 +122,14 @@ export default {
                 return;
             }
             this.diseaseActive = false;
-            this.mainTitle = 'Alergias';
+            this.mainTitle = 'Alergias Alimentares';
             redrawTable(this.dataTable, this.allergiesList);
         },
         onEditClick(row) {
             this.selectedDiseaseName = row.name;
             this.selectedDiseaseId = row.id;
             this.selectedDiseaseType = renderDiseaseStringToType(row.type);
-            this.modalTitle = "Editar Patologia / Alergia";
+            this.modalTitle = "Editar Patologia / Alergia Alimentar";
             this.showModal = true;
         }
         ,

@@ -15,14 +15,14 @@
                     <table class="table table-sm bg-white">
                         <thead>
                         <tr>
-                            <th scope="col">Quant. (g)</th>
-                            <th scope="col">Energia (kcal)</th>
-                            <th scope="col">Àgua (ml)</th>
-                            <th scope="col">Proteína (g)</th>
-                            <th scope="col">Gordura (g)</th>
-                            <th scope="col">Hid. Carb. (g)</th>
-                            <th scope="col">Fibra (g)</th>
-                            <th scope="col">Colesterol (mg)</th>
+                            <th scope="col">Quant.<br>(g)</th>
+                            <th scope="col">Energia<br>(kcal)</th>
+                            <th scope="col">Àgua<br>(ml)</th>
+                            <th scope="col">Proteína<br>(g)</th>
+                            <th scope="col">Gordura<br>(g)</th>
+                            <th scope="col">Hid. Carb.<br>(g)</th>
+                            <th scope="col">Fibra<br>(g)</th>
+                            <th scope="col">Colesterol<br>(mg)</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -44,15 +44,15 @@
                     <table class="table table-sm bg-white">
                         <thead>
                         <tr>
-                            <th scope="col">Quant. (g)</th>
-                            <th scope="col">Vit A (mg)</th>
-                            <th scope="col">Vit D (μg)</th>
-                            <th scope="col">Tiamina (mg)</th>
-                            <th scope="col">Riboflavina (mg)</th>
-                            <th scope="col">Niacina (mg)</th>
-                            <th scope="col">Vit B6 (mg)</th>
-                            <th scope="col">Vit B12 (μg)</th>
-                            <th scope="col">Vit C (mg)</th>
+                            <th scope="col">Quant.<br>(g)</th>
+                            <th scope="col">Vit A<br>(mg)</th>
+                            <th scope="col">Vit D<br>(μg)</th>
+                            <th scope="col">Tiamina<br>(mg)</th>
+                            <th scope="col">Riboflavina<br>(mg)</th>
+                            <th scope="col">Niacina<br>(mg)</th>
+                            <th scope="col">Vit B6<br>(mg)</th>
+                            <th scope="col">Vit B12<br>(μg)</th>
+                            <th scope="col">Vit C<br>(mg)</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -75,14 +75,14 @@
                     <table class="table table-sm bg-white">
                         <thead>
                         <tr>
-                            <th scope="col">Quant. (g)</th>
-                            <th scope="col">Sódio (mg)</th>
-                            <th scope="col">Potássio (mg)</th>
-                            <th scope="col">Cálcio (mg)</th>
-                            <th scope="col">Fósforo (mg)</th>
-                            <th scope="col">Magnésio (mg)</th>
-                            <th scope="col">Ferro (mg)</th>
-                            <th scope="col">Zinco (mg)</th>
+                            <th scope="col">Quant.<br>(g)</th>
+                            <th scope="col">Sódio<br>(mg)</th>
+                            <th scope="col">Potássio<br>(mg)</th>
+                            <th scope="col">Cálcio<br>(mg)</th>
+                            <th scope="col">Fósforo<br>(mg)</th>
+                            <th scope="col">Magnésio<br>(mg)</th>
+                            <th scope="col">Ferro<br>(mg)</th>
+                            <th scope="col">Zinco<br>(mg)</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -99,8 +99,8 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="btn-group btn-group-sm w-100" style="z-index: 0 !important;" role="group">
-                    <button :class="macroActive ? 'btn btn-primary w-30' : 'btn btn-outline-primary w-30'"
+                <div class="btn-group btn-group-sm w-100 mb-2" style="z-index: 0 !important;" role="group">
+                    <button :class="macroActive ? 'btn btn-dark w-30' : 'btn btn-secondary w-30'"
                             v-on:click.prevent="() => {
                                 macroActive = true;
                                 vitActive = false;
@@ -108,7 +108,7 @@
                             }">
                         Macroconstituintes
                     </button>
-                    <button :class="vitActive ? 'btn btn-primary w-30' : 'btn btn-outline-primary w-30'"
+                    <button :class="vitActive ? 'btn btn-dark w-30' : 'btn btn-secondary w-30'"
                             v-on:click.prevent="() => {
                                 macroActive = false;
                                 vitActive = true;
@@ -116,7 +116,7 @@
                             }">
                         Vitaminas
                     </button>
-                    <button :class="minActive ? 'btn btn-primary w-30' : 'btn btn-outline-primary w-30'"
+                    <button :class="minActive ? 'btn btn-dark w-30' : 'btn btn-secondary w-30'"
                             v-on:click.prevent="() => {
                                 macroActive = false;
                                 vitActive = false;

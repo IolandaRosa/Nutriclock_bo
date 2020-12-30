@@ -5,15 +5,15 @@
             <tr>
                 <th/>
                 <th/>
-                <th scope="col">Nome</th>
-                <th scope="col">Quant. (g)</th>
-                <th scope="col">Sódio (mg)</th>
-                <th scope="col">Potássio (mg)</th>
-                <th scope="col">Cálcio (mg)</th>
-                <th scope="col">Fósforo (mg)</th>
-                <th scope="col">Magnésio (mg)</th>
-                <th scope="col">Ferro (mg)</th>
-                <th scope="col">Zinco (mg)</th>
+                <th scope="col" class="align-top">Nome</th>
+                <th scope="col" class="align-top">Quant.<br>(g)</th>
+                <th scope="col" class="align-top">Sódio<br>(mg)</th>
+                <th scope="col" class="align-top">Potássio<br>(mg)</th>
+                <th scope="col" class="align-top">Cálcio<br>(mg)</th>
+                <th scope="col" class="align-top">Fósforo<br>(mg)</th>
+                <th scope="col" class="align-top">Magnésio<br>(mg)</th>
+                <th scope="col" class="align-top">Ferro<br>(mg)</th>
+                <th scope="col" class="align-top">Zinco<br>(mg)</th>
                 <th/>
             </tr>
             </thead>
