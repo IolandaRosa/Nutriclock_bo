@@ -6,7 +6,7 @@
                 <div
                     v-for="item in contacts"
                     class="text-secondary pointer p-1 d-flex shadow justify-content-center align-items-center mb-2 bg-light border border-secondary rounded-sm mobile-container"
-                    @click="() => { setSelectedMessages(item.senderId)}"
+                    @click="() => { redirectMessages(item.senderId)}"
                 >
                     <img
                         height="25"
@@ -43,7 +43,7 @@
                                         {{ item.senderName }}
                                     </div>
                                     <div class="font-weight-bold">
-                                        {{ item.createdAt }}
+                                        {{ new Date(item.created_at).toLocaleString() }}
                                     </div>
                                 </div>
                                 <div>
@@ -52,13 +52,34 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card bg-dark text-light mt-2" v-show="showInputField">
+                        <div class="card-header px-3 d-flex align-items-center py-2">
+                            <div class="font-weight-bolder flex-grow-1">Escreva a sua mensagem...</div>
+                            <button type="button" class="btn btn-sm btn-outline-light" @click="sendMessage">
+                                Enviar
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-reply-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M9.079 11.9l4.568-3.281a.719.719 0 0 0 0-1.238L9.079 4.1A.716.716 0 0 0 8 4.719V6c-1.5 0-6 0-7 8 2.5-4.5 7-4 7-4v1.281c0 .56.606.898 1.079.62z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="card-body py-2">
+                            <textarea
+                                v-bind:class="[errors.response !== null ? 'form-control is-invalid' : 'form-control' ]"
+                                rows="7" v-model="response"></textarea>
+                            <div v-if="errors.response" class="invalid-feedback">
+                                {{ errors.response }}
+                            </div>
+                        </div>
+                    </div>
                     <div class="d-flex justify-content-end">
-                        <button type="button" class="btn btn-outline-primary">
-                            Enviar Mensagem
+                        <button type="button" v-show="!showInputField" class="btn btn-sm btn-outline-dark" @click="() => { this.showInputField = true; }">
+                            Nova Mensagem
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-reply-fill" viewBox="0 0 16 16">
+                                 class="bi bi-chat-quote-fill" viewBox="0 0 16 16">
                                 <path
-                                    d="M9.079 11.9l4.568-3.281a.719.719 0 0 0 0-1.238L9.079 4.1A.716.716 0 0 0 8 4.719V6c-1.5 0-6 0-7 8 2.5-4.5 7-4 7-4v1.281c0 .56.606.898 1.079.62z"/>
+                                    d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM7.194 6.766a1.688 1.688 0 0 0-.227-.272 1.467 1.467 0 0 0-.469-.324l-.008-.004A1.785 1.785 0 0 0 5.734 6C4.776 6 4 6.746 4 7.667c0 .92.776 1.666 1.734 1.666.343 0 .662-.095.931-.26-.137.389-.39.804-.81 1.22a.405.405 0 0 0 .011.59c.173.16.447.155.614-.01 1.334-1.329 1.37-2.758.941-3.706a2.461 2.461 0 0 0-.227-.4zM11 9.073c-.136.389-.39.804-.81 1.22a.405.405 0 0 0 .012.59c.172.16.446.155.613-.01 1.334-1.329 1.37-2.758.942-3.706a2.466 2.466 0 0 0-.228-.4 1.686 1.686 0 0 0-.227-.273 1.466 1.466 0 0 0-.469-.324l-.008-.004A1.785 1.785 0 0 0 10.07 6c-.957 0-1.734.746-1.734 1.667 0 .92.777 1.666 1.734 1.666.343 0 .662-.095.931-.26z"/>
                             </svg>
                         </button>
                     </div>
@@ -71,7 +92,8 @@
 <script type="text/javascript">
 /*jshint esversion: 6 */
 
-import {ROUTE} from "../../utils/routes";
+import {ROUTE} from '../../utils/routes';
+import {ERROR_MESSAGES, isEmptyField} from "../../utils/validations";
 
 export default {
     data() {
@@ -80,38 +102,114 @@ export default {
             messagesHistory: [],
             messages: [],
             response: null,
+            showInputField: false,
             isFetching: false,
+            errors: {
+                response: null,
+            }
         };
     },
     methods: {
-        setSelectedMessages(id) {
-            this.messages = this.messagesHistory[id];
+        redirectMessages(id) {
+            if (id !== this.$route.params.id) {
+                this.$router.push({
+                    name: 'MessagesHistory',
+                    params: {
+                        id: id,
+                    }
+                });
+            }
         },
+        sendMessage() {
+            if (isEmptyField(this.response)) {
+                this.errors.response = ERROR_MESSAGES.mandatoryField;
+                return
+            }
+
+            if (this.isFetching) return;
+            this.isFetching = true;
+
+            const selectedContact = this.getContactByParamId();
+            const refMessageId = this.getRefMessageId();
+
+            if (selectedContact) {
+                axios.post('api/messages', {
+                    senderId: this.$store.state.user.id,
+                    senderName: this.$store.state.user.name,
+                    senderPhotoUrl: this.$store.state.user.avatarUrl,
+                    receiverId: selectedContact.senderId,
+                    receiverName: selectedContact.senderName,
+                    receiverPhotoUrl: selectedContact.senderPhotoUrl,
+                    message: this.response,
+                    refMessageId,
+                    read: false,
+                }).then(() => {
+                    this.isFetching = false;
+                    this.showInputField = false;
+                    this.response = '';
+                    this.errors.response = null;
+                    this.getMessages();
+                }).catch(() => {
+                    this.isFetching = false;
+                    this.showMessage('Ocorreu um erro ao enviar a mensagem', 'error');
+                });
+            }
+        },
+        showMessage(message, className) {
+            this.$toasted.show(message, {
+                type: className,
+                duration: 3000,
+                position: 'top-right',
+                closeOnSwipe: true,
+                theme: 'toasted-primary'
+            });
+        },
+        getMessages() {
+            if (this.isFetching) return;
+            this.isFetching = true;
+
+            axios.get('api/messages').then(response => {
+                this.isFetching = false;
+                if (response.data.contacts) {
+                    this.contacts = response.data.contacts;
+                }
+
+                if (response.data.messagesHistory) {
+                    this.messagesHistory = response.data.messagesHistory;
+
+                    if (this.$route.params.id) {
+                        this.messages = this.messagesHistory[this.$route.params.id];
+                    }
+                }
+            }).catch((error) => {
+                this.isFetching = false;
+                if (error.response && error.response.status === 401) {
+                    this.$store.commit('clearUserAndToken');
+                    this.$router.push({path: ROUTE.Login});
+                }
+            });
+        },
+        getContactByParamId() {
+            let selectedContact = null;
+            if (this.$route.params.id) {
+                this.contacts.forEach(c => {
+                    if (Number(c.senderId) === Number(this.$route.params.id)) {
+                        selectedContact = c;
+                    }
+                })
+            }
+            return selectedContact;
+        },
+        getRefMessageId() {
+            let refId = null;
+            if (this.messages && this.messages.length > 0) {
+                refId = this.messages[this.messages.length -1].id;
+            }
+            return refId;
+        }
     },
     mounted() {
-        if (this.isFetching) return;
-        this.isFetching = true;
-
-        axios.get('api/messages').then(response => {
-            this.isFetching = false;
-            if (response.data.contacts) {
-                this.contacts = response.data.contacts;
-            }
-
-            if (response.data.messagesHistory) {
-                this.messagesHistory = response.data.messagesHistory;
-            }
-        }).catch((error) => {
-            this.isFetching = false;
-            if (error.response && error.response.status === 401) {
-                this.$store.commit('clearUserAndToken');
-                this.$router.push({path: ROUTE.Login });
-            }
-        });
-
-        if (this.$route.params.id) {
-            this.messages = this.messagesHistory[this.$route.params.id];
-        }
+        this.getMessages();
     },
     watch: {
         '$route.params.id': function () {

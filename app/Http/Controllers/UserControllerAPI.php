@@ -84,6 +84,26 @@ class UserControllerAPI extends Controller
             $user->email = $request->email;
             $user->gender = $request->gender;
 
+            $senderMessages = Message::where('senderId', $id)->get();
+            $receiverMessages = Message::where('receiverId', $id)->get();
+
+
+            if ($senderMessages) {
+                foreach ($senderMessages as $m)  {
+                    $m->senderName = $request->name;
+                    $m->senderPhotoUrl = $user->avatarUrl;
+                    $m->save();
+                }
+            }
+
+        if ($receiverMessages) {
+            foreach ($receiverMessages as $m)  {
+                $m->receiverName = $request->name;
+                $m->receiverPhotoUrl = $user->avatarUrl;
+                $m->save();
+            }
+        }
+
             $user->save();
 
             return new UserResource($user);
