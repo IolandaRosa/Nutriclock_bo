@@ -69,11 +69,11 @@
                 types: [
                     {
                         value: 'A',
-                        label: 'Alergia',
+                        label: 'Alergia Alimentar',
                     },
                     {
                         value: 'D',
-                        label: 'Doença',
+                        label: 'Patologia',
                     }
                 ],
                 id: null,
