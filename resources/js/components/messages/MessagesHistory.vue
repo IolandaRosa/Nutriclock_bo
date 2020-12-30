@@ -6,7 +6,7 @@
                 <div
                     v-for="item in contacts"
                     class="text-secondary pointer p-1 d-flex shadow justify-content-center align-items-center mb-2 bg-light border border-secondary rounded-sm mobile-container"
-                    @click="() => { setSelectedMessages(item.id)}"
+                    @click="() => { setSelectedMessages(item.senderId)}"
                 >
                     <img
                         height="25"
@@ -15,7 +15,7 @@
                         alt=""
                         class="rounded-circle mr-1 hidden-image"
                     />
-                    <div class="font-weight-bold mr-1 flex-grow-1 mobile-container-text">{{ item.name }}</div>
+                    <div class="font-weight-bold mr-1 flex-grow-1 mobile-container-text">{{ item.senderName }}</div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-chat-left-quote-fill" viewBox="0 0 16 16">
@@ -26,37 +26,42 @@
                 </div>
             </div>
             <div class="p-3 text-dark bg-light rounded with-overflow mobile">
-                <div v-for="item in messages">
-                    <div
-                        :class="[item.sender.id === $store.state.user.id ? 'justify-content-end': 'justify-content-start', 'd-flex mb-2']"
-                        style="font-size: 12px">
-                        <div style="width: 90%"
-                             :class="[item.sender.id === $store.state.user.id ? 'bg-secondary': 'bg-primary', 'text-light with-shadow rounded-sm p-2']">
-                            <div class="d-flex mb-1 mobile-container">
-                                <div class="flex-grow-1 font-weight-bold d-flex align-items-center">
-                                    <div v-show="item.sender.id !== $store.state.user.id && !item.read"
-                                         class="bg-danger rounded-circle mr-1" style="width: 10px; height: 10px"/>
-                                    {{ item.sender.name}}
+                <div v-if="!messages || messages.length === 0" class="text-center font-weight-bold mt-4">
+                    Clica num contacto para veres o histórico de conversas
+                </div>
+                <div v-else>
+                    <div v-for="item in messages">
+                        <div
+                            :class="[item.senderId === $store.state.user.id ? 'justify-content-end': 'justify-content-start', 'd-flex mb-2']"
+                            style="font-size: 12px">
+                            <div style="width: 90%"
+                                 :class="[item.senderId === $store.state.user.id ? 'bg-secondary': 'bg-primary', 'text-light with-shadow rounded-sm p-2']">
+                                <div class="d-flex mb-1 mobile-container">
+                                    <div class="flex-grow-1 font-weight-bold d-flex align-items-center">
+                                        <div v-show="item.senderId !== $store.state.user.id && !item.read"
+                                             class="bg-danger rounded-circle mr-1" style="width: 10px; height: 10px"/>
+                                        {{ item.senderName }}
+                                    </div>
+                                    <div class="font-weight-bold">
+                                        {{ item.createdAt }}
+                                    </div>
                                 </div>
-                                <div class="font-weight-bold">
-                                    12/12/2020 15:30
+                                <div>
+                                    {{ item.message }}
                                 </div>
-                            </div>
-                            <div>
-                                {{ item.message }}
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="d-flex justify-content-end">
-                    <button type="button" class="btn btn-outline-primary">
-                        Enviar Mensagem
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             class="bi bi-reply-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M9.079 11.9l4.568-3.281a.719.719 0 0 0 0-1.238L9.079 4.1A.716.716 0 0 0 8 4.719V6c-1.5 0-6 0-7 8 2.5-4.5 7-4 7-4v1.281c0 .56.606.898 1.079.62z"/>
-                        </svg>
-                    </button>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-outline-primary">
+                            Enviar Mensagem
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-reply-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M9.079 11.9l4.568-3.281a.719.719 0 0 0 0-1.238L9.079 4.1A.716.716 0 0 0 8 4.719V6c-1.5 0-6 0-7 8 2.5-4.5 7-4 7-4v1.281c0 .56.606.898 1.079.62z"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -73,6 +78,7 @@ export default {
             messagesHistory: [],
             messages: [],
             response: null,
+            isFetching: false,
         };
     },
     methods: {
@@ -81,237 +87,25 @@ export default {
         },
     },
     mounted() {
-        this.contacts = [{
-            name: 'Marina Mota',
-            photoUrl: 'xpto.jpg',
-            id: 1,
-        }, {
-            name: 'Marina Motai',
-            photoUrl: 'xpto.jpg',
-            id: 2,
-        },];
+        if (this.isFetching) return;
+        this.isFetching = true;
 
-        this.messagesHistory = {
-            1: [
-                {
-                    id: 1,
-                    sender: {
-                        name: 'Marina Mota',
-                        photoUrl: 'xpto.jpg',
-                        id: 3,
-                    },
-                    message: 'Boa tarde! Tenho uma duvida relativa a xpto e quero saber xpta e preciso de xpti para isto e aquilo e esta mensagem é muito grande e não quero saber tem de ser cortada.',
-                    receiver: {
-                        name: 'Profissional 1',
-                        photoUrl: 'xpto.jpg',
-                        id: 1
-                    },
-                    refMessageId: null,
-                    read: true
-                },
-                {
-                    id: 2,
-                    sender: {
-                        name: 'Profissional 1',
-                        id: 1,
-                    },
-                    message: 'Boa tarde! Tem de fazer coisas a maneira',
-                    receiver: {
-                        name: 'Marina Mota',
-                        photoUrl: 'xpto.jpg',
-                        id: 3
-                    },
-                    refMessageId: 1,
-                    read: true
-                },
-                {
-                    id: 3,
-                    sender: {
-                        name: 'Marina Mota',
-                        photoUrl: 'xpto.jpg',
-                        id: 3,
-                    },
-                    message: 'Ok obrogado. Ainda preciso de saber se devo continuar a coimer kiwis',
-                    receiver: {
-                        name: 'Profissional 1',
-                        photoUrl: 'xpto.jpg',
-                        id: 1
-                    },
-                    refMessageId: 2,
-                    read: true
-                },
-                {
-                    id: 4,
-                    sender: {
-                        name: 'Profissional 1',
-                        photoUrl: 'xpto.jpg',
-                        id: 1,
-                    },
-                    message: 'Sim menos ao fim de semana',
-                    receiver: {
-                        name: 'Marina Mota',
-                        photoUrl: 'xpto.jpg',
-                        id: 3
-                    },
-                    refMessageId: 3,
-                    read: true
-                },
-                {
-                    id: 5,
-                    sender: {
-                        name: 'Marina Mota',
-                        photoUrl: 'xpto.jpg',
-                        id: 3,
-                    },
-                    message: 'E batatas posso comer a sexta?',
-                    receiver: {
-                        name: 'Profissional 1',
-                        photoUrl: 'xpto.jpg',
-                        id: 1
-                    },
-                    refMessageId: 4,
-                    read: true
-                },
-                {
-                    id: 6,
-                    sender: {
-                        name: 'Profissional 1',
-                        id: 1,
-                    },
-                    message: 'Sim mas apenas ao almoco',
-                    receiver: {
-                        name: 'Marina Mota',
-                        photoUrl: 'xpto.jpg',
-                        id: 3
-                    },
-                    refMessageId: 5,
-                    read: true
-                },
-                {
-                    id: 7,
-                    sender: {
-                        name: 'Profissional 1',
-                        photoUrl: 'xpto.jpg',
-                        id: 1,
-                    },
-                    message: 'Ok obrigado fico feliz com a resposta',
-                    receiver: {
-                        name: 'Marina Mota',
-                        photoUrl: 'xpto.jpg',
-                        id: 3
-                    },
-                    refMessageId: 5,
-                    read: false
-                }
-            ],
-            2: [
-                {
-                    id: 8,
-                    sender: {
-                        name: 'Marina Motai',
-                        photoUrl: 'xpto.jpg',
-                        id: 2,
-                    },
-                    message: 'Boa tarde! Tenho uma duvida relativa a xpto e quero saber xpta e preciso de xpti para isto e aquilo e esta mensagem é muito grande e não quero saber tem de ser cortada.',
-                    receiver: {
-                        name: 'Profissional 1',
-                        photoUrl: 'xpto.jpg',
-                        id: 1
-                    },
-                    refMessageId: null,
-                    read: true
-                },
-                {
-                    id: 9,
-                    sender: {
-                        name: 'Marina Motai',
-                        photoUrl: 'xpto.jpg',
-                        id: 2,
-                    },
-                    message: 'E esquecime de dizer que o adoro',
-                    receiver: {
-                        name: 'Profissional 1',
-                        photoUrl: 'xpto.jpg',
-                        id: 1
-                    },
-                    refMessageId: null,
-                    read: true
-                },
-                {
-                    id: 10,
-                    sender: {
-                        name: 'Profissional 1',
-                        photoUrl: 'xpto.jpg',
-                        id: 1,
-                    },
-                    message: 'Penso que a segunda parte nao seja adequada',
-                    receiver: {
-                        name: 'Marina Motai',
-                        photoUrl: 'xpto.jpg',
-                        id: 2
-                    },
-                    refMessageId: 9,
-                    read: true
-                },
-                {
-                    id: 11,
-                    sender: {
-                        name: 'Marina Mota',
-                        photoUrl: 'xpto.jpg',
-                        id: 2,
-                    },
-                    message: 'Porque?',
-                    receiver: {
-                        name: 'Profissional 1',
-                        id: 1
-                    },
-                    refMessageId: 10,
-                    read: true
-                },
-                {
-                    id: 12,
-                    sender: {
-                        name: 'Profissional 1',
-                        id: 1,
-                    },
-                    message: 'Maerina Motai sou o seu nutricionista e sou profissional',
-                    receiver: {
-                        name: 'Marina Motai',
-                        id: 2
-                    },
-                    refMessageId: 11,
-                    read: false
-                },
-                {
-                    id: 13,
-                    sender: {
-                        name: 'Profissional 1',
-                        id: 1,
-                    },
-                    message: 'Isto nao pode ser assim',
-                    receiver: {
-                        name: 'Marina Motai',
-                        id: 2
-                    },
-                    refMessageId: 12,
-                    read: false
-                }, {
-                    id: 14,
-                    sender: {
-                        name: 'Marina Motai',
-                        id: 2,
-                    },
-                    message: 'Que pena...',
-                    receiver: {
-                        name: 'Profissional 1',
-                        id: 1
-                    },
-                    refMessageId: 13,
-                    read: false
-                },]
-        };
+        axios.get('api/messages').then(response => {
+            this.isFetching = false;
+            if (response.data.contacts) {
+                this.contacts = response.data.contacts;
+            }
 
-        this.messages = this.messagesHistory[this.$route.params.id];
+            if (response.data.messagesHistory) {
+                this.messagesHistory = response.data.messagesHistory;
+            }
+        }).catch(() => {
+            this.isFetching = false;
+        });
+
+        if (this.$route.params.id) {
+            this.messages = this.messagesHistory[this.$route.params.id];
+        }
     },
     watch: {
         '$route.params.id': function () {

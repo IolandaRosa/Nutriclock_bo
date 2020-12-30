@@ -51,9 +51,20 @@ class MessageControllerAPI extends Controller
     }
 
     public function messagesHistory(Request $request) {
-        $contacts = Message::where('receiverId', Auth::guard('api')->user()->id)->distinct('senderInd')->get(['senderId', 'senderName', 'senderPhotoUrl']);
+        $authId = Auth::guard('api')->user()->id;
 
+        $contacts = Message::where('receiverId', $authId)->distinct('senderInd')->get(['senderId', 'senderName', 'senderPhotoUrl']);
+        $messagesHistory = [];
 
-        return Response::json(['contacts' => $contacts], 200);
+        if ($contacts) {
+            foreach ($contacts as $c) {
+                $messages = Message::whereIn('receiverId', [$authId, $c->senderId])->whereIn('senderId', [$authId, $c->senderId])->get();
+                $messagesHistory[$c->senderId] = $messages;
+            }
+
+            return Response::json(['contacts' => $contacts, 'messagesHistory' => $messagesHistory], 200);
+        }
+
+        return Response::json(['contacts' => [], 'messagesHistory' => []], 200);
     }
 }
