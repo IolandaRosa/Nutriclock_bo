@@ -80,7 +80,7 @@
                         :disabled="readonly"
                     >
                 </td>
-                <td>
+                <td v-if="!readonly">
                     <button type="button" class="btn btn btn-outline-success btn-sm"
                             v-on:click="() => updateNutritionalInfo(item.nutritionalInfo, index)">
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-clockwise"

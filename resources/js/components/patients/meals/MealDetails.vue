@@ -11,7 +11,7 @@
                     </h5>
                 </div>
                 <h6>Total Diário</h6>
-                <div v-show="macroActive && data" class="table-responsive">
+                <div v-if="macroActive && data" class="table-responsive">
                     <table class="table table-sm bg-white">
                         <thead>
                         <tr>
@@ -27,20 +27,20 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>{{ this.data.total.quant }}</td>
-                            <td>{{ this.data.total.energy }}</td>
-                            <td>{{ this.data.total.water }}</td>
-                            <td>{{ this.data.total.protein }}</td>
-                            <td>{{ this.data.total.fat }}</td>
-                            <td>{{ this.data.total.carbs }}</td>
-                            <td>{{ this.data.total.fiber }}</td>
-                            <td>{{ this.data.total.coletrol }}</td>
+                            <td>{{ data.total.quant }}</td>
+                            <td>{{ data.total.energy }}</td>
+                            <td>{{ data.total.water }}</td>
+                            <td>{{ data.total.protein }}</td>
+                            <td>{{ data.total.fat }}</td>
+                            <td>{{ data.total.carbs }}</td>
+                            <td>{{ data.total.fiber }}</td>
+                            <td>{{ data.total.coletrol }}</td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <div v-show="vitActive && data" class="table-responsive">
+                <div v-if="vitActive && data" class="table-responsive">
                     <table class="table table-sm bg-white">
                         <thead>
                         <tr>
@@ -57,21 +57,21 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>{{ this.data.total.quant }}</td>
-                            <td>{{ this.data.total.A }}</td>
-                            <td>{{ this.data.total.D }}</td>
-                            <td>{{ this.data.total.tiamina }}</td>
-                            <td>{{ this.data.total.riboflavina }}</td>
-                            <td>{{ this.data.total.niacina }}</td>
-                            <td>{{ this.data.total.B6 }}</td>
-                            <td>{{ this.data.total.B12 }}</td>
-                            <td>{{ this.data.total.C }}</td>
+                            <td>{{ data.total.quant }}</td>
+                            <td>{{ data.total.A }}</td>
+                            <td>{{ data.total.D }}</td>
+                            <td>{{ data.total.tiamina }}</td>
+                            <td>{{ data.total.riboflavina }}</td>
+                            <td>{{ data.total.niacina }}</td>
+                            <td>{{ data.total.B6 }}</td>
+                            <td>{{ data.total.B12 }}</td>
+                            <td>{{ data.total.C }}</td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <div v-show="minActive && data" class="table-responsive">
+                <div v-if="minActive && data" class="table-responsive">
                     <table class="table table-sm bg-white">
                         <thead>
                         <tr>
@@ -87,14 +87,14 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>{{ this.data.total.quant }}</td>
-                            <td>{{ this.data.total.Na }}</td>
-                            <td>{{ this.data.total.K }}</td>
-                            <td>{{ this.data.total.Ca }}</td>
-                            <td>{{ this.data.total.P }}</td>
-                            <td>{{ this.data.total.Mg }}</td>
-                            <td>{{ this.data.total.Fe }}</td>
-                            <td>{{ this.data.total.Zn }}</td>
+                            <td>{{ data.total.quant }}</td>
+                            <td>{{ data.total.Na }}</td>
+                            <td>{{ data.total.K }}</td>
+                            <td>{{ data.total.Ca }}</td>
+                            <td>{{ data.total.P }}</td>
+                            <td>{{ data.total.Mg }}</td>
+                            <td>{{ data.total.Fe }}</td>
+                            <td>{{ data.total.Zn }}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -126,7 +126,7 @@
                     </button>
                 </div>
                 <div v-show="macroActive">
-                    <div v-if="data['P'].length > 0">
+                    <div v-if="data && data['P'].length > 0">
                         <DetailsButton title="Pequeno-almoço" type="MP" @update-show="updateShow"/>
                         <MacroNutrientsTable
                             v-show="showMacroBreakfast"

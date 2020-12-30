@@ -71,6 +71,7 @@ class UfcControllerAPI extends Controller
     }
 
     public function getUserUfcs(Request $request, $id) {
+        $usersUfcs=[];
         if(Auth::guard('api')->user()->role == 'PATIENT'){
             return Response::json(['error' => 'Accesso proibido!'], 401);
         }

@@ -9,6 +9,6 @@ use App\Ufc;
 class UsersUfc extends Model
 {
     protected $table = 'users_ufc';
-    protected $primaryKey = ['user_id', 'ufc_id'];
+    // protected $primaryKey = ['user_id', 'ufc_id'];
     protected $fillable = ['user_id', 'ufc_id'];
 }

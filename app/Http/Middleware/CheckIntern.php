@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class CheckProfessional
+class CheckIntern
 {
     /**
      * Handle an incoming request.
@@ -15,11 +15,11 @@ class CheckProfessional
      */
     public function handle($request, Closure $next)
     {
-        if ($request->user() && ($request->user()->role == 'PROFESSIONAL' || $request->user()->role == 'ADMIN')) {
+        if ($request->user() && ($request->user()->role == 'PROFESSIONAL' || $request->user()->role == 'ADMIN' || $request->user()->role == 'INTERN')) {
             return $next($request);
         }
 
-        if ($request->user() && ($request->user()->role != 'PROFESSIONAL' || $request->user()->role != 'ADMIN')) {
+        if ($request->user() && ($request->user()->role == 'PATIENT')) {
             abort(403);
         }
 

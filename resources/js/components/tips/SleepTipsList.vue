@@ -7,7 +7,7 @@
                         Dicas de Sono
                     </h3>
                     <div class="component-wrapper-right">
-                        <button class="btn-bold btn btn-primary" v-on:click.prevent="add" type="button"
+                        <button v-if="$store.state.user && $store.state.user.role === 'ADMIN'" class="btn-bold btn btn-primary" v-on:click.prevent="add" type="button"
                                 data-toggle="tooltip"
                                 title="Nova Dica">
                     <span v-if="isFetching" class="spinner-border spinner-border-sm" role="status"
@@ -69,6 +69,7 @@ import {
 import AddCategory from '../modals/AddCategory';
 import ConfirmationModal from '../modals/ConfirmationModal';
 import {ERROR_MESSAGES} from '../../utils/validations';
+import {UserRoles} from "../../constants/misc";
 
 export default {
     data() {
@@ -93,8 +94,6 @@ export default {
             ],
             columns: [
                 {data: 'description'},
-                TableActionColumns.Edit,
-                TableActionColumns.Delete,
             ],
         };
     },
@@ -206,9 +205,15 @@ export default {
     },
     async mounted() {
         await this.getSleepTips();
+        if (this.$store.state.user.role === UserRoles.Admin) {
+            this.columns.push(TableActionColumns.Edit);
+            this.columns.push(TableActionColumns.Delete);
+        }
         this.dataTable = await initDataTable('#sleepTipsTable', this.data, this.columns);
-        onClickHandler(this.dataTable, this.onEditClick, '#sleepTipsTable', TableActionClasses.Edit);
-        onClickHandler(this.dataTable, this.onDeleteClick, '#sleepTipsTable', TableActionClasses.Delete);
+        if (this.$store.state.user.role === UserRoles.Admin) {
+            onClickHandler(this.dataTable, this.onEditClick, '#sleepTipsTable', TableActionClasses.Edit);
+            onClickHandler(this.dataTable, this.onDeleteClick, '#sleepTipsTable', TableActionClasses.Delete);
+        }
     },
     components: {
         AddCategory,

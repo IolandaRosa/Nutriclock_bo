@@ -82,8 +82,7 @@ export default {
                 {data: 'gender', responsivePriority: 6},
                 {data: 'parsedDate', responsivePriority: 7},
                 {data: 'ufc', responsivePriority: 5},
-                {data: 'email', responsivePriority: 4},
-                {...TableActionColumns.Delete, responsivePriority: 2},
+                {data: 'email', responsivePriority: 4}
             ],
         };
     },
@@ -159,6 +158,7 @@ export default {
 
             } catch (error) {
                 this.isFetching = false;
+                console.log(error)
                 if (error.response && error.response.status === 401) {
                     this.$router.push(ROUTE.Login)
                 }
@@ -167,9 +167,14 @@ export default {
     },
     async mounted() {
         await this.getUsers();
+        if (this.$store.state.user.role === 'ADMIN') {
+            this.columns.push({...TableActionColumns.Delete, responsivePriority: 2});
+        }
         this.dataTable = await initDataTable('#patientsTable', this.data, this.columns);
         onClickHandler(this.dataTable, this.onViewClick, '#patientsTable', TableActionClasses.View);
-        onClickHandler(this.dataTable, this.onDeleteClick, '#patientsTable', TableActionClasses.Delete);
+        if (this.$store.state.user.role === 'ADMIN') {
+            onClickHandler(this.dataTable, this.onDeleteClick, '#patientsTable', TableActionClasses.Delete);
+        }
     },
     components: {
         ConfirmationModal,
