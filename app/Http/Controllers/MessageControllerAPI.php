@@ -16,10 +16,12 @@ class MessageControllerAPI extends Controller
         $message->save();
 
         if ($request->refMessageId) {
-            $messageMarkRead = Message::find($request->refMessageId);
-            if ($messageMarkRead) {
-                $messageMarkRead->read = true;
-                $messageMarkRead->save();
+            $messageMarkReads = Message::where('senderId', $request->receiverId)->where('receiverId', $request->senderId)->get();
+            if ($messageMarkReads) {
+                foreach ($messageMarkReads as $messageMarkRead) {
+                    $messageMarkRead->read = true;
+                    $messageMarkRead->save();
+                }
             }
         }
 
@@ -27,13 +29,13 @@ class MessageControllerAPI extends Controller
 
     }
 
-    public function getUnreadMessagesForAuthUser(Request $request) {
-        $messages = Message::where('receiverId', Auth::guard('api')->user()->id)->where('read', false)->get();
+    public function getUnreadMessagesForAuthUser() {
+        $messages = Message::where('receiverId', Auth::guard('api')->id())->where('read', false)->get();
         return MessageResource::collection($messages);
     }
 
-    public function countUnreadMessagesForAuthUser(Request $request) {
-        $count = Message::where('receiverId', Auth::guard('api')->user()->id)->where('read', false)->count();
+    public function countUnreadMessagesForAuthUser() {
+        $count = Message::where('receiverId', Auth::guard('api')->id())->where('read', false)->count();
         return Response::json(['data' => $count], 200);
     }
 
@@ -50,10 +52,10 @@ class MessageControllerAPI extends Controller
         return new MessageResource($message);
     }
 
-    public function messagesHistory(Request $request) {
-        $authId = Auth::guard('api')->user()->id;
+    public function messagesHistory() {
+        $authId = Auth::guard('api')->id();
 
-        $contacts = Message::where('receiverId', $authId)->distinct('senderInd')->get(['senderId', 'senderName', 'senderPhotoUrl']);
+        $contacts = Message::where('receiverId', $authId)->distinct('senderId')->get(['senderId', 'senderName', 'senderPhotoUrl']);
         $messagesHistory = [];
 
         if ($contacts) {
@@ -66,5 +68,12 @@ class MessageControllerAPI extends Controller
         }
 
         return Response::json(['contacts' => [], 'messagesHistory' => []], 200);
+    }
+
+    public function getMessagesFromUser(Request $request, $id) {
+        $authId = Auth::guard('api')->id();
+        $messages = Message::whereIn('receiverId', [$authId, $id])->whereIn('senderId', [$authId, $id])->get();
+
+        return \App\Http\Resources\Message::collection($messages);
     }
 }

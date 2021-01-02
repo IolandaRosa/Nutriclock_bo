@@ -19,10 +19,10 @@ class CreateMessagesTable extends Migration
             $table->softDeletes();
             $table->integer('senderId');
             $table->string('senderName');
-            $table->string('senderPhotoUrl');
+            $table->string('senderPhotoUrl')->nullable();
             $table->integer('receiverId');
             $table->string('receiverName');
-            $table->string('receiverPhotoUrl');
+            $table->string('receiverPhotoUrl')->nullable();
             $table->longText('message');
             $table->integer('refMessageId')->nullable();
             $table->boolean('read')->default(false);

@@ -110,5 +110,8 @@ Route::middleware(['auth:api', 'admin'])->put('configs/{id}', 'ConfigurationCont
 Route::middleware(['auth:api', 'professional'])->get('messages/unread', 'MessageControllerAPI@getUnreadMessagesForAuthUser');
 Route::middleware(['auth:api', 'intern'])->get('messages/unread-count', 'MessageControllerAPI@countUnreadMessagesForAuthUser');
 Route::middleware(['auth:api', 'professional'])->put('messages/read/{id}', 'MessageControllerAPI@markAsRead');
-Route::middleware(['auth:api', 'professional'])->post('messages', 'MessageControllerAPI@store');
-Route::get('messages', 'MessageControllerAPI@messagesHistory');
+Route::middleware(['auth:api'])->post('messages', 'MessageControllerAPI@store');
+Route::middleware(['auth:api', 'professional'])->get('messages', 'MessageControllerAPI@messagesHistory');
+
+Route::middleware(['auth:api', 'patient'])->get('/professionalsByUsf/{id}', 'UserControllerAPI@getProfessionalByUsf');
+Route::middleware(['auth:api', 'patient'])->get('/messagesFromUser/{id}', 'MessageControllerAPI@getMessagesFromUser');

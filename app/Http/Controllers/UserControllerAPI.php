@@ -359,4 +359,23 @@ class UserControllerAPI extends Controller
 
         return new UserResource($user);
     }
+
+    public function getProfessionalByUsf(Request $request, $id) {
+        $users = [];
+        $userIds = UsersUfc::where('ufc_id', $id)->get('user_id');
+
+        if ($userIds) {
+            foreach ($userIds as $userId) {
+                $user = User::find($userId);
+                $unreadMessages = Message::where('senderId', $user->first()->id)->where('receiverId', Auth::guard('api')->user()->id)->where('read', 0)->count();
+
+                if ($user && $user->first()->role === 'PROFESSIONAL') {
+                    $user->first()->unreadMessages = $unreadMessages;
+                    array_push($users, $user->first());
+                }
+            }
+        }
+
+        return Response::json(['data' => $users, ], 200);
+    }
 }
