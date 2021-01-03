@@ -79,6 +79,20 @@
                 event.target.src = 'https://nutriclock.s3-eu-west-1.amazonaws.com/images/avatar.jpg'
             }
         },
+        mounted() {
+            window.Echo.channel('ChatMessageChannel').listen('ChatMessageEvent', (e) => {
+                if (e && e.message.receiverId === Number(this.$store.state.user.id)) {
+                    const value = Number(this.$store.state.unread);
+                    if (e.type === 'store') {
+                        this.$store.commit('setUnread', value+1);
+                    }
+
+                    if (e.type === 'markAsRead') {
+                        this.$store.commit('setUnread', value-1);
+                    }
+                }
+            });
+        },
         components: {
             Profile,
             MessageSidebar,

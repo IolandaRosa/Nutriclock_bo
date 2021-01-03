@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ChatMessageEvent;
 use App\Message;
 use App\Http\Resources\Message as MessageResource;
 use Illuminate\Http\Request;
@@ -24,6 +25,8 @@ class MessageControllerAPI extends Controller
                 }
             }
         }
+
+        broadcast(new ChatMessageEvent('store', $message));
 
         return new MessageResource($message);
 
@@ -48,6 +51,8 @@ class MessageControllerAPI extends Controller
 
         $message->read = true;
         $message->save();
+
+        broadcast(new ChatMessageEvent('markAsRead', $message));
 
         return new MessageResource($message);
     }

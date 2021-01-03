@@ -210,6 +210,15 @@ export default {
     },
     mounted() {
         this.getMessages();
+        window.Echo.channel('ChatMessageChannel').listen('ChatMessageEvent', (e) => {
+            if (e && e.type === 'store' && e.message) {
+                const { message } = e;
+
+                if (message.receiverId === this.$store.state.user.id && message.senderId === Number(this.$route.params.id)) {
+                    this.getMessages();
+                }
+            }
+        });
     },
     watch: {
         '$route.params.id': function () {

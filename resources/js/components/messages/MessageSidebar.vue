@@ -12,7 +12,7 @@
                 <strong>Messagens Recebidas</strong>
             </h5>
 
-            <div>
+            <div class="overflow-auto">
                 <div v-if="!data || data.length === 0"
                      class="mt-4 text-dark d-flex flex-column justify-content-center text-center">
                     Não existem mensagens por ler!
