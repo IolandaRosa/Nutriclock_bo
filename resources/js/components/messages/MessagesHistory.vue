@@ -92,8 +92,10 @@
 <script type="text/javascript">
 /*jshint esversion: 6 */
 
-import {ROUTE} from '../../utils/routes';
-import {ERROR_MESSAGES, isEmptyField} from "../../utils/validations";
+import { ROUTE } from '../../utils/routes';
+import { ERROR_MESSAGES, isEmptyField } from '../../utils/validations';
+import { makeSocketEvent, parseSocketMessage } from '../../utils/misc';
+import { EventType } from '../../constants/misc';
 
 export default {
     data() {
@@ -130,25 +132,26 @@ export default {
             this.isFetching = true;
 
             const selectedContact = this.getContactByParamId();
-            const refMessageId = this.getRefMessageId();
+            const dataToSend = {
+                senderId: this.$store.state.user.id,
+                senderName: this.$store.state.user.name,
+                senderPhotoUrl: this.$store.state.user.avatarUrl,
+                receiverId: selectedContact.senderId,
+                receiverName: selectedContact.senderName,
+                receiverPhotoUrl: selectedContact.senderPhotoUrl,
+                message: this.response,
+                refMessageId: this.getRefMessageId(),
+                read: false,
+            }
 
             if (selectedContact) {
-                axios.post('api/messages', {
-                    senderId: this.$store.state.user.id,
-                    senderName: this.$store.state.user.name,
-                    senderPhotoUrl: this.$store.state.user.avatarUrl,
-                    receiverId: selectedContact.senderId,
-                    receiverName: selectedContact.senderName,
-                    receiverPhotoUrl: selectedContact.senderPhotoUrl,
-                    message: this.response,
-                    refMessageId,
-                    read: false,
-                }).then(() => {
+                axios.post('api/messages', dataToSend).then(() => {
                     this.isFetching = false;
                     this.showInputField = false;
                     this.response = '';
                     this.errors.response = null;
                     this.getMessages();
+                    this.$socket.send(makeSocketEvent(EventType.Store, dataToSend));
                 }).catch(() => {
                     this.isFetching = false;
                     this.showMessage('Ocorreu um erro ao enviar a mensagem', 'error');
@@ -210,15 +213,15 @@ export default {
     },
     mounted() {
         this.getMessages();
-        window.Echo.channel('ChatMessageChannel').listen('ChatMessageEvent', (e) => {
-            if (e && e.type === 'store' && e.message) {
-                const { message } = e;
+        this.$options.sockets.onmessage = (data) => {
+            if (data && data.data) {
+                const message = parseSocketMessage(data.data);
 
-                if (message.receiverId === this.$store.state.user.id && message.senderId === Number(this.$route.params.id)) {
-                    this.getMessages();
+                if (message && message.eventType === EventType.Store && message.receiverId === this.$store.state.user.id) {
+
                 }
             }
-        });
+        }
     },
     watch: {
         '$route.params.id': function () {

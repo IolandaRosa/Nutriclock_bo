@@ -63,7 +63,7 @@
 <script type="text/javascript">
 /*jshint esversion: 6 */
 import ChatResponseModal from '../modals/ChatResponseModal';
-import {ROUTE} from "../../utils/routes";
+import { ROUTE } from '../../utils/routes';
 
 export default {
     data() {
@@ -122,7 +122,8 @@ export default {
 
             axios.put(`api/messages/read/${id}`).then(() => {
                 this.isFetching = false;
-                this.getUnreadMessages();
+                const value = this.$store.state.unread - 1;
+                this.$store.commit('setUnread', value);
             }).catch(() => {
                 this.isFetching = false;
             })

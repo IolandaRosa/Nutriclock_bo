@@ -4,3 +4,8 @@ export const UserRoles = {
     Professional: 'PROFESSIONAL',
     Intern: 'INTERN',
 };
+
+export const EventType = {
+    Store: 'store',
+    OneRead: 'oneRead',
+};

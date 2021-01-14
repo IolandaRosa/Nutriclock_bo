@@ -1,4 +1,6 @@
 /*jshint esversion: 6 */
+import {parseSocketMessage} from "./utils/misc";
+
 require('./bootstrap');
 require('datatables.net-responsive-bs4');
 window.Vue = require('vue');
@@ -22,6 +24,9 @@ locale.use(lang);
 
 import VueDataTables from 'vue-data-tables';
 Vue.use(VueDataTables);
+
+import VueNativeSock from 'vue-native-websocket';
+Vue.use(VueNativeSock, 'wss://nutriclock-websocket.herokuapp.com');
 
 import Topbar from './components/navigation/Topbar';
 import Sidebar from './components/navigation/Sidebar';

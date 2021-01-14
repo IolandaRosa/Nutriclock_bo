@@ -87,3 +87,22 @@ export const parseMonth = (month) => {
         case '12': return 'Dezembro';
     }
 }
+
+export const parseSocketMessage = (data) => {
+    try {
+        const parsedArray = String(data).replaceAll('"', "").split(":");
+        const eventType = parsedArray[1].split(",")[0];
+        const receiverId = parsedArray[6].split(",")[0];
+
+        return {
+            eventType,
+            receiverId
+        };
+    } catch (e) {
+        return null;
+    }
+}
+
+export const makeSocketEvent = (type, message) => {
+    return `"{type:'${type}',message:{senderId:${message.senderId},senderName:${message.senderName},senderPhotoUrl:${message.senderPhotoUrl},receiverId:${message.receiverId},receiverName:${message.receiverName},receiverPhotoUrl:${message.receiverPhotoUrl},message:${message.message},read:${message.read},refMessageId:${message.refMessageId}}}"`;
+}
