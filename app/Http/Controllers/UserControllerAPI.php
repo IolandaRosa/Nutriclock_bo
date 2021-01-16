@@ -328,25 +328,14 @@ class UserControllerAPI extends Controller
         }
 
         $meals = Meal::where('userId', $user->id)->get();
-        $sleeps = Sleep::where('userId', $user->id)->get();
+        Sleep::where('userId', $user->id)->forceDelete();
+        Message::where('senderId', $user->id)->forceDelete();
+        Message::where('receiverId', $user->id)->forceDelete();
 
         if ($meals) {
             foreach ($meals as $meal) {
-                $nutritionalInfos = NutritionalInfo::where('mealId', $meal->id);
-
-                if ($nutritionalInfos) {
-                    foreach ($nutritionalInfos as $nutritionalInfo) {
-                        $nutritionalInfo->forceDelete();
-                    }
-                }
-
+                NutritionalInfo::where('mealId', $meal->id)->forceDelete();
                 $meal->forceDelete();
-            }
-        }
-
-        if ($sleeps) {
-            foreach ($sleeps as $sleep) {
-                $sleep->forceDelete();
             }
         }
 

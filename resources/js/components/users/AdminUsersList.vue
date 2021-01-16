@@ -141,6 +141,7 @@ export default {
             this.showDetailsModal = true;
         },
         async handleSuccess(message) {
+            this.selectedUserId = null;
             this.isFetching = false;
             if (message) this.showMessage(message, 'success');
             this.close();

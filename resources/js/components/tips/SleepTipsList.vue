@@ -166,7 +166,7 @@ export default {
             this.isFetching = true;
             if (this.selectedRow) {
                 axios.delete(`api/tips/${this.selectedTipId}`).then(() => {
-                    this.isFetching = false;
+                    this.resetData();
                     this.data.splice(this.data.indexOf(this.selectedRow), 1);
                     redrawTable(this.dataTable, this.data);
                     this.showConfirmationModal = false;
@@ -175,11 +175,14 @@ export default {
                 });
             }
         },
-        async handleSuccess() {
+        resetData() {
             this.isFetching = false;
             this.selectedTipDescription = '';
             this.selectedTipId = '';
             this.selectedRow = null;
+        },
+        async handleSuccess() {
+            this.resetData();
             await this.getSleepTips();
             redrawTable(this.dataTable, this.data);
         },
