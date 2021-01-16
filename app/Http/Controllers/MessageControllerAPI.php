@@ -16,11 +16,20 @@ class MessageControllerAPI extends Controller
         $message->save();
 
         if ($request->refMessageId) {
-            $messageMarkReads = Message::where('senderId', $request->receiverId)->where('receiverId', $request->senderId)->get();
-            if ($messageMarkReads) {
-                foreach ($messageMarkReads as $messageMarkRead) {
-                    $messageMarkRead->read = true;
-                    $messageMarkRead->save();
+            if ($request->fromModal) {
+                $m = Message::find($request->refMessageId);
+
+                if ($m) {
+                    $m->read = true;
+                    $m->save();
+                }
+            } else {
+                $messageMarkReads = Message::where('senderId', $request->receiverId)->where('receiverId', $request->senderId)->get();
+                if ($messageMarkReads) {
+                    foreach ($messageMarkReads as $messageMarkRead) {
+                        $messageMarkRead->read = true;
+                        $messageMarkRead->save();
+                    }
                 }
             }
         }

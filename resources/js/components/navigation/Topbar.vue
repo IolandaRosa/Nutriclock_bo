@@ -103,6 +103,9 @@
                     }
                 }
             }
+        },
+        unmounted() {
+            delete this.$options.sockets.onmessage;
         }
     };
 </script>

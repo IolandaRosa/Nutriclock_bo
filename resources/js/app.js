@@ -26,7 +26,13 @@ import VueDataTables from 'vue-data-tables';
 Vue.use(VueDataTables);
 
 import VueNativeSock from 'vue-native-websocket';
-Vue.use(VueNativeSock, 'wss://nutriclock-websocket.herokuapp.com');
+/* Vue.use(VueNativeSock, 'wss://nutriclock-websocket.herokuapp.com', {
+    reconnection: true
+}); */
+
+Vue.use(VueNativeSock, 'ws://localhost:3000', {
+    reconnection: true
+});
 
 import Topbar from './components/navigation/Topbar';
 import Sidebar from './components/navigation/Sidebar';

@@ -49,6 +49,8 @@
 /*jshint esversion: 6 */
 
 import { ERROR_MESSAGES, isEmptyField } from '../../utils/validations';
+import {makeSocketEvent} from "../../utils/misc";
+import {EventType} from "../../constants/misc";
 
 export default {
     props: ['message'],
@@ -75,7 +77,7 @@ export default {
 
             if (this.isFetching) return;
             this.isFetching = true;
-            axios.post('api/messages', {
+            const dataToSend = {
                 senderId: this.$store.state.user.id,
                 senderName: this.$store.state.user.name,
                 senderPhotoUrl: this.$store.state.user.avatarUrl,
@@ -85,8 +87,12 @@ export default {
                 message: this.response,
                 refMessageId: this.selectedMessage.id,
                 read: false,
-            }).then(() => {
+                fromModal: true,
+            };
+            
+            axios.post('api/messages', dataToSend).then(() => {
                 this.isFetching = false;
+                this.$socket.send(makeSocketEvent(EventType.Store, dataToSend));
                 this.$emit('save');
             }).catch(() => {
                 this.isFetching = false;

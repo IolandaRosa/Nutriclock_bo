@@ -142,6 +142,7 @@ export default {
                 message: this.response,
                 refMessageId: this.getRefMessageId(),
                 read: false,
+                fromModal: false,
             }
 
             if (selectedContact) {
@@ -150,7 +151,6 @@ export default {
                     this.showInputField = false;
                     this.response = '';
                     this.errors.response = null;
-                    this.getMessages();
                     this.$socket.send(makeSocketEvent(EventType.Store, dataToSend));
                 }).catch(() => {
                     this.isFetching = false;
@@ -217,8 +217,12 @@ export default {
             if (data && data.data) {
                 const message = parseSocketMessage(data.data);
 
-                if (message && message.eventType === EventType.Store && message.receiverId === this.$store.state.user.id) {
-
+                if (Number(message.senderId) === this.$store.state.user.id) {
+                    this.getMessages();
+                    axios.get('/api/messages/unread-count').then(response => {
+                        const { data } = response;
+                        this.$store.commit('setUnread', data.data);
+                    }).catch(() => {})
                 }
             }
         }
