@@ -91,9 +91,9 @@ export const parseMonth = (month) => {
 export const parseSocketMessage = (data) => {
     try {
         const parsedArray = String(data).replaceAll("'", "").split(":");
-        const eventType = parsedArray[1].split(",")[0];
-        const receiverId = parsedArray[6].split(",")[0];
-        const senderId = parsedArray[3].split(",")[0];
+        const eventType = parsedArray[1].split(",")[0].trim();
+        const receiverId = parsedArray[6].split(",")[0].trim();
+        const senderId = parsedArray[3].split(",")[0].trim();
 
         return {
             eventType,

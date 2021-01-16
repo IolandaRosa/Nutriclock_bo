@@ -217,7 +217,8 @@ export default {
             if (data && data.data) {
                 const message = parseSocketMessage(data.data);
 
-                if (Number(message.senderId) === this.$store.state.user.id) {
+                if (Number(message.senderId) === this.$store.state.user.id
+                || Number(message.receiverId) === this.$store.state.user.id) {
                     this.getMessages();
                     axios.get('/api/messages/unread-count').then(response => {
                         const { data } = response;
