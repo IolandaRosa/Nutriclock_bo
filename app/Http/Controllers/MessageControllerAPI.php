@@ -89,6 +89,6 @@ class MessageControllerAPI extends Controller
             ->skip($skipPages)
             ->get();
 
-        return \App\Http\Resources\Message::collection($messages->reverse());
+        return \App\Http\Resources\Message::collection($messages);
     }
 }
