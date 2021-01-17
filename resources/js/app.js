@@ -26,8 +26,8 @@ import VueDataTables from 'vue-data-tables';
 Vue.use(VueDataTables);
 
 import VueNativeSock from 'vue-native-websocket';
-// 'wss://nutriclock-websocket.herokuapp.com'
-Vue.use(VueNativeSock, 'ws://localhost:3000', {
+// 'ws://localhost:3000'
+Vue.use(VueNativeSock, 'wss://nutriclock-websocket.herokuapp.com', {
     reconnection: true
 });
 

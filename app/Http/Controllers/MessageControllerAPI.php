@@ -81,8 +81,14 @@ class MessageControllerAPI extends Controller
 
     public function getMessagesFromUser(Request $request, $id) {
         $authId = Auth::guard('api')->id();
-        $messages = Message::whereIn('receiverId', [$authId, $id])->whereIn('senderId', [$authId, $id])->get();
+        $skipPages = $request->query('skip', '0');
+        $messages = Message::whereIn('receiverId', [$authId, $id])
+            ->whereIn('senderId', [$authId, $id])
+            ->orderBy('created_at', 'desc')
+            ->take(10)
+            ->skip($skipPages)
+            ->get();
 
-        return \App\Http\Resources\Message::collection($messages);
+        return \App\Http\Resources\Message::collection($messages->reverse());
     }
 }

@@ -25,7 +25,7 @@
                     </div>
                 </div>
             </div>
-            <div class="p-3 text-dark bg-light rounded with-overflow mobile">
+            <div class="p-3 text-dark bg-light rounded with-overflow mobile" id="inputContainer">
                 <div v-if="!messages || messages.length === 0" class="text-center font-weight-bold mt-4">
                     Clica num contacto para veres o histórico de conversas
                 </div>
@@ -158,6 +158,13 @@ export default {
                 });
             }
         },
+        scrollToElement() {
+           /* const out = document.getElementById("input-container");
+            const isScrolledToBottom = out.scrollHeight - out.clientHeight <= out.scrollTop + 1;
+            if(isScrolledToBottom)
+                out.scrollTop = out.scrollHeight - out.clientHeight;*/
+            $('#inputContainer').scrollTop($('.demo')[0].scrollHeight);
+        },
         showMessage(message, className) {
             this.$toasted.show(message, {
                 type: className,
@@ -227,6 +234,10 @@ export default {
                 }
             }
         }
+        this.scrollToElement();
+    },
+    updated() {
+        this.scrollToElement();
     },
     watch: {
         '$route.params.id': function () {
