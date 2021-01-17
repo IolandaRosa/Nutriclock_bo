@@ -78,7 +78,7 @@
                 });
             },
             setAltImage(event) {
-                event.target.src = 'https://nutriclock.s3-eu-west-1.amazonaws.com/images/avatar.jpg'
+                event.target.src = '/images/avatar.jpg';
             }
         },
         components: {

@@ -74,7 +74,8 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button type="button" v-show="!showInputField" class="btn btn-sm btn-outline-dark" @click="() => { this.showInputField = true; }">
+                        <button type="button" v-show="!showInputField" class="btn btn-sm btn-outline-dark"
+                                @click="() => { this.showInputField = true; }">
                             Nova Mensagem
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-chat-quote-fill" viewBox="0 0 16 16">
@@ -92,17 +93,19 @@
 <script type="text/javascript">
 /*jshint esversion: 6 */
 
-import { ROUTE } from '../../utils/routes';
-import { ERROR_MESSAGES, isEmptyField } from '../../utils/validations';
-import { makeSocketEvent, parseSocketMessage } from '../../utils/misc';
-import { EventType } from '../../constants/misc';
+import {ROUTE} from '../../utils/routes';
+import {ERROR_MESSAGES, isEmptyField} from '../../utils/validations';
+import {makeSocketEvent, parseSocketMessage} from '../../utils/misc';
+import {EventType} from '../../constants/misc';
+import {sortBy} from 'lodash';
 
 export default {
     data() {
         return {
+            loadMore: true,
             contacts: [],
             messagesHistory: [],
-            messages: [],
+            messages: {},
             response: null,
             showInputField: false,
             isFetching: false,
@@ -159,11 +162,8 @@ export default {
             }
         },
         scrollToElement() {
-           /* const out = document.getElementById("input-container");
-            const isScrolledToBottom = out.scrollHeight - out.clientHeight <= out.scrollTop + 1;
-            if(isScrolledToBottom)
-                out.scrollTop = out.scrollHeight - out.clientHeight;*/
-            $('#inputContainer').scrollTop($('.demo')[0].scrollHeight);
+            const element = document.getElementById("inputContainer");
+            element.scrollTop = element.scrollHeight;
         },
         showMessage(message, className) {
             this.$toasted.show(message, {
@@ -178,7 +178,7 @@ export default {
             if (this.isFetching) return;
             this.isFetching = true;
 
-            axios.get('api/messages').then(response => {
+            axios.get(`api/messages?skip=${Object.keys(this.messages).length}`).then(response => {
                 this.isFetching = false;
                 if (response.data.contacts) {
                     this.contacts = response.data.contacts;
@@ -187,8 +187,11 @@ export default {
                 if (response.data.messagesHistory) {
                     this.messagesHistory = response.data.messagesHistory;
 
-                    if (this.$route.params.id) {
-                        this.messages = this.messagesHistory[this.$route.params.id];
+                    if (this.$route.params.id && this.loadMore) {
+                        if (this.messagesHistory[this.$route.params.id].lenght === 0) this.loadMore = false;
+                        this.messages.push(...this.messagesHistory[this.$route.params.id]) ;
+                        this.messages = sortBy(this.messages, 'id');
+
                     }
                 }
             }).catch((error) => {
@@ -213,28 +216,34 @@ export default {
         getRefMessageId() {
             let refId = null;
             if (this.messages && this.messages.length > 0) {
-                refId = this.messages[this.messages.length -1].id;
+                refId = this.messages[this.messages.length - 1].id;
             }
             return refId;
+        },
+        isTheTop() {
+            if (this.loadMore && document.getElementById("inputContainer").scrollTop <= 0) {
+                this.getMessages();
+            }
         }
     },
     mounted() {
+        document.getElementById("inputContainer").onscroll = this.isTheTop;
         this.getMessages();
         this.$options.sockets.onmessage = (data) => {
             if (data && data.data) {
                 const message = parseSocketMessage(data.data);
 
                 if (Number(message.senderId) === this.$store.state.user.id
-                || Number(message.receiverId) === this.$store.state.user.id) {
+                    || Number(message.receiverId) === this.$store.state.user.id) {
                     this.getMessages();
                     axios.get('/api/messages/unread-count').then(response => {
-                        const { data } = response;
+                        const {data} = response;
                         this.$store.commit('setUnread', data.data);
-                    }).catch(() => {})
+                    }).catch(() => {
+                    })
                 }
             }
         }
-        this.scrollToElement();
     },
     updated() {
         this.scrollToElement();
@@ -242,6 +251,7 @@ export default {
     watch: {
         '$route.params.id': function () {
             this.messages = this.messagesHistory[this.$route.params.id];
+            this.loadMore = true;
         }
     },
 }

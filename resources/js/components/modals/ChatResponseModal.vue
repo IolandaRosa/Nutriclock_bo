@@ -4,7 +4,7 @@
             <div class="modal-wrapper">
                 <div class="modal-container">
                     <div class="modal-body text-dark" style="margin: 0">
-                        <div class="card bg-primary text-light" @click="() => { this.showMessageSend = !this.showMessageSend }">
+                        <div v-if="message !== null" class="card bg-primary text-light" @click="() => { this.showMessageSend = !this.showMessageSend }">
                             <div class="card-header px-3 d-flex align-items-center">
                                 <div class="pointer font-weight-bolder flex-grow-1">Messagem Recebida</div>
                                 <svg v-show="!showMessageSend" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
@@ -49,11 +49,11 @@
 /*jshint esversion: 6 */
 
 import { ERROR_MESSAGES, isEmptyField } from '../../utils/validations';
-import {makeSocketEvent} from "../../utils/misc";
-import {EventType} from "../../constants/misc";
+import { makeSocketEvent } from '../../utils/misc';
+import { EventType } from '../../constants/misc';
 
 export default {
-    props: ['message'],
+    props: ['message', 'user'],
     data() {
         return {
             selectedMessage: null,
@@ -77,19 +77,22 @@ export default {
 
             if (this.isFetching) return;
             this.isFetching = true;
+            const receiverId = this.selectedMessage ? this.selectedMessage.senderId : this.user.id;
+            const receiverName = this.selectedMessage ? this.selectedMessage.senderName : this.user.name;
+            const receiverPhotoUrl = this.selectedMessage ? this.selectedMessage.senderPhotoUrl : this.user.avatarUrl;
             const dataToSend = {
                 senderId: this.$store.state.user.id,
                 senderName: this.$store.state.user.name,
                 senderPhotoUrl: this.$store.state.user.avatarUrl,
-                receiverId: this.selectedMessage.senderId,
-                receiverName: this.selectedMessage.senderName,
-                receiverPhotoUrl: this.selectedMessage.senderPhotoUrl,
+                receiverId,
+                receiverName,
+                receiverPhotoUrl,
                 message: this.response,
-                refMessageId: this.selectedMessage.id,
+                refMessageId: this.selectedMessage ? this.selectedMessage.id : -1,
                 read: false,
                 fromModal: true,
             };
-            
+
             axios.post('api/messages', dataToSend).then(() => {
                 this.isFetching = false;
                 this.$socket.send(makeSocketEvent(EventType.Store, dataToSend));
