@@ -90,7 +90,7 @@ export default {
                 message: this.response,
                 refMessageId: this.selectedMessage ? this.selectedMessage.id : -1,
                 read: false,
-                fromModal: true,
+                fromModal: false,
             };
 
             axios.post('api/messages', dataToSend).then(() => {

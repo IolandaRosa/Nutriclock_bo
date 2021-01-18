@@ -110,6 +110,7 @@ Route::middleware(['auth:api', 'admin'])->put('configs/{id}', 'ConfigurationCont
 Route::middleware(['auth:api', 'professional'])->get('messages/unread', 'MessageControllerAPI@getUnreadMessagesForAuthUser');
 Route::middleware(['auth:api'])->get('messages/unread-count', 'MessageControllerAPI@countUnreadMessagesForAuthUser');
 Route::middleware(['auth:api', 'professional'])->put('messages/read/{id}', 'MessageControllerAPI@markAsRead');
+Route::middleware(['auth:api', 'professional'])->delete('messages/{id}', 'MessageControllerAPI@destroy');
 Route::middleware(['auth:api'])->post('messages', 'MessageControllerAPI@store');
 Route::middleware(['auth:api', 'professional'])->get('messages', 'MessageControllerAPI@messagesHistory');
 

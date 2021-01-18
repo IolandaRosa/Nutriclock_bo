@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProfessionalCategory as ProfessionalCategoryResource;
 use App\Message;
 use App\Http\Resources\Message as MessageResource;
+use App\ProfessionalCategory;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
@@ -95,5 +98,17 @@ class MessageControllerAPI extends Controller
             ->get();
 
         return \App\Http\Resources\Message::collection($messages);
+    }
+
+    public function destroy($id)
+    {
+        if(Auth::guard('api')->user()->role != 'PROFESSIONAL'){
+            return Response::json(['error' => 'Accesso proibido!'], 401);
+        }
+
+        $message=Message::findOrFail($id);
+
+        $message->forceDelete();
+        return new \App\Http\Resources\Message($message);
     }
 }

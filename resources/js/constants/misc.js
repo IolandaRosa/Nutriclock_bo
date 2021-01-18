@@ -8,4 +8,6 @@ export const UserRoles = {
 export const EventType = {
     Store: 'store',
     OneRead: 'oneRead',
+    Delete: 'delete',
+    Update: 'update'
 };
