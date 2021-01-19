@@ -23,7 +23,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="update message done" />
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="update message done">
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -323,13 +325,7 @@
       <workItem from="1610895393723" duration="15029000" />
       <workItem from="1611007422879" duration="7096000" />
       <workItem from="1611095317103" duration="1794000" />
-    </task>
-    <task id="LOCAL-00057" summary="force yy axis to begin at min">
-      <created>1607259877779</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1607259877779</updated>
+      <workItem from="1611097885377" duration="300000" />
     </task>
     <task id="LOCAL-00058" summary="force yy axis to begin at min">
       <created>1607278457644</created>
@@ -667,7 +663,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611097748765</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <task id="LOCAL-00106" summary="Add php xml">
+      <created>1611098117817</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1611098117818</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -706,7 +709,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="changed image background absolute url" />
     <MESSAGE value="solved several bugs from previous meeting" />
     <MESSAGE value="change nutritional info presentation" />
     <MESSAGE value="Add meal update" />
@@ -731,7 +733,8 @@
     <MESSAGE value="Add send message from users list" />
     <MESSAGE value="delete message done" />
     <MESSAGE value="update message done" />
-    <option name="LAST_COMMIT_MESSAGE" value="update message done" />
+    <MESSAGE value="Add php xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add php xml" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="76" key="#Inspections" timestamp="1605567763677">
