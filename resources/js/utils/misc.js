@@ -1,3 +1,5 @@
+import {EventType} from "../constants/misc";
+
 export const renderGender = gender => {
     if (gender === 'MALE') return 'Masculino';
     return 'Feminino';
@@ -106,5 +108,6 @@ export const parseSocketMessage = (data) => {
 }
 
 export const makeSocketEvent = (type, message) => {
-    return `"{type:'${type}',message:{senderId:${message.senderId},senderName:${message.senderName},senderPhotoUrl:${message.senderPhotoUrl},receiverId:${message.receiverId},receiverName:${message.receiverName},receiverPhotoUrl:${message.receiverPhotoUrl},message:${message.message},read:${message.read},refMessageId:${message.refMessageId}}}"`;
+    const id = type === EventType.Delete || type === EventType.Update ? `,id: ${message.id}`: '';
+    return `"{type:'${type}',message:{senderId:${message.senderId},senderName:${message.senderName},senderPhotoUrl:${message.senderPhotoUrl},receiverId:${message.receiverId},receiverName:${message.receiverName},receiverPhotoUrl:${message.receiverPhotoUrl},message:${message.message},read:${message.read},refMessageId:${message.refMessageId}${id}}"`;
 }
