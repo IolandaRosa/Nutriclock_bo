@@ -56,7 +56,8 @@ export const TableActionClasses = {
     Delete: 'delete-control',
     View: 'view-control',
     Resend: 'resend-control',
-    Block: 'block-control'
+    Block: 'block-control',
+    Message: 'message-control',
 }
 
 export const EmptyObject = {
@@ -123,6 +124,15 @@ export const TableActionColumns = {
                 '  <path d="M.5 9a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V9z"/>\n' +
                 '  <path fill-rule="evenodd" d="M8.5 4a3.5 3.5 0 1 1 7 0v3h-1V4a2.5 2.5 0 0 0-5 0v3h-1V4z"/>\n' +
                 '</svg></span>';
+        }
+    },
+    Message: {
+        ...tableActionsGeneralObject,
+        className: TableActionClasses.Message,
+        render: function () {
+            return '<span data-toggle="tooltip" title="Enviar Messagem"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#909399" class="bi bi-chat-left-text-fill" viewBox="0 0 16 16">\n' +
+                '  <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>\n' +
+                '</svg></span>'
         }
     }
 }

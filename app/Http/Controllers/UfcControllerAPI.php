@@ -61,16 +61,16 @@ class UfcControllerAPI extends Controller
         $totalUsfs = UsersUfc::where('ufc_id', $id)->count();
 
         if ($totalUsfs > 0) {
-        return Response::json(['error' => 'Não é possível eliminar pois existem utilizadores associados!'], 400);
+            return Response::json(['error' => 'Não é possível eliminar pois existem utilizadores associados!'], 400);
         }
 
         $ufc=Ufc::findOrFail($id);
-
-        $ufc->delete();
+        $ufc->forceDelete();
         return new UfcResource($ufc);
     }
 
     public function getUserUfcs(Request $request, $id) {
+        $usersUfcs=[];
         if(Auth::guard('api')->user()->role == 'PATIENT'){
             return Response::json(['error' => 'Accesso proibido!'], 401);
         }

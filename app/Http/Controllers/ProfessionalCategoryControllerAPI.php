@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\ProfessionalCategory;
 use App\Http\Resources\ProfessionalCategory as ProfessionalCategoryResource;
@@ -56,9 +57,15 @@ class ProfessionalCategoryControllerAPI extends Controller
             return Response::json(['error' => 'Accesso proibido!'], 401);
         }
 
+        $total = User::where('professionalCategoryId', $id)->count();
+
+        if ($total > 0) {
+            return Response::json(['error' => 'Não é possível eliminar pois existem utilizadores associados!'], 400);
+        }
+
         $professionalCategory=ProfessionalCategory::findOrFail($id);
 
-        $professionalCategory->delete();
+        $professionalCategory->forceDelete();
         return new ProfessionalCategoryResource($professionalCategory);
     }
 }

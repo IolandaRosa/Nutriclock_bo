@@ -205,7 +205,8 @@ export default {
                 this.isFetching = false;
                 this.fetched = true;
                 if (error.response && error.response.status === 401) {
-                    this.$router.push(ROUTE.Login)
+                    this.$store.commit('clearUserAndToken');
+                    this.$router.push({path: ROUTE.Login });
                 }
             });
         }

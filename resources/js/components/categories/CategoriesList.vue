@@ -96,6 +96,9 @@ export default {
     methods: {
         add() {
             this.showModal = true;
+            this.selectedCategoryId = null;
+            this.selectedCategoryName = '';
+            this.selectedRow = null;
             this.modalTitle = 'Nova Categoria Profissional';
         },
         onEditClick(row) {
@@ -115,7 +118,7 @@ export default {
             if (this.selectedRow) {
                 axios.delete(`api/professionalCategories/${this.selectedRow.id}`).then(() => {
                     this.data.splice(this.data.indexOf(this.selectedRow), 1);
-                    this.handleSuccess('Categoria eliminada com sucesso!');
+                    this.handleSuccess('Categoria eliminada com sucesso!', true);
                 }).catch(error => {
                     this.handleError(error);
                 });
@@ -123,10 +126,7 @@ export default {
         },
         onCloseClick() {
             this.showModal = false;
-            this.selectedCategoryId = null;
-            this.selectedCategoryName = '';
             this.showConfirmationModal = false;
-            this.selectedRow = null;
         },
         onSaveClick(name, id) {
             this.showModal = false;
@@ -153,11 +153,11 @@ export default {
                 this.handleError(error);
             });
         },
-        async handleSuccess(message) {
+        async handleSuccess(message, fromDelete) {
             this.isFetching = false;
             if (message) this.showMessage(message, 'success');
             this.onCloseClick();
-            await this.getCategories();
+            if (!fromDelete) await this.getCategories();
             redrawTable(this.dataTable, this.data);
         },
         handleError(error) {
@@ -192,7 +192,8 @@ export default {
             } catch (error) {
                 this.isFetching = false;
                 if (error.response && error.response.status === 401) {
-                    this.$router.push(ROUTE.Login)
+                    this.$store.commit('clearUserAndToken');
+                    this.$router.push({path: ROUTE.Login });
                 }
             }
         }

@@ -271,6 +271,7 @@ a:hover {
     background-color: #7dce65;
     border-color: #7dce65;
     box-shadow: 0 3px 6px #0f0f0f28;
+    z-index: 0 !important;
 }
 
 .details-control:focus {

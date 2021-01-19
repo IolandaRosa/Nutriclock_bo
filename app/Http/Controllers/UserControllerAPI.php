@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Message;
 use App\Sleep;
 use App\Meal;
 use App\NutritionalInfo;
@@ -82,6 +83,26 @@ class UserControllerAPI extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->gender = $request->gender;
+
+            $senderMessages = Message::where('senderId', $id)->get();
+            $receiverMessages = Message::where('receiverId', $id)->get();
+
+
+            if ($senderMessages) {
+                foreach ($senderMessages as $m)  {
+                    $m->senderName = $request->name;
+                    $m->senderPhotoUrl = $user->avatarUrl;
+                    $m->save();
+                }
+            }
+
+        if ($receiverMessages) {
+            foreach ($receiverMessages as $m)  {
+                $m->receiverName = $request->name;
+                $m->receiverPhotoUrl = $user->avatarUrl;
+                $m->save();
+            }
+        }
 
             $user->save();
 
@@ -286,6 +307,8 @@ class UserControllerAPI extends Controller
         }
 
         UsersUfc::where('user_id', $user->id)->forceDelete();
+        Message::where('senderId', $user->id)->forceDelete();
+        Message::where('receiverId', $user->id)->forceDelete();
 
         $user->forceDelete();
 
@@ -305,25 +328,14 @@ class UserControllerAPI extends Controller
         }
 
         $meals = Meal::where('userId', $user->id)->get();
-        $sleeps = Sleep::where('userId', $user->id)->get();
+        Sleep::where('userId', $user->id)->forceDelete();
+        Message::where('senderId', $user->id)->forceDelete();
+        Message::where('receiverId', $user->id)->forceDelete();
 
         if ($meals) {
             foreach ($meals as $meal) {
-                $nutritionalInfos = NutritionalInfo::where('mealId', $meal->id);
-
-                if ($nutritionalInfos) {
-                    foreach ($nutritionalInfos as $nutritionalInfo) {
-                        $nutritionalInfo->forceDelete();
-                    }
-                }
-
+                NutritionalInfo::where('mealId', $meal->id)->forceDelete();
                 $meal->forceDelete();
-            }
-        }
-
-        if ($sleeps) {
-            foreach ($sleeps as $sleep) {
-                $sleep->forceDelete();
             }
         }
 
@@ -335,5 +347,24 @@ class UserControllerAPI extends Controller
         $user->forceDelete();
 
         return new UserResource($user);
+    }
+
+    public function getProfessionalByUsf(Request $request, $id) {
+        $users = [];
+        $userIds = UsersUfc::where('ufc_id', $id)->get('user_id');
+
+        if ($userIds) {
+            foreach ($userIds as $userId) {
+                $user = User::find($userId);
+                $unreadMessages = Message::where('senderId', $user->first()->id)->where('receiverId', Auth::guard('api')->user()->id)->where('read', 0)->count();
+
+                if ($user && $user->first()->role === 'PROFESSIONAL') {
+                    $user->first()->unreadMessages = $unreadMessages;
+                    array_push($users, $user->first());
+                }
+            }
+        }
+
+        return Response::json(['data' => $users, ], 200);
     }
 }

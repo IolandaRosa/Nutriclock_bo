@@ -111,6 +111,10 @@ export default {
     },
     methods: {
         add() {
+            this.selectedDiseaseId = null;
+            this.selectedDiseaseName = '';
+            this.selectedDiseaseType = null;
+            this.selectedRow = null;
             this.showModal = true;
             this.modalTitle = 'Adicionar Patologia / Alergia Alimentar';
         },
@@ -153,11 +157,7 @@ export default {
         ,
         onCloseClick() {
             this.showModal = false;
-            this.selectedDiseaseId = null;
-            this.selectedDiseaseName = '';
-            this.selectedDiseaseType = null;
             this.showConfirmationModal = false;
-            this.selectedRow = null;
         }
         ,
         onSaveClick(name, type, id) {
@@ -185,8 +185,7 @@ export default {
             }).catch(error => {
                 this.handleError(error);
             });
-        }
-        ,
+        },
         async handleSuccess(message) {
             this.isFetching = false;
             if (message) this.showMessage(message, 'success');
@@ -247,7 +246,8 @@ export default {
             } catch (error) {
                 this.isFetching = false;
                 if (error.response && error.response.status === 401) {
-                    this.$router.push(ROUTE.Login)
+                    this.$store.commit('clearUserAndToken');
+                    this.$router.push({path: ROUTE.Login });
                 }
             }
         },

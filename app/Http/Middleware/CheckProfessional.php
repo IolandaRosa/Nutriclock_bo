@@ -19,7 +19,7 @@ class CheckProfessional
             return $next($request);
         }
 
-        if ($request->user() && ($request->user()->role == 'PROFESSIONAL' || $request->user()->role != 'ADMIN')) {
+        if ($request->user() && ($request->user()->role != 'PROFESSIONAL' || $request->user()->role != 'ADMIN')) {
             abort(403);
         }
 

@@ -103,6 +103,9 @@
                 }).then(response => {
                     if (response.data.data.role === UserRoles.Patient) throw new Error();
                     this.$store.commit('setUser', response.data.data);
+                    return axios.get('api/messages/unread-count');
+                }).then(response => {
+                    this.$store.commit('setUnread', response.data.data);
                     this.$router.push({path: ROUTE.AdminUsers});
                     this.isFetching = false;
                 }).catch(() => {

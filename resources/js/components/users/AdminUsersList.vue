@@ -141,6 +141,7 @@ export default {
             this.showDetailsModal = true;
         },
         async handleSuccess(message) {
+            this.selectedUserId = null;
             this.isFetching = false;
             if (message) this.showMessage(message, 'success');
             this.close();
@@ -193,7 +194,8 @@ export default {
             } catch (error) {
                 this.isFetching = false;
                 if (error.response && error.response.status === 401) {
-                    this.$router.push(ROUTE.Login)
+                    this.$store.commit('clearUserAndToken');
+                    this.$router.push({path: ROUTE.Login });
                 }
             }
         },

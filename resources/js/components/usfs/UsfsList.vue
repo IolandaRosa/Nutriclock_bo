@@ -96,6 +96,9 @@ export default {
     methods: {
         add() {
             this.showModal = true;
+            this.selectedUsfId = null;
+            this.selectedUsfName = '';
+            this.selectedRow = null;
             this.modalTitle = 'Nova USF';
         },
         onEditClick(row) {
@@ -115,7 +118,7 @@ export default {
             if (this.selectedRow) {
                 axios.delete(`api/ufcs/${this.selectedRow.id}`).then(() => {
                     this.data.splice(this.data.indexOf(this.selectedRow), 1);
-                    this.handleSuccess('UFS eliminada com sucesso!');
+                    this.handleSuccess('UFS eliminada com sucesso!', true);
                 }).catch(error => {
                     this.handleError(error);
                 });
@@ -123,9 +126,6 @@ export default {
         },
         onCloseClick() {
             this.showModal = false;
-            this.selectedUsfId = null;
-            this.selectedUsfName = '';
-            this.selectedRow = null;
             this.showConfirmationModal = false;
         },
         onSaveClick(name, id) {
@@ -153,11 +153,11 @@ export default {
                 this.handleError(error);
             });
         },
-        async handleSuccess(message) {
+        async handleSuccess(message, fromDelete) {
             this.isFetching = false;
             if (message) this.showMessage(message, 'success');
             this.onCloseClick();
-            await this.getUsfs();
+            if (!fromDelete) await this.getUsfs();
             redrawTable(this.dataTable, this.data);
         },
         handleError(error) {
@@ -165,6 +165,12 @@ export default {
             const {response} = error;
             let message = ERROR_MESSAGES.unknownError;
             if (response) {
+                if (response.status === 401) {
+                    this.$store.commit('clearUserAndToken');
+                    this.$router.push({path: ROUTE.Login });
+                    return;
+                }
+
                 const {data} = response;
                 if (data && data.errors && data.errors.name) {
                     message = ERROR_MESSAGES.alreadyExistingUSF;

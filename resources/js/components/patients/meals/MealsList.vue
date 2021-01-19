@@ -8,7 +8,7 @@
                     </h3>
                 </div>
                 <div class="component-wrapper-body">
-                    <div v-show="meals.length === 0" class="text-dark mt-2 font-weight-bold">
+                    <div v-if="!meals || meals.length === 0" class="text-dark mt-2 font-weight-bold">
                         Não existem registos.
                     </div>
                     <MealListItem :key="index" v-for="(d, index) in meals" :meal="d" :date="index"
@@ -51,7 +51,8 @@ export default {
             }).catch((error) => {
                 this.isFetching = false;
                 if (error.response && error.response.status === 401) {
-                    this.$router.push(ROUTE.Login)
+                    this.$store.commit('clearUserAndToken');
+                    this.$router.push({path: ROUTE.Login });
                 }
             });
         },

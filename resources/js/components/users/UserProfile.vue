@@ -264,10 +264,11 @@ export default {
         axios.get('api/professionalCategories').then(response => {
             this.isFetching = false;
             this.userCategory = getCategoryNameById(this.$store.state.user.professionalCategoryId, response.data.data);
-        }).catch(() => {
+        }).catch((error) => {
             this.isFetching = false;
             if (error.response && error.response.status === 401) {
-                this.$router.push(ROUTE.Login)
+                this.$store.commit('clearUserAndToken');
+                this.$router.push({path: ROUTE.Login });
             }
         });
     },

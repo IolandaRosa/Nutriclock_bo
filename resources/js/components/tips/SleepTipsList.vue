@@ -7,7 +7,7 @@
                         Dicas de Sono
                     </h3>
                     <div class="component-wrapper-right">
-                        <button class="btn-bold btn btn-primary" v-on:click.prevent="add" type="button"
+                        <button v-if="$store.state.user && $store.state.user.role === 'ADMIN'" class="btn-bold btn btn-primary" v-on:click.prevent="add" type="button"
                                 data-toggle="tooltip"
                                 title="Nova Dica">
                     <span v-if="isFetching" class="spinner-border spinner-border-sm" role="status"
@@ -69,6 +69,7 @@ import {
 import AddCategory from '../modals/AddCategory';
 import ConfirmationModal from '../modals/ConfirmationModal';
 import {ERROR_MESSAGES} from '../../utils/validations';
+import {UserRoles} from "../../constants/misc";
 
 export default {
     data() {
@@ -93,8 +94,6 @@ export default {
             ],
             columns: [
                 {data: 'description'},
-                TableActionColumns.Edit,
-                TableActionColumns.Delete,
             ],
         };
     },
@@ -131,7 +130,8 @@ export default {
             } catch (error) {
                 this.isFetching = false;
                 if (error.response && error.response.status === 401) {
-                    this.$router.push(ROUTE.Login)
+                    this.$store.commit('clearUserAndToken');
+                    this.$router.push({path: ROUTE.Login });
                 }
             }
         },
@@ -166,7 +166,7 @@ export default {
             this.isFetching = true;
             if (this.selectedRow) {
                 axios.delete(`api/tips/${this.selectedTipId}`).then(() => {
-                    this.isFetching = false;
+                    this.resetData();
                     this.data.splice(this.data.indexOf(this.selectedRow), 1);
                     redrawTable(this.dataTable, this.data);
                     this.showConfirmationModal = false;
@@ -175,11 +175,14 @@ export default {
                 });
             }
         },
-        async handleSuccess() {
+        resetData() {
             this.isFetching = false;
             this.selectedTipDescription = '';
             this.selectedTipId = '';
             this.selectedRow = null;
+        },
+        async handleSuccess() {
+            this.resetData();
             await this.getSleepTips();
             redrawTable(this.dataTable, this.data);
         },
@@ -206,9 +209,15 @@ export default {
     },
     async mounted() {
         await this.getSleepTips();
+        if (this.$store.state.user.role === UserRoles.Admin) {
+            this.columns.push(TableActionColumns.Edit);
+            this.columns.push(TableActionColumns.Delete);
+        }
         this.dataTable = await initDataTable('#sleepTipsTable', this.data, this.columns);
-        onClickHandler(this.dataTable, this.onEditClick, '#sleepTipsTable', TableActionClasses.Edit);
-        onClickHandler(this.dataTable, this.onDeleteClick, '#sleepTipsTable', TableActionClasses.Delete);
+        if (this.$store.state.user.role === UserRoles.Admin) {
+            onClickHandler(this.dataTable, this.onEditClick, '#sleepTipsTable', TableActionClasses.Edit);
+            onClickHandler(this.dataTable, this.onDeleteClick, '#sleepTipsTable', TableActionClasses.Delete);
+        }
     },
     components: {
         AddCategory,

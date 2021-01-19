@@ -73,9 +73,9 @@ Route::middleware(['auth:api', 'patient'])->post('meals/{id}', 'MealControllerAP
 Route::middleware(['auth:api', 'patient'])->delete('meals/{id}', 'MealControllerAPI@destroy');
 Route::middleware(['auth:api', 'patient'])->post('meals/{id}/photo', 'MealControllerAPI@updateMealImage');
 Route::middleware(['auth:api', 'patient'])->put('meals-update/{id}', 'MealControllerAPI@update');
-Route::middleware(['auth:api', 'professional'])->put('meals/{id}', 'MealControllerAPI@updateQuantity');
-Route::middleware(['auth:api', 'professional'])->get('meals/{id}/user', 'MealControllerAPI@getMealsByUser');
-Route::middleware(['auth:api', 'professional'])->get('meals/{id}/nutritional', 'MealControllerAPI@getNutritionalInfoByUser');
+Route::middleware(['auth:api', 'intern'])->put('meals/{id}', 'MealControllerAPI@updateQuantity');
+Route::middleware(['auth:api', 'intern'])->get('meals/{id}/user', 'MealControllerAPI@getMealsByUser');
+Route::middleware(['auth:api', 'intern'])->get('meals/{id}/nutritional', 'MealControllerAPI@getNutritionalInfoByUser');
 
 // Static nutritional info
 Route::get('meal-names', 'NutritionalInfoStaticControllerAPI@getNames');
@@ -88,9 +88,9 @@ Route::middleware(['auth:api', 'professional'])->put('nutrititional-info/meal/{i
 Route::middleware(['auth:api', 'patient'])->post('sleeps', 'SleepControllerAPI@store');
 Route::middleware(['auth:api', 'patient'])->get('sleepsByDate', 'SleepControllerAPI@getSleepDates');
 Route::middleware(['auth:api', 'patient'])->get('sleeps/myStats', 'SleepControllerAPI@getSleepStatsForAuthUser');
-Route::middleware(['auth:api', 'professional'])->get('sleeps/export', 'SleepControllerAPI@export');
-Route::middleware(['auth:api', 'professional'])->get('sleeps/{id}', 'SleepControllerAPI@show');
-Route::middleware(['auth:api', 'professional'])->get('sleeps/stats/{id}', 'SleepControllerAPI@getSleepStatsByUser');
+Route::middleware(['auth:api', 'intern'])->get('sleeps/export', 'SleepControllerAPI@export');
+Route::middleware(['auth:api', 'intern'])->get('sleeps/{id}', 'SleepControllerAPI@show');
+Route::middleware(['auth:api', 'intern'])->get('sleeps/stats/{id}', 'SleepControllerAPI@getSleepStatsByUser');
 
 // Mobile Stats
 Route::middleware(['auth:api', 'patient'])->get('/stats', 'MobileStatsControllerAPI@getStats');
@@ -105,3 +105,15 @@ Route::middleware(['auth:api', 'admin'])->delete('tips/{id}', 'SleepTipControlle
 Route::middleware(['auth:api'])->get('configs/tips', 'ConfigurationControllerAPI@getTipStatus');
 Route::middleware(['auth:api', 'admin'])->get('configs', 'ConfigurationControllerAPI@index');
 Route::middleware(['auth:api', 'admin'])->put('configs/{id}', 'ConfigurationControllerAPI@update');
+
+//Messages API
+Route::middleware(['auth:api', 'professional'])->get('messages/unread', 'MessageControllerAPI@getUnreadMessagesForAuthUser');
+Route::middleware(['auth:api'])->get('messages/unread-count', 'MessageControllerAPI@countUnreadMessagesForAuthUser');
+Route::middleware(['auth:api', 'professional'])->put('messages/read/{id}', 'MessageControllerAPI@markAsRead');
+Route::middleware(['auth:api', 'professional'])->delete('messages/{id}', 'MessageControllerAPI@destroy');
+Route::middleware(['auth:api', 'professional'])->put('messages/{id}', 'MessageControllerAPI@update');
+Route::middleware(['auth:api'])->post('messages', 'MessageControllerAPI@store');
+Route::middleware(['auth:api', 'professional'])->get('messages', 'MessageControllerAPI@messagesHistory');
+
+Route::middleware(['auth:api', 'patient'])->get('/professionalsByUsf/{id}', 'UserControllerAPI@getProfessionalByUsf');
+Route::middleware(['auth:api', 'patient'])->get('/messagesFromUser/{id}', 'MessageControllerAPI@getMessagesFromUser');
