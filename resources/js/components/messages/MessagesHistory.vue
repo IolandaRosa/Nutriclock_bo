@@ -110,6 +110,11 @@
             @save="this.saveConfirmationModal"
             message="Tem a certeza que deseja eliminar a mensagem selecionada?"
         />
+        <EditMessageModal
+            v-show="showEditMessageModal"
+            @close="this.onCloseClick"
+            @save="this.saveEditMessageModal"
+            :selectedMessage="selectedMessage" />
     </div>
 </template>
 
@@ -128,10 +133,12 @@ import {
 import { EventType } from '../../constants/misc';
 import { sortBy } from 'lodash';
 import ConfirmationModal from '../modals/ConfirmationModal';
+import EditMessageModal from '../modals/EditMessageModal';
 
 export default {
     data() {
         return {
+            showEditMessageModal: null,
             selectedMessage: null,
             showConfirmationModal: false,
             loadMore: true,
@@ -158,7 +165,8 @@ export default {
             }
         },
         updateMessage(item) {
-
+            this.showEditMessageModal = true;
+            this.selectedMessage = item;
         },
         deleteMessage(item) {
             this.showConfirmationModal = true;
@@ -166,6 +174,7 @@ export default {
         },
         onCloseClick(){
             this.showConfirmationModal = false;
+            this.showEditMessageModal = false;
         },
         setAltImage(event) {
             event.target.src = '/images/avatar.jpg'
@@ -180,9 +189,25 @@ export default {
                 this.messages = {};
                 this.loadMore = true;
                 this.$socket.send(makeSocketEvent(EventType.Delete, this.selectedMessage));
-            }).catch(() => {
+            }).catch(error => {
                 this.isFetching = false;
-                this.showMessage('Ocorreu um erro ao eliminar a mensagem', 'error');
+                this.handleError(error);
+            });
+        },
+        saveEditMessageModal(message) {
+            this.onCloseClick();
+            if (this.isFetching) return;
+            this.isFetching = true;
+
+            axios.put(`api/messages/${this.selectedMessage.id}`, {'message': message}).then(() => {
+                this.isFetching = false;
+                this.messages = {};
+                this.loadMore = true;
+                this.selectedMessage.message = message;
+                this.$socket.send(makeSocketEvent(EventType.Update, this.selectedMessage));
+            }).catch(error => {
+                this.isFetching = false;
+                this.handleError(error);
             });
         },
         sendMessage() {
@@ -217,11 +242,29 @@ export default {
                     this.messages = {};
                     this.loadMore = true;
                     this.$socket.send(makeSocketEvent(EventType.Store, dataToSend));
-                }).catch(() => {
+                }).catch((error) => {
                     this.isFetching = false;
-                    this.showMessage('Ocorreu um erro ao enviar a mensagem', 'error');
+                    this.handleError(error);
                 });
             }
+        },
+        handleError(error) {
+            this.isFetching = false;
+            const {response} = error;
+            let message = ERROR_MESSAGES.unknownError;
+            if (response) {
+                if (response.status === 401) {
+                    this.$store.commit('clearUserAndToken');
+                    this.$router.push({path: ROUTE.Login });
+                    return;
+                }
+
+                const {data} = response;
+                if (data && data.error) {
+                    message = data.error;
+                }
+            }
+            this.showMessage(message, 'error');
         },
         scrollToElement() {
             if(this.loadMore === false) return;
@@ -329,6 +372,7 @@ export default {
     },
     components: {
         ConfirmationModal,
+        EditMessageModal,
     }
 }
 </script>

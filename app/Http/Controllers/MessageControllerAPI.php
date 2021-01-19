@@ -106,9 +106,35 @@ class MessageControllerAPI extends Controller
             return Response::json(['error' => 'Accesso proibido!'], 401);
         }
 
-        $message=Message::findOrFail($id);
+        $message=Message::find($id);
+
+        if(!$message) {
+            return Response::json(['error' => 'A mensagem não existe!'], 404);
+        }
+
+        if($message->senderId != Auth::guard('api')->user()->id || $message->read) {
+            return Response::json(['error' => 'A mensagem não pode ser eliminada!'], 400);
+        }
 
         $message->forceDelete();
+        return new \App\Http\Resources\Message($message);
+    }
+
+    public function update(Request $request, $id)
+    {
+        if(Auth::guard('api')->user()->role != 'PROFESSIONAL'){
+            return Response::json(['error' => 'Accesso proibido!'], 401);
+        }
+
+        $message=Message::find($id);
+
+        if(!$message) {
+            return Response::json(['error' => 'A mensagem não existe!'], 404);
+        }
+
+        $message->message = $request->message;
+        $message->save();
+
         return new \App\Http\Resources\Message($message);
     }
 }
