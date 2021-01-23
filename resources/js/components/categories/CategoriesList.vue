@@ -57,17 +57,18 @@
 <script type="text/javascript">
 /*jshint esversion: 6 */
 import AddCategory from '../modals/AddCategory';
-import {ERROR_MESSAGES} from '../../utils/validations';
-import {COLUMN_NAME} from '../../utils/table_elements';
+import { ERROR_MESSAGES } from '../../utils/validations';
+import { COLUMN_NAME } from '../../utils/table_elements';
 import ConfirmationModal from '../modals/ConfirmationModal';
-import {ROUTE} from '../../utils/routes';
+import { ROUTE } from '../../utils/routes';
 import {
     EmptyObject,
     initDataTable,
-    onClickHandler, redrawTable,
+    onClickHandler,
+    redrawTable,
     TableActionClasses,
     TableActionColumns
-} from "../../utils/dataTables";
+} from '../../utils/dataTables';
 
 export default {
     data() {
@@ -95,11 +96,11 @@ export default {
     },
     methods: {
         add() {
-            this.showModal = true;
             this.selectedCategoryId = null;
             this.selectedCategoryName = '';
             this.selectedRow = null;
             this.modalTitle = 'Nova Categoria Profissional';
+            this.showModal = true;
         },
         onEditClick(row) {
             this.selectedCategoryId = row.id;
@@ -193,7 +194,7 @@ export default {
                 this.isFetching = false;
                 if (error.response && error.response.status === 401) {
                     this.$store.commit('clearUserAndToken');
-                    this.$router.push({path: ROUTE.Login });
+                    this.$router.push({path: ROUTE.Login});
                 }
             }
         }

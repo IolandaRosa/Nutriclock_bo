@@ -6,6 +6,8 @@
                      viewBox="0 0 16 16">
                     <path
                         d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0
+                    0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                 </svg>
             </div>
             <h5 class="text-dark mt-2">
@@ -13,15 +15,14 @@
             </h5>
 
             <div class="overflow-auto">
-                <div v-if="!data || data.length === 0"
-                     class="mt-4 text-dark d-flex flex-column justify-content-center text-center">
-                    Não existem mensagens por ler!
-
+                <div class="mt-4 text-dark d-flex flex-column justify-content-center text-center"
+                     v-if="data && data.length === 0">
+                    Não existem mensagens por ler
                     <button class="btn btn-link btn-sm" @click="() => { redirectToMessageHistory(null) }">
                         Ver histórico de mensagens
                     </button>
                 </div>
-                <div v-else class="card text-white bg-primary mt-2" v-for="(item, index) in data">
+                <div class="card text-white bg-primary mt-2" v-for="(item, index) in data" :key="item.id">
                     <div class="card-header d-flex justify-content-end">
                         <button class="btn btn-outline-light mr-1"
                                 @click="() => { redirectToMessageHistory(item.senderId) }">
@@ -64,6 +65,7 @@
 /*jshint esversion: 6 */
 import ChatResponseModal from '../modals/ChatResponseModal';
 import { ROUTE } from '../../utils/routes';
+import { parseSocketMessage } from '../../utils/misc';
 
 export default {
     data() {
@@ -92,13 +94,10 @@ export default {
             });
         },
         getUnreadMessages() {
-            if (this.isFetching) return;
-
-            this.isFetching = true;
+            console.log('get messages')
 
             axios.get('api/messages/unread').then(response => {
                 Object.keys(response.data.data).forEach(key => {
-                    this.isFetching = false;
                     if (response.data.data[key].message.length > 80) {
                         response.data.data[key].cropedMessage = response.data.data[key].message.substring(0, 80) + "...";
                     } else {
@@ -109,7 +108,6 @@ export default {
                 this.data = response.data.data;
                 if (this.$store.state.unread !== response.data.data.length) this.$store.commit('setUnread', response.data.data.length);
             }).catch(error => {
-                this.isFetching = false;
                 if (error.response && error.response.status === 401) {
                     this.$router.push(ROUTE.Login)
                 }
@@ -124,6 +122,7 @@ export default {
                 this.isFetching = false;
                 const value = this.$store.state.unread - 1;
                 this.$store.commit('setUnread', value);
+                this.getUnreadMessages();
             }).catch(() => {
                 this.isFetching = false;
             })
@@ -135,16 +134,18 @@ export default {
     },
     mounted() {
         if (this.$store.state.unread > 0) this.getUnreadMessages();
-    },
-    computed: {
-        count() {
-            return this.$store.state.unread;
-        },
-    },
-    watch: {
-        count() {
-            this.getUnreadMessages();
+
+        this.$options.sockets.onmessage = (data) => {
+            if (data && data.data) {
+                const message = parseSocketMessage(data.data);
+                if (Number(message.receiverId) === this.$store.state.user.id) {
+                    this.getUnreadMessages()
+                }
+            }
         }
+    },
+    unmounted() {
+        delete this.$options.sockets.onmessage;
     },
     components: {
         ChatResponseModal,

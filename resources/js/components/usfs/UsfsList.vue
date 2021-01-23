@@ -57,17 +57,17 @@
 <script type="text/javascript">
 /*jshint esversion: 6 */
 import AddCategory from '../modals/AddCategory';
-import {ERROR_MESSAGES} from '../../utils/validations';
-import {COLUMN_NAME} from '../../utils/table_elements';
+import { ERROR_MESSAGES } from '../../utils/validations';
+import { COLUMN_NAME } from '../../utils/table_elements';
 import ConfirmationModal from '../modals/ConfirmationModal';
-import {ROUTE} from '../../utils/routes';
+import { ROUTE } from '../../utils/routes';
 import {
     EmptyObject,
     initDataTable,
     onClickHandler, redrawTable,
     TableActionClasses,
     TableActionColumns
-} from "../../utils/dataTables";
+} from '../../utils/dataTables';
 
 export default {
     data() {
@@ -95,11 +95,11 @@ export default {
     },
     methods: {
         add() {
-            this.showModal = true;
             this.selectedUsfId = null;
             this.selectedUsfName = '';
             this.selectedRow = null;
             this.modalTitle = 'Nova USF';
+            this.showModal = true;
         },
         onEditClick(row) {
             this.selectedUsfId = row.id;
