@@ -23,7 +23,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="update message done" />
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="add changes from branch chat">
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_01_24_175551_add_id_to_users_ufc_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -326,13 +330,7 @@
       <workItem from="1611097885377" duration="417000" />
       <workItem from="1611098316978" duration="60000" />
       <workItem from="1611098439666" duration="14000" />
-    </task>
-    <task id="LOCAL-00059" summary="correct yy label">
-      <created>1607283259438</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1607283259438</updated>
+      <workItem from="1611510617146" duration="359000" />
     </task>
     <task id="LOCAL-00060" summary="add endpoint for get sleep dates on client">
       <created>1607286193320</created>
@@ -670,7 +668,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611098210976</updated>
     </task>
-    <option name="localTasksCounter" value="108" />
+    <task id="LOCAL-00108" summary="add changes from branch chat">
+      <created>1611506130082</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1611506130083</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -709,7 +714,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="change nutritional info presentation" />
     <MESSAGE value="Add meal update" />
     <MESSAGE value="Add suplement to medication" />
     <MESSAGE value="add medication type on register" />
@@ -734,7 +738,8 @@
     <MESSAGE value="update message done" />
     <MESSAGE value="Add php xml" />
     <MESSAGE value="add compiled file" />
-    <option name="LAST_COMMIT_MESSAGE" value="add compiled file" />
+    <MESSAGE value="add changes from branch chat" />
+    <option name="LAST_COMMIT_MESSAGE" value="add changes from branch chat" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="76" key="#Inspections" timestamp="1605567763677">
@@ -786,11 +791,11 @@
     </state>
     <state x="2681" y="151" key="RollbackChangesDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1609332907425" />
     <state x="609" y="120" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1609020299258" />
-    <state x="2371" y="189" key="Vcs.Push.Dialog.v2" timestamp="1611505852503">
+    <state x="2371" y="189" key="Vcs.Push.Dialog.v2" timestamp="1611506138129">
       <screen x="1920" y="0" width="1920" height="1050" />
     </state>
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1605378114181" />
-    <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1611505852503" />
+    <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1611506138129" />
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1611098224945" />
     <state x="0" y="0" width="1550" height="882" key="dock-window-1" timestamp="1607884751581">
       <screen x="0" y="0" width="1536" height="834" />
