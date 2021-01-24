@@ -130,9 +130,6 @@ import {
     makeSocketEvent,
     parseSocketMessage,
 } from '../../utils/misc';
-import {
-    uniq,
-} from 'lodash';
 import { EventType } from '../../constants/misc';
 import { filter, sortBy } from 'lodash';
 import ConfirmationModal from '../modals/ConfirmationModal';
@@ -306,18 +303,15 @@ export default {
                         const aux = this.messages;
                         Object.keys(this.messagesHistory[this.$route.params.id]).forEach(key => {
                             const el = filter(aux, {'id': this.messagesHistory[this.$route.params.id][key].id});
-
-                            if (!el) {
-                                aux.push(el);
+                            if (!el || el.length === 0) {
+                                aux.push(this.messagesHistory[this.$route.params.id][key]);
                             }
                         })
 
                         this.messages = sortBy(aux, 'id');
-                        console.log('getMessages', aux)
                     }
                 }
             }).catch((error) => {
-                console.log('error', error)
                 if (error.response && error.response.status === 401) {
                     this.$store.commit('clearUserAndToken');
                     this.$router.push({path: ROUTE.Login});
