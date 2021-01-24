@@ -23,11 +23,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="add changes from branch chat">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_01_24_175551_add_id_to_users_ufc_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-    </list>
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="add migration for users_ufc id column" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -330,14 +326,7 @@
       <workItem from="1611097885377" duration="417000" />
       <workItem from="1611098316978" duration="60000" />
       <workItem from="1611098439666" duration="14000" />
-      <workItem from="1611510617146" duration="359000" />
-    </task>
-    <task id="LOCAL-00060" summary="add endpoint for get sleep dates on client">
-      <created>1607286193320</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1607286193320</updated>
+      <workItem from="1611510617146" duration="761000" />
     </task>
     <task id="LOCAL-00061" summary="change endpoint for get sleep dates on client">
       <created>1607286865486</created>
@@ -675,7 +664,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611506130083</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="add migration for users_ufc id column">
+      <created>1611511076509</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1611511076509</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -714,7 +710,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add meal update" />
     <MESSAGE value="Add suplement to medication" />
     <MESSAGE value="add medication type on register" />
     <MESSAGE value="files pointing to production" />
@@ -739,7 +734,8 @@
     <MESSAGE value="Add php xml" />
     <MESSAGE value="add compiled file" />
     <MESSAGE value="add changes from branch chat" />
-    <option name="LAST_COMMIT_MESSAGE" value="add changes from branch chat" />
+    <MESSAGE value="add migration for users_ufc id column" />
+    <option name="LAST_COMMIT_MESSAGE" value="add migration for users_ufc id column" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="76" key="#Inspections" timestamp="1605567763677">
@@ -791,11 +787,11 @@
     </state>
     <state x="2681" y="151" key="RollbackChangesDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1609332907425" />
     <state x="609" y="120" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1609020299258" />
-    <state x="2371" y="189" key="Vcs.Push.Dialog.v2" timestamp="1611506138129">
+    <state x="2371" y="189" key="Vcs.Push.Dialog.v2" timestamp="1611511085493">
       <screen x="1920" y="0" width="1920" height="1050" />
     </state>
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1605378114181" />
-    <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1611506138129" />
+    <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1611511085493" />
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1611098224945" />
     <state x="0" y="0" width="1550" height="882" key="dock-window-1" timestamp="1607884751581">
       <screen x="0" y="0" width="1536" height="834" />
