@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProfessionalCategory as ProfessionalCategoryResource;
+use App\ProfessionalCategory;
 use App\User;
 use Illuminate\Http\Request;
-use App\ProfessionalCategory;
-use App\Http\Resources\ProfessionalCategory as ProfessionalCategoryResource;
 use Illuminate\Support\Facades\Auth;
 use Response;
 

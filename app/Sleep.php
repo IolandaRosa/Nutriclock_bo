@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Http\Controllers\SleepControllerAPI;
 use Illuminate\Database\Eloquent\Model;
 
 class Sleep extends Model

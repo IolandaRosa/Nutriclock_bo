@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use App\Http\Resources\NutritionalInfoStatic as NutritionalInfoStaticResource;
 use App\NutritionalInfoStatic;
-
 use Illuminate\Http\Request;
 
 class NutritionalInfoStaticControllerAPI extends Controller

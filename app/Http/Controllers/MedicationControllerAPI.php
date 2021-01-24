@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Resources\Medication as MedicationResource;
 use App\Medication;
 use App\User;
+use Illuminate\Http\Request;
 
 class MedicationControllerAPI extends Controller
 {

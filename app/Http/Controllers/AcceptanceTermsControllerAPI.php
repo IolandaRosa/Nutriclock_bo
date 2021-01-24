@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\AcceptanceTerms;
-use App\User;
 use App\Http\Resources\AcceptanceTerms as AcceptanceTermsResource;
+use App\User;
+use Illuminate\Http\Request;
 
 class AcceptanceTermsControllerAPI extends Controller
 {

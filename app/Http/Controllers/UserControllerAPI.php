@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Message;
-use App\Sleep;
+use App\Http\Resources\User as UserResource;
 use App\Meal;
+use App\Medication;
+use App\Message;
 use App\NutritionalInfo;
-use Illuminate\Http\Request;
+use App\Sleep;
 use App\User;
 use App\UsersUfc;
-use App\Http\Resources\User as UserResource;
-use Illuminate\Support\Facades\Auth;
-use Response;
 use Hash;
-use Illuminate\Validation\Rule;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use App\Medication;
+use Illuminate\Validation\Rule;
+use Response;
 
 class UserControllerAPI extends Controller
 {
@@ -158,10 +158,10 @@ class UserControllerAPI extends Controller
         $user->save();
 
         foreach ($request->usfIds as $id) {
-            $usf = new UsersUfc();
-            $usf->ufc_id = $id;
-            $usf->user_id = $user->id;
-            $usf->save();
+            UsersUfc::create([
+                'user_id' => $user->id,
+                'ufc_id' => $id
+            ]);
         }
 
         return new UserResource($user);

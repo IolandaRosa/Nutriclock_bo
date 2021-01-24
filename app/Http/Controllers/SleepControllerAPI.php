@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Exports\SleepsExport;
-use Illuminate\Http\Request;
+use App\Http\Resources\Sleep as SleepResource;
+use App\Sleep;
 use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Response;
-use Illuminate\Support\Facades\Auth;
-use App\Sleep;
-use App\Http\Resources\Sleep as SleepResource;
 
 class SleepControllerAPI extends Controller
 {
