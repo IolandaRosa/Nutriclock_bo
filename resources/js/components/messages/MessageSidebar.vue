@@ -94,8 +94,6 @@ export default {
             });
         },
         getUnreadMessages() {
-            console.log('get messages')
-
             axios.get('api/messages/unread').then(response => {
                 Object.keys(response.data.data).forEach(key => {
                     if (response.data.data[key].message.length > 80) {

@@ -130,9 +130,6 @@ import {
     makeSocketEvent,
     parseSocketMessage,
 } from '../../utils/misc';
-import {
-    uniq,
-} from 'lodash';
 import { EventType } from '../../constants/misc';
 import { filter, sortBy } from 'lodash';
 import ConfirmationModal from '../modals/ConfirmationModal';
@@ -313,11 +310,9 @@ export default {
                         })
 
                         this.messages = sortBy(aux, 'id');
-                        console.log('getMessages', aux)
                     }
                 }
             }).catch((error) => {
-                console.log('error', error)
                 if (error.response && error.response.status === 401) {
                     this.$store.commit('clearUserAndToken');
                     this.$router.push({path: ROUTE.Login});
@@ -370,6 +365,9 @@ export default {
     },
     updated() {
         this.scrollToElement();
+    },
+    unmounted() {
+        delete this.$options.sockets.onmessage;
     },
     watch: {
         '$route.params.id': function () {

@@ -24,10 +24,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="add compiled file">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LoginControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LoginControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/messages/MessageSidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/messages/MessageSidebar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/messages/MessagesHistory.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/messages/MessagesHistory.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +45,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="develop" />
+    <option name="BRANCH" value="origin/chat" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -769,10 +768,10 @@
     <state x="468" y="24" key="CommitChangelistDialog2/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1605378089686" />
     <state x="2505" y="121" key="CommitChangelistDialog2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1605374061365" />
     <state x="468" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1606843342376" />
-    <state x="-6" y="0" width="1299" height="834" key="DiffContextDialog" timestamp="1609065916129">
+    <state x="-6" y="0" width="1299" height="834" key="DiffContextDialog" timestamp="1611494544241">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="-6" y="0" width="1299" height="834" key="DiffContextDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1609065916129" />
+    <state x="-6" y="0" width="1299" height="834" key="DiffContextDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1611494544241" />
     <state x="62" y="634" width="1350" height="648" key="DiffContextDialog/0.0.1536.834@0.0.1536.834" timestamp="1607278393668" />
     <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1606679335722">
       <screen x="0" y="0" width="1536" height="834" />
@@ -791,11 +790,11 @@
     </state>
     <state x="2681" y="151" key="RollbackChangesDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1609332907425" />
     <state x="609" y="120" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1609020299258" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1611098224945">
-      <screen x="0" y="0" width="1536" height="834" />
+    <state x="2371" y="189" key="Vcs.Push.Dialog.v2" timestamp="1611494545729">
+      <screen x="1920" y="0" width="1920" height="1050" />
     </state>
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1605378114181" />
-    <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1610923467900" />
+    <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1611494545729" />
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1611098224945" />
     <state x="0" y="0" width="1550" height="882" key="dock-window-1" timestamp="1607884751581">
       <screen x="0" y="0" width="1536" height="834" />
@@ -826,11 +825,11 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1608484752474" />
-    <state x="430" y="154" width="672" height="678" key="search.everywhere.popup" timestamp="1611098445511">
-      <screen x="0" y="0" width="1536" height="834" />
+    <state x="2459" y="195" width="672" height="160" key="search.everywhere.popup" timestamp="1611494517999">
+      <screen x="1920" y="0" width="1920" height="1050" />
     </state>
     <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1609351051894" />
-    <state x="2459" y="195" width="672" height="160" key="search.everywhere.popup/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1610923820243" />
+    <state x="2459" y="195" width="672" height="160" key="search.everywhere.popup/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1611494517999" />
     <state x="430" y="154" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1611098445511" />
   </component>
 </project>
