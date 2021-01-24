@@ -130,8 +130,11 @@ import {
     makeSocketEvent,
     parseSocketMessage,
 } from '../../utils/misc';
+import {
+    uniq,
+} from 'lodash';
 import { EventType } from '../../constants/misc';
-import { sortBy } from 'lodash';
+import { filter, sortBy } from 'lodash';
 import ConfirmationModal from '../modals/ConfirmationModal';
 import EditMessageModal from '../modals/EditMessageModal';
 
@@ -282,11 +285,7 @@ export default {
             });
         },
         getMessages() {
-            if (this.isFetching) return;
-            this.isFetching = true;
-
             axios.get(`api/messages?skip=${Object.keys(this.messages).length}`).then(response => {
-                this.isFetching = false;
                 if (response.data.contacts) {
                     this.contacts = response.data.contacts;
                 }
@@ -305,12 +304,20 @@ export default {
                             return;
                         }
                         const aux = this.messages;
-                        aux.push(...this.messagesHistory[this.$route.params.id]);
+                        Object.keys(this.messagesHistory[this.$route.params.id]).forEach(key => {
+                            const el = filter(aux, {'id': this.messagesHistory[this.$route.params.id][key].id});
+
+                            if (!el) {
+                                aux.push(el);
+                            }
+                        })
+
                         this.messages = sortBy(aux, 'id');
+                        console.log('getMessages', aux)
                     }
                 }
             }).catch((error) => {
-                this.isFetching = false;
+                console.log('error', error)
                 if (error.response && error.response.status === 401) {
                     this.$store.commit('clearUserAndToken');
                     this.$router.push({path: ROUTE.Login});
@@ -350,6 +357,7 @@ export default {
 
                 if (Number(message.senderId) === this.$store.state.user.id
                     || Number(message.receiverId) === this.$store.state.user.id) {
+                    if (Number(message.receiverId) === this.$store.state.user.id) this.messages = {};
                     this.getMessages();
                     axios.get('/api/messages/unread-count').then(response => {
                         const {data} = response;

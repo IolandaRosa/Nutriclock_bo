@@ -68,6 +68,8 @@ class MessageControllerAPI extends Controller
         $authId = Auth::guard('api')->id();
         $skipPages = $request->query('skip', '0');
         $contacts = Message::where('receiverId', $authId)->distinct('senderId')->get(['senderId', 'senderName', 'senderPhotoUrl']);
+        $contacts2 = Message::where('senderId', $authId)->distinct('receiverId')->get(['receiverId as senderId', 'receiverName as senderName', 'receiverPhotoUrl as senderPhotoUrl']);
+        $contacts = $contacts->merge($contacts2);
         $messagesHistory = [];
 
         if ($contacts) {
