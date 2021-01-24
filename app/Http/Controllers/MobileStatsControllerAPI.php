@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Meal;
 use App\Sleep;
-use Illuminate\Support\Facades\Response;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 
 class MobileStatsControllerAPI extends Controller
 {

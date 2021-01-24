@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\NutritionalInfo;
 use App\Http\Resources\NutritionalInfo as NutritionalInfoResource;
+use App\NutritionalInfo;
+use App\NutritionalInfoStatic;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Response;
-use App\NutritionalInfoStatic;
 
 class NutritionalInfoControllerAPI extends Controller
 {

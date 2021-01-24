@@ -2,8 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Illuminate\Support\Facades\Response;
 use Closure;
 
 class CheckAdmin

@@ -283,6 +283,7 @@ export default {
         },
         getMessages() {
             axios.get(`api/messages?skip=${Object.keys(this.messages).length}`).then(response => {
+                console.log('get messages success')
                 if (response.data.contacts) {
                     this.contacts = response.data.contacts;
                 }
@@ -306,7 +307,7 @@ export default {
                             if (!el || el.length === 0) {
                                 aux.push(this.messagesHistory[this.$route.params.id][key]);
                             }
-                        })
+                        });
 
                         this.messages = sortBy(aux, 'id');
                     }
@@ -348,10 +349,9 @@ export default {
         this.$options.sockets.onmessage = (data) => {
             if (data && data.data) {
                 const message = parseSocketMessage(data.data);
-
                 if (Number(message.senderId) === this.$store.state.user.id
                     || Number(message.receiverId) === this.$store.state.user.id) {
-                    if (Number(message.receiverId) === this.$store.state.user.id) this.messages = {};
+                    this.messages = {};
                     this.getMessages();
                     axios.get('/api/messages/unread-count').then(response => {
                         const {data} = response;

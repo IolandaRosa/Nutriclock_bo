@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\PasswordReset;
-use Illuminate\Support\Str;
 use App\Http\Resources\PasswordReset as PasswordResetResource;
 use App\Http\Resources\User as UserResource;
-use Illuminate\Support\Facades\Auth;
-use App\User;
-use Response;
-use Hash;
-use Carbon\Carbon;
 use App\Notifications\PasswordResetRequest;
+use App\PasswordReset;
+use App\User;
+use Carbon\Carbon;
+use Hash;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Response;
 
 class PasswordResetControllerAPI extends Controller
 {
