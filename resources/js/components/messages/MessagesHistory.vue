@@ -303,9 +303,8 @@ export default {
                         const aux = this.messages;
                         Object.keys(this.messagesHistory[this.$route.params.id]).forEach(key => {
                             const el = filter(aux, {'id': this.messagesHistory[this.$route.params.id][key].id});
-
-                            if (!el) {
-                                aux.push(el);
+                            if (!el || el.length === 0) {
+                                aux.push(this.messagesHistory[this.$route.params.id][key]);
                             }
                         })
 
