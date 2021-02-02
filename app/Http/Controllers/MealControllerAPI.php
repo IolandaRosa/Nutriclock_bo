@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use App\Http\Resources\Meal as MealResource;
-use Carbon\Carbon;
 use App\Meal;
-use App\User;
-use App\NutritionalInfoStatic;
 use App\NutritionalInfo;
-use Response;
-use Intervention\Image\ImageManagerStatic as Image;
+use App\NutritionalInfoStatic;
+use App\User;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
+use Intervention\Image\ImageManagerStatic as Image;
+use Response;
 
 class MealControllerAPI extends Controller
 {

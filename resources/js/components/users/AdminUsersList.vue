@@ -137,6 +137,10 @@ export default {
             })
         },
         onUpdateUserClick(row) {
+            if (row.deleted_at) {
+                this.showMessage('O utilizador esta bloqueado', 'success');
+                return
+            }
             this.selectedUserId = row.id;
             this.showDetailsModal = true;
         },
@@ -200,6 +204,10 @@ export default {
             }
         },
         onClickResendEmail(row) {
+            if (row.deleted_at) {
+                this.showMessage('O utilizador esta bloqueado', 'success');
+                return
+            }
             this.showResendEmailModal = true;
             this.selectedRowEmail = row.email;
         },

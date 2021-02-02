@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Disease;
 use App\Http\Resources\Disease as DiseaseResource;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Response;
 

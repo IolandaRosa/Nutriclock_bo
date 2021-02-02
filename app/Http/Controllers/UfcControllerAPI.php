@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Ufc;
 use App\Http\Resources\Ufc as UfcResource;
+use App\Ufc;
+use App\UsersUfc;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Response;
-use App\UsersUfc;
-use App\User;
 
 class UfcControllerAPI extends Controller
 {
