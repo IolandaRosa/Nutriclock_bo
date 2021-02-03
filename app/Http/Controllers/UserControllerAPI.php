@@ -56,58 +56,59 @@ class UserControllerAPI extends Controller
         return new UserResource($user);
     }
 
-    public function updateProfessionalProfile(Request $request, $id) {
-            $request->validate([
-                'email' => 'nullable|email',
-            ]);
+    public function updateProfessionalProfile(Request $request, $id)
+    {
+        $request->validate([
+            'email' => 'nullable|email',
+        ]);
 
-            $user = User::find($id);
+        $user = User::find($id);
 
-            if (!$user) {
-                return Response::json(['error' => 'O utilizador não existe.'], 404);
+        if (!$user) {
+            return Response::json(['error' => 'O utilizador não existe.'], 404);
+        }
+
+        if (Auth::guard('api')->user()->id != $id) {
+            return Response::json(['error' => 'Accesso proibido!'], 401);
+        }
+
+        if ($request->avatar != null) {
+            Storage::disk('s3')->delete('avatars/' . $user->avatarUrl);
+            // Storage::disk('public')->delete('avatars/'.$user->avatarUrl);
+            $image = $request->file('avatar');
+            // $path = basename($image->store('avatars', 'public'));
+            $path = basename($image->store('avatars', 's3'));
+            $user->avatarUrl = basename($path);
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->gender = $request->gender;
+
+        $senderMessages = Message::where('senderId', $id)->get();
+        $receiverMessages = Message::where('receiverId', $id)->get();
+
+
+        if ($senderMessages) {
+            foreach ($senderMessages as $m) {
+                $m->senderName = $request->name;
+                $m->senderPhotoUrl = $user->avatarUrl;
+                $m->save();
             }
-
-            if(Auth::guard('api')->user()->id != $id){
-                return Response::json(['error' => 'Accesso proibido!'], 401);
-            }
-
-            if($request->avatar != null) {
-                Storage::disk('s3')->delete('avatars/'.$user->avatarUrl);
-                // Storage::disk('public')->delete('avatars/'.$user->avatarUrl);
-                $image = $request->file('avatar');
-                // $path = basename($image->store('avatars', 'public'));
-                $path = basename($image->store('avatars', 's3'));
-                $user->avatarUrl = basename($path);
-            }
-
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->gender = $request->gender;
-
-            $senderMessages = Message::where('senderId', $id)->get();
-            $receiverMessages = Message::where('receiverId', $id)->get();
-
-
-            if ($senderMessages) {
-                foreach ($senderMessages as $m)  {
-                    $m->senderName = $request->name;
-                    $m->senderPhotoUrl = $user->avatarUrl;
-                    $m->save();
-                }
-            }
+        }
 
         if ($receiverMessages) {
-            foreach ($receiverMessages as $m)  {
+            foreach ($receiverMessages as $m) {
                 $m->receiverName = $request->name;
                 $m->receiverPhotoUrl = $user->avatarUrl;
                 $m->save();
             }
         }
 
-            $user->save();
+        $user->save();
 
-            return new UserResource($user);
-        }
+        return new UserResource($user);
+    }
 
     public function getAdminUsers()
     {
@@ -366,5 +367,51 @@ class UserControllerAPI extends Controller
         }
 
         return Response::json(['data' => $users, ], 200);
+    }
+
+    public function updateAvatar(Request $request) {
+        $user = User::find(Auth::guard('api')->user()->id);
+
+        if(!$user){
+            return Response::json(['error' => 'O utilizador não existe!'], 400);
+        }
+
+        if ($user->avatarUrl) {
+            Storage::disk('s3')->delete('avatars/'.$user->avatarUrl);
+        }
+
+        $image = $request->file('avatar');
+        $path = basename($image->store('avatars', 's3'));
+        $user->avatarUrl = basename($path);
+
+        $user->save();
+
+        return new UserResource($user);
+    }
+
+    public function updatePatientProfile(Request $request) {
+        $user = User::find(Auth::guard('api')->user()->id);
+
+        if(!$user){
+            return Response::json(['error' => 'O utilizador não existe!'], 400);
+        }
+
+        $request->validate([
+            'weight' => 'nullable|numeric',
+            'height' => 'nullable|numeric',
+            'birthday' => 'required|date',
+            'name' => 'required',
+            'gender' => Rule::in(['MALE', 'FEMALE','NONE']),
+        ]);
+
+        $user->weight = $request->weight;
+        $user->height = $request->height;
+        $user->birthday = $request->birthday;
+        $user->gender = $request->gender;
+        $user->name = $request->name;
+
+        $user->save();
+
+        return new UserResource($user);
     }
 }

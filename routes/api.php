@@ -27,6 +27,8 @@ Route::middleware(['auth:api', 'admin'])->delete('users/{id}/status', 'UserContr
 Route::middleware(['auth:api', 'professional'])->put('users/{id}', 'UserControllerAPI@updateProfessional');
 Route::middleware(['auth:api', 'professional'])->put('users/profile/{id}', 'UserControllerAPI@updateProfessionalProfile');
 Route::middleware(['auth:api', 'admin'])->put('users/terms/{id}', 'UserControllerAPI@updateAcceptanceTerms');
+Route::middleware(['auth:api', 'patient'])->post('users/avatar', 'UserControllerAPI@updateAvatar');
+Route::middleware(['auth:api', 'patient'])->post('users/profile', 'UserControllerAPI@updatePatientProfile');
 
 // ProfessionalCategory API
 Route::middleware(['auth:api'])->get('professionalCategories', 'ProfessionalCategoryControllerAPI@index');
