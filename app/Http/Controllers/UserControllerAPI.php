@@ -414,4 +414,18 @@ class UserControllerAPI extends Controller
 
         return new UserResource($user);
     }
+
+    public function updatePatientDiseases(Request $request) {
+        $user = User::find(Auth::guard('api')->user()->id);
+
+        if(!$user){
+            return Response::json(['error' => 'O utilizador não existe!'], 400);
+        }
+
+        $user->diseases = $request->diseases;
+
+        $user->save();
+
+        return new UserResource($user);
+    }
 }

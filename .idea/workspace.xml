@@ -23,11 +23,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="add migration for users_ufc id column">
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="update user api request">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LoginControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LoginControllerAPI.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -333,13 +331,8 @@
       <workItem from="1611098316978" duration="60000" />
       <workItem from="1611098439666" duration="14000" />
       <workItem from="1611510617146" duration="761000" />
-    </task>
-    <task id="LOCAL-00061" summary="change endpoint for get sleep dates on client">
-      <created>1607286865486</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1607286865486</updated>
+      <workItem from="1612391763693" duration="762000" />
+      <workItem from="1612475841801" duration="1252000" />
     </task>
     <task id="LOCAL-00062" summary="change the method for get user">
       <created>1607287163408</created>
@@ -677,7 +670,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611511076509</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="update user api request">
+      <created>1612391797770</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1612391797771</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -702,7 +702,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="develop" />
                       </list>
                     </value>
                   </entry>
@@ -716,7 +716,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add suplement to medication" />
     <MESSAGE value="add medication type on register" />
     <MESSAGE value="files pointing to production" />
     <MESSAGE value="food photo url" />
@@ -741,7 +740,8 @@
     <MESSAGE value="add compiled file" />
     <MESSAGE value="add changes from branch chat" />
     <MESSAGE value="add migration for users_ufc id column" />
-    <option name="LAST_COMMIT_MESSAGE" value="add migration for users_ufc id column" />
+    <MESSAGE value="update user api request" />
+    <option name="LAST_COMMIT_MESSAGE" value="update user api request" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="76" key="#Inspections" timestamp="1605567763677">
@@ -793,12 +793,12 @@
     </state>
     <state x="2681" y="151" key="RollbackChangesDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1609332907425" />
     <state x="609" y="120" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1609020299258" />
-    <state x="2371" y="189" key="Vcs.Push.Dialog.v2" timestamp="1611511085493">
-      <screen x="1920" y="0" width="1920" height="1050" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1612391806885">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1605378114181" />
     <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1611511085493" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1611098224945" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1612391806885" />
     <state x="0" y="0" width="1550" height="882" key="dock-window-1" timestamp="1607884751581">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
