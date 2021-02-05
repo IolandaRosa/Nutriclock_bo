@@ -6,6 +6,7 @@ use App\Http\Resources\Medication as MedicationResource;
 use App\Medication;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MedicationControllerAPI extends Controller
 {
@@ -77,13 +78,6 @@ class MedicationControllerAPI extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -105,12 +99,6 @@ class MedicationControllerAPI extends Controller
         return new MedicationResource($medication);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $medication=Medication::findOrFail($id);
@@ -122,5 +110,17 @@ class MedicationControllerAPI extends Controller
         $medication->forceDelete();
 
         return new MedicationResource($medication);
+    }
+
+    public function getAuthMedication() {
+        $user = User::find(Auth::guard('api')->user()->id);
+
+        if(!$user){
+            return Response::json(['error' => 'O utilizador não existe!'], 400);
+        }
+
+        $medication = Medication::where('user_id', $user->id)->get();
+
+        return MedicationResource::collection($medication);
     }
 }

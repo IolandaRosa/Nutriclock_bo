@@ -57,6 +57,7 @@ Route::middleware(['auth:api'])->delete('medications/{id}', 'MedicationControlle
 Route::middleware(['auth:api'])->put('medications/{id}', 'MedicationControllerAPI@update');
 Route::middleware(['auth:api'])->get('medications/{id}', 'MedicationControllerAPI@getMedicationByUser');
 Route::middleware(['auth:api'])->get('medication/{id}', 'MedicationControllerAPI@getMedication');
+Route::middleware(['auth:api', 'patient'])->get('medication/auth', 'MedicationControllerAPI@m');
 
 // Acceptance Terms API
 Route::get('terms', 'AcceptanceTermsControllerAPI@getTerms');

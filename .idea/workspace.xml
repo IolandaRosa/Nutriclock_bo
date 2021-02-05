@@ -23,9 +23,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="update user api request">
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="update diseases">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserControllerAPI.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MedicationControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MedicationControllerAPI.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -332,14 +332,7 @@
       <workItem from="1611098439666" duration="14000" />
       <workItem from="1611510617146" duration="761000" />
       <workItem from="1612391763693" duration="762000" />
-      <workItem from="1612475841801" duration="1252000" />
-    </task>
-    <task id="LOCAL-00062" summary="change the method for get user">
-      <created>1607287163408</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1607287163408</updated>
+      <workItem from="1612475841801" duration="2892000" />
     </task>
     <task id="LOCAL-00063" summary="change the method for get user">
       <created>1607287891856</created>
@@ -677,7 +670,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612391797771</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="update diseases">
+      <created>1612480769628</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1612480769628</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -716,7 +716,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add medication type on register" />
     <MESSAGE value="files pointing to production" />
     <MESSAGE value="food photo url" />
     <MESSAGE value="Chat backoffice" />
@@ -741,7 +740,8 @@
     <MESSAGE value="add changes from branch chat" />
     <MESSAGE value="add migration for users_ufc id column" />
     <MESSAGE value="update user api request" />
-    <option name="LAST_COMMIT_MESSAGE" value="update user api request" />
+    <MESSAGE value="update diseases" />
+    <option name="LAST_COMMIT_MESSAGE" value="update diseases" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="76" key="#Inspections" timestamp="1605567763677">
@@ -756,11 +756,11 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="574" y="99" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1607198956944" />
-    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1611010798307">
+    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1612483107474">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="2544" y="217" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1607545881262" />
-    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1611010798307" />
+    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1612483107474" />
     <state x="516" y="272" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1606842580879">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -793,12 +793,12 @@
     </state>
     <state x="2681" y="151" key="RollbackChangesDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1609332907425" />
     <state x="609" y="120" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1609020299258" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1612391806885">
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1612480778372">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1605378114181" />
     <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1611511085493" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1612391806885" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1612480778372" />
     <state x="0" y="0" width="1550" height="882" key="dock-window-1" timestamp="1607884751581">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -828,11 +828,11 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1608484752474" />
-    <state x="2459" y="195" width="672" height="160" key="search.everywhere.popup" timestamp="1612308544664">
-      <screen x="1920" y="0" width="1920" height="1050" />
+    <state x="430" y="154" width="672" height="678" key="search.everywhere.popup" timestamp="1612483072441">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1609351051894" />
     <state x="2459" y="195" width="672" height="160" key="search.everywhere.popup/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1612308544664" />
-    <state x="430" y="154" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1611098445511" />
+    <state x="430" y="154" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1612483072441" />
   </component>
 </project>
