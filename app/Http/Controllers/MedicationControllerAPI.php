@@ -123,4 +123,8 @@ class MedicationControllerAPI extends Controller
 
         return MedicationResource::collection($medication);
     }
+
+    public function storeAuth(Request $request) {
+        return $this->store($request, Auth::guard('api')->user()->id);
+    }
 }
