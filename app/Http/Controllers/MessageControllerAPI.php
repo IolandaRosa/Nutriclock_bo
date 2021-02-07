@@ -85,25 +85,6 @@ class MessageControllerAPI extends Controller
             return Response::json(['contacts' => $contacts, 'messagesHistory' => $messagesHistory], 200);
         }
 
-        //$contacts = Message::where('receiverId', $authId)->distinct('senderId')->get(['senderId', 'senderName', 'senderPhotoUrl']);
-        //$contacts2 = Message::where('senderId', $authId)->distinct('receiverId')->get(['receiverId as senderId', 'receiverName as senderName', 'receiverPhotoUrl as senderPhotoUrl']);
-        //$contacts = $contacts->merge($contacts2);
-
-
-       /* if ($contacts) {
-            foreach ($contacts as $c) {
-                $messages = Message::whereIn('receiverId', [$authId, $c->senderId])
-                    ->whereIn('senderId', [$authId, $c->senderId])
-                    ->orderBy('id', 'desc')
-                    ->take(10)
-                    ->skip($skipPages)
-                    ->get();
-                $messagesHistory[$c->senderId] = $messages;
-            }
-
-            return Response::json(['contacts' => $contacts, 'messagesHistory' => $messagesHistory], 200);
-        }*/
-
         return Response::json(['contacts' => [], 'messagesHistory' => []], 200);
     }
 
@@ -117,6 +98,13 @@ class MessageControllerAPI extends Controller
             ->take(10)
             ->skip($skipPages)
             ->get();
+
+        foreach ($messages as $m) {
+            if ($m->senderId == $id) {
+                $m->read = 1;
+                $m->save();
+            }
+        }
 
         return \App\Http\Resources\Message::collection($messages);
     }
