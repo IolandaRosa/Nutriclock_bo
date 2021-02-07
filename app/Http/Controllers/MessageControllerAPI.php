@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\Message as MessageResource;
 use App\Message;
+use App\Ufc;
+use App\User;
+use App\UsersUfc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
@@ -56,14 +59,19 @@ class MessageControllerAPI extends Controller
 
     public function messagesHistory(Request $request)
     {
+        $contacts = [];
+        $messagesHistory = [];
         $authId = Auth::guard('api')->id();
         $skipPages = $request->query('skip', '0');
-        $contacts = Message::where('receiverId', $authId)->distinct('senderId')->get(['senderId', 'senderName', 'senderPhotoUrl']);
-        $contacts2 = Message::where('senderId', $authId)->distinct('receiverId')->get(['receiverId as senderId', 'receiverName as senderName', 'receiverPhotoUrl as senderPhotoUrl']);
-        $contacts = $contacts->merge($contacts2);
-        $messagesHistory = [];
 
-        if ($contacts) {
+        $userUfcs = UsersUfc::where('user_id', $authId)->get();
+        if ($userUfcs) {
+            foreach ($userUfcs as $ufc) {
+                $users = User::where('role', 'PATIENT')->where('ufc_id', $ufc->ufc_id)->get(['id as senderId', 'name as senderName', 'avatarUrl as senderPhotoUrl']);
+                if (count($contacts) == 0) $contacts = $users;
+                else $contacts = $contacts->concat($users);
+            }
+
             foreach ($contacts as $c) {
                 $messages = Message::whereIn('receiverId', [$authId, $c->senderId])
                     ->whereIn('senderId', [$authId, $c->senderId])
@@ -76,6 +84,25 @@ class MessageControllerAPI extends Controller
 
             return Response::json(['contacts' => $contacts, 'messagesHistory' => $messagesHistory], 200);
         }
+
+        //$contacts = Message::where('receiverId', $authId)->distinct('senderId')->get(['senderId', 'senderName', 'senderPhotoUrl']);
+        //$contacts2 = Message::where('senderId', $authId)->distinct('receiverId')->get(['receiverId as senderId', 'receiverName as senderName', 'receiverPhotoUrl as senderPhotoUrl']);
+        //$contacts = $contacts->merge($contacts2);
+
+
+       /* if ($contacts) {
+            foreach ($contacts as $c) {
+                $messages = Message::whereIn('receiverId', [$authId, $c->senderId])
+                    ->whereIn('senderId', [$authId, $c->senderId])
+                    ->orderBy('id', 'desc')
+                    ->take(10)
+                    ->skip($skipPages)
+                    ->get();
+                $messagesHistory[$c->senderId] = $messages;
+            }
+
+            return Response::json(['contacts' => $contacts, 'messagesHistory' => $messagesHistory], 200);
+        }*/
 
         return Response::json(['contacts' => [], 'messagesHistory' => []], 200);
     }
