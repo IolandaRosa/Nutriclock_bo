@@ -30,6 +30,7 @@ Route::middleware(['auth:api', 'admin'])->put('users/terms/{id}', 'UserControlle
 Route::middleware(['auth:api', 'patient'])->post('users/avatar', 'UserControllerAPI@updateAvatar');
 Route::middleware(['auth:api', 'patient'])->post('users/profile', 'UserControllerAPI@updatePatientProfile');
 Route::middleware(['auth:api', 'patient'])->post('users/diseases', 'UserControllerAPI@updatePatientDiseases');
+Route::middleware(['auth:api', 'patient'])->get('/professionalsByUsf/{id}', 'UserControllerAPI@getProfessionalByUsf');
 
 // ProfessionalCategory API
 Route::middleware(['auth:api'])->get('professionalCategories', 'ProfessionalCategoryControllerAPI@index');
@@ -119,6 +120,12 @@ Route::middleware(['auth:api', 'professional'])->delete('messages/{id}', 'Messag
 Route::middleware(['auth:api', 'professional'])->put('messages/{id}', 'MessageControllerAPI@update');
 Route::middleware(['auth:api'])->post('messages', 'MessageControllerAPI@store');
 Route::middleware(['auth:api', 'professional'])->get('messages', 'MessageControllerAPI@messagesHistory');
-
-Route::middleware(['auth:api', 'patient'])->get('/professionalsByUsf/{id}', 'UserControllerAPI@getProfessionalByUsf');
 Route::middleware(['auth:api', 'patient'])->get('/messagesFromUser/{id}', 'MessageControllerAPI@getMessagesFromUser');
+
+// Exercise API
+Route::middleware(['auth:api', 'patient'])->get('/exercises/list', 'ExerciseStaticControllerAPI@index');
+Route::middleware(['auth:api', 'patient'])->get('/households', 'HouseholdStaticControllerAPI@index');
+Route::middleware(['auth:api', 'patient'])->post('/exercises', 'ExerciseControllerAPI@store');
+Route::middleware(['auth:api', 'patient'])->get('/exercises/dates','ExerciseControllerAPI@getExerciseDates');
+Route::middleware(['auth:api', 'patient'])->get('/exercises/detail/{date}','ExerciseControllerAPI@getExerciseByDate');
+
