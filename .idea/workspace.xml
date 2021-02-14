@@ -23,10 +23,19 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="relatório gráfico de exercício">
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="exercise report api">
+      <change afterPath="$PROJECT_DIR$/resources/js/components/patients/exercise/ExerciseStats.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/patients/exercise/Exercises.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExerciseControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExerciseControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SleepControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SleepControllerAPI.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/PatientTabs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/PatientTabs.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/sleeps/LineChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/utils/LineChart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/sleeps/SleepChart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/sleeps/SleepChart.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/sleeps/Sleeps.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/sleeps/Sleeps.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/utils/table_elements.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/table_elements.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -224,13 +233,14 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\nutriclock\public\images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\nutriclock\resources\js\components\utils" />
       <recent name="C:\laragon\www\nutriclock\public\images" />
       <recent name="C:\laragon\www\nutriclock\public" />
       <recent name="C:\laragon\www\nutriclock" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\laragon\www\nutriclock\public\images" />
     </key>
   </component>
   <component name="RunManager">
@@ -338,14 +348,7 @@
       <workItem from="1613215138736" duration="13914000" />
       <workItem from="1613259663363" duration="416000" />
       <workItem from="1613303259917" duration="2202000" />
-      <workItem from="1613305868264" duration="5880000" />
-    </task>
-    <task id="LOCAL-00069" summary="Add patients list refactor">
-      <created>1607641118774</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1607641118774</updated>
+      <workItem from="1613305868264" duration="11930000" />
     </task>
     <task id="LOCAL-00070" summary="Add diseases list">
       <created>1607643678474</created>
@@ -683,7 +686,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613305729163</updated>
     </task>
-    <option name="localTasksCounter" value="118" />
+    <task id="LOCAL-00118" summary="exercise report api">
+      <created>1613337916996</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1613337916996</updated>
+    </task>
+    <option name="localTasksCounter" value="119" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -722,7 +732,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add readonly check to professional and intern" />
     <MESSAGE value="add clean storage on 401" />
     <MESSAGE value="Chat message send" />
     <MESSAGE value="Add chat endpoints for mobile" />
@@ -747,7 +756,8 @@
     <MESSAGE value="change under message controller for mark all read when patient opens chat" />
     <MESSAGE value="add exercise api" />
     <MESSAGE value="relatório gráfico de exercício" />
-    <option name="LAST_COMMIT_MESSAGE" value="relatório gráfico de exercício" />
+    <MESSAGE value="exercise report api" />
+    <option name="LAST_COMMIT_MESSAGE" value="exercise report api" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="76" key="#Inspections" timestamp="1605567763677">
@@ -766,10 +776,10 @@
       <screen x="1920" y="0" width="1920" height="1050" />
     </state>
     <state x="2617" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613220242903" />
-    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1613306067871">
-      <screen x="0" y="0" width="1536" height="834" />
+    <state x="2544" y="217" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1613342533592">
+      <screen x="1920" y="0" width="1920" height="1050" />
     </state>
-    <state x="2544" y="217" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613244536297" />
+    <state x="2544" y="217" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613342533592" />
     <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1613306067871" />
     <state x="516" y="272" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1606842580879">
       <screen x="0" y="0" width="1536" height="834" />
@@ -803,11 +813,11 @@
     </state>
     <state x="2681" y="151" key="RollbackChangesDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1609332907425" />
     <state x="609" y="120" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1609020299258" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1613305737303">
-      <screen x="0" y="0" width="1536" height="834" />
+    <state x="2371" y="189" key="Vcs.Push.Dialog.v2" timestamp="1613337927238">
+      <screen x="1920" y="0" width="1920" height="1050" />
     </state>
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1605378114181" />
-    <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613259498212" />
+    <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613337927238" />
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1613305737303" />
     <state x="0" y="0" width="1550" height="882" key="dock-window-1" timestamp="1607884751581">
       <screen x="0" y="0" width="1536" height="834" />

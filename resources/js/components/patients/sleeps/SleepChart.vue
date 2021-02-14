@@ -92,9 +92,9 @@
 
 <script type="text/javascript">
 
-import LineChart from './LineChart';
-import {ROUTE} from '../../../utils/routes';
-import {parseMonth} from '../../../utils/misc';
+import LineChart from '../../utils/LineChart';
+import { ROUTE } from '../../../utils/routes';
+import { parseMonth } from '../../../utils/misc';
 
 export default {
     props: ['id', 'stats'],

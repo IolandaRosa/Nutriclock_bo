@@ -190,8 +190,4 @@ export default {
 .shown > img {
     transform: rotate(90deg);
 }
-
-.gray-bg {
-    background: #dee2e6;
-}
 </style>

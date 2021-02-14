@@ -129,4 +129,6 @@ Route::middleware(['auth:api', 'patient'])->post('/exercises', 'ExerciseControll
 Route::middleware(['auth:api', 'patient'])->get('/exercises/dates','ExerciseControllerAPI@getExerciseDates');
 Route::middleware(['auth:api', 'patient'])->get('/exercises/detail/{date}','ExerciseControllerAPI@getExerciseByDate');
 Route::middleware(['auth:api', 'patient'])->get('/exercises/stats','ExerciseControllerAPI@getExerciseStats');
+Route::middleware(['auth:api', 'intern'])->get('/exercises/admin/{id}','ExerciseControllerAPI@getExerciseByUser');
+Route::middleware(['auth:api', 'intern'])->get('/exercises/admin/stats/{id}','ExerciseControllerAPI@getStatsByUser');
 

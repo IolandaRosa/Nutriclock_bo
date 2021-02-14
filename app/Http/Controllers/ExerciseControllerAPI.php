@@ -6,6 +6,7 @@ use App\Exercise;
 use App\ExerciseStatic;
 use App\HouseholdStatic;
 use App\Http\Resources\Exercise as ExerciseResource;
+use App\Sleep;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -115,9 +116,78 @@ class ExerciseControllerAPI extends Controller
         return Response::json(['data' => $valuesToFilter]);
     }
 
-    public function show($id)
+    public function getExerciseByUser($id) {
+        $user = User::find($id);
+
+        if (!$user) {
+            return Response::json(['error' => 'Utilizador nao encontrado!'], 404);
+        }
+
+        $exercises = Exercise::where('userId', $id)->get();
+
+        return ExerciseResource::collection($exercises);
+    }
+
+    public function getStatsByUser($id)
     {
-        //
+        $user = User::find($id);
+
+        if (!$user) {
+            return Response::json(['error' => 'Utilizador nao encontrado!'], 404);
+        }
+
+        $exercises = Exercise::where('userId', $id)->get();
+
+        if (!$exercises || count($exercises) == 0) {
+            return Response::json(['error' => 'Não existem registos de exercicio.'], 404);
+        }
+
+        $durationSum = 0;
+        $caloriesSum = 0;
+        $exercisesCount = count($exercises);
+        $valuesToFilter = [];
+
+        foreach($exercises as $e) {
+            $parsedDate = explode('-', $e->date);
+            $valuesToFilter[$parsedDate[0]][intval($parsedDate[1])] = [];
+        }
+
+        foreach($exercises as $e) {
+            $durationSum += $e->duration;
+            $caloriesSum += $e->caloriesBurned;
+            $parsedDate = explode('-', $e->date);
+            $hasLabel = false;
+            $day = intval(explode('T', $parsedDate[2])[0]);
+            $index = 0;
+
+            foreach ($valuesToFilter[$parsedDate[0]][intval($parsedDate[1])] as $item){
+                if ($item['label'] == $day) {
+                    $item['duration'] += $e->duration;
+                    $item['calories'] += $e->burnedCalories;
+                    $valuesToFilter[$parsedDate[0]][intval($parsedDate[1])][$index] = $item;
+                    $hasLabel = true;
+                }
+                $index++;
+            }
+
+            if(!$hasLabel) {
+                array_push($valuesToFilter[$parsedDate[0]][intval($parsedDate[1])], [
+                    'label' => $day,
+                    'duration' => $e->duration,
+                    'calories' => $e->burnedCalories,
+                ]);
+            }
+        }
+
+        $averageDuration = $durationSum/$exercisesCount;
+        $averageCalories = $caloriesSum/$exercisesCount;
+
+        return Response::json(['stats' => [
+            'totalRegisters'=>$exercisesCount,
+            'averageDuration'=>round($averageDuration, 2),
+            '$averageCalories'=>round($averageCalories, 2),
+            'chartStats' => $valuesToFilter
+        ]]);
     }
 
     public function update(Request $request, $id)

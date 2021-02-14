@@ -21,6 +21,13 @@
                        role="tab" aria-controls="sleep"
                        aria-selected="false">Diário Sono</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="exercise-tab"
+                       style="color: #FFF"
+                       data-toggle="tab" href="#exercises"
+                       role="tab" aria-controls="exercise"
+                       aria-selected="false">Atividade Física</a>
+                </li>
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="home-tab">
@@ -34,6 +41,10 @@
                     <Sleeps :id="this.$route.params.id" @show-sleep-stats="showSleepStat" v-show="!showSleepStats"/>
                     <SleepChart :id="this.$route.params.id" @close-sleep-stats="closeSleepStat" v-show="showSleepStats"/>
                 </div>
+                <div class="tab-pane fade" id="exercises" role="tabpanel" aria-labelledby="home-tab">
+                    <Exercises :id="this.$route.params.id" @show-exercise-stats="showExerciseStat" v-show="!showExerciseStats"/>
+                    <ExerciseStats :id="this.$route.params.id" @close-sleep-stats="closeExerciseStat" v-show="showExerciseStats"/>
+                </div>
             </div>
         </div>
     </div>
@@ -46,6 +57,8 @@ import MealsList from './meals/MealsList';
 import MealDetails from './meals/MealDetails';
 import Sleeps from './sleeps/Sleeps';
 import SleepChart from './sleeps/SleepChart';
+import Exercises from './exercise/Exercises';
+import ExerciseStats from './exercise/ExerciseStats';
 
 export default {
     data() {
@@ -54,6 +67,7 @@ export default {
             showSleepStats: false,
             selectedMeal: null,
             date: null,
+            showExerciseStats: false,
         };
     },
     components: {
@@ -62,6 +76,8 @@ export default {
         Patient,
         MealsList,
         MealDetails,
+        Exercises,
+        ExerciseStats,
     },
     methods: {
         showMeal(row, date) {
@@ -78,6 +94,12 @@ export default {
         closeSleepStat() {
             this.showSleepStats = false;
         },
+        showExerciseStat() {
+            this.showExerciseStats = true;
+        },
+        closeExerciseStat() {
+            this.showExerciseStats = false;
+        }
     },
 };
 </script>
