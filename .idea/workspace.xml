@@ -23,9 +23,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="add exercise api">
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="relatório gráfico de exercício">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MobileStatsControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MobileStatsControllerAPI.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExerciseControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExerciseControllerAPI.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SleepControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SleepControllerAPI.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -335,14 +337,8 @@
       <workItem from="1612615315742" duration="9198000" />
       <workItem from="1613215138736" duration="13914000" />
       <workItem from="1613259663363" duration="416000" />
-      <workItem from="1613303259917" duration="2101000" />
-    </task>
-    <task id="LOCAL-00068" summary="change design from admin users list">
-      <created>1607640841921</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1607640841921</updated>
+      <workItem from="1613303259917" duration="2202000" />
+      <workItem from="1613305868264" duration="5880000" />
     </task>
     <task id="LOCAL-00069" summary="Add patients list refactor">
       <created>1607641118774</created>
@@ -680,7 +676,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613259481168</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="relatório gráfico de exercício">
+      <created>1613305729163</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1613305729163</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -719,7 +722,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Put unit on second row" />
     <MESSAGE value="Add readonly check to professional and intern" />
     <MESSAGE value="add clean storage on 401" />
     <MESSAGE value="Chat message send" />
@@ -744,7 +746,8 @@
     <MESSAGE value="change the chat list to show all contact from user usf" />
     <MESSAGE value="change under message controller for mark all read when patient opens chat" />
     <MESSAGE value="add exercise api" />
-    <option name="LAST_COMMIT_MESSAGE" value="add exercise api" />
+    <MESSAGE value="relatório gráfico de exercício" />
+    <option name="LAST_COMMIT_MESSAGE" value="relatório gráfico de exercício" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="76" key="#Inspections" timestamp="1605567763677">
@@ -763,11 +766,11 @@
       <screen x="1920" y="0" width="1920" height="1050" />
     </state>
     <state x="2617" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613220242903" />
-    <state x="2544" y="217" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1613244536297">
-      <screen x="1920" y="0" width="1920" height="1050" />
+    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1613306067871">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="2544" y="217" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613244536297" />
-    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1612483107474" />
+    <state x="499" y="172" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1613306067871" />
     <state x="516" y="272" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1606842580879">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -800,12 +803,12 @@
     </state>
     <state x="2681" y="151" key="RollbackChangesDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1609332907425" />
     <state x="609" y="120" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1609020299258" />
-    <state x="2371" y="189" key="Vcs.Push.Dialog.v2" timestamp="1613259498212">
-      <screen x="1920" y="0" width="1920" height="1050" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1613305737303">
+      <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1605378114181" />
     <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613259498212" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1612740412389" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1613305737303" />
     <state x="0" y="0" width="1550" height="882" key="dock-window-1" timestamp="1607884751581">
       <screen x="0" y="0" width="1536" height="834" />
     </state>

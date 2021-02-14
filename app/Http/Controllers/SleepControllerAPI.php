@@ -145,7 +145,7 @@ class SleepControllerAPI extends Controller
             return Response::json(['error' => 'Accesso proibido!'], 401);
         }
 
-        $sleeps = Sleep::where('userId', Auth::guard('api')->user()->id)->get();
+        $sleeps = Sleep::where('userId', Auth::guard('api')->id())->get();
 
         if (!$sleeps || count($sleeps) == 0) {
             return Response::json(['error' => 'Não existem registos de sono.'], 404);

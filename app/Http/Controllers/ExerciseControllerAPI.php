@@ -87,6 +87,34 @@ class ExerciseControllerAPI extends Controller
         return ExerciseResource::collection($exercises);
     }
 
+    public static function getExerciseStats() {
+        $exercises = Exercise::where('userId', Auth::guard('api')->id())->get();
+
+        if (!$exercises || count($exercises) == 0) {
+            return Response::json(['error' => 'Não existem registos de sono.'], 404);
+        }
+
+        $valuesToFilter = [];
+
+        foreach($exercises as $e) {
+            $parsedDate = explode('-', $e->date);
+            $day = intval(explode('T', $parsedDate[2])[0]);
+            $valuesToFilter[$parsedDate[0]][intval($parsedDate[1])][$day] = [
+                'calories' => 0,
+                'duration' => 0,
+            ];
+        }
+
+        foreach($exercises as $e) {
+            $parsedDate = explode('-', $e->date);
+            $day = intval(explode('T', $parsedDate[2])[0]);
+            $valuesToFilter[$parsedDate[0]][intval($parsedDate[1])][$day]['calories'] += $e->burnedCalories;
+            $valuesToFilter[$parsedDate[0]][intval($parsedDate[1])][$day]['duration'] += $e->duration;
+        }
+
+        return Response::json(['data' => $valuesToFilter]);
+    }
+
     public function show($id)
     {
         //

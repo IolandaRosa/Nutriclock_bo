@@ -128,4 +128,5 @@ Route::middleware(['auth:api', 'patient'])->get('/households', 'HouseholdStaticC
 Route::middleware(['auth:api', 'patient'])->post('/exercises', 'ExerciseControllerAPI@store');
 Route::middleware(['auth:api', 'patient'])->get('/exercises/dates','ExerciseControllerAPI@getExerciseDates');
 Route::middleware(['auth:api', 'patient'])->get('/exercises/detail/{date}','ExerciseControllerAPI@getExerciseByDate');
+Route::middleware(['auth:api', 'patient'])->get('/exercises/stats','ExerciseControllerAPI@getExerciseStats');
 
