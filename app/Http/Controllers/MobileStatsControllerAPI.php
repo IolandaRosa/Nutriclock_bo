@@ -23,6 +23,10 @@ class MobileStatsControllerAPI extends Controller
         $totalMeals= Meal::where('userId', $id)->count();
         $sleeps = Sleep::where('userId', Auth::guard('api')->id())->get();
         $exercises = Exercise::where('userId', Auth::guard('api')->id())->get();
+        $parsedDates = [];
+        $i = 0;
+
+
         $totalSleeps = count($sleeps);
         $averageSleepHours = 0.0;
         $sum = 0;
@@ -30,6 +34,7 @@ class MobileStatsControllerAPI extends Controller
         $averageBurnedCals = 0;
         $totalDuration = 0;
         $averageDuration = 0;
+        $totalSportDays = 0;
 
         foreach($sleeps as $sleep) {
             $diff = SleepControllerAPI::computeTimeInHours($sleep->sleepTime, $sleep->wakeUpTime);
@@ -39,9 +44,13 @@ class MobileStatsControllerAPI extends Controller
         foreach($exercises as $e) {
             $totalBurnedCals += $e->burnedCalories;
             $totalDuration += $e->duration;
+            $parsed = Carbon::parse($e->date)->format('d/m/Y');
+            $parsedDates[$i] = $parsed;
+            $i++;
         }
 
-        $totalDuration = round($totalDuration / 3600000, 2);
+        $totalDuration = round($totalDuration / 60, 2);
+        $totalSportDays = count(array_unique($parsedDates));
 
         if ($totalDuration > 0) $averageDuration = round($totalDuration / count($exercises), 2);
         if ($totalBurnedCals > 0) $averageBurnedCals = round($totalBurnedCals / count($exercises), 2);
@@ -69,6 +78,7 @@ class MobileStatsControllerAPI extends Controller
             'meals' => $totalMeals,
             'totalSleepDays' => $totalSleeps,
             'averageSleepHours' => number_format($averageSleepHours, 2),
+            'totalSportDays' => intval($totalSportDays),
             'totalDuration' => intval($totalDuration),
             'averageDuration' => number_format($averageDuration, 2),
             'totalBurnedCals' => intval($totalBurnedCals),

@@ -23,24 +23,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="change under message controller for mark all read when patient opens chat">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_2_2021_10_16_PM_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_2_2021_10_16_PM__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Exercise.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/ExerciseStatic.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/HouseholdStatic.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ExerciseControllerAPI.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ExerciseStaticControllerAPI.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/HouseholdStaticControllerAPI.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/Exercise.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/ExerciseStatic.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/HouseholdStatic.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_02_13_112407_create_exercise_static_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_02_13_112501_create_household_static_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_02_13_112551_create_exercises_table.php" afterDir="false" />
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="add exercise api">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MobileStatsControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MobileStatsControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -348,14 +333,9 @@
       <workItem from="1612391763693" duration="762000" />
       <workItem from="1612475841801" duration="2923000" />
       <workItem from="1612615315742" duration="9198000" />
-      <workItem from="1613215138736" duration="13858000" />
-    </task>
-    <task id="LOCAL-00067" summary="Update database file for production">
-      <created>1607549313846</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1607549313846</updated>
+      <workItem from="1613215138736" duration="13914000" />
+      <workItem from="1613259663363" duration="416000" />
+      <workItem from="1613303259917" duration="2101000" />
     </task>
     <task id="LOCAL-00068" summary="change design from admin users list">
       <created>1607640841921</created>
@@ -693,7 +673,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612740402012</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="add exercise api">
+      <created>1613259481168</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1613259481168</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -732,7 +719,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Change details on patients table" />
     <MESSAGE value="Put unit on second row" />
     <MESSAGE value="Add readonly check to professional and intern" />
     <MESSAGE value="add clean storage on 401" />
@@ -757,7 +743,8 @@
     <MESSAGE value="medications change for profile" />
     <MESSAGE value="change the chat list to show all contact from user usf" />
     <MESSAGE value="change under message controller for mark all read when patient opens chat" />
-    <option name="LAST_COMMIT_MESSAGE" value="change under message controller for mark all read when patient opens chat" />
+    <MESSAGE value="add exercise api" />
+    <option name="LAST_COMMIT_MESSAGE" value="add exercise api" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="76" key="#Inspections" timestamp="1605567763677">
@@ -813,11 +800,11 @@
     </state>
     <state x="2681" y="151" key="RollbackChangesDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1609332907425" />
     <state x="609" y="120" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1609020299258" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1612740412389">
-      <screen x="0" y="0" width="1536" height="834" />
+    <state x="2371" y="189" key="Vcs.Push.Dialog.v2" timestamp="1613259498212">
+      <screen x="1920" y="0" width="1920" height="1050" />
     </state>
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1605378114181" />
-    <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1612714347459" />
+    <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613259498212" />
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1612740412389" />
     <state x="0" y="0" width="1550" height="882" key="dock-window-1" timestamp="1607884751581">
       <screen x="0" y="0" width="1536" height="834" />
