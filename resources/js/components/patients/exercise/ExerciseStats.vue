@@ -4,7 +4,7 @@
             <div class="with-p-4 bg-light rounded with-shadow">
                 <div class="component-wrapper-header">
                     <h3 class="component-wrapper-left">
-                        Diário do Sono
+                        Relatório gráfico
                     </h3>
                     <div class="component-wrapper-right">
                         <button class="btn-bold btn btn-primary" type="button" data-toggle="tooltip"
@@ -21,16 +21,32 @@
                 <div class="component-wrapper-body pt-4" style="color: gray">
                     <div class="card-deck">
                         <div class="card table-wrapper mb-2 p-2 pt-3 mt-2 text-dark">
-                            <div class="card-text"><strong>Média total de duração de exercício: </strong>{{ this.totalAverage.toFixed(2) }}</div>
-                            <div class="card-text"><strong>Média mensal de duração de exercício: </strong>{{ this.monthAverage.toFixed(2) }}</div>
-                            <div class="card-text"><strong>Máximo mensal de duração de exercício: </strong>{{ this.monthMaximum.toFixed(2) }}</div>
-                            <div class="card-text"><strong>Mínimo mensal de duração de exercício: </strong>{{ this.monthMinimum.toFixed(2) }}</div>
+                            <div class="card-text"><strong>Média total de duração de
+                                exercício: </strong>{{ this.averageDuration.toFixed(2) }} minutos
+                            </div>
+                            <div class="card-text"><strong>Média mensal de duração de
+                                exercício: </strong>{{ this.monthDurationAverage.toFixed(2) }}
+                            </div>
+                            <div class="card-text"><strong>Máximo mensal de duração de
+                                exercício: </strong>{{ this.monthDurationMaximum.toFixed(2) }}
+                            </div>
+                            <div class="card-text"><strong>Mínimo mensal de duração de
+                                exercício: </strong>{{ this.monthDurationMinimum.toFixed(2) }}
+                            </div>
                         </div>
                         <div class="card table-wrapper mb-2 p-2 pt-3 mt-2 text-dark">
-                            <div class="card-text"><strong>Média total de calorias queimadas: </strong>{{ this.totalAverage.toFixed(2) }}</div>
-                            <div class="card-text"><strong>Média mensal de calorias queimadas: </strong>{{ this.monthAverage.toFixed(2) }}</div>
-                            <div class="card-text"><strong>Máximo mensal de calorias queimadas: </strong>{{ this.monthMaximum.toFixed(2) }}</div>
-                            <div class="card-text"><strong>Mínimo mensal de calorias queimadas: </strong>{{ this.monthMinimum.toFixed(2) }}</div>
+                            <div class="card-text"><strong>Média total de calorias
+                                queimadas: </strong>{{ this.averageCalories.toFixed(2) }}
+                            </div>
+                            <div class="card-text"><strong>Média mensal de calorias
+                                queimadas: </strong>{{ this.monthCaloriesAverage.toFixed(2) }}
+                            </div>
+                            <div class="card-text"><strong>Máximo mensal de calorias
+                                queimadas: </strong>{{ this.monthCaloriesMaximum.toFixed(2) }}
+                            </div>
+                            <div class="card-text"><strong>Mínimo mensal de calorias
+                                queimadas: </strong>{{ this.monthCaloriesMinimum.toFixed(2) }}
+                            </div>
                         </div>
                     </div>
                     <div class="table-wrapper p-4">
@@ -60,36 +76,70 @@
                             </div>
                         </div>
                         <div>
-                            <div v-if="chartData == null" class="no-data">
-                                Não existem registos.
+                            <div v-if="chartDurationData == null" class="no-data">
+                                Não existem registos de duração.
                             </div>
-                            <line-chart v-else :chart-data="chartData"
+                            <line-chart v-else :chart-data="chartDurationData"
                                         :options="{
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        legend: {
-                        display: false
-                    },
-                    scales: {
-                        xAxes: [{
-                            display: true,
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Dias do mês'
-                            }
-                        }],
-                        yAxes: [{
-                            display: true,
-                            scaleLabel: {
-                                display:true,
-                                labelString: 'Horas de sono'
-                            },
-                            ticks: {
-                                beginAtZero: true
-                            }
-                       }]
-                    }
-                    }" :height="200"></line-chart>
+                                            responsive: true,
+                                            maintainAspectRatio: false,
+                                            legend: {
+                                            display: false
+                                        },
+                                        scales: {
+                                            xAxes: [{
+                                                display: true,
+                                                scaleLabel: {
+                                                    display: true,
+                                                    labelString: 'Dia do mês'
+                                                }
+                                            }],
+                                            yAxes: [{
+                                                display: true,
+                                                scaleLabel: {
+                                                    display:true,
+                                                    labelString: 'Duração'
+                                                },
+                                                ticks: {
+                                                    beginAtZero: true
+                                                }
+                                           }]
+                                        }
+                                        }" :height="200">
+                            </line-chart>
+                        </div>
+                        <div class="mt-2">
+                            <div v-if="chartCaloriesData == null" class="no-data">
+                                Não existem registos de calorias queimadas.
+                            </div>
+                            <line-chart v-else :chart-data="chartCaloriesData"
+                                        :options="{
+                                            responsive: true,
+                                            maintainAspectRatio: false,
+                                            legend: {
+                                            display: false
+                                        },
+                                        scales: {
+                                            xAxes: [{
+                                                display: true,
+                                                scaleLabel: {
+                                                    display: true,
+                                                    labelString: 'Dia do mês'
+                                                }
+                                            }],
+                                            yAxes: [{
+                                                display: true,
+                                                scaleLabel: {
+                                                    display:true,
+                                                    labelString: 'Calorias queimadas'
+                                                },
+                                                ticks: {
+                                                    beginAtZero: true
+                                                }
+                                           }]
+                                        }
+                                        }" :height="200">
+                            </line-chart>
                         </div>
                     </div>
                 </div>
@@ -110,13 +160,18 @@ export default {
         return {
             months: [],
             years: [],
-            chartData: null,
+            chartDurationData: null,
+            chartCaloriesData: null,
             isFetching: false,
             statsData: null,
-            totalAverage: 0,
-            monthAverage: 0,
-            monthMinimum: 0,
-            monthMaximum: 0,
+            averageDuration: 0,
+            averageCalories: 0,
+            monthDurationAverage: 0,
+            monthDurationMinimum: 0,
+            monthDurationMaximum: 0,
+            monthCaloriesAverage: 0,
+            monthCaloriesMinimum: 0,
+            monthCaloriesMaximum: 0,
             selectedMonth: null,
             selectedYear: null,
         };
@@ -139,30 +194,36 @@ export default {
         },
         fillStatsByMonth(year, month) {
             const labels = [];
-            const values = [];
-            let sum = 0;
-            let minAux = 24;
-            let maxAux = 0;
+            const valuesDuration = [];
+            const valuesCalories = [];
+            let sumDuration = 0;
+            let minDurationAux = Number.MAX_SAFE_INTEGER;
+            let maxDurationAux = 0;
+            let sumCalories = 0;
+            let minCaloriesAux = Number.MAX_SAFE_INTEGER;
+            let maxCaloriesAux = 0;
             this.statsData.chartStats[year][month].forEach(day => {
-                sum += day.value;
+                sumDuration += day.duration;
+                sumCalories += day.calories;
 
-                if (day.value > maxAux) {
-                    maxAux = day.value;
-                }
-
-                if (day.value < minAux) {
-                    minAux = day.value;
-                }
+                if (day.duration > maxDurationAux) maxDurationAux = day.duration;
+                if (day.calories > maxCaloriesAux) maxCaloriesAux = day.calories;
+                if (day.duration < minDurationAux) minDurationAux = day.duration;
+                if (day.calories < minCaloriesAux) minCaloriesAux = day.calories;
 
                 labels.push(day.label);
-                values.push(day.value);
+                valuesDuration.push(day.duration);
+                valuesCalories.push(day.calories);
             });
 
-            this.monthAverage = sum / this.statsData.chartStats[year][month].length;
-            this.monthMaximum = maxAux;
-            this.monthMinimum = minAux;
+            this.monthDurationAverage = sumDuration / this.statsData.chartStats[year][month].length;
+            this.monthDurationMaximum = maxDurationAux;
+            this.monthDurationMinimum = minDurationAux;
+            this.monthCaloriesAverage = sumCalories / this.statsData.chartStats[year][month].length;
+            this.monthCaloriesMaximum = maxCaloriesAux;
+            this.monthCaloriesMinimum = minCaloriesAux;
 
-            this.chartData = {
+            this.chartDurationData = {
                 labels: labels,
                 datasets: [
                     {
@@ -170,19 +231,33 @@ export default {
                         borderColor: '#67C23A90',
                         fill: false,
                         backgroundColor: '#67C23A90',
-                        data: values
+                        data: valuesDuration
+                    }
+                ]
+            };
+
+            this.chartCaloriesData = {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Calorias',
+                        borderColor: '#67C23A90',
+                        fill: false,
+                        backgroundColor: '#67C23A90',
+                        data: valuesCalories
                     }
                 ]
             };
         },
-        getSleepStats() {
+        getExercisesStats() {
             if (this.isFetching) return
             this.isFetching = true;
 
-            axios.get(`api/sleeps/stats/${this.id}`).then(response => {
+            axios.get(`api/exercises/admin/stats/${this.id}`).then(response => {
                     this.isFetching = false;
                     this.statsData = response.data.stats;
-                    this.totalAverage = response.data.stats.averageTime;
+                    this.averageDuration = response.data.stats.averageDuration;
+                    this.averageCalories = response.data.stats.averageCalories;
 
                     if (response.data.stats && response.data.stats.totalRegisters > 0) {
                         const year = Object.keys(this.statsData.chartStats)[0];
@@ -214,21 +289,18 @@ export default {
                 this.fetched = true;
                 if (error.response && error.response.status === 401) {
                     this.$store.commit('clearUserAndToken');
-                    this.$router.push({path: ROUTE.Login });
+                    this.$router.push({path: ROUTE.Login});
                 }
             });
         }
     },
     mounted() {
-        this.getSleepStats();
-    }
-    ,
+        this.getExercisesStats();
+    },
     components: {
         LineChart,
-    }
-    ,
-}
-;
+    },
+};
 </script>
 
 <style>

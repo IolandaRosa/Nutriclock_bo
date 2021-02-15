@@ -149,29 +149,29 @@ class ExerciseControllerAPI extends Controller
 
         foreach($exercises as $e) {
             $parsedDate = explode('-', $e->date);
-            $valuesToFilter[$parsedDate[0]][intval($parsedDate[1])] = [];
+            $valuesToFilter[$parsedDate[0]][$parsedDate[1]] = [];
         }
 
         foreach($exercises as $e) {
             $durationSum += $e->duration;
-            $caloriesSum += $e->caloriesBurned;
+            $caloriesSum += $e->burnedCalories;
             $parsedDate = explode('-', $e->date);
             $hasLabel = false;
             $day = intval(explode('T', $parsedDate[2])[0]);
             $index = 0;
 
-            foreach ($valuesToFilter[$parsedDate[0]][intval($parsedDate[1])] as $item){
+            foreach ($valuesToFilter[$parsedDate[0]][$parsedDate[1]] as $item){
                 if ($item['label'] == $day) {
                     $item['duration'] += $e->duration;
                     $item['calories'] += $e->burnedCalories;
-                    $valuesToFilter[$parsedDate[0]][intval($parsedDate[1])][$index] = $item;
+                    $valuesToFilter[$parsedDate[0]][$parsedDate[1]][$index] = $item;
                     $hasLabel = true;
                 }
                 $index++;
             }
 
             if(!$hasLabel) {
-                array_push($valuesToFilter[$parsedDate[0]][intval($parsedDate[1])], [
+                array_push($valuesToFilter[$parsedDate[0]][$parsedDate[1]], [
                     'label' => $day,
                     'duration' => $e->duration,
                     'calories' => $e->burnedCalories,
@@ -185,7 +185,7 @@ class ExerciseControllerAPI extends Controller
         return Response::json(['stats' => [
             'totalRegisters'=>$exercisesCount,
             'averageDuration'=>round($averageDuration, 2),
-            '$averageCalories'=>round($averageCalories, 2),
+            'averageCalories'=>round($averageCalories, 2),
             'chartStats' => $valuesToFilter
         ]]);
     }

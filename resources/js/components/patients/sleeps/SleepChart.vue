@@ -55,33 +55,34 @@
                             <div v-if="chartData == null" class="no-data">
                                 Não existem registos.
                             </div>
-                            <line-chart v-else :chart-data="chartData"
+                            <bar-chart v-else :chart-data="chartData"
                                         :options="{
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        legend: {
-                        display: false
-                    },
-                    scales: {
-                        xAxes: [{
-                            display: true,
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Dias do mês'
-                            }
-                        }],
-                        yAxes: [{
-                            display: true,
-                            scaleLabel: {
-                                display:true,
-                                labelString: 'Horas de sono'
-                            },
-                            ticks: {
-                                beginAtZero: true
-                            }
-                       }]
-                    }
-                    }" :height="200"></line-chart>
+                                            responsive: true,
+                                            maintainAspectRatio: false,
+                                            legend: {
+                                            display: false
+                                        },
+                                        scales: {
+                                            xAxes: [{
+                                                display: true,
+                                                scaleLabel: {
+                                                    display: true,
+                                                    labelString: 'Dias do mês'
+                                                }
+                                            }],
+                                            yAxes: [{
+                                                display: true,
+                                                scaleLabel: {
+                                                    display:true,
+                                                    labelString: 'Horas de sono'
+                                                },
+                                                ticks: {
+                                                    beginAtZero: true
+                                                }
+                                           }]
+                                        }
+                                    }" :height="200">
+                            </bar-chart>
                         </div>
                     </div>
                 </div>
@@ -91,8 +92,7 @@
 </template>
 
 <script type="text/javascript">
-
-import LineChart from '../../utils/LineChart';
+import BarChart from '../../utils/BarChart';
 import { ROUTE } from '../../../utils/routes';
 import { parseMonth } from '../../../utils/misc';
 
@@ -216,7 +216,7 @@ export default {
     }
     ,
     components: {
-        LineChart,
+        BarChart,
     }
     ,
 }
