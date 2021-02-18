@@ -23,14 +23,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="exercises stats api done">
-      <change afterPath="$PROJECT_DIR$/resources/js/components/utils/BarChart.js" afterDir="false" />
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="merge exercises change with master">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExerciseControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExerciseControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/exercise/ExerciseStats.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/exercise/ExerciseStats.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/sleeps/SleepChart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/sleeps/SleepChart.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/utils/LineChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/utils/LineChart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LoginControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LoginControllerAPI.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/utils/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/routes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,12 +46,12 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/chat" />
+    <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -344,13 +341,7 @@
       <workItem from="1613303259917" duration="2202000" />
       <workItem from="1613305868264" duration="12001000" />
       <workItem from="1613425448674" duration="4246000" />
-    </task>
-    <task id="LOCAL-00071" summary="changed design v1">
-      <created>1607646999442</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1607646999442</updated>
+      <workItem from="1613685790216" duration="872000" />
     </task>
     <task id="LOCAL-00072" summary="changed design v2">
       <created>1607889058544</created>
@@ -688,7 +679,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613344097346</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="merge exercises change with master">
+      <created>1613430526163</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1613430526163</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -727,7 +725,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Chat message send" />
     <MESSAGE value="Add chat endpoints for mobile" />
     <MESSAGE value="Add websocket for bo" />
     <MESSAGE value="Add websocket integration" />
@@ -752,7 +749,8 @@
     <MESSAGE value="relatório gráfico de exercício" />
     <MESSAGE value="exercise report api" />
     <MESSAGE value="exercises stats api done" />
-    <option name="LAST_COMMIT_MESSAGE" value="exercises stats api done" />
+    <MESSAGE value="merge exercises change with master" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge exercises change with master" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="76" key="#Inspections" timestamp="1605567763677">
@@ -786,10 +784,10 @@
     <state x="468" y="24" key="CommitChangelistDialog2/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1605378089686" />
     <state x="2505" y="121" key="CommitChangelistDialog2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1605374061365" />
     <state x="468" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1606843342376" />
-    <state x="-6" y="0" width="1299" height="834" key="DiffContextDialog" timestamp="1611505850229">
+    <state x="-6" y="0" width="1299" height="834" key="DiffContextDialog" timestamp="1613685873893">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="-6" y="0" width="1299" height="834" key="DiffContextDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1611505850229" />
+    <state x="-6" y="0" width="1299" height="834" key="DiffContextDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613685873893" />
     <state x="62" y="634" width="1350" height="648" key="DiffContextDialog/0.0.1536.834@0.0.1536.834" timestamp="1607278393668" />
     <state x="549" y="172" key="FileChooserDialogImpl" timestamp="1606679335722">
       <screen x="0" y="0" width="1536" height="834" />
@@ -808,11 +806,11 @@
     </state>
     <state x="2681" y="151" key="RollbackChangesDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1609332907425" />
     <state x="609" y="120" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1609020299258" />
-    <state x="2371" y="189" key="Vcs.Push.Dialog.v2" timestamp="1613344106660">
+    <state x="2371" y="189" key="Vcs.Push.Dialog.v2" timestamp="1613430533977">
       <screen x="1920" y="0" width="1920" height="1050" />
     </state>
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1605378114181" />
-    <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613344106660" />
+    <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613430533977" />
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1613305737303" />
     <state x="0" y="0" width="1550" height="882" key="dock-window-1" timestamp="1607884751581">
       <screen x="0" y="0" width="1536" height="834" />
@@ -843,11 +841,11 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1608484752474" />
-    <state x="2459" y="195" width="672" height="160" key="search.everywhere.popup" timestamp="1613215360222">
+    <state x="2459" y="195" width="672" height="160" key="search.everywhere.popup" timestamp="1613685996839">
       <screen x="1920" y="0" width="1920" height="1050" />
     </state>
     <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1609351051894" />
-    <state x="2459" y="195" width="672" height="160" key="search.everywhere.popup/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613215360222" />
+    <state x="2459" y="195" width="672" height="160" key="search.everywhere.popup/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613685996839" />
     <state x="430" y="154" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1612483072441" />
   </component>
 </project>

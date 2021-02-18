@@ -62,7 +62,7 @@ export const ROUTE = {
 };
 
 export const routes = [
-    {path: '/', redirect: '/login', name: 'root'},
+    {path: '/', redirect: '/patients', name: 'root'},
     {path: '/login', component: Login, name: 'Login'},
     {path: '/forgot-password', component: ForgotPassword, name: 'ForgotPassword'},
     {path: '/reset-password/:token', component: ResetPassword, name: 'ResetPassword', props: true},
