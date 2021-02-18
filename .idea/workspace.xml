@@ -23,12 +23,12 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="merge exercises change with master">
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="fix bug on render gender on patient list">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LoginControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LoginControllerAPI.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/PatientsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/PatientsList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/utils/misc.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/misc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/utils/dataTables.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/dataTables.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -342,14 +342,7 @@
       <workItem from="1613303259917" duration="2202000" />
       <workItem from="1613305868264" duration="12001000" />
       <workItem from="1613425448674" duration="4246000" />
-      <workItem from="1613685790216" duration="3709000" />
-    </task>
-    <task id="LOCAL-00073" summary="changed design to be responsive in mobile">
-      <created>1607982804138</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1607982804138</updated>
+      <workItem from="1613685790216" duration="4528000" />
     </task>
     <task id="LOCAL-00074" summary="changed image background absolute url">
       <created>1607983521211</created>
@@ -687,7 +680,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613686899093</updated>
     </task>
-    <option name="localTasksCounter" value="122" />
+    <task id="LOCAL-00122" summary="fix bug on render gender on patient list">
+      <created>1613691351274</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1613691351274</updated>
+    </task>
+    <option name="localTasksCounter" value="123" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -726,7 +726,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add chat endpoints for mobile" />
     <MESSAGE value="Add websocket for bo" />
     <MESSAGE value="Add websocket integration" />
     <MESSAGE value="Add socket communication" />
@@ -751,7 +750,8 @@
     <MESSAGE value="exercise report api" />
     <MESSAGE value="exercises stats api done" />
     <MESSAGE value="merge exercises change with master" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge exercises change with master" />
+    <MESSAGE value="fix bug on render gender on patient list" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bug on render gender on patient list" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="76" key="#Inspections" timestamp="1605567763677">
@@ -807,11 +807,11 @@
     </state>
     <state x="2681" y="151" key="RollbackChangesDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1609332907425" />
     <state x="609" y="120" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1609020299258" />
-    <state x="2371" y="189" key="Vcs.Push.Dialog.v2" timestamp="1613686915144">
+    <state x="2371" y="189" key="Vcs.Push.Dialog.v2" timestamp="1613691374860">
       <screen x="1920" y="0" width="1920" height="1050" />
     </state>
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1605378114181" />
-    <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613686915144" />
+    <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613691374860" />
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1613305737303" />
     <state x="0" y="0" width="1550" height="882" key="dock-window-1" timestamp="1607884751581">
       <screen x="0" y="0" width="1536" height="834" />
