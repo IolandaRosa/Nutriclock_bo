@@ -2,7 +2,8 @@ import {EventType} from "../constants/misc";
 
 export const renderGender = gender => {
     if (gender === 'MALE') return 'Masculino';
-    return 'Feminino';
+    if (gender === 'FEMALE') return 'Feminino';
+    return 'Não me indentifico';
 };
 
 export const renderRole = role => {
