@@ -24,7 +24,8 @@ class UserControllerAPI extends Controller
         return UserResource::collection(User::all());
     }
 
-    public function show(Request $request, $id) {
+    public function show(Request $request, $id)
+    {
         $user = User::find($id);
 
         if (!$user) {
@@ -34,7 +35,8 @@ class UserControllerAPI extends Controller
         return new UserResource($user);
     }
 
-    public function updateProfessional(Request $request, $id) {
+    public function updateProfessional(Request $request, $id)
+    {
         $user = User::find($id);
 
         if (!$user) {
@@ -112,24 +114,24 @@ class UserControllerAPI extends Controller
 
     public function getAdminUsers()
     {
-        if(Auth::guard('api')->user()->role != 'ADMIN'){
+        if (Auth::guard('api')->user()->role != 'ADMIN') {
             return Response::json(['error' => 'Accesso proibido!'], 401);
         }
 
-        $users = User::where('id', '!=' , Auth::guard('api')->user()->id)->where('role', '!=', 'PATIENT')->withTrashed()->get();
+        $users = User::where('id', '!=', Auth::guard('api')->user()->id)->where('role', '!=', 'PATIENT')->withTrashed()->get();
         return UserResource::collection($users);
     }
 
     public function getPatients(Request $request)
     {
-        if(Auth::guard('api')->user()->role == 'PATIENT'){
+        if (Auth::guard('api')->user()->role == 'PATIENT') {
             return Response::json(['error' => 'Accesso proibido!'], 401);
         }
 
         if (count($request->ufcsIds) == 0) {
-            $users = User::where('role','PATIENT')->get();
+            $users = User::where('role', 'PATIENT')->get();
         } else {
-            $users = User::where('role','PATIENT')->whereIn('ufc_id', $request->ufcsIds)->get();
+            $users = User::where('role', 'PATIENT')->whereIn('ufc_id', $request->ufcsIds)->get();
         }
 
         return UserResource::collection($users);
@@ -138,7 +140,7 @@ class UserControllerAPI extends Controller
 
     public function registerUser(Request $request)
     {
-        if(Auth::guard('api')->user()->role != 'ADMIN'){
+        if (Auth::guard('api')->user()->role != 'ADMIN') {
             return Response::json(['error' => 'Accesso proibido!'], 401);
         }
 
@@ -146,7 +148,7 @@ class UserControllerAPI extends Controller
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users,email',
             'role' => Rule::in(['ADMIN', 'INTERN', 'PROFESSIONAL']),
-        ],[
+        ], [
             'email.unique' => 'O email já existe.',
         ]);
 
@@ -168,18 +170,19 @@ class UserControllerAPI extends Controller
         return new UserResource($user);
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $request->validate([
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users',
             'password' => 'required|string',
             'avatar' => 'nullable|image|mimes:jpg,jpeg,png',
-            'gender' => Rule::in(['MALE', 'FEMALE','NONE']),
+            'gender' => Rule::in(['MALE', 'FEMALE', 'NONE']),
         ]);
 
         $user = new User();
 
-        if($request->avatar != null) {
+        if ($request->avatar != null) {
             $image = $request->file('avatar');
             $path = basename($image->store('avatars', 'public'));
             $user->avatarUrl = basename($path);
@@ -216,14 +219,15 @@ class UserControllerAPI extends Controller
                     $medication->timesADay = $drug->timesADay;
                 }
 
-               $medication->save();
+                $medication->save();
             }
         }
 
         return new UserResource($user);
     }
 
-    public function activate(Request $request, $id) {
+    public function activate(Request $request, $id)
+    {
         $request->validate([
             'weight' => 'nullable|numeric',
             'height' => 'nullable|numeric',
@@ -232,7 +236,7 @@ class UserControllerAPI extends Controller
             'diseases' => 'nullable|string'
         ]);
 
-        $user=User::find($id);
+        $user = User::find($id);
 
         if (!$user) {
             return Response::json(['error' => 'O utilizador não existe.'], 404);
@@ -249,13 +253,14 @@ class UserControllerAPI extends Controller
         return new UserResource($user);
     }
 
-    public function getAuthenticatedUser(Request $request) {
+    public function getAuthenticatedUser(Request $request)
+    {
         return new UserResource($request->user());
     }
 
-    public function toggleActive (Request $request, $id)
+    public function toggleActive(Request $request, $id)
     {
-        if(Auth::guard('api')->user()->role != 'ADMIN'){
+        if (Auth::guard('api')->user()->role != 'ADMIN') {
             return Response::json(['error' => 'Accesso proibido!'], 401);
         }
 
@@ -274,7 +279,7 @@ class UserControllerAPI extends Controller
         return new UserResource($user);
     }
 
-    public function updateAcceptanceTerms (Request $request, $id)
+    public function updateAcceptanceTerms(Request $request, $id)
     {
 
         $user = User::find($id);
@@ -290,9 +295,9 @@ class UserControllerAPI extends Controller
         return new UserResource($user);
     }
 
-    public function destroy ($id)
+    public function destroy($id)
     {
-        if(Auth::guard('api')->user()->role != 'ADMIN'){
+        if (Auth::guard('api')->user()->role != 'ADMIN') {
             return Response::json(['error' => 'Accesso proibido!'], 401);
         }
 
@@ -303,7 +308,7 @@ class UserControllerAPI extends Controller
         }
 
         if ($user->avatarUrl) {
-            Storage::disk('s3')->delete('avatars/'.$user->avatarUrl);
+            Storage::disk('s3')->delete('avatars/' . $user->avatarUrl);
             // Storage::disk('public')->delete('avatars/'.$user->avatarUrl);
         }
 
@@ -318,7 +323,7 @@ class UserControllerAPI extends Controller
 
     public function deletePatient($id)
     {
-        if(Auth::guard('api')->user()->role != 'ADMIN'){
+        if (Auth::guard('api')->user()->role != 'ADMIN') {
             return Response::json(['error' => 'Accesso proibido!'], 401);
         }
 
@@ -341,7 +346,7 @@ class UserControllerAPI extends Controller
         }
 
         if ($user->avatarUrl) {
-            Storage::disk('s3')->delete('avatars/'.$user->avatarUrl);
+            Storage::disk('s3')->delete('avatars/' . $user->avatarUrl);
             // Storage::disk('public')->delete('avatars/'.$user->avatarUrl);
         }
 
@@ -350,7 +355,8 @@ class UserControllerAPI extends Controller
         return new UserResource($user);
     }
 
-    public function getProfessionalByUsf(Request $request, $id) {
+    public function getProfessionalByUsf(Request $request, $id)
+    {
         $users = [];
         $userIds = UsersUfc::where('ufc_id', $id)->get('user_id');
 
@@ -366,18 +372,19 @@ class UserControllerAPI extends Controller
             }
         }
 
-        return Response::json(['data' => $users, ], 200);
+        return Response::json(['data' => $users,], 200);
     }
 
-    public function updateAvatar(Request $request) {
+    public function updateAvatar(Request $request)
+    {
         $user = User::find(Auth::guard('api')->user()->id);
 
-        if(!$user){
+        if (!$user) {
             return Response::json(['error' => 'O utilizador não existe!'], 400);
         }
 
         if ($user->avatarUrl) {
-            Storage::disk('s3')->delete('avatars/'.$user->avatarUrl);
+            Storage::disk('s3')->delete('avatars/' . $user->avatarUrl);
         }
 
         $image = $request->file('avatar');
@@ -389,10 +396,11 @@ class UserControllerAPI extends Controller
         return new UserResource($user);
     }
 
-    public function updatePatientProfile(Request $request) {
-        $user = User::find(Auth::guard('api')->user()->id);
+    public function updatePatientProfile(Request $request)
+    {
+        $user = User::find(Auth::guard('api')->id());
 
-        if(!$user){
+        if (!$user) {
             return Response::json(['error' => 'O utilizador não existe!'], 400);
         }
 
@@ -401,7 +409,7 @@ class UserControllerAPI extends Controller
             'height' => 'nullable|numeric',
             'birthday' => 'required|date',
             'name' => 'required',
-            'gender' => Rule::in(['MALE', 'FEMALE','NONE']),
+            'gender' => Rule::in(['MALE', 'FEMALE', 'NONE']),
         ]);
 
         $user->weight = $request->weight;
@@ -415,10 +423,11 @@ class UserControllerAPI extends Controller
         return new UserResource($user);
     }
 
-    public function updatePatientDiseases(Request $request) {
+    public function updatePatientDiseases(Request $request)
+    {
         $user = User::find(Auth::guard('api')->user()->id);
 
-        if(!$user){
+        if (!$user) {
             return Response::json(['error' => 'O utilizador não existe!'], 400);
         }
 

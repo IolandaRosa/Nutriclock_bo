@@ -21,6 +21,17 @@
                     </div>
                 </div>
                 <div>
+                    <div class="text-info font-weight-bold">{{ role }}</div>
+                    <div v-show="this.$store.state.user.role === 'PROFESSIONAL'">
+                        <span class="text-dark font-weight-bold mr-1">Categoria Profissional:</span>
+                        <span class="text-secondary font-weight-normal">{{ userCategory }}</span>
+                    </div>
+                    <div v-show="this.$store.state.user.role === 'PROFESSIONAL'">
+                        <span class="text-dark font-weight-bold mr-1">USF:</span>
+                        <span class="text-secondary font-weight-normal">{{ userUfcs }}</span>
+                    </div>
+                </div>
+                <div>
                     <div class="card-deck">
                         <div class="card p-2 pt-3 mt-2 text-dark">
                             <h5 class="card-title">Dados Pessoais</h5>
@@ -135,9 +146,10 @@
 
 <script type="text/javascript">
 import FileUpload from '../utils/FileUpload';
-import {getCategoryNameById, renderRole} from "../../utils/misc";
+import {getCategoryNameById, renderGender, renderRole} from "../../utils/misc";
 import {equalFields, ERROR_MESSAGES, isEmailFormatInvalid, isEmptyField} from "../../utils/validations";
 import {ROUTE} from "../../utils/routes";
+import {UserRoles} from "../../constants/misc";
 
 export default {
     data: function () {
@@ -152,6 +164,7 @@ export default {
             userCategory: '',
             gender: '',
             newPassword: '',
+            userUfcs: '',
             errors: {
                 name: null,
                 newPassword: null,
@@ -260,6 +273,18 @@ export default {
 
         if (this.isFetching) return;
         this.isFetching = true;
+
+        if (this.$store.state.user.role === UserRoles.Professional) {
+            axios.get('api/ufcs/auth/description').then(response => {
+                this.userUfcs = response.data.data;
+            }).catch((error) => {
+                if (error.response && error.response.status === 401) {
+                    this.isFetching = false;
+                    this.$store.commit('clearUserAndToken');
+                    this.$router.push({path: ROUTE.Login });
+                }
+            });
+        }
 
         axios.get('api/professionalCategories').then(response => {
             this.isFetching = false;

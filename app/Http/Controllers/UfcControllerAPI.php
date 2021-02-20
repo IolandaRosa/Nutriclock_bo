@@ -94,4 +94,18 @@ class UfcControllerAPI extends Controller
         return UfcResource::collection($ufcs);
     }
 
+    public function getUserUfcsName() {
+        $names = "";
+        $userUfc = UsersUfc::where('user_id', Auth::guard('api')->id())->get();
+
+        if ($userUfc) {
+            foreach ($userUfc as $u) {
+                $ufc = Ufc::where('id', $u->ufc_id)->first();
+                $names .= $ufc->name.", ";
+            }
+        }
+
+        return Response::json(['data' => substr(trim($names), 0, -1)], 200);
+    }
+
 }

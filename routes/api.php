@@ -25,7 +25,7 @@ Route::middleware(['auth:api', 'professional'])->delete('patients/{id}', 'UserCo
 Route::middleware(['auth:api', 'admin'])->delete('users/{id}', 'UserControllerAPI@destroy');
 Route::middleware(['auth:api', 'admin'])->delete('users/{id}/status', 'UserControllerAPI@toggleActive');
 Route::middleware(['auth:api', 'professional'])->put('users/{id}', 'UserControllerAPI@updateProfessional');
-Route::middleware(['auth:api', 'professional'])->put('users/profile/{id}', 'UserControllerAPI@updateProfessionalProfile');
+Route::middleware(['auth:api', 'intern'])->put('users/profile/{id}', 'UserControllerAPI@updateProfessionalProfile');
 Route::middleware(['auth:api', 'admin'])->put('users/terms/{id}', 'UserControllerAPI@updateAcceptanceTerms');
 Route::middleware(['auth:api', 'patient'])->post('users/avatar', 'UserControllerAPI@updateAvatar');
 Route::middleware(['auth:api', 'patient'])->post('users/profile', 'UserControllerAPI@updatePatientProfile');
@@ -44,11 +44,12 @@ Route::middleware(['auth:api', 'admin'])->post('ufcs', 'UfcControllerAPI@store')
 Route::middleware(['auth:api', 'admin'])->put('ufcs/{id}', 'UfcControllerAPI@update');
 Route::middleware(['auth:api', 'admin'])->delete('ufcs/{id}', 'UfcControllerAPI@destroy');
 Route::middleware(['auth:api'])->get('users/{id}/ufcs', 'UfcControllerAPI@getUserUfcs');
+Route::middleware(['auth:api', 'intern'])->get('ufcs/auth/description', 'UfcControllerAPI@getUserUfcsName');
 
 // Reset Password
 Route::post('password', 'PasswordResetControllerAPI@store');
-Route::put('password/{id}', 'PasswordResetControllerAPI@update');
-Route::put('email/{id}', 'PasswordResetControllerAPI@updateEmail');
+Route::middleware(['auth:api'])->put('password/{id}', 'PasswordResetControllerAPI@update');
+Route::middleware(['auth:api'])->put('email/{id}', 'PasswordResetControllerAPI@updateEmail');
 Route::post('reset-password', 'PasswordResetControllerAPI@reset');
 
 // Medication API
