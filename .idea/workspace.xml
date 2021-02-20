@@ -23,11 +23,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="fixed snacks button not collapse">
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="fixed double value on burned calories calc">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExerciseControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExerciseControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LoginControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LoginControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/exercise/Exercises.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/exercise/Exercises.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -342,13 +341,6 @@
       <workItem from="1613305868264" duration="12001000" />
       <workItem from="1613425448674" duration="4246000" />
       <workItem from="1613685790216" duration="5370000" />
-    </task>
-    <task id="LOCAL-00082" summary="food photo url">
-      <created>1609066890238</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1609066890238</updated>
     </task>
     <task id="LOCAL-00083" summary="food photo url">
       <created>1609067275356</created>
@@ -686,7 +678,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613858605689</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="fixed double value on burned calories calc">
+      <created>1613862863183</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1613862863183</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -725,7 +724,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="delete message done" />
     <MESSAGE value="update message done" />
     <MESSAGE value="Add php xml" />
     <MESSAGE value="add compiled file" />
@@ -750,7 +748,8 @@
     <MESSAGE value="fixed diseases delete on patient profile" />
     <MESSAGE value="fixed snacks not appearing in meal details" />
     <MESSAGE value="fixed snacks button not collapse" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed snacks button not collapse" />
+    <MESSAGE value="fixed double value on burned calories calc" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed double value on burned calories calc" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="76" key="#Inspections" timestamp="1605567763677">
@@ -801,17 +800,17 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="407" y="179" key="MultipleFileMergeDialog/0.0.1536.834@0.0.1536.834" timestamp="1611098156245" />
-    <state x="609" y="120" key="RollbackChangesDialog" timestamp="1613844551469">
+    <state x="609" y="120" key="RollbackChangesDialog" timestamp="1613864367154">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="2681" y="151" key="RollbackChangesDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1609332907425" />
-    <state x="609" y="120" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1613844551469" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1613858617581">
+    <state x="609" y="120" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1613864367154" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1613862886744">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1605378114181" />
     <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613692115367" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1613858617581" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1613862886744" />
     <state x="0" y="0" width="1550" height="882" key="dock-window-1" timestamp="1607884751581">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -841,11 +840,11 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1608484752474" />
-    <state x="430" y="154" width="672" height="678" key="search.everywhere.popup" timestamp="1613862730182">
+    <state x="430" y="154" width="672" height="678" key="search.everywhere.popup" timestamp="1613864629976">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1609351051894" />
     <state x="2459" y="195" width="672" height="160" key="search.everywhere.popup/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613692818712" />
-    <state x="430" y="154" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1613862730182" />
+    <state x="430" y="154" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1613864629976" />
   </component>
 </project>

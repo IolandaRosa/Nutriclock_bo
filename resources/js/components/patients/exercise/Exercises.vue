@@ -83,8 +83,8 @@ export default {
                     data: 'type',
                     responsivePriority: 1,
                     render: function (data) {
-                        if (data.toString() === 'H') return '<div class="dot pink-dot" />';
-                        return '<div class="dot blue-dot" />';
+                        if (data.toString() === 'H') return '<div data-toggle="tooltip" title="Atividade Doméstica" class="dot pink-dot" />';
+                        return '<div data-toggle="tooltip" title="Atividade Desportiva"  class="dot blue-dot" />';
                     }
                 },
                 {data: 'date', responsivePriority: 5},
@@ -101,12 +101,26 @@ export default {
         showStats() {
             this.$emit('show-exercise-stats');
         },
+        millisToHours(value) {
+            let hourWithMinutes = millis/(1000 * 60 *60);
+            let hours = Math.floor(hoursWithMinutes);
+            let minutes = hourWithMinutes - hours;
+
+            if (minutes === 0) return `${hours}:00`;
+
+            return `${hours}:${Math.floor(minutes * 60)}`;
+        },
         async getExercisesByUser() {
             if (this.isFetching) return;
             this.isFetching = true;
 
             try {
                 const response = await axios.get(`api/exercises/admin/${this.id}`);
+                let dateArray = response.data.data.date.split("T");
+                response.data.data.date = dateArray[0];
+                response.data.data.startTime = millisToHours(response.data.data.startTime);
+                response.data.data.endTime = millisToHours(response.data.data.endTime);
+
                 this.data = response.data.data;
                 this.isFetching = false;
             } catch (error) {
