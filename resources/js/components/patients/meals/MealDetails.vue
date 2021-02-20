@@ -192,6 +192,17 @@
                             @update-nutritional-info="(info, index) => updateNutritionalInfo(info, index, 'O')"
                         />
                     </div>
+                    <div v-if="data && data['S'].length > 0">
+                        <DetailsButton title="Snacks" type="SO" @update-show="updateShow"/>
+                        <MacroNutrientsTable
+                            v-show="showMacroNight"
+                            :data="data['S']"
+                            @show-zoom-modal="showZoomModal"
+                            @update-quantity-value="updateQuantityValue"
+                            @update-nutritional-value="updateNutritionalValue"
+                            @update-nutritional-info="(info, index) => updateNutritionalInfo(info, index, 'S')"
+                        />
+                    </div>
                 </div>
                 <div class="mt-2" v-show="vitActive">
                     <div v-if="data && data['P'].length > 0">
@@ -260,6 +271,17 @@
                             @update-nutritional-info="(info, index) => updateNutritionalInfo(info, index, 'O')"
                         />
                     </div>
+                    <div v-if="data && data['S'].length > 0">
+                        <DetailsButton title="Snacks" type="VS" @update-show="updateShow"/>
+                        <VitaminsTable
+                            v-show="showVitNight"
+                            :data="data['S']"
+                            @show-zoom-modal="showZoomModal"
+                            @update-quantity-value="updateQuantityValue"
+                            @update-nutritional-value="updateNutritionalValue"
+                            @update-nutritional-info="(info, index) => updateNutritionalInfo(info, index, 'S')"
+                        />
+                    </div>
                 </div>
                 <div class="mt-2" v-show="minActive">
                     <div v-if="data && data['P'].length > 0">
@@ -326,6 +348,17 @@
                             @update-quantity-value="updateQuantityValue"
                             @update-nutritional-value="updateNutritionalValue"
                             @update-nutritional-info="(info, index) => updateNutritionalInfo(info, index, 'O')"
+                        />
+                    </div>
+                    <div v-if="data && data['S'].length > 0">
+                        <DetailsButton title="Snacks" type="MiS" @update-show="updateShow"/>
+                        <MineralsTable
+                            v-show="showMinNight"
+                            :data="data['S']"
+                            @show-zoom-modal="showZoomModal"
+                            @update-quantity-value="updateQuantityValue"
+                            @update-nutritional-value="updateNutritionalValue"
+                            @update-nutritional-info="(info, index) => updateNutritionalInfo(info, index, 'S')"
                         />
                     </div>
                 </div>
