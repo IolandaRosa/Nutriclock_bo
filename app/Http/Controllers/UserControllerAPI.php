@@ -76,9 +76,7 @@ class UserControllerAPI extends Controller
 
         if ($request->avatar != null) {
             Storage::disk('s3')->delete('avatars/' . $user->avatarUrl);
-            // Storage::disk('public')->delete('avatars/'.$user->avatarUrl);
             $image = $request->file('avatar');
-            // $path = basename($image->store('avatars', 'public'));
             $path = basename($image->store('avatars', 's3'));
             $user->avatarUrl = basename($path);
         }
@@ -183,8 +181,9 @@ class UserControllerAPI extends Controller
         $user = new User();
 
         if ($request->avatar != null) {
+            Storage::disk('s3')->delete('avatars/' . $user->avatarUrl);
             $image = $request->file('avatar');
-            $path = basename($image->store('avatars', 'public'));
+            $path = basename($image->store('avatars', 's3'));
             $user->avatarUrl = basename($path);
         }
 
@@ -337,6 +336,7 @@ class UserControllerAPI extends Controller
         Sleep::where('userId', $user->id)->forceDelete();
         Message::where('senderId', $user->id)->forceDelete();
         Message::where('receiverId', $user->id)->forceDelete();
+        Medication::where('user_id', $user->id)->forceDelete();
 
         if ($meals) {
             foreach ($meals as $meal) {
