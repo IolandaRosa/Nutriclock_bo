@@ -43,7 +43,7 @@ class ExerciseControllerAPI extends Controller
         $exercise->endTime = $request->endTime;
         $exercise->date = $request->date;
         $exercise->type = $request->type;
-        $exercise->duration = $duration;
+        $exercise->duration = intval($duration);
         $info = null;
 
         if ($request->type == 'H') {
@@ -55,7 +55,7 @@ class ExerciseControllerAPI extends Controller
         if ($info) {
             $exercise->exerciseId = $info->id;
             $exercise->met = $info->met;
-            $exercise->burnedCalories = $user->weight * $info->met * ($duration / 60);
+            $exercise->burnedCalories = intval($user->weight * $info->met * ($duration / 60));
         }
 
         $exercise->save();
