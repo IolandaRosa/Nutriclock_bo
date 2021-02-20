@@ -23,7 +23,8 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="fixed snacks not appearing in meal details">
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="fixed snacks button not collapse">
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/patients/meals/MealDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/meals/MealDetails.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -339,13 +340,6 @@
       <workItem from="1613305868264" duration="12001000" />
       <workItem from="1613425448674" duration="4246000" />
       <workItem from="1613685790216" duration="5370000" />
-    </task>
-    <task id="LOCAL-00080" summary="add medication type on register">
-      <created>1609024440841</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1609024440841</updated>
     </task>
     <task id="LOCAL-00081" summary="files pointing to production">
       <created>1609065996533</created>
@@ -683,7 +677,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613856778267</updated>
     </task>
-    <option name="localTasksCounter" value="129" />
+    <task id="LOCAL-00129" summary="fixed snacks button not collapse">
+      <created>1613858060586</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1613858060586</updated>
+    </task>
+    <option name="localTasksCounter" value="130" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -722,7 +723,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add send message from users list" />
     <MESSAGE value="delete message done" />
     <MESSAGE value="update message done" />
     <MESSAGE value="Add php xml" />
@@ -747,7 +747,8 @@
     <MESSAGE value="center the avatar image on patient profile" />
     <MESSAGE value="fixed diseases delete on patient profile" />
     <MESSAGE value="fixed snacks not appearing in meal details" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed snacks not appearing in meal details" />
+    <MESSAGE value="fixed snacks button not collapse" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed snacks button not collapse" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="76" key="#Inspections" timestamp="1605567763677">
@@ -803,12 +804,12 @@
     </state>
     <state x="2681" y="151" key="RollbackChangesDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1609332907425" />
     <state x="609" y="120" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1613844551469" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1613856792006">
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1613858076964">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1605378114181" />
     <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613692115367" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1613856792006" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1613858076964" />
     <state x="0" y="0" width="1550" height="882" key="dock-window-1" timestamp="1607884751581">
       <screen x="0" y="0" width="1536" height="834" />
     </state>

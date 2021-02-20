@@ -195,7 +195,7 @@
                     <div v-if="data && data['S'].length > 0">
                         <DetailsButton title="Snacks" type="MS" @update-show="updateShow"/>
                         <MacroNutrientsTable
-                            v-show="showMacroNight"
+                            v-show="showMacroSnack"
                             :data="data['S']"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
@@ -274,7 +274,7 @@
                     <div v-if="data && data['S'].length > 0">
                         <DetailsButton title="Snacks" type="VS" @update-show="updateShow"/>
                         <VitaminsTable
-                            v-show="showVitNight"
+                            v-show="showVitSnack"
                             :data="data['S']"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
@@ -353,7 +353,7 @@
                     <div v-if="data && data['S'].length > 0">
                         <DetailsButton title="Snacks" type="MiS" @update-show="updateShow"/>
                         <MineralsTable
-                            v-show="showMinNight"
+                            v-show="showMinSnack"
                             :data="data['S']"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
