@@ -71,7 +71,7 @@
                                     {{errors.role}}
                                 </div>
                             </div>
-                            <div class="form-group col-sm-6">
+                            <div class="form-group col-sm-6" v-show="role === 'PROFESSIONAL'">
                                 <label for="profile-modal-select-category" class="green-label">Categoria Profissional</label>
                                 <div>
                                     <div>
@@ -98,6 +98,9 @@
                                         <option v-for="ufs in ufcs" :value="ufs.id">{{ufs.name}}</option>
                                     </select>
                                 </div>
+                                <div v-if="errors.userUfcs" class="invalid-feedback">
+                                    {{errors.userUfcs}}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -119,6 +122,7 @@
     /*jshint esversion: 6 */
     import { ERROR_MESSAGES, isEmptyField } from '../../utils/validations';
     import FileUpload from '../utils/FileUpload';
+    import {UserRoles} from "../../constants/misc";
 
     export default{
         props:['userId'],
@@ -170,6 +174,11 @@
                 }
 
                 if (hasErrors) return;
+
+                if (this.role === UserRoles.Professional && (!this.userUfcs || this.userUfcs.length === 0)) {
+                    this.errors.userUfcs = ERROR_MESSAGES.mandatoryField;
+                    return;
+                }
 
                 this.$emit('save', this.id, {
                     role: this.role,

@@ -85,6 +85,9 @@
                                     <option v-for="ufs in ufcs" :value="ufs.id">{{ufs.name}}</option>
                                 </select>
                             </div>
+                            <div v-if="errors.selectedUsfs" class="invalid-feedback">
+                                {{errors.selectedUsfs}}
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -110,6 +113,7 @@
         isStringBiggerThanMax,
         isStringLowerThanMin
     } from '../../utils/validations';
+    import {UserRoles} from "../../constants/misc";
 
 
     export default{
@@ -134,6 +138,7 @@
                     name: null,
                     email: null,
                     selectedRole: null,
+                    selectedUsfs: null,
                 },
                 ufcs: [],
                 selectedUfcs: [],
@@ -142,6 +147,7 @@
         methods:{
             onCloseClick() {
                 if (this.isFetching) return;
+                this.resetFields();
                 this.$emit('close');
             },
             onSaveClick() {
@@ -151,6 +157,7 @@
                 this.errors.name = null;
                 this.errors.email = null;
                 this.errors.selectedRole = null;
+                this.errors.selectedUsfs = null;
 
                 if (isEmptyField(this.name)) {
                     this.errors.name = ERROR_MESSAGES.mandatoryField;
@@ -186,16 +193,29 @@
                     hasErrors = true;
                 }
 
+                if (this.selectedRole === UserRoles.Professional && (!this.selectedUfcs || this.selectedUfcs.length === 0)) {
+                    this.errors.selectedUsfs = ERROR_MESSAGES.mandatoryField;
+                    hasErrors = true;
+                }
+
                 if (hasErrors) return;
 
-                axios.post('api/users/register', {
+                let dataToSend = {
                     name: this.name,
                     email: this.email,
                     role: this.selectedRole,
-                    professionalCategoryId: this.selectedProfessionalCategory,
-                    usfIds: this.selectedUfcs
-                }).then(() => {
+                    professionalCategoryId: '',
+                    usfIds: [],
+                }
+
+                if (this.selectedRole === UserRoles.Professional) {
+                    dataToSend.professionalCategoryId = this.selectedProfessionalCategory;
+                    dataToSend.usfIds = this.selectedUfcs;
+                }
+
+                axios.post('api/users/register', dataToSend).then(() => {
                     this.sendEmail();
+                    this.resetFields();
                     this.$emit('save');
                 }).catch(error => {
                     this.isFetching = false;
@@ -224,6 +244,13 @@
                         theme: 'toasted-primary'
                     });
                 }).catch(() => {});
+            },
+            resetFields() {
+              this.name = '';
+              this.email = '';
+              this.selectedRole = '';
+              this.selectedProfessionalCategory = '';
+              this.selectedUfcs = '';
             },
             getCategories() {
                 this.isFetching = true;
