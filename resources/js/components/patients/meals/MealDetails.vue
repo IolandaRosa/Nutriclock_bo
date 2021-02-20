@@ -193,7 +193,7 @@
                         />
                     </div>
                     <div v-if="data && data['S'].length > 0">
-                        <DetailsButton title="Snacks" type="SO" @update-show="updateShow"/>
+                        <DetailsButton title="Snacks" type="MS" @update-show="updateShow"/>
                         <MacroNutrientsTable
                             v-show="showMacroNight"
                             :data="data['S']"
@@ -389,18 +389,21 @@ export default {
             showMacroMidAfternoon: true,
             showMacroDinner: true,
             showMacroNight: true,
+            showMacroSnack: true,
             showVitBreakfast: true,
             showVitMidDay: true,
             showVitLunch: true,
             showVitMidAfternoon: true,
             showVitDinner: true,
             showVitNight: true,
+            showVitSnack: true,
             showMinBreakfast: true,
             showMinMidDay: true,
             showMinLunch: true,
             showMinMidAfternoon: true,
             showMinDinner: true,
             showMinNight: true,
+            showMinSnack: true,
             zoomModal: false,
             imageToZoom: '',
             macroActive: true,
@@ -429,6 +432,9 @@ export default {
                 case 'MO':
                     this.showMacroNight = value;
                     break;
+                case 'MS':
+                    this.showMacroSnack = value;
+                    break;
                 case 'VA':
                     this.showVitLunch = value;
                     break;
@@ -447,6 +453,9 @@ export default {
                 case 'VO':
                     this.showVitNight = value;
                     break;
+                case 'VS':
+                    this.showVitSnack = value;
+                    break;
                 case 'MiP':
                     this.showMinBreakfast = value;
                     break;
@@ -464,6 +473,9 @@ export default {
                     break;
                 case 'MiO':
                     this.showMinNight = value;
+                    break;
+                case 'MiS':
+                    this.showMinSnack = value;
                     break;
             }
         },
