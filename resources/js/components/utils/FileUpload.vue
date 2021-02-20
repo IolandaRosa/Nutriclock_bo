@@ -8,7 +8,7 @@
         />
         <img
             v-bind:src="imgUrl"
-            class="profile-img"
+            :class="disabled ? 'profile-img' : 'profile-img pointer'"
             alt=""
             v-on:click.prevent="onFileSelect"
             @error="setAltImage"
@@ -56,7 +56,6 @@
         width: 100px;
         object-fit: cover;
         border-radius: 50%;
-        cursor: pointer;
     }
 
     @media only screen and (max-width: 600px) {
