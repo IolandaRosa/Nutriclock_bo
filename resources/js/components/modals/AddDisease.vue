@@ -57,66 +57,76 @@
 </template>
 
 <script type="text/javascript">
-    /*jshint esversion: 6 */
-    import {ERROR_MESSAGES, isEmptyField, isStringBiggerThanMax} from '../../utils/validations';
+/*jshint esversion: 6 */
+import {
+    ERROR_MESSAGES,
+    isEmptyField,
+    isStringBiggerThanMax,
+} from '../../utils/validations';
 
-    export default {
-        props: ['title', 'selectedDiseaseId', 'selectedDiseaseName', 'selectedDiseaseType'],
-        data() {
-            return {
-                name: '',
-                type: '',
-                types: [
-                    {
-                        value: 'A',
-                        label: 'Alergia Alimentar',
-                    },
-                    {
-                        value: 'D',
-                        label: 'Patologia',
-                    }
-                ],
-                id: null,
-                errors: {
-                    name: null,
-                    type: null,
+export default {
+    props: ['title', 'selectedDiseaseId', 'selectedDiseaseName', 'selectedDiseaseType'],
+    data() {
+        return {
+            name: '',
+            type: '',
+            types: [
+                {
+                    value: 'A',
+                    label: 'Alergia Alimentar',
                 },
-            };
-        },
-        methods: {
-            onCloseClick() {
-                this.$emit('close');
-            },
-            onSaveClick() {
-                this.errors.name = null;
-                this.errors.type = null;
-                if (isEmptyField(this.name)) {
-                    this.errors.name = ERROR_MESSAGES.mandatoryField;
-                    return;
+                {
+                    value: 'D',
+                    label: 'Patologia',
                 }
+            ],
+            id: null,
+            errors: {
+                name: null,
+                type: null,
+            },
+        };
+    },
+    methods: {
+        onCloseClick() {
+            this.resetFields();
+            this.$emit('close');
+        },
+        resetFields() {
+            this.name = '';
+            this.id = null;
+            this.type = '';
+        },
+        onSaveClick() {
+            this.errors.name = null;
+            this.errors.type = null;
+            if (isEmptyField(this.name)) {
+                this.errors.name = ERROR_MESSAGES.mandatoryField;
+                return;
+            }
 
-                if(isEmptyField(this.type)) {
-                    this.errors.type = ERROR_MESSAGES.mandatoryField;
-                    return;
-                }
+            if (isEmptyField(this.type)) {
+                this.errors.type = ERROR_MESSAGES.mandatoryField;
+                return;
+            }
 
-                if (isStringBiggerThanMax(this.name, 255)) {
-                    this.errors.name = `${ERROR_MESSAGES.maxCharacters} 255 caratéres`;
-                    return;
-                }
-                this.$emit('save', this.name, this.type,  this.id);
-            },
+            if (isStringBiggerThanMax(this.name, 255)) {
+                this.errors.name = `${ERROR_MESSAGES.maxCharacters} 255 caratéres`;
+                return;
+            }
+            this.$emit('save', this.name, this.type, this.id);
         },
-        watch: {
-            selectedDiseaseId: function (newVal, oldVal) {
-                this.id = newVal;
-            },
-            selectedDiseaseName: function (newVal, oldVal) {
-                this.name = newVal;
-            },
-            selectedDiseaseType: function (newVal, oldVal) {
-                this.type = newVal;
-            },
+    },
+    watch: {
+        selectedDiseaseId: function (newVal, oldVal) {
+            this.id = newVal;
         },
-    };
+        selectedDiseaseName: function (newVal, oldVal) {
+            this.name = newVal;
+        },
+        selectedDiseaseType: function (newVal, oldVal) {
+            this.type = newVal;
+        },
+    },
+};
 </script>

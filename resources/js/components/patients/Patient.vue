@@ -534,7 +534,9 @@ export default {
 
             this.isFetching = true;
 
-            const m = this.medication[this.selectedIndex];
+            let m = this.medication[this.selectedIndex];
+
+            if (this.medicationType === 'S') m = this.suplements[this.selectedIndex];
 
             axios.delete(`api/medications/${m.id}`).then(() => {
                 this.isFetching = false;
