@@ -23,10 +23,18 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="add exercises table render">
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="render date startTime and endTime correctly">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/exercise/Exercises.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/exercise/Exercises.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/AddCategory.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/AddCategory.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/AddDisease.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/AddDisease.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/AddMedication.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/AddMedication.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/AddPatientDisease.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/AddPatientDisease.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/AddProfessional.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/AddProfessional.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/ChatResponseModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/ChatResponseModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/EditMessageModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/EditMessageModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/Profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/Profile.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/ResendEmail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/ResendEmail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/sleeps/Sleeps.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/sleeps/Sleeps.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -341,13 +349,7 @@
       <workItem from="1613305868264" duration="12001000" />
       <workItem from="1613425448674" duration="4246000" />
       <workItem from="1613685790216" duration="5370000" />
-    </task>
-    <task id="LOCAL-00084" summary="food photo url">
-      <created>1609067567811</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1609067567811</updated>
+      <workItem from="1613909699255" duration="874000" />
     </task>
     <task id="LOCAL-00085" summary="food photo url">
       <created>1609067628862</created>
@@ -685,7 +687,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613865142800</updated>
     </task>
-    <option name="localTasksCounter" value="133" />
+    <task id="LOCAL-00133" summary="render date startTime and endTime correctly">
+      <created>1613865839774</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1613865839774</updated>
+    </task>
+    <option name="localTasksCounter" value="134" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -724,7 +733,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add php xml" />
     <MESSAGE value="add compiled file" />
     <MESSAGE value="add changes from branch chat" />
     <MESSAGE value="add migration for users_ufc id column" />
@@ -749,7 +757,8 @@
     <MESSAGE value="fixed snacks button not collapse" />
     <MESSAGE value="fixed double value on burned calories calc" />
     <MESSAGE value="add exercises table render" />
-    <option name="LAST_COMMIT_MESSAGE" value="add exercises table render" />
+    <MESSAGE value="render date startTime and endTime correctly" />
+    <option name="LAST_COMMIT_MESSAGE" value="render date startTime and endTime correctly" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="76" key="#Inspections" timestamp="1605567763677">
@@ -805,12 +814,12 @@
     </state>
     <state x="2681" y="151" key="RollbackChangesDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1609332907425" />
     <state x="609" y="120" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1613865775425" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1613865149932">
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1613865847673">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1605378114181" />
     <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613692115367" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1613865149932" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1613865847673" />
     <state x="0" y="0" width="1550" height="882" key="dock-window-1" timestamp="1607884751581">
       <screen x="0" y="0" width="1536" height="834" />
     </state>

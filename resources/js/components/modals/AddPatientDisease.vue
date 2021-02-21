@@ -65,13 +65,17 @@ export default {
     },
     methods: {
         onCloseClick() {
+            this.resetFields();
             this.$emit('close');
         },
-        onSaveClick() {
-            this.$emit('save', this.selectedDisease, this.selectedAlergy, this.disease);
+        resetFields() {
             this.selectedDisease = null;
             this.selectedAlergy = null;
             this.disease = null;
+        },
+        onSaveClick() {
+            this.$emit('save', this.selectedDisease, this.selectedAlergy, this.disease);
+            this.resetFields();
         },
     }
 };

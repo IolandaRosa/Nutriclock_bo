@@ -58,10 +58,19 @@
         },
         methods:{
             onCloseClick() {
+                this.resetErrors();
+                this.resetFields();
                 this.$emit('close');
             },
-            onSaveClick() {
+            resetFields() {
+                this.name = '';
+                this.id = null;
+            },
+            resetErrors() {
                 this.errors.name = null;
+            },
+            onSaveClick() {
+                this.resetErrors();
                 if (isEmptyField(this.name)) {
                     this.errors.name = ERROR_MESSAGES.mandatoryField;
                     return;
@@ -73,6 +82,7 @@
                 }
 
                 this.$emit('save', this.name, this.id);
+                this.resetFields();
             },
         },
         watch: {

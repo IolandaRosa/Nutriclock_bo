@@ -147,17 +147,21 @@
         methods:{
             onCloseClick() {
                 if (this.isFetching) return;
+                this.resetErrors();
                 this.resetFields();
                 this.$emit('close');
             },
-            onSaveClick() {
-                if (this.isFetching) return;
-
-                let hasErrors = false;
+            resetErrors() {
                 this.errors.name = null;
                 this.errors.email = null;
                 this.errors.selectedRole = null;
                 this.errors.selectedUsfs = null;
+                return false;
+            },
+            onSaveClick() {
+                if (this.isFetching) return;
+
+                let hasErrors = this.resetErrors();
 
                 if (isEmptyField(this.name)) {
                     this.errors.name = ERROR_MESSAGES.mandatoryField;

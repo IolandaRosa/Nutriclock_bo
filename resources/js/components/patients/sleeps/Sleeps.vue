@@ -96,8 +96,8 @@ export default {
                     responsivePriority: 5,
                     orderable: false,
                     render: function (data) {
-                        if (!data) return '<div class="dot green-dot" />';
-                        return '<div class="dot red-dot" />';
+                        if (!data) return '<div data-toggle="tooltip" title="Não acordou" class="dot green-dot" />';
+                        return '<div data-toggle="tooltip" title="Acordou" class="dot red-dot" />';
                     }
                 },
                 {data: 'activities', responsivePriority: 6},

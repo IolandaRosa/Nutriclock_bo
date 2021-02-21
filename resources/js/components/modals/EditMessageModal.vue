@@ -49,14 +49,24 @@ export default {
     },
     methods: {
         onCloseClick() {
+            this.resetErrors();
+            this.resetFields();
             this.$emit('close');
         },
+        resetFields(){
+            this.message = null;
+        },
+        resetErrors() {
+            this.errors.message = null;
+        },
         onSaveClick() {
+            this.resetErrors();
             if (isEmptyField(this.message)) {
                 this.errors.message = ERROR_MESSAGES.mandatoryField;
                 return
             }
             this.$emit('save', this.message);
+            this.resetFields();
         },
     },
     watch: {

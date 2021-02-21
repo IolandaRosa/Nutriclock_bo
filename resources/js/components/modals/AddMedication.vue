@@ -155,6 +155,8 @@ export default {
     methods: {
         onCloseClick() {
             if (this.isFetching) return;
+            this.resetErrors();
+            this.resetFields();
             this.$emit('close');
         },
         resetFields() {
@@ -164,12 +166,15 @@ export default {
             this.selectedTimesAWeek = [];
             this.medicationId = null;
         },
+        resetErrors() {
+            this.errors.name = null;
+            this.errors.posology = null;
+            return false;
+        },
         onSaveClick() {
             if (this.isFetching) return;
 
-            let hasErrors = false;
-            this.errors.name = null;
-            this.errors.posology = null;
+            let hasErrors = this.resetErrors();
 
             if (isEmptyField(this.name)) {
                 this.errors.name = ERROR_MESSAGES.mandatoryField;
@@ -211,6 +216,7 @@ export default {
                     type: this.type,
                 }).then(() => {
                     this.isFetching = false;
+                    this.resetFields();
                     this.$emit('save');
                 }).catch(() => {
                     this.isFetching = false;
@@ -227,6 +233,7 @@ export default {
                 type: this.type,
             }).then(() => {
                 this.isFetching = false;
+                this.resetFields();
                 this.$emit('save');
             }).catch(() => {
                 this.isFetching = false;

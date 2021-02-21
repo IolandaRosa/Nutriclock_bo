@@ -89,6 +89,7 @@ export default {
     },
     methods: {
         onCloseClick() {
+            this.resetErrors();
             this.resetFields();
             this.$emit('close');
         },
@@ -97,9 +98,12 @@ export default {
             this.id = null;
             this.type = '';
         },
-        onSaveClick() {
+        resetErrors() {
             this.errors.name = null;
             this.errors.type = null;
+        },
+        onSaveClick() {
+            this.resetErrors();
             if (isEmptyField(this.name)) {
                 this.errors.name = ERROR_MESSAGES.mandatoryField;
                 return;

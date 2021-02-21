@@ -156,12 +156,27 @@
         },
         methods:{
             onCloseClick() {
+                this.resetErrors();
+                this.resetFields();
                 this.$emit('close');
             },
-            onSaveClick() {
+            resetFields() {
+                this.name = '';
+                this.role = '';
+                this.email = '';
+                this.userUfcs = [];
+                this.professionalCategoryId = '';
+                this.avatarUrl = '';
+                this.id = null;
+            },
+            resetErrors() {
                 this.errors.role = null;
                 this.errors.professionalCategoryId = null;
-                let hasErrors = false;
+                this.errors.userUfcs = null;
+                return false;
+            },
+            onSaveClick() {
+                let hasErrors = this.resetErrors();
 
                 if (isEmptyField(this.role)) {
                     this.errors.role = ERROR_MESSAGES.mandatoryField;
@@ -185,6 +200,7 @@
                     professionalCategoryId: this.professionalCategoryId,
                     ufcs: this.userUfcs,
                 });
+                this.resetFields();
             },
             getCategories() {
                 this.isFetching = true;

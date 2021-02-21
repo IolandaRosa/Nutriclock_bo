@@ -67,9 +67,20 @@ export default {
     },
     methods: {
         onCloseClick() {
+            this.resetErrors();
+            this.resetFields();
             this.$emit('close');
         },
+        resetFields() {
+            this.selectedMessage = null;
+            this.showMessageSend = true;
+            this.response = null;
+        },
+        resetErrors() {
+            this.errors.response = null;
+        },
         onSaveClick() {
+            this.resetErrors();
             if (isEmptyField(this.response)) {
                 this.errors.response = ERROR_MESSAGES.mandatoryField;
                 return
@@ -97,6 +108,7 @@ export default {
                 this.isFetching = false;
                 this.$socket.send(makeSocketEvent(EventType.Store, dataToSend));
                 this.$emit('save');
+                this.resetFields();
             }).catch(() => {
                 this.isFetching = false;
                 this.showMessage('Ocorreu um erro ao enviar a mensagem', 'error');
