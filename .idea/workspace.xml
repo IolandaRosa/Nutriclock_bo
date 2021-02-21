@@ -23,10 +23,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="compiled files">
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="add exercises stats close">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/PatientTabs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/PatientTabs.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/messages/MessagesHistory.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/messages/MessagesHistory.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,6 +219,7 @@
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\laragon\www\nutriclock\node_modules\prettier" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -341,14 +341,7 @@
       <workItem from="1613305868264" duration="12001000" />
       <workItem from="1613425448674" duration="4246000" />
       <workItem from="1613685790216" duration="5370000" />
-      <workItem from="1613909699255" duration="1985000" />
-    </task>
-    <task id="LOCAL-00088" summary="Endpoints static for BO made">
-      <created>1609329919194</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1609329919195</updated>
+      <workItem from="1613909699255" duration="4738000" />
     </task>
     <task id="LOCAL-00089" summary="Change details on patients table">
       <created>1609331146261</created>
@@ -686,7 +679,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613910945740</updated>
     </task>
-    <option name="localTasksCounter" value="137" />
+    <task id="LOCAL-00137" summary="add exercises stats close">
+      <created>1613911929664</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1613911929664</updated>
+    </task>
+    <option name="localTasksCounter" value="138" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -725,7 +725,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add migration for users_ufc id column" />
     <MESSAGE value="update user api request" />
     <MESSAGE value="update diseases" />
     <MESSAGE value="add auth user api get" />
@@ -750,7 +749,8 @@
     <MESSAGE value="render date startTime and endTime correctly" />
     <MESSAGE value="reset fields and errors in all modals" />
     <MESSAGE value="compiled files" />
-    <option name="LAST_COMMIT_MESSAGE" value="compiled files" />
+    <MESSAGE value="add exercises stats close" />
+    <option name="LAST_COMMIT_MESSAGE" value="add exercises stats close" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="76" key="#Inspections" timestamp="1605567763677">
@@ -778,12 +778,12 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="516" y="272" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.834@0.0.1536.834" timestamp="1606842580879" />
-    <state x="468" y="0" key="CommitChangelistDialog2" timestamp="1606843342376">
+    <state x="468" y="0" key="CommitChangelistDialog2" timestamp="1613915612231">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="468" y="24" key="CommitChangelistDialog2/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1605378089686" />
     <state x="2505" y="121" key="CommitChangelistDialog2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1605374061365" />
-    <state x="468" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1606843342376" />
+    <state x="468" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1613915612231" />
     <state x="-6" y="0" width="1299" height="834" key="DiffContextDialog" timestamp="1613685873893">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -801,17 +801,25 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="407" y="179" key="MultipleFileMergeDialog/0.0.1536.834@0.0.1536.834" timestamp="1611098156245" />
-    <state x="609" y="120" key="RollbackChangesDialog" timestamp="1613865775425">
+    <state x="609" y="120" key="RollbackChangesDialog" timestamp="1613916290937">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="2681" y="151" key="RollbackChangesDialog/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1609332907425" />
-    <state x="609" y="120" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1613865775425" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1613911089468">
+    <state x="609" y="120" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1613916290937" />
+    <state x="277" y="62" key="SettingsEditor" timestamp="1613915520436">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="277" y="62" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1613915520436" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1613911936683">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1605378114181" />
     <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613692115367" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1613911089468" />
+    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1613911936683" />
+    <state x="93" y="93" width="1350" height="648" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1613915433878">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="93" y="93" width="1350" height="648" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.834@0.0.1536.834" timestamp="1613915433878" />
     <state x="0" y="0" width="1550" height="882" key="dock-window-1" timestamp="1607884751581">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -841,11 +849,11 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1608484752474" />
-    <state x="430" y="154" width="672" height="678" key="search.everywhere.popup" timestamp="1613911415197">
+    <state x="430" y="154" width="672" height="678" key="search.everywhere.popup" timestamp="1613917878300">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1609351051894" />
     <state x="2459" y="195" width="672" height="160" key="search.everywhere.popup/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613692818712" />
-    <state x="430" y="154" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1613911415197" />
+    <state x="430" y="154" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1613917878300" />
   </component>
 </project>

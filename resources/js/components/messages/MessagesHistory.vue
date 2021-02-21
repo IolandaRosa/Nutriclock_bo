@@ -1,6 +1,6 @@
 <template>
     <div class="component-wrapper">
-        <div class="messages-container d-flex p-4 mobile">
+        <div class="messages-container d-flex p-4 mobile" style="width: calc(100vw - 200px);">
             <div class="mr-2 p-3 text-dark bg-light rounded w-400 with-overflow mobile">
                 <div class="font-weight-bold">Contactos</div>
                 <div
@@ -8,14 +8,16 @@
                     class="text-secondary pointer p-1 d-flex shadow justify-content-center align-items-center mb-2 bg-light border border-secondary rounded-sm mobile-container"
                     @click="() => { redirectMessages(item.senderId)}"
                 >
-                    <img
-                        height="25"
-                        width="25"
-                        :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/avatars/${item.senderPhotoUrl}`"
-                        alt=""
-                        class="rounded-circle mr-1 hidden-image"
-                        @error="setAltImage"
-                    />
+                    <div class="rounded-circle mr-1 hidden-image" style="overflow: hidden; width: 30px; height: 30px">
+                        <img
+                            height="25"
+                            width="25"
+                            :src="`https://nutriclock.s3-eu-west-1.amazonaws.com/avatars/${item.senderPhotoUrl}`"
+                            alt=""
+                            class="w-100 h-auto"
+                            @error="setAltImage"
+                        />
+                    </div>
                     <div class="font-weight-bold mr-1 flex-grow-1 mobile-container-text">{{ item.senderName }}</div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -26,7 +28,7 @@
                     </div>
                 </div>
             </div>
-            <div class="p-3 text-dark bg-light rounded with-overflow mobile" id="inputContainer">
+            <div class="p-3 text-dark bg-light rounded with-overflow flex-grow-1 mobile" id="inputContainer">
                 <div v-if="!messages || messages.length === 0" class="text-center font-weight-bold mt-4">
                     Clica num contacto para veres o histórico de conversas
                 </div>
