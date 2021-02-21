@@ -102,13 +102,13 @@ export default {
             this.$emit('show-exercise-stats');
         },
         millisToHours(value) {
-            let hourWithMinutes = millis/(1000 * 60 *60);
-            let hours = Math.floor(hoursWithMinutes);
+            let hourWithMinutes = value/(1000 * 60 *60);
+            let hours = Math.floor(hourWithMinutes);
             let minutes = hourWithMinutes - hours;
 
             if (minutes === 0) return `${hours}:00`;
 
-            return `${hours}:${Math.floor(minutes * 60)}`;
+            return `${hours}:${Math.ceil(minutes * 60)}`;
         },
         async getExercisesByUser() {
             if (this.isFetching) return;
@@ -116,14 +116,16 @@ export default {
 
             try {
                 const response = await axios.get(`api/exercises/admin/${this.id}`);
-                let dateArray = response.data.data.date.split("T");
-                response.data.data.date = dateArray[0];
-                response.data.data.startTime = millisToHours(response.data.data.startTime);
-                response.data.data.endTime = millisToHours(response.data.data.endTime);
-
+                response.data.data.forEach(element => {
+                    let dateArray = element.date.split("T");
+                    element.date = dateArray[0];
+                    element.startTime = this.millisToHours(element.startTime);
+                    element.endTime = this.millisToHours(element.endTime);
+                });
                 this.data = response.data.data;
                 this.isFetching = false;
             } catch (error) {
+                console.log(error);
                 this.isFetching = false;
                 if (error.response && error.response.status === 401) {
                     this.$store.commit('clearUserAndToken');
