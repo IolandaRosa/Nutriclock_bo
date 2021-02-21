@@ -43,7 +43,7 @@
                 </div>
                 <div class="tab-pane fade" id="exercises" role="tabpanel" aria-labelledby="home-tab">
                     <Exercises :id="this.$route.params.id" @show-exercise-stats="showExerciseStat" v-show="!showExerciseStats"/>
-                    <ExerciseStats :id="this.$route.params.id" @close-sleep-stats="closeExerciseStat" v-show="showExerciseStats"/>
+                    <ExerciseStats :id="this.$route.params.id" @close-exercise-stats="closeExerciseStat" v-show="showExerciseStats"/>
                 </div>
             </div>
         </div>
