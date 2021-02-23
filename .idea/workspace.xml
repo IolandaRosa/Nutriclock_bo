@@ -25,7 +25,9 @@
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="add exercises stats close">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/messages/MessagesHistory.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/messages/MessagesHistory.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExerciseControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExerciseControllerAPI.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LoginControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LoginControllerAPI.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -342,6 +344,7 @@
       <workItem from="1613425448674" duration="4246000" />
       <workItem from="1613685790216" duration="5370000" />
       <workItem from="1613909699255" duration="4738000" />
+      <workItem from="1614112148692" duration="773000" />
     </task>
     <task id="LOCAL-00089" summary="Change details on patients table">
       <created>1609331146261</created>
@@ -781,8 +784,6 @@
     <state x="468" y="0" key="CommitChangelistDialog2" timestamp="1613915612231">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="468" y="24" key="CommitChangelistDialog2/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1605378089686" />
-    <state x="2505" y="121" key="CommitChangelistDialog2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1605374061365" />
     <state x="468" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1613915612231" />
     <state x="-6" y="0" width="1299" height="834" key="DiffContextDialog" timestamp="1613685873893">
       <screen x="0" y="0" width="1536" height="834" />
@@ -813,7 +814,6 @@
     <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1613911936683">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1605378114181" />
     <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613692115367" />
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1613911936683" />
     <state x="93" y="93" width="1350" height="648" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1613915433878">
@@ -849,11 +849,11 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="425" y="189" key="run.anything.popup/0.0.1536.834@0.0.1536.834" timestamp="1608484752474" />
-    <state x="430" y="154" width="672" height="678" key="search.everywhere.popup" timestamp="1613917878300">
-      <screen x="0" y="0" width="1536" height="834" />
+    <state x="2459" y="195" width="672" height="160" key="search.everywhere.popup" timestamp="1614112814098">
+      <screen x="1920" y="0" width="1920" height="1050" />
     </state>
     <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834/1920.0.1920.1050@0.0.1536.834" timestamp="1609351051894" />
-    <state x="2459" y="195" width="672" height="160" key="search.everywhere.popup/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1613692818712" />
+    <state x="2459" y="195" width="672" height="160" key="search.everywhere.popup/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1614112814098" />
     <state x="430" y="154" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1613917878300" />
   </component>
 </project>

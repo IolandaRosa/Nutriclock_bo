@@ -76,10 +76,10 @@ class ExerciseControllerAPI extends Controller
         foreach ($dates as $d) {
             $parsed = Carbon::parse($d->date)->format('d/m/Y');
             $parsedDates[$i] = $parsed;
-            $i++;
+            $parsedDates = array_unique($parsedDates);
+            $i = count($parsedDates);
         }
 
-        $parsedDates = array_unique($parsedDates);
         return Response::json(['data' => $parsedDates]);
     }
 
