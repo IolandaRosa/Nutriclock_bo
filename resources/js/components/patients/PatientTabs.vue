@@ -28,6 +28,13 @@
                        role="tab" aria-controls="exercise"
                        aria-selected="false">Atividade Física</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="meal-plan-tab"
+                       style="color: #FFF"
+                       data-toggle="tab" href="#mealPlan"
+                       role="tab" aria-controls="mealPlan"
+                       aria-selected="false">Plano Alimentar</a>
+                </li>
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="home-tab">
@@ -45,6 +52,10 @@
                     <Exercises :id="this.$route.params.id" @show-exercise-stats="showExerciseStat" v-show="!showExerciseStats"/>
                     <ExerciseStats :id="this.$route.params.id" @close-exercise-stats="closeExerciseStat" v-show="showExerciseStats"/>
                 </div>
+                <div class="tab-pane fade" id="mealPlan" role="tabpanel" aria-labelledby="home-tab">
+                    <PlanList @open-ingredient="showIngredientsPage" v-show="!showIngredient" />
+                    <MealIngredients v-show="showIngredient" />
+                </div>
             </div>
         </div>
     </div>
@@ -59,6 +70,8 @@ import Sleeps from './sleeps/Sleeps';
 import SleepChart from './sleeps/SleepChart';
 import Exercises from './exercise/Exercises';
 import ExerciseStats from './exercise/ExerciseStats';
+import PlanList from './plans/PlanList';
+import MealIngredients from './plans/MealIngredients';
 
 export default {
     data() {
@@ -68,6 +81,7 @@ export default {
             selectedMeal: null,
             date: null,
             showExerciseStats: false,
+            showIngredient: false,
         };
     },
     components: {
@@ -78,6 +92,8 @@ export default {
         MealDetails,
         Exercises,
         ExerciseStats,
+        PlanList,
+        MealIngredients,
     },
     methods: {
         showMeal(row, date) {
@@ -99,6 +115,9 @@ export default {
         },
         closeExerciseStat() {
             this.showExerciseStats = false;
+        },
+        showIngredientsPage() {
+            this.showIngredient = true;
         }
     },
 };

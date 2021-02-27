@@ -44,6 +44,46 @@ export const renderDiseaseType = type => {
     }
 };
 
+export const renderDayOfWeek = (value) => {
+    if (value === 0) {
+        return 'Domingo';
+    }
+
+    if (value === 1) {
+        return 'Segunda-feira';
+    }
+
+    if (value === 2) {
+        return 'Terça-feira';
+    }
+
+    if (value === 3) {
+        return 'Quarta-feira';
+    }
+
+    if (value === 4) {
+        return 'Quinta-feira';
+    }
+
+    if (value === 5) {
+        return 'Sexta-feira';
+    }
+
+    if (value === 6) {
+        return 'Sábado';
+    }
+};
+
+export const renderDate = date => {
+    let day = date.getDate();
+    let month = date.getMonth();
+
+    if (day < 10) day = "0"+day;
+    if (month < 10) month = "0"+month;
+
+    return day+"\\"+month+"\\"+date.getFullYear();
+}
+
 export const renderDiseaseStringToType = type => {
     if (type === 'Alergia') {
         return 'A';

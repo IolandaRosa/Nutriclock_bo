@@ -22,6 +22,10 @@ export const equalFields =  (fieldOne, fieldTwo) => {
     return fieldOne ===  fieldTwo;
 };
 
+export const isPositiveNumber = field => {
+    return field <= 0;
+};
+
 export const ERROR_MESSAGES = {
     mandatoryField: 'Campo obrigatório!',
     invalidFormat: 'Formato inválido!',
@@ -35,5 +39,6 @@ export const ERROR_MESSAGES = {
     maxCharacters: 'Ultrapassa o limite máximo de ',
     alreadyExistingUSF: 'A USF já está registada',
     minCharacters: 'Deve ter pelo menos ',
-    medicationAlreadyExist: 'Verifique se o nome do medicamento já se encontra na lista'
+    medicationAlreadyExist: 'Verifique se o nome do medicamento já se encontra na lista',
+    positiveNumber: 'O valor deve ser superior a 0'
 };

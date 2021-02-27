@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@pencilpix/vue2-clock-picker": "^0.1.6",
         "chart.js": "^2.9.4",
         "chartjs": "^0.3.24",
         "datatables.net": "^1.10.22",

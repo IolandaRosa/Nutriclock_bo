@@ -30,6 +30,10 @@ Vue.use(VueNativeSock, 'wss://nutriclock-websocket.herokuapp.com', {
     reconnection: true
 });
 
+import '@pencilpix/vue2-clock-picker/dist/vue2-clock-picker.min.css';
+const VueClockPickerPlugin = require('@pencilpix/vue2-clock-picker/dist/vue2-clock-picker.plugin.js')
+Vue.use(VueClockPickerPlugin);
+
 import Topbar from './components/navigation/Topbar';
 import Sidebar from './components/navigation/Sidebar';
 
