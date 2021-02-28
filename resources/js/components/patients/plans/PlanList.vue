@@ -53,9 +53,9 @@ export default {
             this.showMealTypeModal = true;
             this.mealDate = dateString;
         },
-        openIngredients() {
+        openIngredients(name, time, portion, dateString) {
             this.showMealTypeModal = false;
-            this.$emit('open-ingredient');
+            this.$emit('open-ingredient', name, time, portion, dateString);
         }
     },
     components: {

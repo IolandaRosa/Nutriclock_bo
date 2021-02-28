@@ -54,7 +54,13 @@
                 </div>
                 <div class="tab-pane fade" id="mealPlan" role="tabpanel" aria-labelledby="home-tab">
                     <PlanList @open-ingredient="showIngredientsPage" v-show="!showIngredient" />
-                    <MealIngredients v-show="showIngredient" />
+                    <MealIngredients
+                        v-show="showIngredient"
+                        :name="name"
+                        :time="time"
+                        :portion="portion"
+                        :dateString="dateString"
+                    />
                 </div>
             </div>
         </div>
@@ -82,6 +88,10 @@ export default {
             date: null,
             showExerciseStats: false,
             showIngredient: false,
+            name: '',
+            time: '',
+            portion: '',
+            dateString: '',
         };
     },
     components: {
@@ -116,8 +126,12 @@ export default {
         closeExerciseStat() {
             this.showExerciseStats = false;
         },
-        showIngredientsPage() {
+        showIngredientsPage(name, time, portion, dateString) {
             this.showIngredient = true;
+            this.name = name;
+            this.time = time;
+            this.portion = portion;
+            this.dateString = dateString;
         }
     },
 };

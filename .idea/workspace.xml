@@ -18,27 +18,13 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="add exercises stats close">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_02_27_113304_create_plans_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_02_27_114023_create_meal_plans_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_02_27_114050_create_meal_plan_types_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_02_27_114131_create_ingredients_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/modals/MealTypeModal.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/modals/PlanDateModal.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/patients/plans/MealIngredients.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/patients/plans/PlanList.vue" afterDir="false" />
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LoginControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LoginControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/MealTypeModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/MealTypeModal.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/patients/PatientTabs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/PatientTabs.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/utils/misc.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/misc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/utils/validations.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/validations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/plans/MealIngredients.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/plans/MealIngredients.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/plans/PlanList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/plans/PlanList.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -356,14 +342,9 @@
       <workItem from="1613685790216" duration="5370000" />
       <workItem from="1613909699255" duration="4738000" />
       <workItem from="1614112148692" duration="773000" />
-      <workItem from="1614423644833" duration="16487000" />
-    </task>
-    <task id="LOCAL-00089" summary="Change details on patients table">
-      <created>1609331146261</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1609331146261</updated>
+      <workItem from="1614423644833" duration="16573000" />
+      <workItem from="1614540267142" duration="4131000" />
+      <workItem from="1614547479417" duration="5418000" />
     </task>
     <task id="LOCAL-00090" summary="Put unit on second row">
       <created>1609332872786</created>
@@ -701,7 +682,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613911929664</updated>
     </task>
-    <option name="localTasksCounter" value="138" />
+    <task id="LOCAL-00138" summary="add meal plan pages">
+      <created>1614465690231</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1614465690231</updated>
+    </task>
+    <option name="localTasksCounter" value="139" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -729,7 +717,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update user api request" />
     <MESSAGE value="update diseases" />
     <MESSAGE value="add auth user api get" />
     <MESSAGE value="medications change for profile" />
@@ -754,7 +741,8 @@
     <MESSAGE value="reset fields and errors in all modals" />
     <MESSAGE value="compiled files" />
     <MESSAGE value="add exercises stats close" />
-    <option name="LAST_COMMIT_MESSAGE" value="add exercises stats close" />
+    <MESSAGE value="add meal plan pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="add meal plan pages" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2616" y="327" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607868469291">
@@ -778,9 +766,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="516" y="272" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.834@0.0.1536.834" timestamp="1606842580879" />
-    <state x="468" y="0" key="CommitChangelistDialog2" timestamp="1613915612231">
-      <screen x="0" y="0" width="1536" height="834" />
+    <state x="2505" y="0" key="CommitChangelistDialog2" timestamp="1614465688736">
+      <screen x="1920" y="0" width="1920" height="1050" />
     </state>
+    <state x="2505" y="0" key="CommitChangelistDialog2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1614465688736" />
     <state x="468" y="0" key="CommitChangelistDialog2/0.0.1536.834@0.0.1536.834" timestamp="1613915612231" />
     <state x="-6" y="0" width="1299" height="834" key="DiffContextDialog" timestamp="1613685873893">
       <screen x="0" y="0" width="1536" height="834" />
@@ -808,10 +797,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="277" y="62" key="SettingsEditor/0.0.1536.834@0.0.1536.834" timestamp="1613915520436" />
-    <state x="2371" y="189" key="Vcs.Push.Dialog.v2" timestamp="1614113839466">
+    <state x="2371" y="189" key="Vcs.Push.Dialog.v2" timestamp="1614465698179">
       <screen x="1920" y="0" width="1920" height="1050" />
     </state>
-    <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1614113839466" />
+    <state x="2371" y="189" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1920.1050@1920.0.1920.1050" timestamp="1614465698179" />
     <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834@0.0.1536.834" timestamp="1613911936683" />
     <state x="93" y="93" width="1350" height="648" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1613915433878">
       <screen x="0" y="0" width="1536" height="834" />

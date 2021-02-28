@@ -143,7 +143,7 @@ export default {
 
             // todo save meal in bd
 
-            this.$emit('save', this.name, this.time, this.portion);
+            this.$emit('save', this.name, this.time, this.portion, this.date);
             this.resetFields();
         },
     },
