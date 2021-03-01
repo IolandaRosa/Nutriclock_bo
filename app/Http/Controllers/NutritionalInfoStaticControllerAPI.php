@@ -7,15 +7,13 @@ use Illuminate\Http\Request;
 
 class NutritionalInfoStaticControllerAPI extends Controller
 {
-/*
-public function getMedicationByUser(Request $request, $id) {
-        $medication = Medication::where('user_id', $id)->get();
-
-        return MedicationResource::collection($medication);
-    }
-    */
-
-    public function getNames(Request $request) {
+    public function getNames() {
         return  NutritionalInfoStaticResource::collection(NutritionalInfoStatic::all('name'));
+    }
+
+    public function getByQuery($query) {
+        $info = NutritionalInfoStatic::where('name', 'like', $query.'%')->get();
+
+        return  NutritionalInfoStaticResource::collection($info);
     }
 }

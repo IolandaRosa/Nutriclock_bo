@@ -17,8 +17,6 @@ class NutritionalInfoControllerAPI extends Controller
             return Response::json(['error' => 'Accesso proibido!'], 401);
         }
 
-        $professionalCategory=NutritionalInfo::findOrFail($id);
-
         $validateData=$request->validate([
             'value'=>'required|unique:professional_categories,name',
         ]);

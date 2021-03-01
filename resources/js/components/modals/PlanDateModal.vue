@@ -87,7 +87,6 @@ export default {
             }
             const dayString = renderDayOfWeek(this.date.getDay());
             const dateString = renderDate(this.date);
-            // todo post new date
             this.$emit('save', dayString+" - "+dateString);
             this.resetFields();
         },

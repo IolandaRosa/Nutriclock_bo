@@ -86,6 +86,7 @@ Route::middleware(['auth:api', 'intern'])->get('meals/{id}/nutritional', 'MealCo
 
 // Static nutritional info
 Route::get('meal-names', 'NutritionalInfoStaticControllerAPI@getNames');
+Route::middleware(['auth:api', 'professional'])->get('meals-query/{query}', 'NutritionalInfoStaticControllerAPI@getByQuery');
 
 // Nutritional info
 Route::middleware(['auth:api', 'professional'])->put('nutritional-info/{id}', 'NutritionalInfoControllerAPI@update');

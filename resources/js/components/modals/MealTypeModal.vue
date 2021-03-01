@@ -29,8 +29,8 @@
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Hora:</label>
-                            <div class="col-sm-10" v-bind:class="{ 'is-invalid': errors.time !== null }">
-                                <vue-clock-picker v-model="time" class="form-control" input-class="no-border"></vue-clock-picker>
+                            <div class="col-sm-10">
+                                <vue-clock-picker v-model="time" v-bind:class="{ 'is-invalid': errors.time !== null }" class="form-control" input-class="no-border"></vue-clock-picker>
                                 <div v-if="errors.time" class="invalid-feedback">
                                     {{ errors.time }}
                                 </div>
@@ -140,9 +140,6 @@ export default {
             }
 
             if (hasErrors) return;
-
-            // todo save meal in bd
-
             this.$emit('save', this.name, this.time, this.portion, this.date);
             this.resetFields();
         },
@@ -152,17 +149,6 @@ export default {
 
 <style>
 .no-border {
-    border-color: #00000000;
-}
-.no-border:focus {
-    border-color: #00000000;
-}
-
-.no-border:active {
-    border-color: #00000000;
-}
-
-.no-border:hover {
-    border-color: #00000000;
+    border-color: #00000000 !important;
 }
 </style>

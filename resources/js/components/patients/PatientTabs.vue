@@ -53,9 +53,9 @@
                     <ExerciseStats :id="this.$route.params.id" @close-exercise-stats="closeExerciseStat" v-show="showExerciseStats"/>
                 </div>
                 <div class="tab-pane fade" id="mealPlan" role="tabpanel" aria-labelledby="home-tab">
-                    <PlanList @open-ingredient="showIngredientsPage" v-show="!showIngredient" />
+                    <PlanList @open-ingredient="showIngredientsPage" v-if="!showIngredient" />
                     <MealIngredients
-                        v-show="showIngredient"
+                        v-if="showIngredient"
                         :name="name"
                         :time="time"
                         :portion="portion"
