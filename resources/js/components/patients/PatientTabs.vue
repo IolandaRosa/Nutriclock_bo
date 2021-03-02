@@ -60,6 +60,8 @@
                         :time="time"
                         :portion="portion"
                         :dateString="dateString"
+                        :id="this.$route.params.id"
+                        @open-plan-list="() => { this.showIngredient = false; }"
                     />
                 </div>
             </div>

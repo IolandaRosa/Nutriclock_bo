@@ -20,7 +20,7 @@ class CreateMealPlanTypesTable extends Migration
             $table->enum('type', ['P','A','J','S','O','L','M'])->nullable();
             $table->integer('planMealId');
             $table->integer('portion');
-            $table->integer('hour');
+            $table->string('hour');
         });
     }
 

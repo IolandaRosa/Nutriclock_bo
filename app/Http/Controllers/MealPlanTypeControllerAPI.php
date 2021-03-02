@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Ingredient;
 use App\MealPlan;
 use App\MealPlanType;
 use App\Plan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\Rule;
 
 class MealPlanTypeControllerAPI extends Controller
@@ -20,37 +22,82 @@ class MealPlanTypeControllerAPI extends Controller
         $request->validate([
             'userId' => 'required',
             'date' => 'required',
-            'dayOfWeek' => Rule::in([0, 1, 2, 3, 4, 5, 6]),
-            'type' => Rule::in(['P','A','J','S','O','L','M']),
-            'portion' => 'required',
-            'hour' => 'required',
-            'ingredients' => 'required|array'
+            'dayOfWeek' => Rule::in(['MON','TUE','WED','THU','FRI','SAT','SUN']),
+            'meals' => 'required|array'
         ]);
 
-        $plan = new Plan();
-        $plan->userId = $request->userId;
-        $plan->save();
+        $plan = Plan::where('userId', $request->userId)->first();
 
-        $mealPlan = new MealPlan();
-        $mealPlan->planId = $plan->id;
-        $mealPlan->date = $request->date;
-        $mealPlan->dayOfWeek = $request->dayOfWeek;
-        $mealPlan->save();
+        if (!$plan) {
+            $plan = new Plan();
+            $plan->userId = $request->userId;
+            $plan->save();
+        }
 
-        $mealPlanType = new MealPlanType();
-        $mealPlanType->planMealId = $mealPlan->id;
-        $mealPlanType->type = $request->type;
-        $mealPlanType->portion = $request->portion;
-        $mealPlanType->hour = $request->hour;
-        $mealPlanType->save();
+        $mealPlan = MealPlan::where('planId', $plan->id)->where('date', $request->date)->first();
 
-        // userId -> plan
+        if (!$mealPlan) {
+            $mealPlan = new MealPlan();
+            $mealPlan->planId = $plan->id;
+            $mealPlan->date = $request->date;
+            $mealPlan->dayOfWeek = $request->dayOfWeek;
+            $mealPlan->save();
+        }
 
-        // 'planId', 'date', 'dayOfWeek' -> mealPlan
+        foreach ($request->meals as $meal) {
+            $mealPlanType = MealPlanType::where('planMealId', $mealPlan->id)->where('type', $meal['name'])->first();
+            if ($mealPlanType) {
+                return Response::json(['error' => 'Já existe uma refeição com o mesmo nome registada na mesma data'], 400);
+            }
 
-        // 'type', 'planMealId', 'portion', 'hour' -> mealPlanType
+            $mealPlanType = MealPlanType::where('planMealId', $mealPlan->id)->where('hour', $meal['time'])->first();
+            if ($mealPlanType) {
+                return Response::json(['error' => 'Já existe uma refeição com o mesmo horário registada na mesma data'], 400);
+            }
 
-        // 'code', 'name', 'quantity', 'unit', 'grams', 'planMealId'
+            $mealPlanType = new MealPlanType();
+            $mealPlanType->planMealId = $mealPlan->id;
+            $mealPlanType->type = $meal['name'];
+            $mealPlanType->portion = $meal['portion'];
+            $mealPlanType->hour = $meal['time'];
+            $mealPlanType->save();
+
+            foreach ($meal['ingredients'] as $i) {
+                $ingredient = new Ingredient();
+                $ingredient->code = $i['code'];
+                $ingredient->name = $i['name'];
+                $ingredient->quantity = $i['quantity'];
+                $ingredient->unit = $i['unit'];
+                $ingredient->grams = self::computeNumericUnit($ingredient);
+                $ingredient->mealPlanTypeId = $mealPlanType->id;
+                $ingredient->save();
+            }
+        }
+
+        return Response::json(['data' => 'A refeicao foi criada com sucesso']);
+    }
+
+    public static function computeNumericUnit($request) {
+        switch($request['unit']) {
+            case "Gramas":
+            case "Mililitros": $value = $request['quantity']; break;
+            case "Colher de sopa": $value = 15 * $request['quantity']; break;
+            case "Colher de sobremesa": $value = 7.5 * $request['quantity']; break;
+            case "Colher de chá": $value = 5 * $request['quantity']; break;
+            case "Colher de café": $value = 2.5 * $request['quantity']; break;
+            case "Colher de servir": $value = 30 * $request['quantity']; break;
+            case "Copo": $value = 200 * $request['quantity']; break;
+            case "Chavena de chá": $value = 240 * $request['quantity']; break;
+            case "Pires": $value = 200 * $request['quantity']; break;
+            case "Prato": $value = 400 * $request['quantity']; break;
+            case "Caneca": $value = 300 * $request['quantity']; break;
+            case "Concha de sopa": $value = 160 * $request['quantity']; break;
+            case "Tigela média": $value = 350 * $request['quantity']; break;
+            case "Chavena de café": $value = 40 * $request['quantity']; break;
+            default: $value = 0;
+        }
+
+        return $value;
     }
 
     public function show($id)

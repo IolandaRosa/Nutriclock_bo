@@ -16,7 +16,7 @@ class CreateMealPlansTable extends Migration
         Schema::create('meal_plans', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('planId');
-            $table->dateTime('date');
+            $table->string('date');
             $table->enum('dayOfWeek', ['MON','TUE','WED','THU','FRI','SAT','SUN'])->nullable();
             $table->softDeletes();
             $table->timestamps();

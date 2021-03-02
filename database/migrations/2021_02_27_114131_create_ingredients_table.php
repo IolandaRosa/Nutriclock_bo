@@ -22,7 +22,7 @@ class CreateIngredientsTable extends Migration
             $table->integer('quantity');
             $table->string('unit');
             $table->integer('grams');
-            $table->integer('planMealId');
+            $table->integer('mealPlanTypeId');
         });
     }
 

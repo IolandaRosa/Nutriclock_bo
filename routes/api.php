@@ -134,3 +134,6 @@ Route::middleware(['auth:api', 'patient'])->get('/exercises/stats','ExerciseCont
 Route::middleware(['auth:api', 'intern'])->get('/exercises/admin/{id}','ExerciseControllerAPI@getExerciseByUser');
 Route::middleware(['auth:api', 'intern'])->get('/exercises/admin/stats/{id}','ExerciseControllerAPI@getStatsByUser');
 
+// Meal Plan API
+Route::middleware(['auth:api', 'professional'])->post('/meal-plans','MealPlanTypeControllerAPI@store');
+

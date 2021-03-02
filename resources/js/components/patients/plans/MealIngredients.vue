@@ -114,11 +114,11 @@
                                 <div v-if="!meal.ingredients || meal.ingredients.length === 0">
                                     Adicionar ingredientes
                                 </div>
-                                <div v-else :key="i" v-for="(i, index) in meal.ingredients"
+                                <div v-else :key="index" v-for="(i, index) in meal.ingredients"
                                      class="rounded bg-white with-shadow p-2 mb-2">
                                     <div class="d-flex mb-2">
                                         <div class="flex-grow-1">
-                                            Nome
+                                            {{ i.name }}
                                         </div>
                                         <div @click="() => { removeIngredient(index) }">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -143,12 +143,16 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-5">
-                                            <input
-                                                type="number"
-                                                class="form-control"
-                                                v-bind:class="{ 'is-invalid': i.errors.unit !== null }"
-                                                v-model.trim="i.unit"
-                                            >
+
+                                            <select
+                                                    class="form-control mb-2"
+                                                    style="height: 40px"
+                                                    v-bind:class="{ 'is-invalid': i.errors.unit !== null }"
+                                                    v-model.trim="i.unit">
+                                                    <option :key="index" v-for="(i, index) in getMealTypeOptions()" :value="i.value">
+                                                        {{ i.label }}</option>
+                                            </select>
+
                                             <div v-if="i.errors.unit" class="invalid-feedback">
                                                 {{ i.errors.unit }}
                                             </div>
@@ -167,12 +171,13 @@
 
 
 <script type="text/javascript">
-import {sortBy} from 'lodash';
+import { sortBy } from 'lodash';
 import MealTypeModal from '../../modals/MealTypeModal';
-import {parseMealTypeToString} from '../../../utils/misc';
+import { getDateFromDateStringMeal, getMealUnitType, parseMealTypeToString, getDayEnumFromDateStringMeal } from '../../../utils/misc';
+import { ERROR_MESSAGES, isPositiveNumber } from '../../../utils/validations';
 
 export default {
-    props: ['name', 'time', 'portion', 'dateString'],
+    props: ['name', 'time', 'portion', 'dateString', 'id'],
     data: function () {
         return {
             isFetching: false,
@@ -190,6 +195,9 @@ export default {
                 this.meals[this.selectedMealIndex].ingredients.splice(index, 1);
             } catch (e) {
             }
+        },
+        getMealTypeOptions() {
+            return getMealUnitType();
         },
         closeModal() {
             this.showMealTypeModal = false;
@@ -265,15 +273,18 @@ export default {
                 });
             }
             if (!isValid) {
-                this.$toasted.show('A refeição tem de ter um nome e hora diferentes das registadas', {
-                    type: 'error',
-                    duration: 3000,
-                    position: 'top-right',
-                    closeOnSwipe: true,
-                    theme: 'toasted-primary'
-                });
+                this.showError('A refeição tem de ter um nome e hora diferentes das registadas');
             }
             return isValid;
+        },
+        showError(message) {
+            this.$toasted.show(message, {
+                type: 'error',
+                duration: 3000,
+                position: 'top-right',
+                closeOnSwipe: true,
+                theme: 'toasted-primary'
+            });
         },
         validateIngredientToAdd(ingredient) {
             let isValid = true;
@@ -285,7 +296,52 @@ export default {
             return isValid;
         },
         saveMeal() {
-            // todo save meal for user
+            let hasErrors = false;
+            this.meals.forEach(m => {
+                m.ingredients.forEach(i => {
+                    if (i.unit === null) {
+                        hasErrors = true;
+                        i.errors.unit = ERROR_MESSAGES.mandatoryField;
+                    }
+
+                    if (i.quantity === null) {
+                        hasErrors = true;
+                        i.errors.quantity = ERROR_MESSAGES.mandatoryField;
+                    } else if (isPositiveNumber(i.quantity)) {
+                        hasErrors = true;
+                        i.errors.quantity = ERROR_MESSAGES.positiveNumber;
+                    }
+                });
+            });
+
+            if (hasErrors) {
+                this.showError(
+                    "Por favor verifique os erros nos campos dos ingredientes em cada refeição",
+                );
+                return;
+            }
+
+            axios.post('api/meal-plans', {
+                'userId': this.id,
+                'date': getDateFromDateStringMeal(this.dateString),
+                'dayOfWeek': getDayEnumFromDateStringMeal(this.dateString),
+                'meals': this.meals,
+            }).then(() => {
+                this.isFetching = false;
+                this.$emit('open-plan-list');
+            }).catch(error => {
+                this.isFetching = false;
+                this.isFetching = false;
+                const { response } = error;
+                let message = ERROR_MESSAGES.unknownError;
+                if (response) {
+                    const { data } = response;
+                    if (data && data.error) {
+                        message = data.error;
+                    }
+                }
+                this.showError(message);
+            });
         }
     },
     mounted() {

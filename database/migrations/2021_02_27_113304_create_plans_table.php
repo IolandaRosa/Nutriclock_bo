@@ -17,6 +17,7 @@ class CreatePlansTable extends Migration
             $table->increments('id');
             $table->integer('userId');
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
