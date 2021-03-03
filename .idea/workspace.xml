@@ -21,15 +21,9 @@
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MealPlanTypeControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MealPlanTypeControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Ingredient.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Ingredient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_27_113304_create_plans_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_27_113304_create_plans_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_27_114023_create_meal_plans_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_27_114023_create_meal_plans_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_27_114050_create_meal_plan_types_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_27_114050_create_meal_plan_types_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_27_114131_create_ingredients_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_27_114131_create_ingredients_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/patients/PatientTabs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/PatientTabs.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/plans/MealIngredients.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/plans/MealIngredients.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/utils/misc.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/misc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/plans/PlanList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/plans/PlanList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -362,14 +356,7 @@
       <workItem from="1614633382499" duration="10085000" />
       <workItem from="1614709721867" duration="4412000" />
       <workItem from="1614719440555" duration="423000" />
-      <workItem from="1614719939784" duration="7315000" />
-    </task>
-    <task id="LOCAL-00093" summary="Chat message send">
-      <created>1609365273251</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1609365273251</updated>
+      <workItem from="1614719939784" duration="10107000" />
     </task>
     <task id="LOCAL-00094" summary="Add chat endpoints for mobile">
       <created>1609605465292</created>
@@ -707,7 +694,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614643558568</updated>
     </task>
-    <option name="localTasksCounter" value="142" />
+    <task id="LOCAL-00142" summary="add plan to list">
+      <created>1614728252629</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1614728252630</updated>
+    </task>
+    <option name="localTasksCounter" value="143" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -735,7 +729,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="change the chat list to show all contact from user usf" />
     <MESSAGE value="change under message controller for mark all read when patient opens chat" />
     <MESSAGE value="add exercise api" />
     <MESSAGE value="relatório gráfico de exercício" />
@@ -760,6 +753,7 @@
     <MESSAGE value="design finished" />
     <MESSAGE value="updated ui for meal of plan without meal saving data" />
     <MESSAGE value="prepared api models with new database" />
-    <option name="LAST_COMMIT_MESSAGE" value="prepared api models with new database" />
+    <MESSAGE value="add plan to list" />
+    <option name="LAST_COMMIT_MESSAGE" value="add plan to list" />
   </component>
 </project>

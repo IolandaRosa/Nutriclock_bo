@@ -102,7 +102,32 @@ class MealPlanTypeControllerAPI extends Controller
 
     public function show($id)
     {
-        //
+        $plan = Plan::where('userId', $id)->first();
+
+        if (!$plan) {
+            return Response::json(['data' => []]);
+        }
+
+        $meal_plans = MealPlan::where('planId', $plan->id)->get();
+
+        if ($meal_plans) {
+            foreach ($meal_plans as $mealPlan) {
+                $mealPlanTypes = MealPlanType::where('planMealId', $mealPlan->id)->get();
+                if ($mealPlanTypes) {
+                    foreach ($mealPlanTypes as $mealType) {
+                        $ingredients = Ingredient::where('mealPlanTypeId', $mealType->id)->get();
+
+                        if ($ingredients) {
+                            $mealType['ingredients'] = $ingredients;
+                        }
+                    }
+
+                    $mealPlan['mealTypes'] = $mealPlanTypes;
+                }
+            }
+        }
+
+        return Response::json(['data' => $meal_plans]);
     }
 
     public function update(Request $request, $id)

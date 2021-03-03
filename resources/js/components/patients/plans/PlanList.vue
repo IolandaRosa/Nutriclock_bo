@@ -17,7 +17,25 @@
                     </div>
                 </div>
                 <div class="component-wrapper-body mt-2 text-dark">
-                    Listagem de planos alimentares
+                    <div v-if="!this.plan || this.plan.length === 0">
+                        Não existem planos alimentares registados
+                    </div>
+                    <div v-else v-for="p in this.plan" :key="p.id" class="bg-white rounded with-shadow p-2 mb-2">
+                        <span>{{ p.dayOfWeek }} {{ p.date }}</span>
+
+                        <div v-for="mealType in p.mealTypes" :key="mealType.id" class="bg-light rounded with-shadow p-2 mb-2"">
+                            <span> {{ mealType.type }}</span>
+                            <span> {{ mealType.hour }}</span>
+                            <span> {{ mealType.portion }}</span>
+
+                            <div v-for="i in mealType.ingredients" :key="i.id">
+                                <span> {{ i.name }}</span>
+                                <span> {{ i.quantity }}</span>
+                                <span> {{ i.unit }}</span>
+                                <span> {{ i.grams }}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -32,12 +50,14 @@ import PlanDate from '../../modals/PlanDateModal';
 import MealTypeModal from '../../modals/MealTypeModal';
 
 export default {
+    props: ['id'],
     data: function () {
         return {
             isFetching: false,
             showPlanDateModal: false,
             showMealTypeModal: false,
             mealDate: '',
+            plan: [],
         };
     },
     methods: {
@@ -56,7 +76,18 @@ export default {
         openIngredients(name, time, portion, dateString) {
             this.showMealTypeModal = false;
             this.$emit('open-ingredient', name, time, portion, dateString);
-        }
+        },
+    },
+    mounted() {
+        if (this.isFetching) return;
+        this.isFetching = true;
+
+        axios.get(`api/meal-plans/${this.id}`).then(response => {
+            this.isFetching = false;
+            this.plan = response.data.data;
+        }).catch(() => {
+            this.isFetching = false;
+        });
     },
     components: {
         PlanDate,
