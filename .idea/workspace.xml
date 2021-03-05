@@ -19,19 +19,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/IngredientControllerAPI.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/MealPlanType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/modals/AddIngredientModal.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MealPlanTypeControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MealPlanTypeControllerAPI.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/MealTypeModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/MealTypeModal.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/PlanDateModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/PlanDateModal.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/plans/MealIngredients.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/plans/MealIngredients.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/plans/PlanList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/plans/PlanList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/utils/dataTables.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/dataTables.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/utils/misc.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/misc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/AddProfessional.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/AddProfessional.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/Profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/Profile.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/exercise/ExerciseStats.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/exercise/ExerciseStats.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/usfs/UsfsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/usfs/UsfsList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/utils/table_elements.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/table_elements.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -366,14 +360,7 @@
       <workItem from="1614719939784" duration="10182000" />
       <workItem from="1614800369874" duration="6663000" />
       <workItem from="1614889868927" duration="13307000" />
-      <workItem from="1614980489158" duration="5179000" />
-    </task>
-    <task id="LOCAL-00095" summary="Add websocket for bo">
-      <created>1609686629654</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1609686629655</updated>
+      <workItem from="1614980489158" duration="6367000" />
     </task>
     <task id="LOCAL-00096" summary="Add websocket integration">
       <created>1610668108000</created>
@@ -711,7 +698,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614730765853</updated>
     </task>
-    <option name="localTasksCounter" value="144" />
+    <task id="LOCAL-00144" summary="add meal plan list actions">
+      <created>1614986465652</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1614986465653</updated>
+    </task>
+    <option name="localTasksCounter" value="145" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -739,7 +733,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add exercise api" />
     <MESSAGE value="relatório gráfico de exercício" />
     <MESSAGE value="exercise report api" />
     <MESSAGE value="exercises stats api done" />
@@ -764,6 +757,7 @@
     <MESSAGE value="prepared api models with new database" />
     <MESSAGE value="add plan to list" />
     <MESSAGE value="render meal plan type" />
-    <option name="LAST_COMMIT_MESSAGE" value="render meal plan type" />
+    <MESSAGE value="add meal plan list actions" />
+    <option name="LAST_COMMIT_MESSAGE" value="add meal plan list actions" />
   </component>
 </project>

@@ -36,16 +36,16 @@
                         </div>
                         <div class="card table-wrapper mb-2 p-2 pt-3 mt-2 text-dark">
                             <div class="card-text"><strong>Média total de calorias
-                                queimadas: </strong>{{ this.averageCalories.toFixed(2) }}
+                                gastas: </strong>{{ this.averageCalories.toFixed(2) }}
                             </div>
                             <div class="card-text"><strong>Média mensal de calorias
-                                queimadas: </strong>{{ this.monthCaloriesAverage.toFixed(2) }}
+                                gastas: </strong>{{ this.monthCaloriesAverage.toFixed(2) }}
                             </div>
                             <div class="card-text"><strong>Máximo mensal de calorias
-                                queimadas: </strong>{{ this.monthCaloriesMaximum.toFixed(2) }}
+                                gastas: </strong>{{ this.monthCaloriesMaximum.toFixed(2) }}
                             </div>
                             <div class="card-text"><strong>Mínimo mensal de calorias
-                                queimadas: </strong>{{ this.monthCaloriesMinimum.toFixed(2) }}
+                                gastas: </strong>{{ this.monthCaloriesMinimum.toFixed(2) }}
                             </div>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                         </div>
                         <div class="mt-2">
                             <div v-if="chartCaloriesData == null" class="no-data">
-                                Não existem registos de calorias queimadas.
+                                Não existem registos de calorias gastas.
                             </div>
                             <line-chart v-else :chart-data="chartCaloriesData"
                                         :options="{
@@ -131,7 +131,7 @@
                                                 display: true,
                                                 scaleLabel: {
                                                     display:true,
-                                                    labelString: 'Calorias queimadas'
+                                                    labelString: 'Calorias gastas'
                                                 },
                                                 ticks: {
                                                     beginAtZero: true

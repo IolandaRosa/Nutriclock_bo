@@ -9,10 +9,10 @@
                     <div class="component-wrapper-right">
                         <button class="btn-bold btn btn-primary" v-on:click.prevent="add" type="button"
                                 data-toggle="tooltip"
-                                title="Nova USF">
+                                title="Nova Instituição">
                     <span v-if="isFetching" class="spinner-border spinner-border-sm" role="status"
                           aria-hidden="true"></span>
-                            <span class="full-text">Nova USF</span>
+                            <span class="full-text">Nova Instituição</span>
                             <span class="min-text">+</span>
                         </button>
                     </div>
@@ -44,12 +44,12 @@
         <ConfirmationModal
             v-show="showConfirmationModal"
             @close="this.onCloseClick"
-            title="Eliminar USF"
+            title="Eliminar Instituição"
             cancel-button-text="Cancelar"
             save-button-class="btn btn-bold btn-danger"
             save-button-text="Eliminar"
             @save="this.deleteUsf"
-            message="Tem a certeza que deseja eliminar a Unidade de Saúde Familiar selecionada?"
+            message="Tem a certeza que deseja eliminar a instituição selecionada?"
         />
     </div>
 </template>
@@ -78,7 +78,7 @@ export default {
             selectedRow: null,
             modalTitle: '',
             selectedUsfName: null,
-            placeholderName: 'Ex: USF Leiria',
+            placeholderName: 'Ex: Instituição A',
             selectedUsfId: null,
             data: [],
             dataTable: null,
@@ -98,13 +98,13 @@ export default {
             this.selectedUsfId = null;
             this.selectedUsfName = '';
             this.selectedRow = null;
-            this.modalTitle = 'Nova USF';
+            this.modalTitle = 'Nova Instituição';
             this.showModal = true;
         },
         onEditClick(row) {
             this.selectedUsfId = row.id;
             this.selectedUsfName = row.name;
-            this.modalTitle = 'Editar USF';
+            this.modalTitle = 'Editar Instituição';
             this.showModal = true;
         },
         onDeleteClick(row) {

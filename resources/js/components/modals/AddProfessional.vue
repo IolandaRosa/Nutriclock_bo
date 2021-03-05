@@ -81,7 +81,7 @@
                                     id="add-professional-modal-select-ufc"
                                     multiple
                                     v-model="selectedUfcs">
-                                    <option value="" disabled selected>Selecione uma ou mais USF...</option>
+                                    <option value="" disabled selected>Selecione uma ou mais intituições...</option>
                                     <option v-for="ufs in ufcs" :value="ufs.id">{{ufs.name}}</option>
                                 </select>
                             </div>

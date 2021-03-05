@@ -6,7 +6,7 @@ export const COLUMN_NAME = {
     ProfessionalCategory: 'Categoria Profissional',
     Email: 'Email',
     Birthday: 'Data de Nascimento',
-    Usf: 'USF',
+    Usf: 'Instituição',
     Type: 'Tipo',
     Date: 'Data',
     Time: 'Horas',
@@ -26,6 +26,6 @@ export const COLUMN_NAME = {
     StartTime: 'Tempo de Início',
     EndTime: 'Tempo de Fim',
     Duration: 'Duração (min)',
-    BurnedCalories: 'Calorias Queimadas',
+    BurnedCalories: 'Calorias Gastas',
     Met: 'MET'
 };

@@ -44,7 +44,7 @@
                             </div>
                         </div>
                         <div class="form-group mb-2" v-show="userUfcs.lenght > 0">
-                            <label class="green-label">Unidade de Saúde Familiar</label>
+                            <label class="green-label">Instituição</label>
                             <div>
                                 <input
                                     type="text"
@@ -88,7 +88,7 @@
                                 </div>
                             </div>
                             <div class="form-group mt-2 col-sm-12" v-show="role === 'PROFESSIONAL'">
-                                <label for="profile-modal-select-ufc" class="green-label">Unidade de Saúde Familiar</label>
+                                <label for="profile-modal-select-ufc" class="green-label">Instituição</label>
                                 <div>
                                     <select
                                         class="form-control"
