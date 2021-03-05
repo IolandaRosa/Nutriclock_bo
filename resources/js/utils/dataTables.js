@@ -96,7 +96,7 @@ export const TableActionColumns = {
         defaultContent: '',
         className: TableActionClasses.View,
         render: function (data) {
-            return '<span data-toggle="tooltip" title="Reenviar Email">'+data.name+'</span>';
+            return '<span data-toggle="tooltip" title="Detalhes">'+data.name+'</span>';
         }
     },
     Resend: {

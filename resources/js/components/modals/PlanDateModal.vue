@@ -49,7 +49,7 @@
 import Datepicker from 'vuejs-datepicker';
 import { ptBR } from 'vuejs-datepicker/dist/locale'
 import { ERROR_MESSAGES, isEmptyField } from '../../utils/validations';
-import { renderDate, renderDayOfWeek } from '../../utils/misc';
+import { parseDateToString, renderDayOfWeek } from '../../utils/misc';
 
 export default {
     data() {
@@ -77,7 +77,7 @@ export default {
             this.errors.date = null;
         },
         formatDate(date) {
-            return renderDayOfWeek(date.getDay())+" - "+renderDate(date);
+            return renderDayOfWeek(date.getDay())+" - "+parseDateToString(date);
         },
         onSaveClick() {
             this.resetErrors();
@@ -86,7 +86,7 @@ export default {
                 return;
             }
             const dayString = renderDayOfWeek(this.date.getDay());
-            const dateString = renderDate(this.date);
+            const dateString = parseDateToString(this.date);
             this.$emit('save', dayString+" - "+dateString);
             this.resetFields();
         },

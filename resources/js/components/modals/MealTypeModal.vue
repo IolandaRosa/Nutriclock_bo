@@ -20,7 +20,7 @@
                                     class="form-control"
                                     v-bind:class="{ 'is-invalid': errors.name !== null }"
                                     v-model="name">
-                                    <option v-for="n in mealType" :value="n.value">{{n.label}}</option>
+                                    <option v-for="n in mealType" :value="n.value">{{ n.label }}</option>
                                 </select>
                                 <div v-if="errors.name" class="invalid-feedback">
                                     {{ errors.name }}
@@ -30,7 +30,9 @@
                         <div class="form-group row">
                             <label class="col-sm-2 col-form-label">Hora:</label>
                             <div class="col-sm-10">
-                                <vue-clock-picker v-model="time" v-bind:class="{ 'is-invalid': errors.time !== null }" class="form-control" input-class="no-border"></vue-clock-picker>
+                                <input class="form-control"
+                                       v-bind:class="{ 'is-invalid': errors.time !== null }"
+                                       type="time" v-model="time">
                                 <div v-if="errors.time" class="invalid-feedback">
                                     {{ errors.time }}
                                 </div>
@@ -113,7 +115,7 @@ export default {
         },
         resetFields() {
             this.name = '';
-            this.time = '';
+            this.time = this.getCurrentTime();
             this.portion = 0;
         },
         resetErrors() {
@@ -143,7 +145,14 @@ export default {
             this.$emit('save', this.name, this.time, this.portion, this.date);
             this.resetFields();
         },
+        getCurrentTime() {
+            const d = new Date();
+            return `${d.getHours() > 9 ? d.getHours(): '0'+d.getHours()}:${d.getMinutes() > 9 ? d.getMinutes(): '0'+d.getMinutes()}`;
+        }
     },
+    mounted() {
+        this.time = this.getCurrentTime();
+    }
 };
 </script>
 

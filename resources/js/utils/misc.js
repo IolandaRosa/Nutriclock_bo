@@ -81,7 +81,7 @@ export const renderDate = date => {
     if (day < 10) day = "0" + day;
     if (month < 10) month = "0" + month;
 
-    return day + "\\" + month + "\\" + date.getFullYear();
+    return day + "/" + month + "/" + date.getFullYear();
 }
 
 export const renderDiseaseStringToType = type => {
@@ -216,7 +216,6 @@ export const getMealUnitType = () => {
 }
 
 export const getDateFromDateStringMeal = value => {
-    // Terça-feira - 02\02\2021 --> node, -, data
     return value.split(" ")[2];
 }
 
@@ -229,6 +228,18 @@ export const getDayEnumFromDateStringMeal = value => {
         case 'Quinta-feira': return 'THU';
         case 'Sexta-feira': return 'FRI';
         default: return 'SAT';
+    }
+}
+
+export const parseDayEnumToString = value => {
+    switch (value) {
+        case 'SUN': return 'Domingo';
+        case 'MON': return 'Segunda-feira';
+        case 'TUE': return 'Terça-feira';
+        case 'WED': return 'Quarta-feira';
+        case 'THU': return 'Quinta-feira';
+        case 'FRI': return 'Sexta-feira';
+        default: return 'Sábado';
     }
 }
 

@@ -19,11 +19,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/IngredientControllerAPI.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/MealPlanType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/modals/AddIngredientModal.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MealPlanTypeControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MealPlanTypeControllerAPI.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/PatientTabs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/PatientTabs.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/MealTypeModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/MealTypeModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/PlanDateModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/PlanDateModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/plans/MealIngredients.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/plans/MealIngredients.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/patients/plans/PlanList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/plans/PlanList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/utils/dataTables.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/dataTables.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/utils/misc.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/misc.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -356,14 +363,10 @@
       <workItem from="1614633382499" duration="10085000" />
       <workItem from="1614709721867" duration="4412000" />
       <workItem from="1614719440555" duration="423000" />
-      <workItem from="1614719939784" duration="10107000" />
-    </task>
-    <task id="LOCAL-00094" summary="Add chat endpoints for mobile">
-      <created>1609605465292</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1609605465292</updated>
+      <workItem from="1614719939784" duration="10182000" />
+      <workItem from="1614800369874" duration="6663000" />
+      <workItem from="1614889868927" duration="13307000" />
+      <workItem from="1614980489158" duration="5179000" />
     </task>
     <task id="LOCAL-00095" summary="Add websocket for bo">
       <created>1609686629654</created>
@@ -701,7 +704,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614728252630</updated>
     </task>
-    <option name="localTasksCounter" value="143" />
+    <task id="LOCAL-00143" summary="render meal plan type">
+      <created>1614730765853</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1614730765853</updated>
+    </task>
+    <option name="localTasksCounter" value="144" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -729,7 +739,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="change under message controller for mark all read when patient opens chat" />
     <MESSAGE value="add exercise api" />
     <MESSAGE value="relatório gráfico de exercício" />
     <MESSAGE value="exercise report api" />
@@ -754,6 +763,7 @@
     <MESSAGE value="updated ui for meal of plan without meal saving data" />
     <MESSAGE value="prepared api models with new database" />
     <MESSAGE value="add plan to list" />
-    <option name="LAST_COMMIT_MESSAGE" value="add plan to list" />
+    <MESSAGE value="render meal plan type" />
+    <option name="LAST_COMMIT_MESSAGE" value="render meal plan type" />
   </component>
 </project>

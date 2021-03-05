@@ -30,7 +30,9 @@
                     <div class="bg-light rounded with-shadow p-2 w-50 w-all">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Pesquisar..."
-                                   aria-describedby="basic-addon2" v-model="searchInput">
+                                   aria-describedby="basic-addon2" v-model="searchInput"
+                                   v-on:change="searchIngredients"
+                            >
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary" type="button" @click="searchIngredients">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -330,7 +332,6 @@ export default {
                 this.isFetching = false;
                 this.$emit('open-plan-list');
             }).catch(error => {
-                this.isFetching = false;
                 this.isFetching = false;
                 const { response } = error;
                 let message = ERROR_MESSAGES.unknownError;

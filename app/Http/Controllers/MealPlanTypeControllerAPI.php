@@ -74,7 +74,28 @@ class MealPlanTypeControllerAPI extends Controller
             }
         }
 
-        return Response::json(['data' => 'A refeicao foi criada com sucesso']);
+        return Response::json(['data' => 'A refeição foi criada com sucesso']);
+    }
+
+    public function storeMealType(Request $request, $id){
+        $mealPlanType = MealPlanType::where('planMealId', $id)->where('type', $request->name)->first();
+        if ($mealPlanType) {
+            return Response::json(['error' => 'Já existe uma refeição com o mesmo nome registada'], 400);
+        }
+
+        $mealPlanType = MealPlanType::where('planMealId', $id)->where('hour', $request->time)->first();
+        if ($mealPlanType) {
+            return Response::json(['error' => 'Já existe uma refeição com o mesmo horário registada'], 400);
+        }
+
+        $mealPlanType = new MealPlanType();
+        $mealPlanType->planMealId = $id;
+        $mealPlanType->type = $request->name;
+        $mealPlanType->portion = $request->portion;
+        $mealPlanType->hour = $request->time;
+        $mealPlanType->save();
+
+        return new \App\Http\Resources\MealPlanType($mealPlanType);
     }
 
     public static function computeNumericUnit($request) {
@@ -137,6 +158,14 @@ class MealPlanTypeControllerAPI extends Controller
 
     public function destroy($id)
     {
-        //
+        $mealPlanType = MealPlanType::find($id);
+
+        if (!$mealPlanType) {
+            return Response::json(['error' => 'A refeição não existe!'], 400);
+        }
+
+        $mealPlanType->forceDelete();
+
+        return Response::json(['data' => 'Refeição eliminada com sucesso!']);
     }
 }
