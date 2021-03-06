@@ -68,6 +68,7 @@ class MealPlanTypeControllerAPI extends Controller
                 $ingredient->name = $i['name'];
                 $ingredient->quantity = $i['quantity'];
                 $ingredient->unit = $i['unit'];
+                $ingredient->description = $i['description'];
                 $ingredient->grams = self::computeNumericUnit($ingredient);
                 $ingredient->mealPlanTypeId = $mealPlanType->id;
                 $ingredient->save();

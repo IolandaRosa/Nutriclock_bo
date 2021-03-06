@@ -23,6 +23,7 @@ class CreateIngredientsTable extends Migration
             $table->string('unit');
             $table->integer('grams');
             $table->integer('mealPlanTypeId');
+            $table->string('description')->nullable();
         });
     }
 

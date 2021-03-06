@@ -35,6 +35,7 @@ class IngredientControllerAPI extends Controller
             $i->quantity = $ingredient['quantity'];
             $i->unit = $ingredient['unit'];
             $i->mealPlanTypeId = $id;
+            $i->description = $ingredient['description'];
             $i->grams = self::computeNumericUnit(
                 $ingredient['unit'], $ingredient['quantity']
             );

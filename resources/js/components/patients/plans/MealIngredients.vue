@@ -160,6 +160,16 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Descrição:</label>
+                                        <div class="col-sm-8">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                v-model.trim="i.description"
+                                            >
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -227,6 +237,7 @@ export default {
                     name: ingredient.name,
                     quantity: 0,
                     unit: null,
+                    description: null,
                     errors: {
                         quantity: null,
                         unit: null,
