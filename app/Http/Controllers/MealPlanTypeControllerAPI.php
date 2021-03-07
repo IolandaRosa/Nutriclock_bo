@@ -18,7 +18,8 @@ class MealPlanTypeControllerAPI extends Controller
         //
     }
 
-    public function statsByPlanDay($id) {
+    public function statsByPlanDay($id)
+    {
         $totalProtein = 0;
         $totalFat = 0;
         $totalCarbs = 0;
@@ -64,10 +65,10 @@ class MealPlanTypeControllerAPI extends Controller
 
                 $totalMeal = $mealTotalProtein + $mealTotalFat + $mealTotalCarbs + $mealTotalFiber;
 
-                if($mealTotalProtein > 0) $mealTotalProtein = ($mealTotalProtein * 100) / $totalMeal;
-                if($mealTotalFat > 0) $mealTotalFat = ($mealTotalFat * 100) / $totalMeal;
-                if($mealTotalCarbs > 0) $mealTotalCarbs = ($mealTotalCarbs * 100) / $totalMeal;
-                if($mealTotalFiber > 0) $mealTotalFiber = ($mealTotalFiber * 100) / $totalMeal;
+                if ($mealTotalProtein > 0) $mealTotalProtein = ($mealTotalProtein * 100) / $totalMeal;
+                if ($mealTotalFat > 0) $mealTotalFat = ($mealTotalFat * 100) / $totalMeal;
+                if ($mealTotalCarbs > 0) $mealTotalCarbs = ($mealTotalCarbs * 100) / $totalMeal;
+                if ($mealTotalFiber > 0) $mealTotalFiber = ($mealTotalFiber * 100) / $totalMeal;
 
                 array_push($mealStats, [
                     'name' => $mealType['type'],
@@ -86,10 +87,10 @@ class MealPlanTypeControllerAPI extends Controller
 
         $total = $totalProtein + $totalFat + $totalCarbs + $totalFiber;
 
-        if($totalProtein > 0) $totalProtein = ($totalProtein * 100) / $total;
-        if($totalFat > 0) $totalFat = ($totalFat * 100) / $total;
-        if($totalCarbs > 0) $totalCarbs = ($totalCarbs * 100) / $total;
-        if($totalFiber > 0) $totalFiber = ($totalFiber * 100) / $total;
+        if ($totalProtein > 0) $totalProtein = ($totalProtein * 100) / $total;
+        if ($totalFat > 0) $totalFat = ($totalFat * 100) / $total;
+        if ($totalCarbs > 0) $totalCarbs = ($totalCarbs * 100) / $total;
+        if ($totalFiber > 0) $totalFiber = ($totalFiber * 100) / $total;
 
         return Response::json([
             'data' => ['stats' => [round($totalProtein, 2), round($totalFat, 2), round($totalCarbs, 2), round($totalFiber, 2)],
@@ -128,15 +129,15 @@ class MealPlanTypeControllerAPI extends Controller
 
         $total = $totalProtein + $totalFat + $totalCarbo + $totalFiber;
 
-        if($totalProtein > 0) $totalProtein = ($totalProtein * 100) / $total;
-        if($totalFat > 0) $totalFat = ($totalFat * 100) / $total;
-        if($totalCarbo > 0) $totalCarbo = ($totalCarbo * 100) / $total;
-        if($totalFiber > 0) $totalFiber = ($totalFiber * 100) / $total;
+        if ($totalProtein > 0) $totalProtein = ($totalProtein * 100) / $total;
+        if ($totalFat > 0) $totalFat = ($totalFat * 100) / $total;
+        if ($totalCarbo > 0) $totalCarbo = ($totalCarbo * 100) / $total;
+        if ($totalFiber > 0) $totalFiber = ($totalFiber * 100) / $total;
 
         return Response::json([
             'data' => ['stats' => [round($totalProtein, 2), round($totalFat, 2), round($totalCarbo, 2), round($totalFiber, 2)],
-            'water' => round(($totalWater / 1000), 2),
-            'kcal' => round($totalEnergyKcal, 2)]
+                'water' => round(($totalWater / 1000), 2),
+                'kcal' => round($totalEnergyKcal, 2)]
         ]);
     }
 
@@ -320,5 +321,30 @@ class MealPlanTypeControllerAPI extends Controller
         $mealPlanType->forceDelete();
 
         return Response::json(['data' => 'Refeição eliminada com sucesso!']);
+    }
+
+    public function getPatientDailyPlan($date)
+    {
+        $plan = Plan::where('userId', auth()->id())->first('id');
+        if (!$plan) {
+            return Response::json(['error' => 'Plano alimentar vazio.'], 400);
+        }
+
+        $mealPlan = MealPlan::where('planId', $plan->id)->where('date', $date)->first('id');
+        if (!$mealPlan) {
+            return Response::json(['error' => 'Não existe um plano nesta data'], 400);
+        }
+
+        $mealTypes = MealPlanType::where('planMealId', $mealPlan->id)->get();
+        if (!$mealTypes) {
+            return Response::json(['error' => 'O plano não tem refeições'], 400);
+        }
+
+        foreach ($mealTypes as $m) {
+            $ingredients = Ingredient::where('mealPlanTypeId', $m->id)->get();
+            $m->ingredients = $ingredients;
+        }
+
+        return Response::json(['data' => $mealTypes]);
     }
 }
