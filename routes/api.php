@@ -136,9 +136,11 @@ Route::middleware(['auth:api', 'intern'])->get('/exercises/admin/stats/{id}','Ex
 
 // Meal Plan API
 Route::middleware(['auth:api', 'professional'])->post('/meal-plans','MealPlanTypeControllerAPI@store');
-Route::middleware(['auth:api', 'professional'])->get('/meal-plans/{id}','MealPlanTypeControllerAPI@show');
+Route::middleware(['auth:api', 'intern'])->get('/meal-plans/{id}','MealPlanTypeControllerAPI@show');
 Route::middleware(['auth:api', 'professional'])->delete('/meal-type/{id}','MealPlanTypeControllerAPI@destroy');
 Route::middleware(['auth:api', 'professional'])->post('/meal-type/{id}','MealPlanTypeControllerAPI@storeMealType');
+Route::middleware(['auth:api', 'professional'])->post('/meal-type-stats','MealPlanTypeControllerAPI@statsMealType');
+Route::middleware(['auth:api', 'intern'])->get('/meal-type-stats/{id}','MealPlanTypeControllerAPI@statsByPlanDay');
 
 // Ingredient API
 Route::middleware(['auth:api', 'professional'])->delete('/ingredient/{id}','IngredientControllerAPI@destroy');

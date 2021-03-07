@@ -3,7 +3,7 @@
         <div class="container with-pb-2">
             <div class="with-p-4 bg-light rounded with-shadow">
                 <div class="component-wrapper-header">
-                    <h5 class="component-wrapper-left text-secondary d-flex align-items-center"
+                    <h5 class="component-wrapper-left text-secondary d-flex align-items-center mb-0"
                         style="font-size: 18px !important;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-calendar mr-2" viewBox="0 0 16 16">
@@ -13,12 +13,15 @@
                         {{ dateString }}
                     </h5>
                     <div class="component-wrapper-right d-flex flex-column">
-                        <button class="btn-bold btn btn-primary mb-1" data-toggle="tooltip" title="Adicionar Refeição"
+                        <button class="btn btn-sm btn-outline-secondary mb-1" v-on:click="closePage">
+                            🡄 Plano Alimentar
+                        </button>
+                        <button class="btn-bold btn btn-sm btn-outline-primary mb-1" data-toggle="tooltip" title="Adicionar Refeição"
                                 type="button" v-on:click.prevent="openMealTypeModal">
                             <span v-if="isFetching" aria-hidden="true" class="spinner-border spinner-border-sm"
                                   role="status"></span>Adicionar Refeição
                         </button>
-                        <button class="btn-bold btn btn-primary" data-toggle="tooltip" title="Guardar"
+                        <button class="btn-bold btn btn-sm btn-primary" data-toggle="tooltip" title="Guardar"
                                 type="button" v-on:click.prevent="saveMeal">
                             <span v-if="isFetching" aria-hidden="true" class="spinner-border spinner-border-sm"
                                   role="status"></span>
@@ -89,7 +92,7 @@
                                         </svg>
                                         <span style="font-size: 14px">{{ renderPortion(meal.portion) }}</span>
                                     </div>
-                                    <div class="btn btn-link pl-0">
+                                    <div class="btn btn-link pl-0" v-on:click="() => { openMealStatsModal(meal) }">
                                         Consultar Informação Nutricional
                                     </div>
                                 </div>
@@ -138,8 +141,7 @@
                                                 type="number"
                                                 class="form-control"
                                                 v-bind:class="{ 'is-invalid': i.errors.quantity !== null }"
-                                                v-model.trim="i.quantity"
-                                            >
+                                                v-model.trim="i.quantity">
                                             <div v-if="i.errors.quantity" class="invalid-feedback">
                                                 {{ i.errors.quantity }}
                                             </div>
@@ -178,6 +180,11 @@
             </div>
         </div>
         <MealTypeModal @close="closeModal" v-show="showMealTypeModal" :date="dateString" @save="addMeal"/>
+        <MealTypePlanStatsModal
+            v-show="showMealTypeStats"
+            :ingredients="selectedMealIngredients"
+            :mealName="selectedMealName"
+            @close="closeModal" />
     </div>
 </template>
 
@@ -185,6 +192,7 @@
 <script type="text/javascript">
 import { sortBy } from 'lodash';
 import MealTypeModal from '../../modals/MealTypeModal';
+import MealTypePlanStatsModal from '../../modals/MealTypePlanStatsModal';
 import { getDateFromDateStringMeal, getMealUnitType, parseMealTypeToString, getDayEnumFromDateStringMeal } from '../../../utils/misc';
 import { ERROR_MESSAGES, isPositiveNumber } from '../../../utils/validations';
 
@@ -198,10 +206,18 @@ export default {
             ingredients: [],
             meals: [],
             selectedMealIndex: 0,
+            selectedMealIngredients: null,
+            selectedMealName: null,
             searchInput: null,
+            showMealTypeStats: false,
         };
     },
     methods: {
+        openMealStatsModal(meal) {
+            this.selectedMealIngredients = meal.ingredients;
+            this.selectedMealName = this.renderMealName(meal.name);
+            this.showMealTypeStats = true;
+        },
         removeIngredient(index) {
             try {
                 this.meals[this.selectedMealIndex].ingredients.splice(index, 1);
@@ -213,6 +229,9 @@ export default {
         },
         closeModal() {
             this.showMealTypeModal = false;
+            this.showMealTypeStats = false;
+            this.selectedMealIngredients = null;
+            this.selectedMealName = null;
         },
         openMealTypeModal() {
             this.showMealTypeModal = true;
@@ -354,6 +373,9 @@ export default {
                 }
                 this.showError(message);
             });
+        },
+        closePage() {
+            this.$emit('open-plan-list');
         }
     },
     mounted() {
@@ -361,6 +383,7 @@ export default {
     },
     components: {
         MealTypeModal,
+        MealTypePlanStatsModal,
     }
 };
 </script>

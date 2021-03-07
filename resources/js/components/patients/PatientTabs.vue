@@ -53,7 +53,12 @@
                     <ExerciseStats :id="this.$route.params.id" @close-exercise-stats="closeExerciseStat" v-show="showExerciseStats"/>
                 </div>
                 <div class="tab-pane fade" id="mealPlan" role="tabpanel" aria-labelledby="home-tab">
-                    <PlanList @open-ingredient="showIngredientsPage" v-if="!showIngredient" :id="this.$route.params.id" />
+                    <PlanList
+                        @open-ingredient="showIngredientsPage"
+                        v-if="!showIngredient && !showPlanStats"
+                        :id="this.$route.params.id"
+                        @open-stats="showPlanListStats"
+                    />
                     <MealIngredients
                         v-if="showIngredient"
                         :name="name"
@@ -63,6 +68,11 @@
                         :id="this.$route.params.id"
                         @open-plan-list="() => { this.showIngredient = false; }"
                     />
+                    <PlanListStats
+                        v-if="showPlanStats"
+                        :date="dateString"
+                        :id="selectedPlan"
+                        @open-plan-list="() => { this.showPlanStats = false; }" />
                 </div>
             </div>
         </div>
@@ -80,6 +90,7 @@ import Exercises from './exercise/Exercises';
 import ExerciseStats from './exercise/ExerciseStats';
 import PlanList from './plans/PlanList';
 import MealIngredients from './plans/MealIngredients';
+import PlanListStats from './plans/PlanListStats';
 
 export default {
     data() {
@@ -94,9 +105,12 @@ export default {
             time: '',
             portion: '',
             dateString: '',
+            showPlanStats: false,
+            selectedPlan: null,
         };
     },
     components: {
+        PlanListStats,
         SleepChart,
         Sleeps,
         Patient,
@@ -134,7 +148,12 @@ export default {
             this.time = time;
             this.portion = portion;
             this.dateString = dateString;
-        }
+        },
+        showPlanListStats(dateString, id) {
+            this.dateString = dateString;
+            this.selectedPlan = id;
+            this.showPlanStats = true;
+        },
     },
 };
 </script>

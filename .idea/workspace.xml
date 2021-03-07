@@ -19,15 +19,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/components/modals/MealTypePlanStatsModal.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/patients/plans/PlanListStats.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/utils/PieChart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/IngredientControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/IngredientControllerAPI.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MealPlanTypeControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MealPlanTypeControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Ingredient.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Ingredient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_27_114131_create_ingredients_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_27_114131_create_ingredients_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/AddIngredientModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/AddIngredientModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/PatientTabs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/PatientTabs.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/patients/plans/MealIngredients.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/plans/MealIngredients.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/utils/dataTables.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/dataTables.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/plans/PlanList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/plans/PlanList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,7 +230,7 @@
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\laragon\www\nutriclock\node_modules\prettier" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -363,14 +364,8 @@
       <workItem from="1614800369874" duration="6663000" />
       <workItem from="1614889868927" duration="13307000" />
       <workItem from="1614980489158" duration="7106000" />
-      <workItem from="1615031019123" duration="1611000" />
-    </task>
-    <task id="LOCAL-00097" summary="Add socket communication">
-      <created>1610800904861</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1610800904861</updated>
+      <workItem from="1615031019123" duration="18529000" />
+      <workItem from="1615113907497" duration="5905000" />
     </task>
     <task id="LOCAL-00098" summary="Add socket changes for parsing">
       <created>1610816212595</created>
@@ -708,7 +703,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614987607053</updated>
     </task>
-    <option name="localTasksCounter" value="146" />
+    <task id="LOCAL-00146" summary="add description to meal plan ingredient">
+      <created>1615032858722</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1615032858722</updated>
+    </task>
+    <option name="localTasksCounter" value="147" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -736,7 +738,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="exercise report api" />
     <MESSAGE value="exercises stats api done" />
     <MESSAGE value="merge exercises change with master" />
     <MESSAGE value="fix bug on render gender on patient list" />
@@ -761,6 +762,7 @@
     <MESSAGE value="render meal plan type" />
     <MESSAGE value="add meal plan list actions" />
     <MESSAGE value="change strings by client sugestion" />
-    <option name="LAST_COMMIT_MESSAGE" value="change strings by client sugestion" />
+    <MESSAGE value="add description to meal plan ingredient" />
+    <option name="LAST_COMMIT_MESSAGE" value="add description to meal plan ingredient" />
   </component>
 </project>

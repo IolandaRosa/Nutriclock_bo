@@ -8,7 +8,7 @@
                     </h3>
                     <div class="component-wrapper-right">
                         <button class="btn-bold btn btn-primary" data-toggle="tooltip" title="Novo Utilizador"
-                                type="button" v-on:click.prevent="openDateModal">
+                                type="button" v-on:click.prevent="openDateModal" v-show="!readonly">
                     <span v-if="isFetching" aria-hidden="true" class="spinner-border spinner-border-sm"
                           role="status"></span>
                             <span class="full-text">Nova Data</span>
@@ -32,10 +32,10 @@
                                 {{ renderDay(p.dayOfWeek) }} {{ p.date }}
                             </span>
 
-                            <button type="button" class="btn btn-link mr-2">
+                            <button type="button" class="btn btn-link mr-2" v-on:click="() => { showPlanListStatsPage(p.id, p.dayOfWeek, p.date)}">
                                 Consultar Informação Nutricional
                             </button>
-                            <button type="button" class="btn btn-primary" @click="() => { addMealType(p.id, p.dayOfWeek, p.date, planIndex) }">
+                            <button v-show="!readonly" type="button" class="btn btn-primary" @click="() => { addMealType(p.id, p.dayOfWeek, p.date, planIndex) }">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      class="bi bi-plus" viewBox="0 0 16 16">
                                     <path
@@ -80,7 +80,7 @@
                                         {{ renderPortion(mealType.portion) }}
                                     </span>
                                 </div>
-                                <div class="">
+                                <div v-show="!readonly">
                                     <span @click="() => { openAddIngredientsModal(mealTypeIndex, mealType.id, planIndex) }">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill text-info mr-2" viewBox="0 0 16 16">
                                           <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
@@ -102,7 +102,7 @@
                                     <div class="flex-grow-1" style="font-size: 14px">{{ i.name }}</div>
                                     <div class="mr-2" style="font-size: 12px; min-width: 110px"> {{ i.quantity }} {{ i.unit }}</div>
                                     <div class="mr-2" style="font-size: 12px; font-weight: 900; min-width: 60px">{{ i.grams }} gr.</div>
-                                    <div @click="() => { deleteIngredient(i.id, index, mealTypeIndex, planIndex) }">
+                                    <div v-show="!readonly" @click="() => { deleteIngredient(i.id, index, mealTypeIndex, planIndex) }">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                              fill="currentColor" class="bi bi-trash-fill text-danger"
                                              viewBox="0 0 16 16">
@@ -127,11 +127,13 @@
 
 
 <script type="text/javascript">
+import { sortBy } from 'lodash';
 import PlanDate from '../../modals/PlanDateModal';
 import MealTypeModal from '../../modals/MealTypeModal';
 import AddIngredientModal from '../../modals/AddIngredientModal';
 import {parseDayEnumToString, parseMealTypeToString} from '../../../utils/misc';
-import {ERROR_MESSAGES} from "../../../utils/validations";
+import {ERROR_MESSAGES} from '../../../utils/validations';
+import {UserRoles} from "../../../constants/misc";
 
 export default {
     props: ['id'],
@@ -147,6 +149,7 @@ export default {
             selectedMealTypeIndex: null,
             mealDate: '',
             plan: [],
+            readonly: false
         };
     },
     methods: {
@@ -193,6 +196,7 @@ export default {
                     this.updatePlanId = null;
                     if (this.updatePlanIndex !== null) {
                         this.plan[this.updatePlanIndex].mealTypes.push(response.data.data);
+                        this.plan[this.updatePlanIndex].mealTypes = sortBy(this.plan[this.updatePlanIndex].mealTypes, 'hour');
                         this.updatePlanIndex = null;
                     }
                 }).catch(error => {
@@ -210,6 +214,10 @@ export default {
                 return;
             }
             this.$emit('open-ingredient', name, time, portion, dateString);
+        },
+        showPlanListStatsPage(planId, dayOfWeek, date) {
+            const dateString = `${this.renderDay(dayOfWeek)} ${date}`;
+            this.$emit('open-stats', dateString, planId);
         },
         showError(message) {
             this.$toasted.show(message, {
@@ -266,6 +274,10 @@ export default {
         }).catch(() => {
             this.isFetching = false;
         });
+
+        if (this.$store.state.user) {
+            this.readonly = this.$store.state.user.role === UserRoles.Intern
+        }
     },
     components: {
         PlanDate,
