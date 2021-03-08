@@ -20,8 +20,6 @@
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MealPlanTypeControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MealPlanTypeControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -360,21 +358,8 @@
       <workItem from="1615031019123" duration="18529000" />
       <workItem from="1615113907497" duration="6611000" />
       <workItem from="1615159957303" duration="1463000" />
-      <workItem from="1615210983579" duration="412000" />
-    </task>
-    <task id="LOCAL-00100" summary="Add pagination for mobile client">
-      <created>1610904026701</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1610904026701</updated>
-    </task>
-    <task id="LOCAL-00101" summary="Add pagination for mobile client">
-      <created>1610907164912</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1610907164912</updated>
+      <workItem from="1615210983579" duration="528000" />
+      <workItem from="1615213724631" duration="112000" />
     </task>
     <task id="LOCAL-00102" summary="Add send message from users list">
       <created>1610923456985</created>
@@ -705,7 +690,21 @@
       <option name="project" value="LOCAL" />
       <updated>1615161408331</updated>
     </task>
-    <option name="localTasksCounter" value="149" />
+    <task id="LOCAL-00149" summary="add patient history endpoint">
+      <created>1615211458418</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1615211458418</updated>
+    </task>
+    <task id="LOCAL-00150" summary="return array instead of object">
+      <created>1615213822526</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1615213822527</updated>
+    </task>
+    <option name="localTasksCounter" value="151" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -733,8 +732,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix bug on render gender on patient list" />
-    <MESSAGE value="compiled code" />
     <MESSAGE value="mandatory field on user ufcs in professional" />
     <MESSAGE value="fixed bug on delete user and avatar saving on register" />
     <MESSAGE value="center the avatar image on patient profile" />
@@ -758,6 +755,8 @@
     <MESSAGE value="add description to meal plan ingredient" />
     <MESSAGE value="plan stats finished" />
     <MESSAGE value="add patient meal plan by date get" />
-    <option name="LAST_COMMIT_MESSAGE" value="add patient meal plan by date get" />
+    <MESSAGE value="add patient history endpoint" />
+    <MESSAGE value="return array instead of object" />
+    <option name="LAST_COMMIT_MESSAGE" value="return array instead of object" />
   </component>
 </project>
