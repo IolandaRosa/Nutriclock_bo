@@ -373,6 +373,6 @@ class MealPlanTypeControllerAPI extends Controller
 
 
 
-        return Response::json(['data' => $mealPlan]);
+        return Response::json(['data' => $mealPlans]);
     }
 }
