@@ -95,11 +95,11 @@ export const renderDiseaseStringToType = type => {
 };
 
 export const parseDateToString = date => {
-    let dd = date.getDate() < 9 ? `0${date.getDate()}` : date.getDate();
-    let mm = date.getMonth() + 1 < 9 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
+    let dd = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+    let mm = date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
     let yyyy = date.getFullYear();
 
-    return `${dd}/${mm}/${yyyy}`;
+    return `${dd}-${mm}-${yyyy}`;
 };
 
 export const parseMealTypeToString = (type) => {
