@@ -12,7 +12,7 @@ class NutritionalInfoStaticControllerAPI extends Controller
     }
 
     public function getByQuery($query) {
-        $info = NutritionalInfoStatic::where('name', 'like', $query.'%')->get();
+        $info = NutritionalInfoStatic::whereRaw('LOWER(`name`) LIKE ? ',[trim(strtolower($query)).'%'])->get();
 
         return  NutritionalInfoStaticResource::collection($info);
     }
