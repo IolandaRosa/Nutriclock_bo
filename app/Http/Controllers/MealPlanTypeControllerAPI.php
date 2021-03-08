@@ -335,7 +335,7 @@ class MealPlanTypeControllerAPI extends Controller
             return Response::json(['error' => 'Não existe um plano nesta data'], 400);
         }
 
-        $mealTypes = MealPlanType::where('planMealId', $mealPlan->id)->get();
+        $mealTypes = MealPlanType::where('planMealId', $mealPlan->id)->orderBy('hour')->get();
         if (!$mealTypes) {
             return Response::json(['error' => 'O plano não tem refeições'], 400);
         }
@@ -346,5 +346,33 @@ class MealPlanTypeControllerAPI extends Controller
         }
 
         return Response::json(['data' => $mealTypes]);
+    }
+
+    public function getPatientHistory($date) {
+        $plan = Plan::where('userId', auth()->id())->first('id');
+        if (!$plan) {
+            return Response::json(['error' => 'Plano alimentar vazio.'], 400);
+        }
+
+        $mealPlans = MealPlan::where('planId', $plan->id)->where('date', '<', $date)->orderBy('date')->get();
+        if (!$mealPlans) {
+            return Response::json(['error' => 'Não existe um plano nesta data'], 400);
+        }
+
+        foreach ($mealPlans as $mealPlan) {
+            $mealTypes = MealPlanType::where('planMealId', $mealPlan->id)->orderBy('hour')->get();
+            if ($mealTypes) {
+                foreach ($mealTypes as $m) {
+                    $ingredients = Ingredient::where('mealPlanTypeId', $m->id)->get();
+                    $m->ingredients = $ingredients;
+                }
+
+                $mealPlan->mealTypes = $mealTypes;
+            }
+        }
+
+
+
+        return Response::json(['data' => $mealPlan]);
     }
 }

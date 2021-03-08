@@ -21,7 +21,6 @@
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MealPlanTypeControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MealPlanTypeControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/utils/misc.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/misc.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -360,14 +359,8 @@
       <workItem from="1614980489158" duration="7106000" />
       <workItem from="1615031019123" duration="18529000" />
       <workItem from="1615113907497" duration="6611000" />
-      <workItem from="1615159957303" duration="1172000" />
-    </task>
-    <task id="LOCAL-00099" summary="Correct bug on delete">
-      <created>1610839406711</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1610839406711</updated>
+      <workItem from="1615159957303" duration="1463000" />
+      <workItem from="1615210983579" duration="412000" />
     </task>
     <task id="LOCAL-00100" summary="Add pagination for mobile client">
       <created>1610904026701</created>
@@ -705,7 +698,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615120391402</updated>
     </task>
-    <option name="localTasksCounter" value="148" />
+    <task id="LOCAL-00148" summary="add patient meal plan by date get">
+      <created>1615161408331</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1615161408331</updated>
+    </task>
+    <option name="localTasksCounter" value="149" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -733,7 +733,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="merge exercises change with master" />
     <MESSAGE value="fix bug on render gender on patient list" />
     <MESSAGE value="compiled code" />
     <MESSAGE value="mandatory field on user ufcs in professional" />
@@ -758,6 +757,7 @@
     <MESSAGE value="change strings by client sugestion" />
     <MESSAGE value="add description to meal plan ingredient" />
     <MESSAGE value="plan stats finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="plan stats finished" />
+    <MESSAGE value="add patient meal plan by date get" />
+    <option name="LAST_COMMIT_MESSAGE" value="add patient meal plan by date get" />
   </component>
 </project>
