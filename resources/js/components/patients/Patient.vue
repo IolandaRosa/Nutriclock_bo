@@ -27,7 +27,7 @@
                 <div class="card p-2 pt-3 mt-2 text-dark">
                     <h5 class="card-title">Dados Pessoais</h5>
                     <p class="card-text"><strong>Email:</strong> {{ email }} </p>
-                    <p class="card-text"><strong>USF:</strong> {{ ufsName }}</p>
+                    <p class="card-text"><strong>Instituição:</strong> {{ ufsName }}</p>
                     <div class="card-text">
                         <div class="form-group">
                             <label for="name" class="small-text">Nome</label>

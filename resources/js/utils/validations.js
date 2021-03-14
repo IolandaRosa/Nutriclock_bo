@@ -37,7 +37,7 @@ export const ERROR_MESSAGES = {
     alreadyExistingProfessionalCategory: 'A categoria profissional já existe!',
     alreadyExistingDisease: 'A doença já existe!',
     maxCharacters: 'Ultrapassa o limite máximo de ',
-    alreadyExistingUSF: 'A USF já está registada',
+    alreadyExistingUSF: 'A instituição já está registada',
     minCharacters: 'Deve ter pelo menos ',
     medicationAlreadyExist: 'Verifique se o nome do medicamento já se encontra na lista',
     positiveNumber: 'O valor deve ser superior a 0'

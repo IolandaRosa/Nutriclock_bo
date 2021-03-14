@@ -27,7 +27,7 @@
                         <span class="text-secondary font-weight-normal">{{ userCategory }}</span>
                     </div>
                     <div v-show="this.$store.state.user.role === 'PROFESSIONAL'">
-                        <span class="text-dark font-weight-bold mr-1">USF:</span>
+                        <span class="text-dark font-weight-bold mr-1">Instituição:</span>
                         <span class="text-secondary font-weight-normal">{{ userUfcs }}</span>
                     </div>
                 </div>
