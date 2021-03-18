@@ -129,14 +129,24 @@ Route::middleware(['auth:api', 'professional'])->get('messages', 'MessageControl
 Route::middleware(['auth:api', 'patient'])->get('/messagesFromUser/{id}', 'MessageControllerAPI@getMessagesFromUser');
 
 // Exercise API
-Route::middleware(['auth:api', 'patient'])->get('/exercises/list', 'ExerciseStaticControllerAPI@index');
-Route::middleware(['auth:api', 'patient'])->get('/households', 'HouseholdStaticControllerAPI@index');
 Route::middleware(['auth:api', 'patient'])->post('/exercises', 'ExerciseControllerAPI@store');
 Route::middleware(['auth:api', 'patient'])->get('/exercises/dates','ExerciseControllerAPI@getExerciseDates');
 Route::middleware(['auth:api', 'patient'])->get('/exercises/detail/{date}','ExerciseControllerAPI@getExerciseByDate');
 Route::middleware(['auth:api', 'patient'])->get('/exercises/stats','ExerciseControllerAPI@getExerciseStats');
 Route::middleware(['auth:api', 'intern'])->get('/exercises/admin/{id}','ExerciseControllerAPI@getExerciseByUser');
 Route::middleware(['auth:api', 'intern'])->get('/exercises/admin/stats/{id}','ExerciseControllerAPI@getStatsByUser');
+
+// Exercises Static API
+Route::middleware(['auth:api'])->get('/exercises/list', 'ExerciseStaticControllerAPI@index');
+Route::middleware(['auth:api', 'admin'])->post('/exercises-static', 'ExerciseStaticControllerAPI@store');
+Route::middleware(['auth:api', 'admin'])->put('/exercises-static/{id}', 'ExerciseStaticControllerAPI@update');
+Route::middleware(['auth:api', 'admin'])->delete('/exercises-static/{id}', 'ExerciseStaticControllerAPI@destroy');
+
+// Household static API
+Route::middleware(['auth:api'])->get('/households', 'HouseholdStaticControllerAPI@index');
+Route::middleware(['auth:api', 'admin'])->post('/households', 'HouseholdStaticControllerAPI@store');
+Route::middleware(['auth:api', 'admin'])->put('/households/{id}', 'HouseholdStaticControllerAPI@update');
+Route::middleware(['auth:api', 'admin'])->delete('/households/{id}', 'HouseholdStaticControllerAPI@destroy');
 
 // Meal Plan API
 Route::middleware(['auth:api', 'professional'])->post('/meal-plans','MealPlanTypeControllerAPI@store');

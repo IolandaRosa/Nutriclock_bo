@@ -576,9 +576,7 @@ export default {
                     this.resetFields();
                     this.resetErrors();
                     this.$emit('save');
-                }).catch(error => {
-                    console.log(error)
-                });
+                }).catch(() => {});
                 return
             }
 

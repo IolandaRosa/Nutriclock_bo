@@ -3,11 +3,11 @@
         <div class="container with-pt-5 with-pb-2">
             <div class="with-p-4 bg-light rounded with-shadow">
                 <div class="btn-group btn-group-sm w-100"  style="z-index: 0 !important;"  role="group">
-                    <button :class="diseaseActive ? 'btn btn-primary w-50' : 'btn btn-outline-primary w-50'"
+                    <button :class="exerciseActive ? 'btn btn-primary w-50' : 'btn btn-outline-primary w-50'"
                             v-on:click.prevent="() => updateTable('Exercício Desportivo')">
                         Exercício Desportivo
                     </button>
-                    <button :class="!diseaseActive ? 'btn btn-primary w-50' : 'btn btn-outline-primary w-50'"
+                    <button :class="!exerciseActive ? 'btn btn-primary w-50' : 'btn btn-outline-primary w-50'"
                             v-on:click.prevent="() => updateTable('Tarefa Doméstica')">
                         Tarefa Doméstica
                     </button>
@@ -19,16 +19,16 @@
                     <div class="component-wrapper-right">
                         <button class="btn-bold btn btn-primary" v-on:click.prevent="add" type="button"
                                 data-toggle="tooltip"
-                                :title="tooltip">
+                                title="Novo Exercício">
                     <span v-if="isFetching" class="spinner-border spinner-border-sm" role="status"
                           aria-hidden="true"></span>
-                            <span class="full-text">{{ tooltip }}</span>
+                            <span class="full-text">Novo Exercício</span>
                             <span class="min-text">+</span>
                         </button>
                     </div>
                 </div>
                 <div class="component-wrapper-body text-dark mt-2">
-                    <table id="diseasesTable" class="table-wrapper table table-hover dt-responsive w-100">
+                    <table id="exercisesTable" class="table-wrapper table table-hover dt-responsive w-100">
                         <thead>
                         <tr>
                             <th v-for="title in titles" :class="title.className">
@@ -48,28 +48,24 @@
             cancel-button-text="Cancelar"
             save-button-class="btn btn-bold btn-danger"
             save-button-text="Eliminar"
-            @save="this.deleteDisease"
+            @save="this.delete"
             message="Tem a certeza que deseja eliminar o exercício desportivo / tarefa doméstica selecionada?"
         />
-        <AddDisease
+        <AddExerciseModal
             v-show="showModal"
             @close="this.onCloseClick"
-            :title="modalTitle"
-            :selected-disease-name="selectedDiseaseName"
-            :selected-disease-id="selectedDiseaseId"
-            :selected-disease-type="selectedDiseaseType"
-            @save="this.onSaveClick"
-        />
+            :selectedRow="selectedRow"
+            :isSport="exerciseActive"
+            @save="this.onSaveClick"/>
     </div>
 </template>
 
 <script type="text/javascript">
 /*jshint esversion: 6 */
-import AddDisease from '../modals/AddDisease';
 import { ERROR_MESSAGES } from '../../utils/validations';
 import { COLUMN_NAME } from '../../utils/table_elements';
 import ConfirmationModal from '../modals/ConfirmationModal';
-import { renderDiseaseStringToType, renderDiseaseType } from '../../utils/misc';
+import { renderDiseaseStringToType } from '../../utils/misc';
 import { ROUTE } from '../../utils/routes';
 import {
     EmptyObject,
@@ -79,31 +75,30 @@ import {
     TableActionClasses,
     TableActionColumns
 } from '../../utils/dataTables';
+import AddExerciseModal from '../modals/AddExerciseModal';
 
 export default {
     data() {
         return {
             isFetching: false,
             showModal: false,
-            modalTitle: '',
-            placeholderName: 'Ex: Doença Cardíaca',
-            selectedDiseaseName: null,
-            selectedDiseaseId: null,
-            selectedDiseaseType: null,
-            diseaseActive: true,
-            diseasesList: [],
-            allergiesList: [],
-            mainTitle: 'Patologias',
-            tooltip: 'Nova Patologia / Alergia Alimentar',
+            exerciseActive: true,
+            sportsList: [],
+            householdsList: [],
+            mainTitle: 'Exercício Desportivo',
             dataTable: null,
             showConfirmationModal: false,
             selectedRow: null,
             titles: [{
                 label: COLUMN_NAME.Name,
                 className: '',
+            }, {
+                label: COLUMN_NAME.Met,
+                className: '',
             }, EmptyObject, EmptyObject],
             columns: [
                 {data: 'name', responsivePriority: 3},
+                {data: 'met', responsivePriority: 4},
                 {...TableActionColumns.Edit, responsivePriority: 1},
                 {...TableActionColumns.Delete, responsivePriority: 2},
             ],
@@ -111,86 +106,66 @@ export default {
     },
     methods: {
         add() {
-            this.selectedDiseaseId = null;
-            this.selectedDiseaseName = '';
-            this.selectedDiseaseType = null;
             this.selectedRow = null;
             this.showModal = true;
-            this.modalTitle = 'Adicionar Patologia / Alergia Alimentar';
         },
         updateTable(type) {
-            if (type === 'Patologia') {
-                this.diseaseActive = true;
-                this.mainTitle = 'Patologias';
-                redrawTable(this.dataTable, this.diseasesList);
+            if (type === 'Exercício Desportivo') {
+                this.exerciseActive = true;
+                this.mainTitle = 'Exercício Desportivo';
+                redrawTable(this.dataTable, this.sportsList);
                 return;
             }
-            this.diseaseActive = false;
-            this.mainTitle = 'Alergias Alimentares';
-            redrawTable(this.dataTable, this.allergiesList);
+            this.exerciseActive = false;
+            this.mainTitle = 'Tarefa Doméstica';
+            redrawTable(this.dataTable, this.householdsList);
         },
         onEditClick(row) {
-            this.selectedDiseaseName = row.name;
-            this.selectedDiseaseId = row.id;
-            this.selectedDiseaseType = renderDiseaseStringToType(row.type);
-            this.modalTitle = "Editar Patologia / Alergia Alimentar";
+            this.selectedRow = row;
             this.showModal = true;
         },
         onDeleteClick(row) {
             this.selectedRow = row;
             this.showConfirmationModal = true;
         },
-        deleteDisease() {
+        delete() {
             if (this.isFetching) return;
 
             this.isFetching = true;
             if (this.selectedRow) {
-                axios.delete(`api/diseases/${this.selectedRow.id}`).then(() => {
-                    this.handleSuccess();
-                }).catch(error => {
-                    this.handleError(error);
-                });
+                if (this.exerciseActive) {
+                    axios.delete(`api/exercises-static/${this.selectedRow.id}`).then(() => {
+                        this.handleSuccess();
+                    }).catch(error => {
+                        this.handleError(error);
+                    });
+                } else {
+                    axios.delete(`api/households/${this.selectedRow.id}`).then(() => {
+                        this.handleSuccess();
+                    }).catch(error => {
+                        this.handleError(error);
+                    });
+                }
             }
         },
         onCloseClick() {
             this.showModal = false;
             this.showConfirmationModal = false;
         },
-        onSaveClick(name, type, id) {
+        onSaveClick() {
             this.showModal = false;
-            if (this.isFetching) return;
-
-            this.isFetching = true;
-
-            if (id) {
-                axios.put(`api/diseases/${id}`, {
-                    name,
-                    type,
-                }).then(() => {
-                    this.handleSuccess('Patologia / alergia atualizada com sucesso!');
-                }).catch(error => {
-                    this.handleError(error);
-                });
-                return;
-            }
-            axios.post('api/diseases', {
-                name,
-                type
-            }).then(() => {
-                this.handleSuccess();
-            }).catch(error => {
-                this.handleError(error);
-            });
+            this.handleSuccess();
         },
         async handleSuccess(message) {
             this.isFetching = false;
             if (message) this.showMessage(message, 'success');
             this.onCloseClick();
-            await this.getDiseases();
-            if (this.diseaseActive) {
-                redrawTable(this.dataTable, this.diseasesList);
+            if (this.exerciseActive) {
+                await this.getSports();
+                redrawTable(this.dataTable, this.sportsList);
             } else {
-                redrawTable(this.dataTable, this.allergiesList);
+                await this.getHouseholds();
+                redrawTable(this.dataTable, this.householdsList);
             }
         },
         handleError(error) {
@@ -214,28 +189,29 @@ export default {
                 theme: 'toasted-primary'
             });
         },
-        async getDiseases() {
+        async getSports() {
             if (this.isFetching) return;
             this.isFetching = true;
-            this.diseasesList = [];
-            this.allergiesList = [];
 
             try {
-                const response = await axios.get('api/diseases');
+                const response = await axios.get('api/exercises/list');
                 this.isFetching = false;
-                if (response.data.data) {
-                    response.data.data.forEach(d => {
-                        const type = d.type;
-                        d.type = renderDiseaseType(type);
-
-                        if (type === 'D') {
-                            this.diseasesList.push(d);
-                        } else {
-                            this.allergiesList.push(d);
-                        }
-                    });
+                this.sportsList = response.data.data;
+            } catch (error) {
+                this.isFetching = false;
+                if (error.response && error.response.status === 401) {
+                    this.$store.commit('clearUserAndToken');
+                    this.$router.push({path: ROUTE.Login });
                 }
-
+            }
+        },
+        async getHouseholds() {
+            if (this.isFetching) return;
+            this.isFetching = true;
+            try {
+                const response = await axios.get('api/households');
+                this.isFetching = false;
+                this.householdsList = response.data.data;
             } catch (error) {
                 this.isFetching = false;
                 if (error.response && error.response.status === 401) {
@@ -246,14 +222,15 @@ export default {
         },
     },
     async mounted() {
-        await this.getDiseases();
-        this.dataTable = await initDataTable('#diseasesTable', this.diseasesList, this.columns);
-        onClickHandler(this.dataTable, this.onDeleteClick, '#diseasesTable', TableActionClasses.Delete);
-        onClickHandler(this.dataTable, this.onEditClick, '#diseasesTable', TableActionClasses.Edit);
+        await this.getSports();
+        this.dataTable = await initDataTable('#exercisesTable', this.sportsList, this.columns);
+        onClickHandler(this.dataTable, this.onDeleteClick, '#exercisesTable', TableActionClasses.Delete);
+        onClickHandler(this.dataTable, this.onEditClick, '#exercisesTable', TableActionClasses.Edit);
+        await this.getHouseholds();
     },
     components: {
-        AddDisease,
         ConfirmationModal,
+        AddExerciseModal,
     }
 }
 ;
