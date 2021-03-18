@@ -43,6 +43,7 @@
                             <div class="col-sm-10">
                                 <input
                                     type="number"
+                                    min="0"
                                     class="form-control"
                                     v-bind:class="{ 'is-invalid': errors.portion !== null }"
                                     v-model.trim="portion"

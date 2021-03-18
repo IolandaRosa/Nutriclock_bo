@@ -6,6 +6,16 @@ export const isEmptyField = field => {
     return String(field).trim() === '';
 };
 
+export const isDecimalOrEmpty = field => {
+    if (isEmptyField(field)) return true
+
+    try {
+        parseFloat(field)
+    } catch (e) { return true}
+
+    return false
+}
+
 export const isStringLowerThanMin = (field, min) => {
     return field.length < min;
 };
@@ -40,5 +50,6 @@ export const ERROR_MESSAGES = {
     alreadyExistingUSF: 'A instituição já está registada',
     minCharacters: 'Deve ter pelo menos ',
     medicationAlreadyExist: 'Verifique se o nome do medicamento já se encontra na lista',
-    positiveNumber: 'O valor deve ser superior a 0'
+    positiveNumber: 'O valor deve ser superior a 0',
+    decimalNumber: 'Valor numérico obrigatório'
 };

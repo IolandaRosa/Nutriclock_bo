@@ -70,6 +70,7 @@
                                         <input
                                             type="number"
                                             class="form-control"
+                                            min="0"
                                             v-bind:class="{ 'is-invalid': i.errors.quantity !== null }"
                                             v-model.trim="i.quantity"
                                         >

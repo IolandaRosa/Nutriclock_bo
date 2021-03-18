@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class NutritionalInfoStatic extends Model
 {
     public $timestamps = false;
+    protected $primaryKey = 'code'; // or null
+    public $incrementing = false;
+    protected $keyType = 'string';
+
     protected $table = 'nutritional_info_static';
     protected $fillable = [
               'name',

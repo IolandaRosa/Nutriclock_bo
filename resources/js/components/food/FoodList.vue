@@ -37,6 +37,7 @@
             @close="closeModals"
             @save="updateFoodTable"
             :title="modalTitle"
+            :selectedItem="selectedRow"
         />
         <ConfirmationModal
             v-show="showConfirmationModal"
@@ -242,6 +243,10 @@ export default {
             this.selectedRow = row;
             this.showConfirmationModal = true;
         },
+        onEditClick(row) {
+            this.selectedRow = row;
+            this.showAddFoodModal = true;
+        },
         deleteDisease() {
             if (this.isFetching) return;
 
@@ -266,7 +271,7 @@ export default {
         await this.getFood();
         this.dataTable = await initDataTable('#foodTable', this.data, this.columns);
         onClickHandler(this.dataTable, this.onDeleteClick, '#foodTable', TableActionClasses.Delete);
-        // onClickHandler(this.dataTable, this.onEditClick, '#categoriesTable', TableActionClasses.Edit);
+        onClickHandler(this.dataTable, this.onEditClick, '#foodTable', TableActionClasses.Edit);
     },
     components: {
         AddFoodModal,

@@ -14,6 +14,7 @@
                             <div class="col">
                                 <label for="inputCode">Código</label>
                                 <input
+                                   :readonly="isEdit"
                                     type="text"
                                     class="form-control"
                                     id="inputCode"
@@ -43,7 +44,9 @@
                             <div class="col">
                                 <label for="inputEnergyKcal">Energia (kcal)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputEnergyKcal"
                                     v-bind:class="{ 'is-invalid': errors.energy_kcal !== null }"
@@ -56,7 +59,9 @@
                             <div class="col">
                                 <label for="inputEnergyKJ">Energia (kJ)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputEnergyKJ"
                                     v-bind:class="{ 'is-invalid': errors.energy_kJ !== null }"
@@ -69,7 +74,9 @@
                             <div class="col">
                                 <label for="inputWater">Água (gr)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputWater"
                                     v-bind:class="{ 'is-invalid': errors.water_g !== null }"
@@ -82,7 +89,9 @@
                             <div class="col">
                                 <label for="inputProtein">Proteína (gr)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputProtein"
                                     v-bind:class="{ 'is-invalid': errors.protein_g !== null }"
@@ -97,7 +106,9 @@
                             <div class="col">
                                 <label for="inputFat">Gorduras (gr)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputFat"
                                     v-bind:class="{ 'is-invalid': errors.fats_g !== null }"
@@ -110,7 +121,9 @@
                             <div class="col">
                                 <label for="inputCarboHidrats">Hid. Carbono (gr)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputCarboHidrats"
                                     v-bind:class="{ 'is-invalid': errors.carbo_hidrats_g !== null }"
@@ -123,7 +136,9 @@
                             <div class="col">
                                 <label for="inputFiber">Fibra (gr)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputFiber"
                                     v-bind:class="{ 'is-invalid': errors.fiber_g !== null }"
@@ -136,7 +151,9 @@
                             <div class="col">
                                 <label for="inputColesterol">Colestrol (mg)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputColesterol"
                                     v-bind:class="{ 'is-invalid': errors.colesterol_mg !== null }"
@@ -153,7 +170,9 @@
                             <div class="col">
                                 <label for="inputVitA">Vit A (mg)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputVitA"
                                     v-bind:class="{ 'is-invalid': errors.vitA_mg !== null }"
@@ -166,7 +185,9 @@
                             <div class="col">
                                 <label for="inputVitD">Vit D (pg)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputVitD"
                                     v-bind:class="{ 'is-invalid': errors.vitD_pg !== null }"
@@ -179,7 +200,9 @@
                             <div class="col">
                                 <label for="inputTiamina">Tiamina (mg)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputTiamina"
                                     v-bind:class="{ 'is-invalid': errors.tiamina_mg !== null }"
@@ -192,7 +215,9 @@
                             <div class="col">
                                 <label for="inputRiboflavina">Riboflavina (mg)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputRiboflavina"
                                     v-bind:class="{ 'is-invalid': errors.riboflavina_mg !== null }"
@@ -207,7 +232,9 @@
                             <div class="col">
                                 <label for="inputNiacina">Niacina (mg)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputNiacina"
                                     v-bind:class="{ 'is-invalid': errors.niacina_mg !== null }"
@@ -220,7 +247,9 @@
                             <div class="col">
                                 <label for="inputVitB6">Vit B6 (mg)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputVitB6"
                                     v-bind:class="{ 'is-invalid': errors.vitB6_mg !== null }"
@@ -233,7 +262,9 @@
                             <div class="col">
                                 <label for="inputVitB12">Vit B12 (pg)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputVitB12"
                                     v-bind:class="{ 'is-invalid': errors.vit_B12_pg !== null }"
@@ -246,7 +277,9 @@
                             <div class="col">
                                 <label for="inputVitC">Vit C (mg)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputVitC"
                                     v-bind:class="{ 'is-invalid': errors.vitC_mg !== null }"
@@ -263,7 +296,9 @@
                             <div class="col">
                                 <label for="inputNa">Sódio (mg)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputNa"
                                     v-bind:class="{ 'is-invalid': errors.na_mg !== null }"
@@ -276,7 +311,9 @@
                             <div class="col">
                                 <label for="inputK">Potássio (mg)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputK"
                                     v-bind:class="{ 'is-invalid': errors.k_mg !== null }"
@@ -289,7 +326,9 @@
                             <div class="col">
                                 <label for="inputCa">Cálcio (mg)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputCa"
                                     v-bind:class="{ 'is-invalid': errors.ca_mg !== null }"
@@ -302,7 +341,9 @@
                             <div class="col">
                                 <label for="inputP">Fósforo (mg)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputP"
                                     v-bind:class="{ 'is-invalid': errors.p_mg !== null }"
@@ -317,7 +358,9 @@
                             <div class="col">
                                 <label for="inputMg">Magnésio (mg)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputMg"
                                     v-bind:class="{ 'is-invalid': errors.mg_mg !== null }"
@@ -330,7 +373,9 @@
                             <div class="col">
                                 <label for="inputFe">Ferro (mg)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputFe"
                                     v-bind:class="{ 'is-invalid': errors.fe_mg !== null }"
@@ -343,11 +388,13 @@
                             <div class="col">
                                 <label for="inputZn">Zinco (mg)</label>
                                 <input
-                                    type="text"
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
                                     class="form-control"
                                     id="inputZn"
                                     v-bind:class="{ 'is-invalid': errors.zn_mg !== null }"
-                                    v-model.trim="zn_mg"
+                                    v-model.trim="zn_mg"a
                                 >
                                 <div v-if="errors.zn_mg" class="invalid-feedback">
                                     {{ errors.zn_mg }}
@@ -372,12 +419,13 @@
 
 <script type="text/javascript">
 /*jshint esversion: 6 */
-import { isEmptyField, ERROR_MESSAGES } from '../../utils/validations';
+import { isEmptyField, ERROR_MESSAGES, isDecimalOrEmpty } from '../../utils/validations';
 
 export default {
-    props: ['title'],
+    props: ['title', 'selectedItem'],
     data() {
         return {
+            isEdit: false,
             name: '',
             code: '',
             energy_kcal: '',
@@ -439,6 +487,7 @@ export default {
             this.$emit('close');
         },
         resetFields() {
+            this.isEdit = false;
             this.name = '';
             this.code = '';
             this.energy_kcal = '';
@@ -494,7 +543,7 @@ export default {
         onSaveClick() {
             this.resetErrors();
             if (this.validateFields()) return;
-            axios.post('api/nutritional-info-static', {
+            let bodyData = {
                 name: this.name,
                 code: this.code,
                 energy_kcal: this.energy_kcal,
@@ -520,12 +569,24 @@ export default {
                 mg_mg: this.mg_mg,
                 fe_mg: this.fe_mg,
                 zn_mg: this.zn_mg,
-            }).then(response => {
-                console.log(response)
+            };
+
+            if (this.isEdit) {
+                axios.put(`api/nutritional-info-static/${this.code}`, bodyData).then(() => {
+                    this.resetFields();
+                    this.resetErrors();
+                    this.$emit('save');
+                }).catch(error => {
+                    console.log(error)
+                });
+                return
+            }
+
+            axios.post('api/nutritional-info-static', bodyData).then(() => {
+                this.resetFields();
+                this.resetErrors();
                 this.$emit('save');
-            }).catch(error => {
-                console.log(error)
-            });
+            }).catch(() => {});
 
         },
         validateFields() {
@@ -538,104 +599,138 @@ export default {
                 this.errors.name = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.energy_kcal)) {
+            if (isDecimalOrEmpty(this.energy_kcal)) {
                 this.errors.energy_kcal = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.energy_kJ)) {
+            if (isDecimalOrEmpty(this.energy_kJ)) {
                 this.errors.energy_kJ = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.water_g)) {
+            if (isDecimalOrEmpty(this.water_g)) {
                 this.errors.water_g = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.protein_g)) {
+            if (isDecimalOrEmpty(this.protein_g)) {
                 this.errors.protein_g = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.fats_g)) {
+            if (isDecimalOrEmpty(this.fats_g)) {
                 this.errors.fats_g = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.fiber_g)) {
+            if (isDecimalOrEmpty(this.fiber_g)) {
                 this.errors.fiber_g = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.colesterol_mg)) {
+            if (isDecimalOrEmpty(this.colesterol_mg)) {
                 this.errors.colesterol_mg = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.vitD_pg)) {
+            if (isDecimalOrEmpty(this.vitD_pg)) {
                 this.errors.vitD_pg = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.vitA_mg)) {
+            if (isDecimalOrEmpty(this.vitA_mg)) {
                 this.errors.vitA_mg = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.tiamina_mg)) {
+            if (isDecimalOrEmpty(this.tiamina_mg)) {
                 this.errors.tiamina_mg = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.fats_g)) {
+            if (isDecimalOrEmpty(this.fats_g)) {
                 this.errors.fats_g = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.riboflavina_mg)) {
+            if (isDecimalOrEmpty(this.riboflavina_mg)) {
                 this.errors.riboflavina_mg = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.niacina_mg)) {
+            if (isDecimalOrEmpty(this.niacina_mg)) {
                 this.errors.niacina_mg = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.vitB6_mg)) {
+            if (isDecimalOrEmpty(this.vitB6_mg)) {
                 this.errors.vitB6_mg = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.vitA_mg)) {
+            if (isDecimalOrEmpty(this.vitA_mg)) {
                 this.errors.vitA_mg = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.vit_B12_pg)) {
+            if (isDecimalOrEmpty(this.vit_B12_pg)) {
                 this.errors.vit_B12_pg = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.vitC_mg)) {
+            if (isDecimalOrEmpty(this.vitC_mg)) {
                 this.errors.vitC_mg = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.na_mg)) {
+            if (isDecimalOrEmpty(this.na_mg)) {
                 this.errors.na_mg = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.k_mg)) {
+            if (isDecimalOrEmpty(this.k_mg)) {
                 this.errors.k_mg = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.ca_mg)) {
+            if (isDecimalOrEmpty(this.ca_mg)) {
                 this.errors.ca_mg = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.p_mg)) {
+            if (isDecimalOrEmpty(this.p_mg)) {
                 this.errors.p_mg = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.mg_mg)) {
+            if (isDecimalOrEmpty(this.mg_mg)) {
                 this.errors.mg_mg = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.fe_mg)) {
+            if (isDecimalOrEmpty(this.fe_mg)) {
                 this.errors.fe_mg = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
-            if (isEmptyField(this.zn_mg)) {
+            if (isDecimalOrEmpty(this.zn_mg)) {
                 this.errors.zn_mg = ERROR_MESSAGES.mandatoryField;
                 hasErrors = true;
             }
             return hasErrors
         }
     },
+    watch: {
+        selectedItem: function (newVal, oldVal) {
+            this.isEdit = false
+
+            if (newVal) {
+                this.isEdit = true;
+                this.code = newVal.code;
+                this.name = newVal.name;
+                this.energy_kcal = newVal.energy_kcal;
+                this.energy_kJ = newVal.energy_kJ;
+                this.water_g = newVal.water_g;
+                this.protein_g = newVal.protein_g;
+                this.fats_g = newVal.fats_g;
+                this.carbo_hidrats_g = newVal.carbo_hidrats_g;
+                this.fiber_g = newVal.fiber_g;
+                this.colesterol_mg = newVal.colesterol_mg;
+                this.vitA_mg = newVal.vitA_mg;
+                this.vitD_pg = newVal.vitD_pg;
+                this.tiamina_mg = newVal.tiamina_mg;
+                this.riboflavina_mg = newVal.riboflavina_mg;
+                this.niacina_mg = newVal.niacina_mg;
+                this.vitB6_mg = newVal.vitB6_mg;
+                this.vit_B12_pg = newVal.vit_B12_pg;
+                this.vitC_mg = newVal.vitC_mg;
+                this.na_mg = newVal.na_mg;
+                this.k_mg = newVal.k_mg;
+                this.ca_mg = newVal.ca_mg;
+                this.p_mg = newVal.p_mg;
+                this.mg_mg = newVal.mg_mg;
+                this.fe_mg = newVal.fe_mg;
+                this.zn_mg = newVal.zn_mg;
+            }
+        },
+    }
 };
 </script>

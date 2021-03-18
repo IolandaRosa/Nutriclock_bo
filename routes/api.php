@@ -90,6 +90,7 @@ Route::middleware(['auth:api', 'professional'])->get('meals-query/{query}', 'Nut
 Route::middleware(['auth:api', 'admin'])->get('nutritional-info-static', 'NutritionalInfoStaticControllerAPI@index');
 Route::middleware(['auth:api', 'admin'])->post('nutritional-info-static', 'NutritionalInfoStaticControllerAPI@store');
 Route::middleware(['auth:api', 'admin'])->delete('nutritional-info-static/{code}', 'NutritionalInfoStaticControllerAPI@destroy');
+Route::middleware(['auth:api', 'admin'])->put('nutritional-info-static/{code}', 'NutritionalInfoStaticControllerAPI@update');
 
 // Nutritional info
 Route::middleware(['auth:api', 'professional'])->put('nutritional-info/{id}', 'NutritionalInfoControllerAPI@update');

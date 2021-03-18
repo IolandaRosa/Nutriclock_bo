@@ -139,6 +139,7 @@
                                         <div class="col-sm-3">
                                             <input
                                                 type="number"
+                                                min="0"
                                                 class="form-control"
                                                 v-bind:class="{ 'is-invalid': i.errors.quantity !== null }"
                                                 v-model.trim="i.quantity">

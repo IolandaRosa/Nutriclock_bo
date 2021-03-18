@@ -45,4 +45,16 @@ class NutritionalInfoStaticControllerAPI extends Controller
         NutritionalInfoStatic::where('code', $code)->delete();
         return Response::json(['data' => 'Elemento eliminado']);
     }
+
+    public function update (Request $request, $code) {
+        $info = NutritionalInfoStatic::where('code', $code)->first();
+        if (!$info) {
+            return Response::json(['error' => 'nao existe o alimento.'], 400);
+        }
+
+        $info->fill($request->all());
+        $info->update();
+
+        return new NutritionalInfoStaticResource($info);
+    }
 }
