@@ -148,6 +148,7 @@ export default {
             this.isFetching = true;
             if (this.selectedRow) {
                 axios.delete(`api/diseases/${this.selectedRow.id}`).then(() => {
+                    this.selectedRow = null;
                     this.handleSuccess();
                 }).catch(error => {
                     this.handleError(error);

@@ -254,6 +254,7 @@ export default {
             if (this.selectedRow) {
                 axios.delete(`api/nutritional-info-static/${this.selectedRow.code}`).then(() => {
                     this.isFetching = false;
+                    this.selectedRow = null;
                     this.handleSuccess();
                 }).catch(() => {
                    this.isFetching = false;
