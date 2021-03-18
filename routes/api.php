@@ -87,6 +87,9 @@ Route::middleware(['auth:api', 'intern'])->get('meals/{id}/nutritional', 'MealCo
 // Static nutritional info
 Route::get('meal-names', 'NutritionalInfoStaticControllerAPI@getNames');
 Route::middleware(['auth:api', 'professional'])->get('meals-query/{query}', 'NutritionalInfoStaticControllerAPI@getByQuery');
+Route::middleware(['auth:api', 'admin'])->get('nutritional-info-static', 'NutritionalInfoStaticControllerAPI@index');
+Route::middleware(['auth:api', 'admin'])->post('nutritional-info-static', 'NutritionalInfoStaticControllerAPI@store');
+Route::middleware(['auth:api', 'admin'])->delete('nutritional-info-static/{code}', 'NutritionalInfoStaticControllerAPI@destroy');
 
 // Nutritional info
 Route::middleware(['auth:api', 'professional'])->put('nutritional-info/{id}', 'NutritionalInfoControllerAPI@update');

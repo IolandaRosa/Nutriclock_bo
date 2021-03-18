@@ -27,5 +27,22 @@ export const COLUMN_NAME = {
     EndTime: 'Tempo de Fim',
     Duration: 'Duração (min)',
     BurnedCalories: 'Calorias Gastas',
-    Met: 'MET'
+    Met: 'MET',
+    Code: 'Código',
+    energy_kJ: 'kJ',
+    vitA_mg: 'Vit. A (mg)',
+    vitD_pg: 'Vit. D (pg)',
+    tiamina_mg: 'Tiamina (mg)',
+    riboflavina_mg: 'Riboflavina (mg)',
+    niacina_mg: 'Niacina (mg)',
+    vitB6_mg: 'Vit. B6 (mg)',
+    vit_B12_pg: 'Vit. B12 (pg)',
+    vitC_mg: 'Vit. C (mg)',
+    na_mg: 'Sódio (mg)',
+    k_mg: 'Potássio (mg)',
+    ca_mg: 'Cálcio (mg)',
+    p_mg: 'Fósforo (mg)',
+    mg_mg: 'Magnésio (mg)',
+    fe_mg: 'Ferro (mg)',
+    zn_mg: 'Zinco (mg)'
 };

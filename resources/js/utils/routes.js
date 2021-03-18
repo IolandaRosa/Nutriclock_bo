@@ -14,6 +14,8 @@ import PatientTabs from '../components/patients/PatientTabs';
 import SleepTipsList from '../components/tips/SleepTipsList';
 import ConfigurationList from '../components/configurations/ConfigurationList';
 import MessagesHistory from '../components/messages/MessagesHistory';
+import ExercisesList from '../components/exercises/ExercisesList';
+import FoodList from '../components/food/FoodList';
 
 Vue.component('Login', Login);
 
@@ -31,7 +33,6 @@ Vue.component('UserProfile', UserProfile);
 
 Vue.component('PatientsList', PatientsList);
 
-
 Vue.component('PatientTabs', PatientTabs);
 
 Vue.component('AcceptanceTerms', AcceptanceTerms);
@@ -43,6 +44,10 @@ Vue.component('SleepTipsList', SleepTipsList);
 Vue.component('ConfigurationList', ConfigurationList);
 
 Vue.component('MessagesHistory', MessagesHistory);
+
+Vue.component('FoodList', FoodList);
+
+Vue.component('ExercisesList', ExercisesList);
 
 export const ROUTE = {
     Index: '/',
@@ -59,6 +64,8 @@ export const ROUTE = {
     Diseases: '/diseases',
     Configurations: '/configurations',
     Messages: '/messages',
+    Food: '/food',
+    Exercises: '/exercises'
 };
 
 export const routes = [
@@ -77,4 +84,6 @@ export const routes = [
     {path: '/diseases', component: DiseasesList, name: 'DiseasesList'},
     {path: '/configurations', component: ConfigurationList, name: 'ConfigurationList'},
     {path: '/messages/:id', component: MessagesHistory, name: 'MessagesHistory', props: true},
+    {path: '/food', component: FoodList, name: 'FoodList'},
+    {path: '/exercises', component: ExercisesList, name: 'ExercisesList'},
 ];
