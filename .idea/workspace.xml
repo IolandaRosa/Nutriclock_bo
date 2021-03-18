@@ -18,10 +18,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="Add changes for production">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/diseases/DiseasesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/diseases/DiseasesList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/food/FoodList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/food/FoodList.vue" afterDir="false" />
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/resources/js/components/modals/AddFoodModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/AddFoodModal.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -370,13 +367,6 @@
       <workItem from="1616066987894" duration="12000" />
       <workItem from="1616076800754" duration="6936000" />
     </task>
-    <task id="LOCAL-00106" summary="Add php xml">
-      <created>1611098117817</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1611098117818</updated>
-    </task>
     <task id="LOCAL-00107" summary="add compiled file">
       <created>1611098210976</created>
       <option name="number" value="00107" />
@@ -713,7 +703,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616088936662</updated>
     </task>
-    <option name="localTasksCounter" value="155" />
+    <task id="LOCAL-00155" summary="Add improvements">
+      <created>1616090015848</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1616090015848</updated>
+    </task>
+    <option name="localTasksCounter" value="156" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -741,7 +738,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed snacks not appearing in meal details" />
     <MESSAGE value="fixed snacks button not collapse" />
     <MESSAGE value="fixed double value on burned calories calc" />
     <MESSAGE value="add exercises table render" />
@@ -766,6 +762,7 @@
     <MESSAGE value="adicionar novo alimento e eliminar alimento" />
     <MESSAGE value="Add crud for food diseases" />
     <MESSAGE value="Add changes for production" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add changes for production" />
+    <MESSAGE value="Add improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add improvements" />
   </component>
 </project>
