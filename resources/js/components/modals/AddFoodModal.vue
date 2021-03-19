@@ -697,7 +697,7 @@ export default {
     },
     watch: {
         selectedItem: function (newVal, oldVal) {
-            this.isEdit = false
+            this.resetFields();
 
             if (newVal) {
                 this.isEdit = true;
