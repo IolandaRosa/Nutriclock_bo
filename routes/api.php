@@ -105,7 +105,7 @@ Route::middleware(['auth:api', 'intern'])->get('sleeps/{id}', 'SleepControllerAP
 Route::middleware(['auth:api', 'intern'])->get('sleeps/stats/{id}', 'SleepControllerAPI@getSleepStatsByUser');
 
 // Mobile Stats
-Route::middleware(['auth:api', 'patient'])->get('/stats', 'MobileStatsControllerAPI@getStats');
+Route::middleware(['auth:api', 'patient'])->get('stats', 'MobileStatsControllerAPI@getStats');
 
 // SleepTips API
 Route::middleware(['auth:api'])->get('tips', 'SleepTipControllerAPI@index');
