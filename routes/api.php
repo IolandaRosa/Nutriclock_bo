@@ -20,7 +20,7 @@ Route::middleware(['auth:api'])->get('users/me', 'UserControllerAPI@getAuthentic
 Route::middleware(['auth:api'])->get('users/{id}', 'UserControllerAPI@show');
 Route::post('users', 'UserControllerAPI@store');
 Route::put('users/{id}/activate', 'UserControllerAPI@activate');
-Route::middleware(['auth:api'])->post('patients', 'UserControllerAPI@getPatients');
+Route::middleware(['auth:api', 'intern'])->post('patients', 'UserControllerAPI@getPatients');
 Route::middleware(['auth:api', 'professional'])->delete('patients/{id}', 'UserControllerAPI@deletePatient');
 Route::middleware(['auth:api', 'admin'])->delete('users/{id}', 'UserControllerAPI@destroy');
 Route::middleware(['auth:api', 'admin'])->delete('users/{id}/status', 'UserControllerAPI@toggleActive');
@@ -31,6 +31,9 @@ Route::middleware(['auth:api', 'patient'])->post('users/avatar', 'UserController
 Route::middleware(['auth:api', 'patient'])->post('users/profile', 'UserControllerAPI@updatePatientProfile');
 Route::middleware(['auth:api', 'patient'])->post('users/diseases', 'UserControllerAPI@updatePatientDiseases');
 Route::middleware(['auth:api', 'patient'])->get('/professionalsByUsf/{id}', 'UserControllerAPI@getProfessionalByUsf');
+Route::middleware(['auth:api', 'patient'])->get('forgot-me', 'UserControllerAPI@forgetUserData');
+Route::middleware(['auth:api', 'admin'])->get('forgot-me-count', 'UserControllerAPI@countForgetUserData');
+Route::middleware(['auth:api', 'admin'])->get('undo-forgot/{id}', 'UserControllerAPI@undoForgot');
 
 // ProfessionalCategory API
 Route::middleware(['auth:api'])->get('professionalCategories', 'ProfessionalCategoryControllerAPI@index');

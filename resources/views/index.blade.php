@@ -35,6 +35,7 @@
             <div v-show="this.$store.state.user">
                 <topbar></topbar>
                 <sidebar></sidebar>
+                <request-forget></request-forget>
             </div>
             <router-view></router-view>
         </div>

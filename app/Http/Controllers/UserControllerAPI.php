@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\User as UserResource;
+use App\Ingredient;
 use App\Meal;
+use App\MealPlan;
+use App\MealPlanType;
 use App\Medication;
 use App\Message;
 use App\NutritionalInfo;
 use App\Sleep;
 use App\User;
+use App\Plan;
 use App\UsersUfc;
 use Hash;
 use Illuminate\Http\Request;
@@ -122,14 +126,19 @@ class UserControllerAPI extends Controller
 
     public function getPatients(Request $request)
     {
-        if (Auth::guard('api')->user()->role == 'PATIENT') {
-            return Response::json(['error' => 'Accesso proibido!'], 401);
-        }
+        $users = [];
 
-        if (count($request->ufcsIds) == 0) {
-            $users = User::where('role', 'PATIENT')->get();
-        } else {
-            $users = User::where('role', 'PATIENT')->whereIn('ufc_id', $request->ufcsIds)->get();
+        switch (Auth::guard('api')->user()->role) {
+            case 'ADMIN':
+                $users = User::where('role', 'PATIENT')->get();
+                break;
+            case 'INTERN':
+                $users = User::where('role', 'PATIENT')->where('active', true)->where('requestForget', false)->get();
+                break;
+            case 'PROFESSIONAL':
+                if (count($request->ufcsIds) > 0) {
+                    $users = User::where('role', 'PATIENT')->where('active', true)->where('requestForget', false)->whereIn('ufc_id', $request->ufcsIds)->get();
+                }
         }
 
         return UserResource::collection($users);
@@ -332,6 +341,7 @@ class UserControllerAPI extends Controller
             return Response::json(['error' => 'O utilizador não existe!'], 400);
         }
 
+        $plans = Plan::where('userId', $user->id)->get();
         $meals = Meal::where('userId', $user->id)->get();
         Sleep::where('userId', $user->id)->forceDelete();
         Message::where('senderId', $user->id)->forceDelete();
@@ -342,6 +352,25 @@ class UserControllerAPI extends Controller
             foreach ($meals as $meal) {
                 NutritionalInfo::where('mealId', $meal->id)->forceDelete();
                 $meal->forceDelete();
+            }
+        }
+
+        if ($plans) {
+            foreach ($plans as $plan) {
+                $mealPlans = MealPlan::where('planId', $plan->id())->get();
+                if ($mealPlans) {
+                    foreach ($mealPlans as $mealPlan) {
+                        $mealPlanTypes = MealPlanType::where('planMealId', $mealPlan->id)->get();
+                        if ($mealPlanTypes) {
+                            foreach ($mealPlanTypes as $mealPlanType) {
+                                Ingredient::where('mealPlanTypeId', $mealPlanType->id)->forceDelete();
+                                $mealPlanType->forceDelete();
+                            }
+                        }
+                        $mealPlan->forceDelete();
+                    }
+                }
+                $plan->forceDelete();
             }
         }
 
@@ -433,6 +462,44 @@ class UserControllerAPI extends Controller
 
         $user->diseases = $request->diseases;
 
+        $user->save();
+
+        return new UserResource($user);
+    }
+
+    public function forgetUserData()
+    {
+        $user = User::find(Auth::guard('api')->user()->id);
+
+        if (!$user) {
+            return Response::json(['error' => 'O utilizador não existe!'], 400);
+        }
+
+        $user->requestForget = true;
+        $user->save();
+
+        return new UserResource($user);
+    }
+
+    public function countForgetUserData()
+    {
+        $count = 0;
+        if (Auth::guard('api')->user()->role == 'ADMIN') {
+            $count = User::where('requestForget', true)->count();
+        }
+
+        return Response::json(['data' => $count]);
+    }
+
+    public function undoForgot($id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return Response::json(['error' => 'O utilizador não existe!'], 400);
+        }
+
+        $user->requestForget = false;
         $user->save();
 
         return new UserResource($user);

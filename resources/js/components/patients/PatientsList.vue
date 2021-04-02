@@ -38,6 +38,12 @@
             @close="() => { this.showReplyModal = false }"
             @save="onNewResponseClick"
         />
+        <RequestForgotModal
+            v-show="showForgetRequestData"
+            @close="this.onCloseClick"
+            @aprove="this.confirmForgot"
+            @reprove="this.undoForgot"
+        />
     </div>
 </template>
 
@@ -57,11 +63,13 @@ import {
 } from '../../utils/dataTables';
 import { UserRoles } from '../../constants/misc';
 import ChatResponseModal from '../modals/ChatResponseModal';
+import RequestForgotModal from '../modals/RequestForgotModal';
 
 export default {
     data() {
         return {
             showConfirmationModal: false,
+            showForgetRequestData: false,
             isFetching: false,
             data: [],
             dataTable: null,
@@ -99,9 +107,34 @@ export default {
     methods: {
         onCloseClick() {
             this.showConfirmationModal = false;
+            this.showForgetRequestData = false;
             this.selectedRow = null;
         },
+        async undoForgot() {
+            if (this.isFetching) return;
+            this.isFetching = true;
+            if (this.selectedRow) {
+                try {
+                    await axios.get(`api/undo-forgot/${this.selectedRow.id}`);
+                    this.isFetching = false;
+                    await this.getUsers();
+                    redrawTable(this.dataTable, this.data);
+                    this.onCloseClick();
+                } catch(e) {
+                    this.showError('Não foi possivel eliminar o utente selecionado');
+                }
+            }
+        },
+        confirmForgot() {
+            this.deletePatient();
+        },
         onViewClick(row) {
+            if (row.requestForget) {
+                this.selectedRow = row;
+                this.showForgetRequestData = true;
+                return;
+            }
+
             this.$router.push({
                 name: 'PatientTabs',
                 params: {
@@ -124,17 +157,25 @@ export default {
                     redrawTable(this.dataTable, this.data);
                     this.onCloseClick();
                 }).catch(() => {
-                    this.$toasted.show('Não foi possivel eliminar o utente selecionado', {
-                        type: 'error',
-                        duration: 3000,
-                        position: 'top-right',
-                        closeOnSwipe: true,
-                        theme: 'toasted-primary'
-                    });
+                    this.showError('Não foi possivel eliminar o utente selecionado');
                 });
             }
         },
+        showError(message) {
+            this.$toasted.show(message, {
+                type: 'error',
+                duration: 3000,
+                position: 'top-right',
+                closeOnSwipe: true,
+                theme: 'toasted-primary'
+            });
+        },
         onDeleteClick(row) {
+            if (row.requestForget) {
+                this.selectedRow = row;
+                this.showForgetRequestData = true;
+                return;
+            }
             this.showConfirmationModal = true;
             this.selectedRow = row;
         },
@@ -179,6 +220,12 @@ export default {
             }
         },
         onMessageSend(row) {
+            if (row.requestForget) {
+                this.selectedRow = row;
+                this.showForgetRequestData = true;
+                return;
+            }
+
             this.selectedRow = row;
             this.showReplyModal = true;
         }
@@ -204,6 +251,8 @@ export default {
     components: {
         ConfirmationModal,
         ChatResponseModal,
+        RequestForgotModal,
     }
 };
 </script>
+

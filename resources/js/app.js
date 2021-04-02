@@ -36,6 +36,7 @@ Vue.use(VueClockPickerPlugin);
 
 import Topbar from './components/navigation/Topbar';
 import Sidebar from './components/navigation/Sidebar';
+import RequestForget from './components/navigation/RequestForget';
 
 import store from './stores/global-store';
 
@@ -53,6 +54,7 @@ const app = new Vue({
     components: {
         Topbar,
         Sidebar,
+        RequestForget,
     },
     created() {
         this.$store.commit('loadTokenAndUserFromSession');

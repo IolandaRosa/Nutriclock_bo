@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 define('SERVER_URL', 'http://nutriclock.test:81');
@@ -13,6 +14,12 @@ class LoginControllerAPI extends Controller
 {
     public function login(Request $request) {
         $http = new \GuzzleHttp\Client;
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user || !$user->active || $user->requestForget) {
+            return response()->json(['error'=>'Utilizador inativo.', 'active'=> $user, ], 400);
+        }
 
         $response = $http->post(SERVER_URL.'/oauth/token', [
             'form_params' => [
