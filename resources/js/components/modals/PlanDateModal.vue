@@ -47,7 +47,7 @@
 <script type="text/javascript">
 /*jshint esversion: 6 */
 import Datepicker from 'vuejs-datepicker';
-import { ptBR } from 'vuejs-datepicker/dist/locale'
+import { ptBR } from 'vuejs-datepicker/dist/locale';
 import { ERROR_MESSAGES, isEmptyField } from '../../utils/validations';
 import { parseDateToString, renderDayOfWeek } from '../../utils/misc';
 

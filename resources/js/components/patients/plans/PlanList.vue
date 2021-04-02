@@ -7,13 +7,36 @@
                         Plano Alimentar
                     </h3>
                     <div class="component-wrapper-right">
-                        <button class="btn-bold btn btn-primary" data-toggle="tooltip" title="Novo Utilizador"
+                        <button class="btn-bold btn btn-primary" type="button" data-toggle="tooltip"
+                                v-on:click="showCalendar" title="Calendario">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-week" viewBox="0 0 16 16">
+                                <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                            </svg>
+                        </button>
+                        <button class="btn-bold btn btn-primary" data-toggle="tooltip" title="Nova Data"
                                 type="button" v-on:click.prevent="openDateModal" v-show="!readonly">
-                    <span v-if="isFetching" aria-hidden="true" class="spinner-border spinner-border-sm"
-                          role="status"></span>
+                            <span v-if="isFetching" aria-hidden="true" class="spinner-border spinner-border-sm"
+                                  role="status"></span>
                             <span class="full-text">Nova Data</span>
                             <span class="min-text">+</span>
                         </button>
+                    </div>
+                </div>
+                <div class="component-wrapper-header" v-show="isShowCalendar">
+                    <div class="component-wrapper-left" />
+                    <div class="component-wrapper-right">
+                        <Datepicker
+                            v-model="date"
+                            input-class="form-control"
+                            calendar-class="text-secondary"
+                            :disabledDates="disabledDates"
+                            :language="pt"
+                            inline
+                            :highlighted="highlighted"
+                            @selected="onDayClick"
+                            :monday-first="true"
+                        />
                     </div>
                 </div>
                 <div class="component-wrapper-body mt-2 text-dark">
@@ -22,7 +45,6 @@
                     </div>
                     <div v-else v-for="(p, planIndex) in this.plan" :key="p.id" class="bg-white rounded with-shadow p-4 mb-2">
                         <div class="d-flex justify-content-center align-items-center">
-
                             <span class="flex-grow-1 d-flex text-secondary text-uppercase font-weight-bolder mb-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      class="bi bi-calendar mr-2" viewBox="0 0 16 16">
@@ -128,12 +150,14 @@
 
 <script type="text/javascript">
 import { sortBy } from 'lodash';
+import Datepicker from 'vuejs-datepicker';
+import { ptBR } from 'vuejs-datepicker/dist/locale'
 import PlanDate from '../../modals/PlanDateModal';
 import MealTypeModal from '../../modals/MealTypeModal';
 import AddIngredientModal from '../../modals/AddIngredientModal';
-import {parseDayEnumToString, parseMealTypeToString} from '../../../utils/misc';
+import {parseDayEnumToString, parseMealTypeToString, renderDate} from '../../../utils/misc';
 import {ERROR_MESSAGES} from '../../../utils/validations';
-import {UserRoles} from "../../../constants/misc";
+import {UserRoles} from '../../../constants/misc';
 
 export default {
     props: ['id'],
@@ -149,10 +173,26 @@ export default {
             selectedMealTypeIndex: null,
             mealDate: '',
             plan: [],
-            readonly: false
+            readonly: false,
+            highlighted: {
+                dates: [],
+            },
+            date: new Date(),
+            disabledDates: {
+                from: new Date(Date.now()),
+            },
+            pt: ptBR,
+            isShowCalendar: false,
         };
     },
     methods: {
+        onDayClick(e) {
+            this.getMealPlans(renderDate(e));
+            this.isShowCalendar = false;
+        },
+        showCalendar() {
+            this.isShowCalendar = !this.isShowCalendar;
+        },
         openAddIngredientsModal(index, mealTypeId, planIndex){
             this.selectedMealType = mealTypeId;
             this.selectedMealTypeIndex = index;
@@ -263,26 +303,42 @@ export default {
             if (p > 1) return `${p} porções`;
             return `${p} porção`;
         },
+        getMealPlans(date) {
+            axios.get(`api/meal-plans/${this.id}/${date}`).then(response => {
+                this.isFetching = false;
+                this.plan = response.data.data;
+            }).catch(() => {
+                this.isFetching = false;
+            });
+
+            if (this.$store.state.user) {
+                this.readonly = this.$store.state.user.role === UserRoles.Intern
+            }
+        }
     },
     mounted() {
         if (this.isFetching) return;
         this.isFetching = true;
+        axios.get(`api/meal-plans-dates/${this.id}`).then(response => {
+            response.data.data.forEach(e => {
+                const startDateParts = e.start.split('-');
+                const endDateParts = e.end.split('-');
+                let startDate = new Date(`${startDateParts[2]}/${startDateParts[1]}/${startDateParts[0]}`);
+                const endDate = new Date(`${endDateParts[2]}/${endDateParts[1]}/${endDateParts[0]}`);
+                while (startDate <= endDate) {
+                    this.highlighted.dates.push(new Date(startDate));
+                    startDate.setDate(startDate.getDate() + 1);
+                }
+            });
+        }).catch(() => { });
 
-        axios.get(`api/meal-plans/${this.id}`).then(response => {
-            this.isFetching = false;
-            this.plan = response.data.data;
-        }).catch(() => {
-            this.isFetching = false;
-        });
-
-        if (this.$store.state.user) {
-            this.readonly = this.$store.state.user.role === UserRoles.Intern
-        }
+        this.getMealPlans(renderDate(new Date()));
     },
     components: {
         PlanDate,
         MealTypeModal,
         AddIngredientModal,
+        Datepicker,
     }
 };
 </script>

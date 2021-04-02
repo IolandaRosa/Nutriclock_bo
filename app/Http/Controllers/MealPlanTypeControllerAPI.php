@@ -10,6 +10,7 @@ use App\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\Rule;
+use DateTime;
 
 class MealPlanTypeControllerAPI extends Controller
 {
@@ -275,34 +276,79 @@ class MealPlanTypeControllerAPI extends Controller
         return $value;
     }
 
-    public function show($id)
+    public function getMealPlanDates($id)
+    {
+        $plan = Plan::where('userId', $id)->first();
+        $weeks = [];
+
+        if (!$plan) {
+            return Response::json(['data' => []]);
+        }
+        $dates = MealPlan::where('planId', $plan->id)->get('date');
+
+        if ($dates) {
+            foreach ($dates as $date) {
+                $d = $this->formatDate($date->date);
+                if ($d) {
+                    $range = $this->rangeWeek($d);
+                    array_push($weeks, $range);
+                }
+            }
+        }
+
+        return Response::json(['data' => $weeks]);
+    }
+
+    public function formatDate($dateStr)
+    {
+        $d = DateTime::createFromFormat('d-m-Y', $dateStr);
+        if ($d) {
+            return $d->format('Y-m-d');
+        }
+
+        return null;
+    }
+
+    public function show($id, $date)
     {
         $plan = Plan::where('userId', $id)->first();
 
         if (!$plan) {
             return Response::json(['data' => []]);
         }
+        $d = $this->formatDate($date);
+        if ($d) {
+            $weekDates = $this->rangeWeek($d);
+            $meal_plans = MealPlan::where('planId', $plan->id)->where('date', '>=', $weekDates['start'])->where('date', '<=', $weekDates['end'])->get();
 
-        $meal_plans = MealPlan::where('planId', $plan->id)->get();
+            if ($meal_plans) {
+                foreach ($meal_plans as $mealPlan) {
+                    $mealPlanTypes = MealPlanType::where('planMealId', $mealPlan->id)->orderBy('hour')->get();
+                    if ($mealPlanTypes) {
+                        foreach ($mealPlanTypes as $mealType) {
+                            $ingredients = Ingredient::where('mealPlanTypeId', $mealType->id)->get();
 
-        if ($meal_plans) {
-            foreach ($meal_plans as $mealPlan) {
-                $mealPlanTypes = MealPlanType::where('planMealId', $mealPlan->id)->orderBy('hour')->get();
-                if ($mealPlanTypes) {
-                    foreach ($mealPlanTypes as $mealType) {
-                        $ingredients = Ingredient::where('mealPlanTypeId', $mealType->id)->get();
-
-                        if ($ingredients) {
-                            $mealType['ingredients'] = $ingredients;
+                            if ($ingredients) {
+                                $mealType['ingredients'] = $ingredients;
+                            }
                         }
-                    }
 
-                    $mealPlan['mealTypes'] = $mealPlanTypes;
+                        $mealPlan['mealTypes'] = $mealPlanTypes;
+                    }
                 }
             }
         }
 
         return Response::json(['data' => $meal_plans]);
+    }
+
+    function rangeWeek ($datestr) {
+        $myDate = strtotime($datestr);
+
+        return array (
+            'start' => date('N', $myDate) == 1 ? date('d-m-Y', $myDate) : date ('d-m-Y', strtotime ('last monday', $myDate)),
+            'end' => date ('d-m-Y', strtotime ('next sunday', $myDate))
+        );
     }
 
     public function update(Request $request, $id)

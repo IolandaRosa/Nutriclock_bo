@@ -150,7 +150,8 @@ Route::middleware(['auth:api', 'admin'])->delete('/households/{id}', 'HouseholdS
 
 // Meal Plan API
 Route::middleware(['auth:api', 'professional'])->post('/meal-plans','MealPlanTypeControllerAPI@store');
-Route::middleware(['auth:api', 'intern'])->get('/meal-plans/{id}','MealPlanTypeControllerAPI@show');
+Route::middleware(['auth:api', 'intern'])->get('/meal-plans-dates/{id}', 'MealPlanTypeControllerAPI@getMealPlanDates');
+Route::middleware(['auth:api', 'intern'])->get('/meal-plans/{id}/{date}','MealPlanTypeControllerAPI@show');
 Route::middleware(['auth:api', 'professional'])->delete('/meal-type/{id}','MealPlanTypeControllerAPI@destroy');
 Route::middleware(['auth:api', 'professional'])->post('/meal-type/{id}','MealPlanTypeControllerAPI@storeMealType');
 Route::middleware(['auth:api', 'professional'])->post('/meal-type-stats','MealPlanTypeControllerAPI@statsMealType');

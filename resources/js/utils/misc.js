@@ -55,6 +55,7 @@ export const renderDayOfWeek = (value) => {
 
     if (value === 2) {
         return 'Terça-feira';
+        return 'Terça-feira';
     }
 
     if (value === 3) {
