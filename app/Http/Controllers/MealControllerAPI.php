@@ -203,7 +203,7 @@ class MealControllerAPI extends Controller
         return $value;
     }
 
-    public function store(Request $request, $id) {
+    public function store(Request $request) {
         $request->validate([
             'name' => 'required|min:3',
             'quantity' => 'required|numeric|between:0,9999.99',
@@ -215,7 +215,7 @@ class MealControllerAPI extends Controller
             'time' => 'required'
         ]);
 
-        $user = User::find($id);
+        $user = User::find(auth()->id());
 
         if (!$user) {
             return Response::json(['error' => 'O utilizador não existe.'], 404);
@@ -259,7 +259,7 @@ class MealControllerAPI extends Controller
         $meal->date = $request->date;
         $meal->time = $request->time;
         $meal->observations = $request->observations;
-        $meal->userId = $id;
+        $meal->userId = auth()->id();
         $meal->numericUnit = $grams;
 
         $meal->save();

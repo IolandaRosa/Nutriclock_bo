@@ -19,13 +19,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/NotificationControllerAPI.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/Notification.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Notification.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_04_03_131535_create_notifications_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MealControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MealControllerAPI.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NotificationControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NotificationControllerAPI.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SleepControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SleepControllerAPI.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -377,14 +374,8 @@
       <workItem from="1616755584987" duration="32000" />
       <workItem from="1616794984247" duration="7309000" />
       <workItem from="1616869269364" duration="1065000" />
-      <workItem from="1617451347060" duration="5543000" />
-    </task>
-    <task id="LOCAL-00106" summary="Add php xml">
-      <created>1611098117817</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1611098117818</updated>
+      <workItem from="1617451347060" duration="11028000" />
+      <workItem from="1617484450680" duration="3504000" />
     </task>
     <task id="LOCAL-00107" summary="add compiled file">
       <created>1611098210976</created>
@@ -722,7 +713,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617397322269</updated>
     </task>
-    <option name="localTasksCounter" value="155" />
+    <task id="LOCAL-00155" summary="Notifications api done">
+      <created>1617473277642</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1617473277642</updated>
+    </task>
+    <option name="localTasksCounter" value="156" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -750,7 +748,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed snacks button not collapse" />
     <MESSAGE value="fixed double value on burned calories calc" />
     <MESSAGE value="add exercises table render" />
     <MESSAGE value="render date startTime and endTime correctly" />
@@ -775,6 +772,7 @@
     <MESSAGE value="Add crud for food diseases" />
     <MESSAGE value="Add calendar to nutriclock" />
     <MESSAGE value="Forget data finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="Forget data finished" />
+    <MESSAGE value="Notifications api done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Notifications api done" />
   </component>
 </project>

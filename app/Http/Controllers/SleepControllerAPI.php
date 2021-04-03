@@ -21,13 +21,12 @@ class SleepControllerAPI extends Controller
 
         $request->validate([
             'date' => 'required',
-            'userId' => 'required',
             'wakeUpTime' => 'required',
             'sleepTime' => 'required',
             'hasWakeUp' => 'required',
         ]);
 
-        $user=User::find($request->userId);
+        $user=User::find(Auth::guard('api')->id());
 
         if (!$user) {
             return Response::json(['error' => 'O utilizador não existe.'], 404);
@@ -36,7 +35,7 @@ class SleepControllerAPI extends Controller
         $sleep = new Sleep();
 
         $sleep->date = $request->date;
-        $sleep->userId = $request->userId;
+        $sleep->userId = $user->id;
         $sleep->wakeUpTime = $request->wakeUpTime;
         $sleep->sleepTime = $request->sleepTime;
         $sleep->hasWakeUp = $request->hasWakeUp;
