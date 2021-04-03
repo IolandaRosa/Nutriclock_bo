@@ -32,6 +32,7 @@ class User extends Authenticatable
         'ufc_id',
         'terms_accepted',
         'requestForget',
+        'notifications'
     ];
 
     /**

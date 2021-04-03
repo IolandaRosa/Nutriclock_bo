@@ -165,3 +165,7 @@ Route::middleware(['auth:api', 'patient'])->get('/meal-history-patient/{date}', 
 // Ingredient API
 Route::middleware(['auth:api', 'professional'])->delete('/ingredient/{id}','IngredientControllerAPI@destroy');
 Route::middleware(['auth:api', 'professional'])->post('/ingredient/{id}','IngredientControllerAPI@store');
+
+// Notification API
+Route::middleware(['auth:api', 'patient'])->post('/notifications', 'NotificationControllerAPI@store');
+Route::middleware(['auth:api', 'patient'])->get('/notifications', 'NotificationControllerAPI@show');

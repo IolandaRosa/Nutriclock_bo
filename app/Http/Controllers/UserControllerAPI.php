@@ -9,6 +9,7 @@ use App\MealPlan;
 use App\MealPlanType;
 use App\Medication;
 use App\Message;
+use App\Notification;
 use App\NutritionalInfo;
 use App\Sleep;
 use App\User;
@@ -231,6 +232,13 @@ class UserControllerAPI extends Controller
             }
         }
 
+        $notification = new Notification();
+        $notification->userId = $user->id;
+        $notification->notificationsSleep = true;
+        $notification->notificationsExercise = true;
+        $notification->notificationsMealDiary = true;
+        $notification->save();
+
         return new UserResource($user);
     }
 
@@ -347,6 +355,7 @@ class UserControllerAPI extends Controller
         Message::where('senderId', $user->id)->forceDelete();
         Message::where('receiverId', $user->id)->forceDelete();
         Medication::where('user_id', $user->id)->forceDelete();
+        Notification::where('userId', $user->id)->forceDelete();
 
         if ($meals) {
             foreach ($meals as $meal) {

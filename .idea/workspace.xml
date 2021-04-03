@@ -19,19 +19,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_04_02_150856_add_request_forget_ti_users_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/modals/RequestForgotModal.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/navigation/RequestForget.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/NotificationControllerAPI.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/Notification.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Notification.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_04_03_131535_create_notifications_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LoginControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LoginControllerAPI.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserControllerAPI.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/navigation/Topbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/navigation/Topbar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/PatientsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/PatientsList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/utils/dataTables.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/dataTables.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -383,13 +377,7 @@
       <workItem from="1616755584987" duration="32000" />
       <workItem from="1616794984247" duration="7309000" />
       <workItem from="1616869269364" duration="1065000" />
-    </task>
-    <task id="LOCAL-00105" summary="update message done">
-      <created>1611097748764</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1611097748765</updated>
+      <workItem from="1617451347060" duration="5543000" />
     </task>
     <task id="LOCAL-00106" summary="Add php xml">
       <created>1611098117817</created>
@@ -727,7 +715,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616084250826</updated>
     </task>
-    <option name="localTasksCounter" value="154" />
+    <task id="LOCAL-00154" summary="Forget data finished">
+      <created>1617397322269</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1617397322269</updated>
+    </task>
+    <option name="localTasksCounter" value="155" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -755,7 +750,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed snacks not appearing in meal details" />
     <MESSAGE value="fixed snacks button not collapse" />
     <MESSAGE value="fixed double value on burned calories calc" />
     <MESSAGE value="add exercises table render" />
@@ -780,6 +774,7 @@
     <MESSAGE value="adicionar novo alimento e eliminar alimento" />
     <MESSAGE value="Add crud for food diseases" />
     <MESSAGE value="Add calendar to nutriclock" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add calendar to nutriclock" />
+    <MESSAGE value="Forget data finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="Forget data finished" />
   </component>
 </project>
