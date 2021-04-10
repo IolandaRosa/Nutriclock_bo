@@ -242,6 +242,18 @@ class UserControllerAPI extends Controller
         return new UserResource($user);
     }
 
+    public function fcmToken(Request $request) {
+        $user = User::find(Auth::guard('api')->id());
+
+        if (!$user) {
+            return Response::json(['error' => 'O utilizador não existe.'], 404);
+        }
+
+        $user->fcmToken = $request->fcmToken;
+        $user->save();
+        return new UserResource($user);
+    }
+
     public function activate(Request $request, $id)
     {
         $request->validate([

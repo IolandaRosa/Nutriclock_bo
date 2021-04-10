@@ -34,6 +34,7 @@ Route::middleware(['auth:api', 'patient'])->get('/professionalsByUsf/{id}', 'Use
 Route::middleware(['auth:api', 'patient'])->get('forgot-me', 'UserControllerAPI@forgetUserData');
 Route::middleware(['auth:api', 'admin'])->get('forgot-me-count', 'UserControllerAPI@countForgetUserData');
 Route::middleware(['auth:api', 'admin'])->get('undo-forgot/{id}', 'UserControllerAPI@undoForgot');
+Route::middleware(['auth:api', 'patient'])->post('fcm', 'UserControllerAPI@fcmToken');
 
 // ProfessionalCategory API
 Route::middleware(['auth:api'])->get('professionalCategories', 'ProfessionalCategoryControllerAPI@index');
@@ -169,4 +170,3 @@ Route::middleware(['auth:api', 'professional'])->post('/ingredient/{id}','Ingred
 // Notification API
 Route::middleware(['auth:api', 'patient'])->post('/notifications', 'NotificationControllerAPI@store');
 Route::middleware(['auth:api', 'patient'])->get('/notifications', 'NotificationControllerAPI@show');
-Route::get('/checkNotifications', 'NotificationControllerAPI@getUserNotifications');
