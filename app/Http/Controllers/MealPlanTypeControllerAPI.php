@@ -7,10 +7,10 @@ use App\MealPlan;
 use App\MealPlanType;
 use App\NutritionalInfoStatic;
 use App\Plan;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Validation\Rule;
-use DateTime;
 
 class MealPlanTypeControllerAPI extends Controller
 {
@@ -279,24 +279,12 @@ class MealPlanTypeControllerAPI extends Controller
     public function getMealPlanDates($id)
     {
         $plan = Plan::where('userId', $id)->first();
-        $weeks = [];
-
         if (!$plan) {
             return Response::json(['data' => []]);
         }
         $dates = MealPlan::where('planId', $plan->id)->get('date');
 
-        if ($dates) {
-            foreach ($dates as $date) {
-                $d = $this->formatDate($date->date);
-                if ($d) {
-                    $range = $this->rangeWeek($d);
-                    array_push($weeks, $range);
-                }
-            }
-        }
-
-        return Response::json(['data' => $weeks]);
+        return Response::json(['data' => $dates]);
     }
 
     public function formatDate($dateStr)
@@ -316,25 +304,22 @@ class MealPlanTypeControllerAPI extends Controller
         if (!$plan) {
             return Response::json(['data' => []]);
         }
-        $d = $this->formatDate($date);
-        if ($d) {
-            $weekDates = $this->rangeWeek($d);
-            $meal_plans = MealPlan::where('planId', $plan->id)->where('date', '>=', $weekDates['start'])->where('date', '<=', $weekDates['end'])->get();
 
-            if ($meal_plans) {
-                foreach ($meal_plans as $mealPlan) {
-                    $mealPlanTypes = MealPlanType::where('planMealId', $mealPlan->id)->orderBy('hour')->get();
-                    if ($mealPlanTypes) {
-                        foreach ($mealPlanTypes as $mealType) {
-                            $ingredients = Ingredient::where('mealPlanTypeId', $mealType->id)->get();
+        $meal_plans = MealPlan::where('planId', $plan->id)->where('date', '=', $date)->get();
 
-                            if ($ingredients) {
-                                $mealType['ingredients'] = $ingredients;
-                            }
+        if ($meal_plans) {
+            foreach ($meal_plans as $mealPlan) {
+                $mealPlanTypes = MealPlanType::where('planMealId', $mealPlan->id)->orderBy('hour')->get();
+                if ($mealPlanTypes) {
+                    foreach ($mealPlanTypes as $mealType) {
+                        $ingredients = Ingredient::where('mealPlanTypeId', $mealType->id)->get();
+
+                        if ($ingredients) {
+                            $mealType['ingredients'] = $ingredients;
                         }
-
-                        $mealPlan['mealTypes'] = $mealPlanTypes;
                     }
+
+                    $mealPlan['mealTypes'] = $mealPlanTypes;
                 }
             }
         }
@@ -342,12 +327,13 @@ class MealPlanTypeControllerAPI extends Controller
         return Response::json(['data' => $meal_plans]);
     }
 
-    function rangeWeek ($datestr) {
+    function rangeWeek($datestr)
+    {
         $myDate = strtotime($datestr);
 
-        return array (
-            'start' => date('N', $myDate) == 1 ? date('d-m-Y', $myDate) : date ('d-m-Y', strtotime ('last monday', $myDate)),
-            'end' => date ('d-m-Y', strtotime ('next sunday', $myDate))
+        return array(
+            'start' => date('N', $myDate) == 1 ? date('d-m-Y', $myDate) : date('d-m-Y', strtotime('last monday', $myDate)),
+            'end' => date('d-m-Y', strtotime('next sunday', $myDate))
         );
     }
 
@@ -394,7 +380,8 @@ class MealPlanTypeControllerAPI extends Controller
         return Response::json(['data' => $mealTypes]);
     }
 
-    public function getPatientHistory($date) {
+    public function getPatientHistory($date)
+    {
         $plan = Plan::where('userId', auth()->id())->first('id');
         if (!$plan) {
             return Response::json(['error' => 'Plano alimentar vazio.'], 400);
@@ -416,7 +403,6 @@ class MealPlanTypeControllerAPI extends Controller
                 $mealPlan->mealTypes = $mealTypes;
             }
         }
-
 
 
         return Response::json(['data' => $mealPlans]);

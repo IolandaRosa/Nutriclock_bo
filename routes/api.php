@@ -20,7 +20,7 @@ Route::middleware(['auth:api'])->get('users/me', 'UserControllerAPI@getAuthentic
 Route::middleware(['auth:api'])->get('users/{id}', 'UserControllerAPI@show');
 Route::post('users', 'UserControllerAPI@store');
 Route::put('users/{id}/activate', 'UserControllerAPI@activate');
-Route::middleware(['auth:api'])->post('patients', 'UserControllerAPI@getPatients');
+Route::middleware(['auth:api', 'intern'])->post('patients', 'UserControllerAPI@getPatients');
 Route::middleware(['auth:api', 'professional'])->delete('patients/{id}', 'UserControllerAPI@deletePatient');
 Route::middleware(['auth:api', 'admin'])->delete('users/{id}', 'UserControllerAPI@destroy');
 Route::middleware(['auth:api', 'admin'])->delete('users/{id}/status', 'UserControllerAPI@toggleActive');
@@ -31,6 +31,10 @@ Route::middleware(['auth:api', 'patient'])->post('users/avatar', 'UserController
 Route::middleware(['auth:api', 'patient'])->post('users/profile', 'UserControllerAPI@updatePatientProfile');
 Route::middleware(['auth:api', 'patient'])->post('users/diseases', 'UserControllerAPI@updatePatientDiseases');
 Route::middleware(['auth:api', 'patient'])->get('/professionalsByUsf/{id}', 'UserControllerAPI@getProfessionalByUsf');
+Route::middleware(['auth:api', 'patient'])->get('forgot-me', 'UserControllerAPI@forgetUserData');
+Route::middleware(['auth:api', 'admin'])->get('forgot-me-count', 'UserControllerAPI@countForgetUserData');
+Route::middleware(['auth:api', 'admin'])->get('undo-forgot/{id}', 'UserControllerAPI@undoForgot');
+Route::middleware(['auth:api', 'patient'])->post('fcm', 'UserControllerAPI@fcmToken');
 
 // ProfessionalCategory API
 Route::middleware(['auth:api'])->get('professionalCategories', 'ProfessionalCategoryControllerAPI@index');
@@ -76,7 +80,7 @@ Route::middleware(['auth:api', 'admin'])->delete('diseases/{id}', 'DiseaseContro
 Route::middleware(['auth:api', 'patient'])->get('meals-user', 'MealControllerAPI@getAuthUserMeals');
 Route::middleware(['auth:api'])->get('meals', 'MealControllerAPI@index');
 Route::middleware(['auth:api'])->get('meals/{id}', 'MealControllerAPI@show');
-Route::middleware(['auth:api', 'patient'])->post('meals/{id}', 'MealControllerAPI@store');
+Route::middleware(['auth:api', 'patient'])->post('meals', 'MealControllerAPI@store');
 Route::middleware(['auth:api', 'patient'])->delete('meals/{id}', 'MealControllerAPI@destroy');
 Route::middleware(['auth:api', 'patient'])->post('meals/{id}/photo', 'MealControllerAPI@updateMealImage');
 Route::middleware(['auth:api', 'patient'])->put('meals-update/{id}', 'MealControllerAPI@update');
@@ -162,3 +166,7 @@ Route::middleware(['auth:api', 'patient'])->get('/meal-history-patient/{date}', 
 // Ingredient API
 Route::middleware(['auth:api', 'professional'])->delete('/ingredient/{id}','IngredientControllerAPI@destroy');
 Route::middleware(['auth:api', 'professional'])->post('/ingredient/{id}','IngredientControllerAPI@store');
+
+// Notification API
+Route::middleware(['auth:api', 'patient'])->post('/notifications', 'NotificationControllerAPI@store');
+Route::middleware(['auth:api', 'patient'])->get('/notifications', 'NotificationControllerAPI@show');

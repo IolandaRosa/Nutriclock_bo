@@ -13,6 +13,9 @@ return [
     | a conventional file to locate the various service credentials.
     |
     */
+    'fcm' => [
+        'key' => env('FCM_SECRET_KEY')
+    ],
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
