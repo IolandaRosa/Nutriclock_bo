@@ -73,7 +73,7 @@ class NotificationControllerAPI extends Controller
             }
         }
 
-        return Response::json([
+        return Response::json([me
             'sleepDate' => $lastSleepDate,
             'sleepDays' => $sleepDays,
             'exerciseDate' => $lastExerciseDate,

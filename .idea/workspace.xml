@@ -20,10 +20,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MealControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MealControllerAPI.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NotificationControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NotificationControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SleepControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SleepControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -375,14 +372,8 @@
       <workItem from="1616794984247" duration="7309000" />
       <workItem from="1616869269364" duration="1065000" />
       <workItem from="1617451347060" duration="11028000" />
-      <workItem from="1617484450680" duration="3504000" />
-    </task>
-    <task id="LOCAL-00107" summary="add compiled file">
-      <created>1611098210976</created>
-      <option name="number" value="00107" />
-      <option name="presentableId" value="LOCAL-00107" />
-      <option name="project" value="LOCAL" />
-      <updated>1611098210976</updated>
+      <workItem from="1617484450680" duration="3674000" />
+      <workItem from="1618053736691" duration="634000" />
     </task>
     <task id="LOCAL-00108" summary="add changes from branch chat">
       <created>1611506130082</created>
@@ -720,7 +711,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617473277642</updated>
     </task>
-    <option name="localTasksCounter" value="156" />
+    <task id="LOCAL-00156" summary="Notification check">
+      <created>1617489233612</created>
+      <option name="number" value="00156" />
+      <option name="presentableId" value="LOCAL-00156" />
+      <option name="project" value="LOCAL" />
+      <updated>1617489233612</updated>
+    </task>
+    <option name="localTasksCounter" value="157" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -748,7 +746,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed double value on burned calories calc" />
     <MESSAGE value="add exercises table render" />
     <MESSAGE value="render date startTime and endTime correctly" />
     <MESSAGE value="reset fields and errors in all modals" />
@@ -773,6 +770,7 @@
     <MESSAGE value="Add calendar to nutriclock" />
     <MESSAGE value="Forget data finished" />
     <MESSAGE value="Notifications api done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Notifications api done" />
+    <MESSAGE value="Notification check" />
+    <option name="LAST_COMMIT_MESSAGE" value="Notification check" />
   </component>
 </project>
