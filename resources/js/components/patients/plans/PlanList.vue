@@ -304,6 +304,7 @@ export default {
             return `${p} porção`;
         },
         getMealPlans(date) {
+            console.log((`api/meal-plans/${this.id}/${date}`))
             axios.get(`api/meal-plans/${this.id}/${date}`).then(response => {
                 this.isFetching = false;
                 this.plan = response.data.data;
@@ -320,16 +321,13 @@ export default {
         if (this.isFetching) return;
         this.isFetching = true;
         axios.get(`api/meal-plans-dates/${this.id}`).then(response => {
-            response.data.data.forEach(e => {
-                const startDateParts = e.start.split('-');
-                const endDateParts = e.end.split('-');
-                let startDate = new Date(`${startDateParts[2]}/${startDateParts[1]}/${startDateParts[0]}`);
-                const endDate = new Date(`${endDateParts[2]}/${endDateParts[1]}/${endDateParts[0]}`);
-                while (startDate <= endDate) {
-                    this.highlighted.dates.push(new Date(startDate));
-                    startDate.setDate(startDate.getDate() + 1);
-                }
-            });
+            if (response.data.data) {
+                response.data.data.forEach(e => {
+                    const dateParts = e.date.split('-');
+                    let date = new Date(`${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`);
+                    this.highlighted.dates.push(new Date(date));
+                });
+            }
         }).catch(() => { });
 
         this.getMealPlans(renderDate(new Date()));
