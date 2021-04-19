@@ -16,11 +16,37 @@ use Response;
 
 class MealControllerAPI extends Controller
 {
+    /**
+     * @OA\Get(
+     *      path="/api/meals",
+     *      operationId="meals",
+     *      tags={"Meal"},
+     *      summary="Return this list of meals",
+     *      description="Return this list of meals",
+     *      @OA\Response(
+     *          response=200,
+     *          description="return the list of meals"
+     *       )
+     *     )
+     */
     public function index()
     {
         return MealResource::collection(Meal::all());
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/meals-user",
+     *      operationId="meals",
+     *      tags={"Meal"},
+     *      summary="Return this list of auth user meals",
+     *      description="Return this list of auth user meals",
+     *      @OA\Response(
+     *          response=200,
+     *          description="return the list of auth user meals"
+     *       )
+     *     )
+     */
     public function getAuthUserMeals(Request $request) {
         $meals = Meal::where('userId', auth()->id())->get();
         $date = Meal::where('userId', auth()->id())->min('date');
@@ -70,6 +96,29 @@ class MealControllerAPI extends Controller
         ], 200);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/meals/{id}/user",
+     *      operationId="meals",
+     *      tags={"Meal"},
+     *      summary="Return this list of user meals",
+     *      description="Return this list of user meals",
+     *     @OA\Parameter(
+     *         description="ID of user",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return the list of user meals"
+     *       )
+     *     )
+     */
     public function getMealsByUser(Request $request, $id) {
         $dates = Meal::where('userId', $id)->select('date')->get();
         $meals = Meal::where('userId',$id)->get();
@@ -120,6 +169,29 @@ class MealControllerAPI extends Controller
         return Response::json(['meals' => $data], 200);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/meals/{id}/nutritional",
+     *      operationId="meals",
+     *      tags={"Meal"},
+     *      summary="Return the list of nutritional info from users meals",
+     *      description="Return the list of nutritional info from users meals",
+     *     @OA\Parameter(
+     *         description="ID of user",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return the list of nutritional info from users meals"
+     *       )
+     *     )
+     */
     public function getNutritionalInfoByUser(Request $request, $id) {
         $parsedDates = [];
         $i = 0;
@@ -168,6 +240,29 @@ class MealControllerAPI extends Controller
         return Response::json(['data' => $data], 200);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/meals/{id}",
+     *      operationId="meals",
+     *      tags={"Meal"},
+     *      summary="Return the meal by id",
+     *      description="Return the meal by id",
+     *      @OA\Parameter(
+     *         description="ID of meal",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return the meal by id"
+     *       )
+     *     )
+     */
     public function show(Request $request, $id) {
         $meal = Meal::find($id);
 
@@ -203,6 +298,66 @@ class MealControllerAPI extends Controller
         return $value;
     }
 
+    /**
+     * @OA\Post(
+     *      path="/api/meals",
+     *      operationId="Creates new meal",
+     *      tags={"Meal"},
+     *      summary="Creates new meal",
+     *      description="Creates new meal",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="multipart/form-data",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="name",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="quantity",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="relativeUnit",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="type",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     description="food photo to upload",
+     *                     property="foodPhoto",
+     *                     type="string",
+     *                     format="file",
+     *                 ),
+     *                 @OA\Property(
+     *                     description="nutritional info photo to upload",
+     *                     property="nutritionalInfoPhoto",
+     *                     type="string",
+     *                     format="file",
+     *                 ),
+     *                 @OA\Property(
+     *                     property="date",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="time",
+     *                     type="string"
+     *                 ),
+     *                @OA\Property(
+     *                    property="observations",
+     *                    type="string"
+     *                ),
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return meal"
+     *       )
+     *     )
+     */
     public function store(Request $request) {
         $request->validate([
             'name' => 'required|min:3',
@@ -230,10 +385,8 @@ class MealControllerAPI extends Controller
                 $constraint->aspectRatio();
             });
 
-            // $path = basename($image->store('food', 'public'));
             $path = basename($image->store('food', 's3'));
             Storage::disk('s3')->put('food/thumb_'.$path, $thumbnail->stream());
-            // Storage::put('public/food/thumb_'.$path, $thumbnail->stream());
             $meal->foodPhotoUrl = basename($path);
         }
 
@@ -243,10 +396,8 @@ class MealControllerAPI extends Controller
             $thumbnail->resize(null, 200, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            // $path = basename($image->store('nutritionalInfo', 'public'));
             $path = basename($image->store('nutritionalInfo', 's3'));
             Storage::disk('s3')->put('nutritionalInfo/thumb_'.$path, $thumbnail->stream());
-            // Storage::put('public/nutritionalInfo/thumb_'.$path, $thumbnail->stream());
             $meal->nutritionalInfoPhotoUrl = basename($path);
         }
 
@@ -327,6 +478,42 @@ class MealControllerAPI extends Controller
         return new MealResource($meal);
     }
 
+    /**
+     * @OA\Post(
+     *      path="meals/{id}/photo",
+     *      operationId="Update meal image",
+     *      tags={"Meal"},
+     *      summary="Update meal image",
+     *      description="Update meal image",
+     *      @OA\Parameter(
+     *         description="ID of meal",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="multipart/form-data",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     description="update meal and nutritional info image",
+     *                     property="file",
+     *                     type="string",
+     *                     format="file",
+     *                 ),
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="meal image updated"
+     *       )
+     *     )
+     */
     public function updateMealImage(Request $request, $id) {
         $meal = Meal::find($id);
 
@@ -366,6 +553,40 @@ class MealControllerAPI extends Controller
         return Response::json(['data' => basename($path)], 200);
     }
 
+    /**
+     * @OA\Put(
+     *      path="/api/meals/{id}",
+     *      operationId="Update quantity by id",
+     *      tags={"Meal"},
+     *      summary="Update quantity by id",
+     *      description="Update quantity by id",
+     *      @OA\Parameter(
+     *         description="ID of meal",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="quantity",
+     *                     type="string"
+     *                 ),
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return updated meal"
+     *       )
+     *     )
+     */
     public function updateQuantity(Request $request, $id) {
         $meal = Meal::find($id);
 
@@ -378,6 +599,64 @@ class MealControllerAPI extends Controller
         return new MealResource($meal);
     }
 
+    /**
+     * @OA\Put(
+     *      path="/api/meals-update/{id}",
+     *      operationId="Update meal by id",
+     *      tags={"Meal"},
+     *      summary="Update meal by id",
+     *      description="Update meal by id",
+     *      @OA\Parameter(
+     *         description="ID of meal",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="name",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="quantity",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="relativeUnit",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="type",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="date",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="time",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="observations",
+     *                     type="string"
+     *                 ),
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return updated meal"
+     *       )
+     *     )
+     */
     public function update(Request $request, $id) {
         $meal = Meal::find($id);
 
@@ -401,6 +680,29 @@ class MealControllerAPI extends Controller
         return new MealResource($meal);
     }
 
+    /**
+     * @OA\Delete(
+     *      path="/api/meals/{id}",
+     *      operationId="Delete meal",
+     *      tags={"Meal"},
+     *      summary="Delete meal",
+     *      description="Delete meal",
+     *      @OA\Parameter(
+     *         description="ID of meal",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return meal"
+     *       )
+     *     )
+     */
     public function destroy ($id)
     {
         $meal = Meal::find($id);
@@ -414,15 +716,11 @@ class MealControllerAPI extends Controller
         if($meal->foodPhotoUrl) {
             Storage::disk('s3')->delete('food/'.$meal->foodPhotoUrl);
             Storage::disk('s3')->delete('food/thumb_'.$meal->foodPhotoUrl);
-            // Storage::disk('public')->delete('food/'.$meal->foodPhotoUrl);
-            // Storage::disk('public')->delete('food/thumb_'.$meal->foodPhotoUrl);
         }
 
         if ($meal->nutritionalInfoPhotoUrl) {
             Storage::disk('s3')->delete('nutritionalInfo/'.$meal->nutritionalInfoPhotoUrl);
             Storage::disk('s3')->delete('nutritionalInfo/thumb_'.$meal->nutritionalInfoPhotoUrl);
-            // Storage::disk('public')->delete('nutritionalInfo/'.$meal->nutritionalInfoPhotoUrl);
-            // Storage::disk('public')->delete('nutritionalInfo/thumb_'.$meal->nutritionalInfoPhotoUrl);
         }
 
         foreach ($nutritionalInfo as $nutri){

@@ -13,6 +13,52 @@ use Response;
 
 class SleepControllerAPI extends Controller
 {
+    /**
+     * @OA\Post(
+     *      path="/api/sleeps",
+     *      operationId="Creates new sleep",
+     *      tags={"Sleep"},
+     *      summary="Creates new sleep",
+     *      description="Creates new sleep",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="date",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="wakeUpTime",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="sleepTime",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="hasWakeUp",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="activities",
+     *                     type="array",
+     *                     @OA\Items(type="string")
+     *                 ),
+     *                 @OA\Property(
+     *                     property="motives",
+     *                     type="array",
+     *                     @OA\Items(type="string")
+     *                 ),
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return usf"
+     *       )
+     *     )
+     */
     public function store(Request $request)
     {
         if(Auth::guard('api')->user()->role != 'PATIENT') {
@@ -66,6 +112,29 @@ class SleepControllerAPI extends Controller
         return new SleepResource($sleep);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/sleeps/stats/{id}",
+     *      operationId="Get sleep stats by user",
+     *      tags={"Sleep"},
+     *      summary="Get sleep stats by user",
+     *      description="Get sleep stats by user",
+     *      @OA\Parameter(
+     *         description="ID of user",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return the list of sleep stats by user"
+     *       )
+     *     )
+     */
     public function getSleepStatsByUser($id)
     {
         $user=User::find($id);
@@ -139,6 +208,19 @@ class SleepControllerAPI extends Controller
         return abs($totalHoursSleep - $totalHoursWakeUp);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/sleeps/myStats",
+     *      operationId="Get auth user sleep stats",
+     *      tags={"Sleep"},
+     *      summary="Get auth user sleep stats",
+     *      description="Get auth user sleep stats",
+     *      @OA\Response(
+     *          response=200,
+     *          description="return auth user sleep stats"
+     *       )
+     *     )
+     */
     public static function getSleepStatsForAuthUser(Request $request) {
         if($request->user()->role != 'PATIENT') {
             return Response::json(['error' => 'Accesso proibido!'], 401);
@@ -169,6 +251,29 @@ class SleepControllerAPI extends Controller
         return Response::json(['data' => $valuesToFilter]);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/sleeps/{id}",
+     *      operationId="Get sleep by id",
+     *      tags={"Sleep"},
+     *      summary="Get sleep by id",
+     *      description="Get by id",
+     *      @OA\Parameter(
+     *         description="ID of sleep",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return sleep"
+     *       )
+     *     )
+     */
     public function show($id)
     {
         $sleeps = Sleep::where('userId', $id)->get();
@@ -185,6 +290,19 @@ class SleepControllerAPI extends Controller
         return SleepResource::collection($sleeps);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/sleepsByDate",
+     *      operationId="Get sleep dates",
+     *      tags={"Sleep"},
+     *      summary="Get sleep dates",
+     *      description="Get sleep dates",
+     *      @OA\Response(
+     *          response=200,
+     *          description="return the list of sleep dates"
+     *       )
+     *     )
+     */
     public function getSleepDates(Request $request)
     {
         if(Auth::guard('api')->user()->role != 'PATIENT') {
@@ -202,6 +320,19 @@ class SleepControllerAPI extends Controller
         return Response::json(['data' => $dates]);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/sleeps/export",
+     *      operationId="Export sleep data to xlsx",
+     *      tags={"Sleep"},
+     *      summary="Export sleep data to xlsx",
+     *      description="Export sleep data to xlsx",
+     *      @OA\Response(
+     *          response=200,
+     *          description="downlaod xlsx file"
+     *       )
+     *     )
+     */
     public function export()
     {
         return Excel::download(new SleepsExport, 'sleeps.xlsx');

@@ -19,7 +19,7 @@ Route::middleware(['auth:api', 'admin'])->post('users/register', 'UserController
 Route::middleware(['auth:api'])->get('users/me', 'UserControllerAPI@getAuthenticatedUser');
 Route::middleware(['auth:api'])->get('users/{id}', 'UserControllerAPI@show');
 Route::post('users', 'UserControllerAPI@store');
-Route::put('users/{id}/activate', 'UserControllerAPI@activate');
+// Route::put('users/{id}/activate', 'UserControllerAPI@activate');
 Route::middleware(['auth:api', 'intern'])->post('patients', 'UserControllerAPI@getPatients');
 Route::middleware(['auth:api', 'professional'])->delete('patients/{id}', 'UserControllerAPI@deletePatient');
 Route::middleware(['auth:api', 'admin'])->delete('users/{id}', 'UserControllerAPI@destroy');
@@ -108,6 +108,7 @@ Route::middleware(['auth:api', 'intern'])->get('sleeps/export', 'SleepController
 Route::middleware(['auth:api', 'intern'])->get('sleeps/{id}', 'SleepControllerAPI@show');
 Route::middleware(['auth:api', 'intern'])->get('sleeps/stats/{id}', 'SleepControllerAPI@getSleepStatsByUser');
 
+// 1 2 3 4 5 6 7 8 9
 // Mobile Stats
 Route::middleware(['auth:api', 'patient'])->get('stats', 'MobileStatsControllerAPI@getStats');
 

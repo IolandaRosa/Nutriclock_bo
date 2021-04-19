@@ -11,6 +11,40 @@ use Response;
 
 class NutritionalInfoControllerAPI extends Controller
 {
+    /**
+     * @OA\Put(
+     *      path="/api/nutritional-info/{id}",
+     *      operationId="Update nutritional info",
+     *      tags={"Nutritional Info"},
+     *      summary="Update nutritional info",
+     *      description="Update nutritional info",
+     *      @OA\Parameter(
+     *         description="ID of nutritional info",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="value",
+     *                     type="string"
+     *                 ),
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return usf"
+     *       )
+     *     )
+     */
     public function update(Request $request, $id)
     {
         if(Auth::guard('api')->user()->role != 'ADMIN' && Auth::guard('api')->user()->role != 'PROFESSIONAL'){
@@ -28,6 +62,136 @@ class NutritionalInfoControllerAPI extends Controller
         return new NutritionalInfoResource($nutritionalInfo);
     }
 
+    /**
+     * @OA\Put(
+     *      path="/api/nutrititional-info/meal/{id}",
+     *      operationId="Update meal nutritional info",
+     *      tags={"Nutritional Info"},
+     *      summary="Update meal nutritional info",
+     *      description="Update meal nutritional info",
+     *      @OA\Parameter(
+     *         description="ID of meal",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="name",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="quantity",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="energy_kcal",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="energy_kJ",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="water_g",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="protein_g",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="fats_g",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="carbo_hidrats_g",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="fiber_g",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="colesterol_mg",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="vitA_mg",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="vitD_pg",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="tiamina_mg",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="riboflavina_mg",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="niacina_mg",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="vitB6_mg",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="vit_B12_pg",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="vitC_mg",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="na_mg",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="k_mg",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="ca_mg",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="p_mg",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="mg_mg",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="fe_mg",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="zn_mg",
+     *                     type="string"
+     *                 ),
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return usf"
+     *       )
+     *     )
+     */
     public function updateByMeal(Request $request, $id)
     {
         $nutritionalInfo = NutritionalInfoStatic::where('name', $request->name)->first();
