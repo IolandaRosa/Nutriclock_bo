@@ -16,6 +16,19 @@ use Illuminate\Support\Facades\Response;
 
 class MobileStatsControllerAPI extends Controller
 {
+    /**
+     * @OA\Get(
+     *      path="/api/stats",
+     *      operationId="stats",
+     *      tags={"Mobile Stats"},
+     *      summary="Return mobile stats",
+     *      description="Return mobile stats",
+     *      @OA\Response(
+     *          response=200,
+     *          description="return mobile stats"
+     *       )
+     *     )
+     */
     public function getStats(Request $request) {
         if($request->user()->role != 'PATIENT') {
             return Response::json(['error' => 'Accesso proibido!'], 401);

@@ -480,7 +480,7 @@ class MealControllerAPI extends Controller
 
     /**
      * @OA\Post(
-     *      path="meals/{id}/photo",
+     *      path="/api/meals/{id}/photo",
      *      operationId="Update meal image",
      *      tags={"Meal"},
      *      summary="Update meal image",
