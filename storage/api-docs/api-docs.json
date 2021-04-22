@@ -1,0 +1,3522 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Nutriclock API",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/terms": {
+            "get": {
+                "tags": [
+                    "Acceptance Terms"
+                ],
+                "summary": "Return the last version acceptance terms",
+                "description": "Return the last version acceptance terms",
+                "operationId": "terms",
+                "responses": {
+                    "200": {
+                        "description": "return the last version acceptance terms"
+                    }
+                }
+            }
+        },
+        "/api/terms/{id}": {
+            "put": {
+                "tags": [
+                    "Acceptance Terms"
+                ],
+                "summary": "Update usf",
+                "description": "Update usf",
+                "operationId": "Update terms",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of terms",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return acceptance term"
+                    }
+                }
+            }
+        },
+        "/api/configs": {
+            "get": {
+                "tags": [
+                    "Configurations"
+                ],
+                "summary": "Return this list of configurations",
+                "description": "Return this list of configurations",
+                "operationId": "configs",
+                "responses": {
+                    "200": {
+                        "description": "return the list of configurations"
+                    }
+                }
+            }
+        },
+        "/api/configs/tips": {
+            "get": {
+                "tags": [
+                    "Configurations"
+                ],
+                "summary": "Return config tip status",
+                "description": "Return config tip status",
+                "operationId": "get config tip status",
+                "responses": {
+                    "200": {
+                        "description": "return config tip status"
+                    }
+                }
+            }
+        },
+        "/api/configs/{id}": {
+            "put": {
+                "tags": [
+                    "Configurations"
+                ],
+                "summary": "Update config status by id",
+                "description": "Update config status by id",
+                "operationId": "Update config status by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of config",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return usf"
+                    }
+                }
+            }
+        },
+        "/api/diseases": {
+            "get": {
+                "tags": [
+                    "Disease"
+                ],
+                "summary": "Return this list of diseases",
+                "description": "Return this list of diseases",
+                "operationId": "diseases",
+                "responses": {
+                    "200": {
+                        "description": "return the list of diseases"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Disease"
+                ],
+                "summary": "Creates new disease",
+                "description": "Creates new disease",
+                "operationId": "Creates new disease",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return disease"
+                    }
+                }
+            }
+        },
+        "/api/diseases/{id}": {
+            "put": {
+                "tags": [
+                    "Disease"
+                ],
+                "summary": "Update disease",
+                "description": "Update disease",
+                "operationId": "Update disease",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of disease",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return disease"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Disease"
+                ],
+                "summary": "Delete disease",
+                "description": "Delete disease",
+                "operationId": "Delete disease",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of disease",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return disease"
+                    }
+                }
+            }
+        },
+        "/api/exercises": {
+            "post": {
+                "tags": [
+                    "Exercise"
+                ],
+                "summary": "Creates new exercise",
+                "description": "Creates new exercise",
+                "operationId": "Creates new exercise for auth user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "endTime": {
+                                        "type": "string"
+                                    },
+                                    "startTime": {
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return exercise"
+                    }
+                }
+            }
+        },
+        "/api/exercises/dates": {
+            "get": {
+                "tags": [
+                    "Exercise"
+                ],
+                "summary": "Return this list of exercises dates for auth user",
+                "description": "Return this list of exercises dates for auth user",
+                "operationId": "exercises dates",
+                "responses": {
+                    "200": {
+                        "description": "return the list of exercises dates for auth user"
+                    }
+                }
+            }
+        },
+        "/api/exercises/detail/{date}": {
+            "get": {
+                "tags": [
+                    "Exercise"
+                ],
+                "summary": "Return this list of exercises by date for auth user",
+                "description": "Return this list of exercises by date for auth user",
+                "operationId": "get exercises by date for auth user",
+                "parameters": [
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "description": "date of exercise",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return the list of exercises by date for auth user"
+                    }
+                }
+            }
+        },
+        "/api/exercises/stats": {
+            "get": {
+                "tags": [
+                    "Exercise"
+                ],
+                "summary": "Return this list of exercises stats for auth user",
+                "description": "Return this list of exercises stats for auth user",
+                "operationId": "exercises stats for auth user",
+                "responses": {
+                    "200": {
+                        "description": "return the list of exercises stats for auth user"
+                    }
+                }
+            }
+        },
+        "/api/exercises/admin/{id}": {
+            "get": {
+                "tags": [
+                    "Exercise"
+                ],
+                "summary": "Return exercises by user",
+                "description": "Return exercises by user",
+                "operationId": "get exercises by user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "returnexercises by user"
+                    }
+                }
+            }
+        },
+        "/api/exercises/admin/stats/{id}": {
+            "get": {
+                "tags": [
+                    "Exercise"
+                ],
+                "summary": "Return exercises stats by user",
+                "description": "Return exercises stats by user",
+                "operationId": "get exercises stats by user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return exercise stats by user"
+                    }
+                }
+            }
+        },
+        "/api/exercises/list": {
+            "get": {
+                "tags": [
+                    "Exercises Static"
+                ],
+                "summary": "Return this list exercises static",
+                "description": "Return this list exercises static",
+                "operationId": "exercises static list",
+                "responses": {
+                    "200": {
+                        "description": "return the list exercises static"
+                    }
+                }
+            }
+        },
+        "/api/exercises-static": {
+            "post": {
+                "tags": [
+                    "Exercises Static"
+                ],
+                "summary": "Creates new exercise static",
+                "description": "Creates new exercise static",
+                "operationId": "Creates new exercise static",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "met": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return exercise static"
+                    }
+                }
+            }
+        },
+        "/api/exercises-static/{id}": {
+            "put": {
+                "tags": [
+                    "Exercises Static"
+                ],
+                "summary": "Update exercise static",
+                "description": "Update exercise static",
+                "operationId": "Update exercise static",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of exercise static",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "met": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return exercise static"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Exercises Static"
+                ],
+                "summary": "Delete exercise static",
+                "description": "Delete exercise static",
+                "operationId": "Delete exercise static",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of exercise static",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return exercise static"
+                    }
+                }
+            }
+        },
+        "/api/households": {
+            "get": {
+                "tags": [
+                    "Households Static"
+                ],
+                "summary": "Return this list households static",
+                "description": "Return this list households static",
+                "operationId": "households static list",
+                "responses": {
+                    "200": {
+                        "description": "return the list households static"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Households Static"
+                ],
+                "summary": "Creates new household static",
+                "description": "Creates new household static",
+                "operationId": "Creates new household static",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "met": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return household static"
+                    }
+                }
+            }
+        },
+        "/api/households/{id}": {
+            "put": {
+                "tags": [
+                    "Households Static"
+                ],
+                "summary": "Update household static",
+                "description": "Update household static",
+                "operationId": "Update household static",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of household static",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "met": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return household static"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Households Static"
+                ],
+                "summary": "Delete household static",
+                "description": "Delete household static",
+                "operationId": "Delete household static",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of household static",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return household static"
+                    }
+                }
+            }
+        },
+        "/api/ingredient/{id}": {
+            "post": {
+                "tags": [
+                    "Ingredient"
+                ],
+                "summary": "Creates new ingredient in meal plan",
+                "description": "Creates new ingredient in meal plan",
+                "operationId": "Creates new ingredient in meal plan",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "ingredients": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return ingredient"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Ingredient"
+                ],
+                "summary": "Delete ingredient",
+                "description": "Delete ingredient",
+                "operationId": "Delete ingredient",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of ingredient",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return ingredient"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Authetication"
+                ],
+                "summary": "Login user in app",
+                "description": "Login user in app",
+                "operationId": "login",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return access token"
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Authetication"
+                ],
+                "summary": "Logout user in app",
+                "description": "Logout user in app",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "logout"
+                    }
+                }
+            }
+        },
+        "/api/meals": {
+            "get": {
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Return this list of meals",
+                "description": "Return this list of meals",
+                "operationId": "meals",
+                "responses": {
+                    "200": {
+                        "description": "return the list of meals"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Creates new meal",
+                "description": "Creates new meal",
+                "operationId": "Creates new meal",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "quantity": {
+                                        "type": "string"
+                                    },
+                                    "relativeUnit": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "foodPhoto": {
+                                        "description": "food photo to upload",
+                                        "type": "string",
+                                        "format": "file"
+                                    },
+                                    "nutritionalInfoPhoto": {
+                                        "description": "nutritional info photo to upload",
+                                        "type": "string",
+                                        "format": "file"
+                                    },
+                                    "date": {
+                                        "type": "string"
+                                    },
+                                    "time": {
+                                        "type": "string"
+                                    },
+                                    "observations": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return meal"
+                    }
+                }
+            }
+        },
+        "/api/meals-user": {
+            "get": {
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Return this list of auth user meals",
+                "description": "Return this list of auth user meals",
+                "operationId": "meals",
+                "responses": {
+                    "200": {
+                        "description": "return the list of auth user meals"
+                    }
+                }
+            }
+        },
+        "/api/meals/{id}/user": {
+            "get": {
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Return this list of user meals",
+                "description": "Return this list of user meals",
+                "operationId": "meals",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return the list of user meals"
+                    }
+                }
+            }
+        },
+        "/api/meals/{id}/nutritional": {
+            "get": {
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Return the list of nutritional info from users meals",
+                "description": "Return the list of nutritional info from users meals",
+                "operationId": "meals",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return the list of nutritional info from users meals"
+                    }
+                }
+            }
+        },
+        "/api/meals/{id}": {
+            "get": {
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Return the meal by id",
+                "description": "Return the meal by id",
+                "operationId": "meals",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of meal",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return the meal by id"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Update quantity by id",
+                "description": "Update quantity by id",
+                "operationId": "Update quantity by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of meal",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "quantity": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return updated meal"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Delete meal",
+                "description": "Delete meal",
+                "operationId": "Delete meal",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of meal",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return meal"
+                    }
+                }
+            }
+        },
+        "/api/meals/{id}/photo": {
+            "post": {
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Update meal image",
+                "description": "Update meal image",
+                "operationId": "Update meal image",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of meal",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "file": {
+                                        "description": "update meal and nutritional info image",
+                                        "type": "string",
+                                        "format": "file"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "meal image updated"
+                    }
+                }
+            }
+        },
+        "/api/meals-update/{id}": {
+            "put": {
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Update meal by id",
+                "description": "Update meal by id",
+                "operationId": "Update meal by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of meal",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "quantity": {
+                                        "type": "string"
+                                    },
+                                    "relativeUnit": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "type": "string"
+                                    },
+                                    "time": {
+                                        "type": "string"
+                                    },
+                                    "observations": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return updated meal"
+                    }
+                }
+            }
+        },
+        "/api/meal-type-stats/{id}": {
+            "get": {
+                "tags": [
+                    "Meal Plan"
+                ],
+                "summary": "Return stats by plan id",
+                "description": "Return stats by plan id",
+                "operationId": "meal type stats by plan id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of plan",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return stats by plan id"
+                    }
+                }
+            }
+        },
+        "/api/meal-type-stats": {
+            "post": {
+                "tags": [
+                    "Meal Plan"
+                ],
+                "summary": "Update plan stat when add ingredients",
+                "description": "Update plan stat when add ingredients",
+                "operationId": "Update plan stat when add ingredients",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "ingredients": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return meal type stats"
+                    }
+                }
+            }
+        },
+        "/api/meal-plans": {
+            "post": {
+                "tags": [
+                    "Meal Plan"
+                ],
+                "summary": "Creates new meal plan",
+                "description": "Creates new meal plan",
+                "operationId": "Creates new meal plan",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "userId": {
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "type": "string"
+                                    },
+                                    "dayOfWeek": {
+                                        "type": "string"
+                                    },
+                                    "meals": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return meal plan"
+                    }
+                }
+            }
+        },
+        "/api/meal-type/{id}": {
+            "post": {
+                "tags": [
+                    "Meal Plan"
+                ],
+                "summary": "Add meal type to plan",
+                "description": "Add meal type to plan",
+                "operationId": "Add meal type to plan",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of plan",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "portion": {
+                                        "type": "string"
+                                    },
+                                    "time": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return meal plan"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Meal Plan"
+                ],
+                "summary": "Delete meal plan type",
+                "description": "Delete meal plan type",
+                "operationId": "Delete meal plan type",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of meal plan type",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return usf"
+                    }
+                }
+            }
+        },
+        "/api/meal-plans-dates/{id}": {
+            "get": {
+                "tags": [
+                    "Meal Plan"
+                ],
+                "summary": "Return meal plan dates list",
+                "description": "Return meal plan dates list",
+                "operationId": "get meal plan dates list",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of plan",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return meal plan dates list"
+                    }
+                }
+            }
+        },
+        "/api/meal-plans/{id}/{date}": {
+            "get": {
+                "tags": [
+                    "Meal Plan"
+                ],
+                "summary": "Return meal plan by id by date",
+                "description": "Return meal plan by id by date",
+                "operationId": "get meal plan by id by date",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of plan",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "description": "date",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return meal plan"
+                    }
+                }
+            }
+        },
+        "/api/meal-types-patient/{date}": {
+            "get": {
+                "tags": [
+                    "Meal Plan"
+                ],
+                "summary": "Return patient plan by date",
+                "description": "Return patient plan by date",
+                "operationId": "get patient plan by date",
+                "parameters": [
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "description": "date",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return meal plan from date"
+                    }
+                }
+            }
+        },
+        "/api/meal-history-patient/{date}": {
+            "get": {
+                "tags": [
+                    "Meal Plan"
+                ],
+                "summary": "Return patient history time",
+                "description": "Return patient history time",
+                "operationId": "get patient history time",
+                "parameters": [
+                    {
+                        "name": "date",
+                        "in": "path",
+                        "description": "date",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return patient history time"
+                    }
+                }
+            }
+        },
+        "/api/medications": {
+            "get": {
+                "tags": [
+                    "Medication"
+                ],
+                "summary": "Return this list of medications",
+                "description": "Return this list of medications",
+                "operationId": "Medication",
+                "responses": {
+                    "200": {
+                        "description": "return the list of medications"
+                    }
+                }
+            }
+        },
+        "/api/medications/{userId}": {
+            "get": {
+                "tags": [
+                    "Medication"
+                ],
+                "summary": "Get medication by user",
+                "description": "Get medication by user",
+                "operationId": "Get medication by user",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "ID of user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return list of medication from user"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Medication"
+                ],
+                "summary": "Creates new medication for user",
+                "description": "Creates new medication for user",
+                "operationId": "Creates new medication for user",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "ID of user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "timesAWeek": {
+                                        "type": "string"
+                                    },
+                                    "timesADay": {
+                                        "type": "string"
+                                    },
+                                    "posology": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return medication"
+                    }
+                }
+            }
+        },
+        "/api/medication/{id}": {
+            "get": {
+                "tags": [
+                    "Medication"
+                ],
+                "summary": "Get medication by id",
+                "description": "Get medication by id",
+                "operationId": "Get medication by user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of medication",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return medication"
+                    }
+                }
+            }
+        },
+        "/api/medications/{id}": {
+            "put": {
+                "tags": [
+                    "Medication"
+                ],
+                "summary": "Update medication for user",
+                "description": "Update medication for user",
+                "operationId": "Update medication for user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of medication",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "timesAWeek": {
+                                        "type": "string"
+                                    },
+                                    "timesADay": {
+                                        "type": "string"
+                                    },
+                                    "posology": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return medication"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Medication"
+                ],
+                "summary": "Delete medication",
+                "description": "Delete medication",
+                "operationId": "Delete medication",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of medication",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return medication"
+                    }
+                }
+            }
+        },
+        "/api/medications-auth": {
+            "get": {
+                "tags": [
+                    "Medication"
+                ],
+                "summary": "Get medication by auth user",
+                "description": "Get medication by auth user",
+                "operationId": "Get medication by auth user",
+                "responses": {
+                    "200": {
+                        "description": "return list of medication"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Medication"
+                ],
+                "summary": "Creates new medication for auth user",
+                "description": "Creates new medication for auth user",
+                "operationId": "Creates new medication for auth user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "timesAWeek": {
+                                        "type": "string"
+                                    },
+                                    "timesADay": {
+                                        "type": "string"
+                                    },
+                                    "posology": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return medication"
+                    }
+                }
+            }
+        },
+        "/api/messages": {
+            "get": {
+                "tags": [
+                    "Message"
+                ],
+                "summary": "Return the message history",
+                "description": "Return the message history",
+                "operationId": "get messages",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of message",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return  the message history"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Message"
+                ],
+                "summary": "Creates new message",
+                "description": "Creates new message",
+                "operationId": "Creates new message",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "senderId": {
+                                        "type": "string"
+                                    },
+                                    "senderName": {
+                                        "type": "string"
+                                    },
+                                    "senderPhotoUrl": {
+                                        "type": "string"
+                                    },
+                                    "receiverId": {
+                                        "type": "string"
+                                    },
+                                    "receiverName": {
+                                        "type": "string"
+                                    },
+                                    "receiverPhotoUrl": {
+                                        "type": "string"
+                                    },
+                                    "message": {
+                                        "type": "string"
+                                    },
+                                    "refMessageId": {
+                                        "type": "string"
+                                    },
+                                    "read": {
+                                        "type": "string"
+                                    },
+                                    "fromModal": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return message"
+                    }
+                }
+            }
+        },
+        "/api/messages/unread": {
+            "get": {
+                "tags": [
+                    "Message"
+                ],
+                "summary": "Return this list of unread messages for auth user",
+                "description": "Return this list of unread messages for auth user",
+                "operationId": "messages unread",
+                "responses": {
+                    "200": {
+                        "description": "return the list of unread messages for auth user"
+                    }
+                }
+            }
+        },
+        "/api/messages/unread-count": {
+            "get": {
+                "tags": [
+                    "Message"
+                ],
+                "summary": "Return total of unread messages for auth user",
+                "description": "Return total of unread messages for auth user",
+                "operationId": "count messages unread",
+                "responses": {
+                    "200": {
+                        "description": "return total of unread messages for auth user"
+                    }
+                }
+            }
+        },
+        "/api/messages/read/{id}": {
+            "put": {
+                "tags": [
+                    "Message"
+                ],
+                "summary": "Mark message as read",
+                "description": "Mark message as read",
+                "operationId": "Mark message as read",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of message",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Mark message as read"
+                    }
+                }
+            }
+        },
+        "/api/messagesFromUser/{id}": {
+            "get": {
+                "tags": [
+                    "Message"
+                ],
+                "summary": "Return the list of messages by receiver id",
+                "description": "Return the list of messages by receiver id",
+                "operationId": "get messages by receiver id",
+                "responses": {
+                    "200": {
+                        "description": "Return the list of messages by receiver id"
+                    }
+                }
+            }
+        },
+        "/api/stats": {
+            "get": {
+                "tags": [
+                    "Mobile Stats"
+                ],
+                "summary": "Return mobile stats",
+                "description": "Return mobile stats",
+                "operationId": "stats",
+                "responses": {
+                    "200": {
+                        "description": "return mobile stats"
+                    }
+                }
+            }
+        },
+        "/api/notifications": {
+            "get": {
+                "tags": [
+                    "Notification"
+                ],
+                "summary": "Get notification from user",
+                "description": "Get notification from user",
+                "operationId": "Get notification from user",
+                "responses": {
+                    "200": {
+                        "description": "return notification from user"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Notification"
+                ],
+                "summary": "Creates new notification",
+                "description": "Creates new notification",
+                "operationId": "Creates new notification",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "notificationsSleep": {
+                                        "type": "string"
+                                    },
+                                    "notificationsExercise": {
+                                        "type": "string"
+                                    },
+                                    "notificationsMealDiary": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return notification"
+                    }
+                }
+            }
+        },
+        "/api/nutritional-info/{id}": {
+            "put": {
+                "tags": [
+                    "Nutritional Info"
+                ],
+                "summary": "Update nutritional info",
+                "description": "Update nutritional info",
+                "operationId": "Update nutritional info",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of nutritional info",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return usf"
+                    }
+                }
+            }
+        },
+        "/api/nutrititional-info/meal/{id}": {
+            "put": {
+                "tags": [
+                    "Nutritional Info"
+                ],
+                "summary": "Update meal nutritional info",
+                "description": "Update meal nutritional info",
+                "operationId": "Update meal nutritional info",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of meal",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "quantity": {
+                                        "type": "string"
+                                    },
+                                    "energy_kcal": {
+                                        "type": "string"
+                                    },
+                                    "energy_kJ": {
+                                        "type": "string"
+                                    },
+                                    "water_g": {
+                                        "type": "string"
+                                    },
+                                    "protein_g": {
+                                        "type": "string"
+                                    },
+                                    "fats_g": {
+                                        "type": "string"
+                                    },
+                                    "carbo_hidrats_g": {
+                                        "type": "string"
+                                    },
+                                    "fiber_g": {
+                                        "type": "string"
+                                    },
+                                    "colesterol_mg": {
+                                        "type": "string"
+                                    },
+                                    "vitA_mg": {
+                                        "type": "string"
+                                    },
+                                    "vitD_pg": {
+                                        "type": "string"
+                                    },
+                                    "tiamina_mg": {
+                                        "type": "string"
+                                    },
+                                    "riboflavina_mg": {
+                                        "type": "string"
+                                    },
+                                    "niacina_mg": {
+                                        "type": "string"
+                                    },
+                                    "vitB6_mg": {
+                                        "type": "string"
+                                    },
+                                    "vit_B12_pg": {
+                                        "type": "string"
+                                    },
+                                    "vitC_mg": {
+                                        "type": "string"
+                                    },
+                                    "na_mg": {
+                                        "type": "string"
+                                    },
+                                    "k_mg": {
+                                        "type": "string"
+                                    },
+                                    "ca_mg": {
+                                        "type": "string"
+                                    },
+                                    "p_mg": {
+                                        "type": "string"
+                                    },
+                                    "mg_mg": {
+                                        "type": "string"
+                                    },
+                                    "fe_mg": {
+                                        "type": "string"
+                                    },
+                                    "zn_mg": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return usf"
+                    }
+                }
+            }
+        },
+        "/api/meal-names": {
+            "get": {
+                "tags": [
+                    "Nutritional Info Static"
+                ],
+                "summary": "Return this list of nutritional info static names",
+                "description": "Return this list of nutritional info static names",
+                "operationId": "Nutritional Info Static",
+                "responses": {
+                    "200": {
+                        "description": "return the list of nutritional info static names"
+                    }
+                }
+            }
+        },
+        "/api/meals-query/{query}": {
+            "get": {
+                "tags": [
+                    "Nutritional Info Static"
+                ],
+                "summary": "Query nutritional info static",
+                "description": "Query nutritional info static",
+                "operationId": "Query nutritional info static",
+                "parameters": [
+                    {
+                        "name": "query",
+                        "in": "path",
+                        "description": "Query the meal by name",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "query nutritional info static results"
+                    }
+                }
+            }
+        },
+        "/api/nutritional-info-static": {
+            "get": {
+                "tags": [
+                    "Nutritional Info Static"
+                ],
+                "summary": "Return this list of nutritional info static",
+                "description": "Return this list of nutritional info static",
+                "operationId": "Nutritional Info Static",
+                "responses": {
+                    "200": {
+                        "description": "return the list of nutritional info static"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Nutritional Info Static"
+                ],
+                "summary": "Creates new nutritional info static",
+                "description": "Creates new nutritional info static",
+                "operationId": "Creates new nutritional info static",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "code": {
+                                        "type": "string"
+                                    },
+                                    "energy_kcal": {
+                                        "type": "string"
+                                    },
+                                    "energy_kJ": {
+                                        "type": "string"
+                                    },
+                                    "water_g": {
+                                        "type": "string"
+                                    },
+                                    "protein_g": {
+                                        "type": "string"
+                                    },
+                                    "fats_g": {
+                                        "type": "string"
+                                    },
+                                    "carbo_hidrats_g": {
+                                        "type": "string"
+                                    },
+                                    "fiber_g": {
+                                        "type": "string"
+                                    },
+                                    "colesterol_mg": {
+                                        "type": "string"
+                                    },
+                                    "vitA_mg": {
+                                        "type": "string"
+                                    },
+                                    "vitD_pg": {
+                                        "type": "string"
+                                    },
+                                    "tiamina_mg": {
+                                        "type": "string"
+                                    },
+                                    "riboflavina_mg": {
+                                        "type": "string"
+                                    },
+                                    "niacina_mg": {
+                                        "type": "string"
+                                    },
+                                    "vitB6_mg": {
+                                        "type": "string"
+                                    },
+                                    "vit_B12_pg": {
+                                        "type": "string"
+                                    },
+                                    "vitC_mg": {
+                                        "type": "string"
+                                    },
+                                    "na_mg": {
+                                        "type": "string"
+                                    },
+                                    "k_mg": {
+                                        "type": "string"
+                                    },
+                                    "ca_mg": {
+                                        "type": "string"
+                                    },
+                                    "p_mg": {
+                                        "type": "string"
+                                    },
+                                    "mg_mg": {
+                                        "type": "string"
+                                    },
+                                    "fe_mg": {
+                                        "type": "string"
+                                    },
+                                    "zn_mg": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return nutritional info static"
+                    }
+                }
+            }
+        },
+        "/api/nutritional-info-static/{code}": {
+            "put": {
+                "tags": [
+                    "Nutritional Info Static"
+                ],
+                "summary": "Update nutritional info static",
+                "description": "Update nutritional info static",
+                "operationId": "Update nutritional info static",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "code": {
+                                        "type": "string"
+                                    },
+                                    "energy_kcal": {
+                                        "type": "string"
+                                    },
+                                    "energy_kJ": {
+                                        "type": "string"
+                                    },
+                                    "water_g": {
+                                        "type": "string"
+                                    },
+                                    "protein_g": {
+                                        "type": "string"
+                                    },
+                                    "fats_g": {
+                                        "type": "string"
+                                    },
+                                    "carbo_hidrats_g": {
+                                        "type": "string"
+                                    },
+                                    "fiber_g": {
+                                        "type": "string"
+                                    },
+                                    "colesterol_mg": {
+                                        "type": "string"
+                                    },
+                                    "vitA_mg": {
+                                        "type": "string"
+                                    },
+                                    "vitD_pg": {
+                                        "type": "string"
+                                    },
+                                    "tiamina_mg": {
+                                        "type": "string"
+                                    },
+                                    "riboflavina_mg": {
+                                        "type": "string"
+                                    },
+                                    "niacina_mg": {
+                                        "type": "string"
+                                    },
+                                    "vitB6_mg": {
+                                        "type": "string"
+                                    },
+                                    "vit_B12_pg": {
+                                        "type": "string"
+                                    },
+                                    "vitC_mg": {
+                                        "type": "string"
+                                    },
+                                    "na_mg": {
+                                        "type": "string"
+                                    },
+                                    "k_mg": {
+                                        "type": "string"
+                                    },
+                                    "ca_mg": {
+                                        "type": "string"
+                                    },
+                                    "p_mg": {
+                                        "type": "string"
+                                    },
+                                    "mg_mg": {
+                                        "type": "string"
+                                    },
+                                    "fe_mg": {
+                                        "type": "string"
+                                    },
+                                    "zn_mg": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return nutritional info static"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Nutritional Info Static"
+                ],
+                "summary": "Delete nutritional info",
+                "description": "Delete nutritional info",
+                "operationId": "Delete nutritional info",
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "path",
+                        "description": "ID of nutritional info",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return nutritional info"
+                    }
+                }
+            }
+        },
+        "/api/password": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Reset Password",
+                "description": "Reset Password",
+                "operationId": "Reset Password",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "email password reset"
+                    }
+                }
+            }
+        },
+        "/api/reset-password": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Reset user password",
+                "description": "Reset user password",
+                "operationId": "Reset Password",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "token": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "reset user password"
+                    }
+                }
+            }
+        },
+        "/api/password/{id}": {
+            "put": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Update user password by id",
+                "description": "Update user password by id",
+                "operationId": "Update user password by id",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "newPassword": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "changes the actual user password"
+                    }
+                }
+            }
+        },
+        "/api/email/{id}": {
+            "put": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Update user email by id",
+                "description": "Update user email by id",
+                "operationId": "Update user email by id",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "newEmail": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "changes the actual user email"
+                    }
+                }
+            }
+        },
+        "/api/professionalCategories": {
+            "get": {
+                "tags": [
+                    "Professional Category"
+                ],
+                "summary": "Return this list of professional categories",
+                "description": "Return this list of professional categories",
+                "operationId": "professionalCategories",
+                "responses": {
+                    "200": {
+                        "description": "return the list of professional categories"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Professional Category"
+                ],
+                "summary": "Creates new professional category",
+                "description": "Creates new professional category",
+                "operationId": "Creates new professional category",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return professional category"
+                    }
+                }
+            }
+        },
+        "/api/professionalCategories/{id}": {
+            "put": {
+                "tags": [
+                    "Professional Category"
+                ],
+                "summary": "Update professional category",
+                "description": "Update professional category",
+                "operationId": "Update professional category",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of professional category",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return professional category"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Professional Category"
+                ],
+                "summary": "Delete professional category",
+                "description": "Delete professional category",
+                "operationId": "Delete professional category",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of professional category",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return professional category deleted"
+                    }
+                }
+            }
+        },
+        "/api/sleeps": {
+            "post": {
+                "tags": [
+                    "Sleep"
+                ],
+                "summary": "Creates new sleep",
+                "description": "Creates new sleep",
+                "operationId": "Creates new sleep",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "date": {
+                                        "type": "string"
+                                    },
+                                    "wakeUpTime": {
+                                        "type": "string"
+                                    },
+                                    "sleepTime": {
+                                        "type": "string"
+                                    },
+                                    "hasWakeUp": {
+                                        "type": "string"
+                                    },
+                                    "activities": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "motives": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return usf"
+                    }
+                }
+            }
+        },
+        "/api/sleeps/stats/{id}": {
+            "get": {
+                "tags": [
+                    "Sleep"
+                ],
+                "summary": "Get sleep stats by user",
+                "description": "Get sleep stats by user",
+                "operationId": "Get sleep stats by user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return the list of sleep stats by user"
+                    }
+                }
+            }
+        },
+        "/api/sleeps/myStats": {
+            "get": {
+                "tags": [
+                    "Sleep"
+                ],
+                "summary": "Get auth user sleep stats",
+                "description": "Get auth user sleep stats",
+                "operationId": "Get auth user sleep stats",
+                "responses": {
+                    "200": {
+                        "description": "return auth user sleep stats"
+                    }
+                }
+            }
+        },
+        "/api/sleeps/{id}": {
+            "get": {
+                "tags": [
+                    "Sleep"
+                ],
+                "summary": "Get sleep by id",
+                "description": "Get by id",
+                "operationId": "Get sleep by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of sleep",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return sleep"
+                    }
+                }
+            }
+        },
+        "/api/sleepsByDate": {
+            "get": {
+                "tags": [
+                    "Sleep"
+                ],
+                "summary": "Get sleep dates",
+                "description": "Get sleep dates",
+                "operationId": "Get sleep dates",
+                "responses": {
+                    "200": {
+                        "description": "return the list of sleep dates"
+                    }
+                }
+            }
+        },
+        "/api/sleeps/export": {
+            "get": {
+                "tags": [
+                    "Sleep"
+                ],
+                "summary": "Export sleep data to xlsx",
+                "description": "Export sleep data to xlsx",
+                "operationId": "Export sleep data to xlsx",
+                "responses": {
+                    "200": {
+                        "description": "downlaod xlsx file"
+                    }
+                }
+            }
+        },
+        "/api/tips": {
+            "get": {
+                "tags": [
+                    "Sleep Tip"
+                ],
+                "summary": "Return this list of tips",
+                "description": "Return this list of tips",
+                "operationId": "tips",
+                "responses": {
+                    "200": {
+                        "description": "return the list of tips"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Sleep Tip"
+                ],
+                "summary": "Creates new tip",
+                "description": "Creates new tip",
+                "operationId": "Creates new tip",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return tip"
+                    }
+                }
+            }
+        },
+        "/api/tips/{id}": {
+            "put": {
+                "tags": [
+                    "Sleep Tip"
+                ],
+                "summary": "Update tip",
+                "description": "Update tip",
+                "operationId": "Update tip",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of tip",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return tip"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Sleep Tip"
+                ],
+                "summary": "Delete tip",
+                "description": "Delete tip",
+                "operationId": "Delete tip",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of tip",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return tip"
+                    }
+                }
+            }
+        },
+        "/api/ufcs": {
+            "get": {
+                "tags": [
+                    "USF"
+                ],
+                "summary": "Return this list of usf",
+                "description": "Return this list of usf",
+                "operationId": "ufcs",
+                "responses": {
+                    "200": {
+                        "description": "return the list of usf"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "USF"
+                ],
+                "summary": "Creates new usf",
+                "description": "Creates new usf",
+                "operationId": "Creates new usf",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return usf"
+                    }
+                }
+            }
+        },
+        "/api/ufcs/{id}": {
+            "put": {
+                "tags": [
+                    "USF"
+                ],
+                "summary": "Update usf",
+                "description": "Update usf",
+                "operationId": "Update usf",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of usf",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return usf"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "USF"
+                ],
+                "summary": "Delete usf",
+                "description": "Delete usf",
+                "operationId": "Delete usf",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of usf",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return usf"
+                    }
+                }
+            }
+        },
+        "/api/users/{id}/ufcs": {
+            "get": {
+                "tags": [
+                    "USF"
+                ],
+                "summary": "Get users from usf",
+                "description": "Get users from usf",
+                "operationId": "Get users from usf",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of usf",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return users from usf"
+                    }
+                }
+            }
+        },
+        "/api/ufcs/auth/description": {
+            "get": {
+                "tags": [
+                    "USF"
+                ],
+                "summary": "Get usf names for auth user",
+                "description": "Get usf names for auth user",
+                "operationId": "Get usf names for auth user",
+                "responses": {
+                    "200": {
+                        "description": "return users from usf"
+                    }
+                }
+            }
+        },
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Return this list of users in app",
+                "description": "Return this list of users in app",
+                "operationId": "users",
+                "responses": {
+                    "200": {
+                        "description": "return the list of users from app"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Creates new patient",
+                "description": "Creates new patient",
+                "operationId": "register a patient",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password",
+                                    "gender"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "gender": {
+                                        "type": "string"
+                                    },
+                                    "acceptTerms": {
+                                        "type": "boolean"
+                                    },
+                                    "diseases": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "birthday": {
+                                        "type": "string"
+                                    },
+                                    "ufc_id": {
+                                        "type": "boolean"
+                                    },
+                                    "height": {
+                                        "type": "string"
+                                    },
+                                    "weight": {
+                                        "type": "string"
+                                    },
+                                    "drugs": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "avatar": {
+                                        "description": "avatar to upload",
+                                        "type": "string",
+                                        "format": "file"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return user"
+                    }
+                }
+            }
+        },
+        "/api/admin/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Return this list of backoffice users in app",
+                "description": "Return this list of backoffice users in app",
+                "operationId": "admin users",
+                "responses": {
+                    "200": {
+                        "description": "return the list of backoffice users from app"
+                    }
+                }
+            }
+        },
+        "/api/users/register": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Creates new backoffice user",
+                "description": "Creates new backoffice user",
+                "operationId": "register backoffice user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "role": {
+                                        "type": "string"
+                                    },
+                                    "gender": {
+                                        "type": "string"
+                                    },
+                                    "usfIds": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "number"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return user"
+                    }
+                }
+            }
+        },
+        "/api/users/me": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Return auth user",
+                "description": "Return auth user",
+                "operationId": "auth users",
+                "responses": {
+                    "200": {
+                        "description": "return auth user"
+                    }
+                }
+            }
+        },
+        "/api/users/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Return user by id",
+                "description": "Return user by id",
+                "operationId": "return user by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of user to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return user"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update backoffice user",
+                "description": "Update backoffice user",
+                "operationId": "update backoffice user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "role": {
+                                        "type": "string"
+                                    },
+                                    "gender": {
+                                        "type": "string"
+                                    },
+                                    "usfIds": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "number"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return user"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Delete user",
+                "description": "Delete user",
+                "operationId": "users",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of user to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return user deleted"
+                    }
+                }
+            }
+        },
+        "/api/patients": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Return list of patients",
+                "description": "Return list of patients",
+                "operationId": "patients",
+                "responses": {
+                    "200": {
+                        "description": "return list patients"
+                    }
+                }
+            }
+        },
+        "/api/patients/{id}": {
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Delete patient",
+                "description": "Delte patient",
+                "operationId": "patients",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of user to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return patient deleted"
+                    }
+                }
+            }
+        },
+        "/api/users/{id}/status": {
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Toggle user active status",
+                "description": "Toggle user active status",
+                "operationId": "users",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of user to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return user toggled"
+                    }
+                }
+            }
+        },
+        "/api/users/profile/{id}": {
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Updates profile of a backoffice user",
+                "description": "Updates profile of a backoffice user",
+                "operationId": "update profile of a backoffice user",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "gender"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "gender": {
+                                        "type": "string"
+                                    },
+                                    "avatar": {
+                                        "description": "avatar to upload",
+                                        "type": "string",
+                                        "format": "file"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return user"
+                    }
+                }
+            }
+        },
+        "/api/users/terms/{id}": {
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update user terms",
+                "description": "Update user terms",
+                "operationId": "update user terms",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "terms_accepted": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return user"
+                    }
+                }
+            }
+        },
+        "/api/users/avatar": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Updates patient avatar",
+                "description": "Updates patient avatar",
+                "operationId": "update patient avatar",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "avatar"
+                                ],
+                                "properties": {
+                                    "avatar": {
+                                        "description": "avatar to upload",
+                                        "type": "string",
+                                        "format": "file"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return user"
+                    }
+                }
+            }
+        },
+        "/api/users/profile": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update patient profile",
+                "description": "Update patient profile",
+                "operationId": "update patient profile",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "weight": {
+                                        "type": "string"
+                                    },
+                                    "height": {
+                                        "type": "string"
+                                    },
+                                    "birthday": {
+                                        "type": "string"
+                                    },
+                                    "gender": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return user"
+                    }
+                }
+            }
+        },
+        "/api/users/diseases": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update patient diseases",
+                "description": "Update patient diseases",
+                "operationId": "update patient diseases",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "diseases": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return user"
+                    }
+                }
+            }
+        },
+        "/api/professionalsByUsf/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Return list of professionals by usf",
+                "description": "Return list of professionals by usf",
+                "operationId": "professionals by usf",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of usf",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return list users"
+                    }
+                }
+            }
+        },
+        "/api/forgot-me": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update request forget parameter",
+                "description": "Update request forget parameter",
+                "operationId": "Forget user",
+                "responses": {
+                    "200": {
+                        "description": "return user"
+                    }
+                }
+            }
+        },
+        "/api/forgot-me-count": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Forget user requests count",
+                "description": "Forget user requests count",
+                "operationId": "Forget user requests count",
+                "responses": {
+                    "200": {
+                        "description": "return total user forget requests"
+                    }
+                }
+            }
+        },
+        "/api/undo-forgot/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update user forget data",
+                "description": "Update user forget data",
+                "operationId": "Update user forget data",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return user"
+                    }
+                }
+            }
+        },
+        "/api/fcm": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update FCM token",
+                "description": "Update FCM token",
+                "operationId": "Update FCM token",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "fcmToken": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return user"
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
