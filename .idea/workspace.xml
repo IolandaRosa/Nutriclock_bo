@@ -385,13 +385,7 @@
       <workItem from="1618741737110" duration="12630000" />
       <workItem from="1618866997072" duration="6605000" />
       <workItem from="1618954160875" duration="5852000" />
-    </task>
-    <task id="LOCAL-00113" summary="medications change for profile">
-      <created>1612713035989</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1612713035990</updated>
+      <workItem from="1619113685038" duration="586000" />
     </task>
     <task id="LOCAL-00114" summary="change the chat list to show all contact from user usf">
       <created>1612714339700</created>
@@ -729,7 +723,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618960053702</updated>
     </task>
-    <option name="localTasksCounter" value="162" />
+    <task id="LOCAL-00162" summary="build for development">
+      <created>1619114271673</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1619114271673</updated>
+    </task>
+    <option name="localTasksCounter" value="163" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -757,7 +758,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add meal plan pages" />
     <MESSAGE value="design finished" />
     <MESSAGE value="updated ui for meal of plan without meal saving data" />
     <MESSAGE value="prepared api models with new database" />
@@ -782,6 +782,7 @@
     <MESSAGE value="add swagger docs" />
     <MESSAGE value="continue to add swagger docs" />
     <MESSAGE value="finished documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished documentation" />
+    <MESSAGE value="build for development" />
+    <option name="LAST_COMMIT_MESSAGE" value="build for development" />
   </component>
 </project>
