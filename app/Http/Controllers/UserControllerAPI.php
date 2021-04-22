@@ -1051,30 +1051,49 @@ class UserControllerAPI extends Controller
         return new UserResource($user);
     }
 
-    /*public function activate(Request $request, $id)
-    {
-        $request->validate([
-            'weight' => 'nullable|numeric',
-            'height' => 'nullable|numeric',
-            'birthday' => 'required|date',
-            'active' => 'required',
-            'diseases' => 'nullable|string'
-        ]);
-
+    /**
+     * @OA\Put(
+     *      path="/api/users/{id}/nutriclock-group",
+     *      operationId="Update nutriclock group",
+     *      tags={"Users"},
+     *      summary="Update nutriclock group",
+     *      description="Update nutriclock group",
+     *      @OA\Parameter(
+     *         description="ID of user",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="nutriclockGroup",
+     *                     type="boolean"
+     *                 ),
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return user"
+     *       )
+     *     )
+     */
+    public function updateNutriclockGroup(Request $request, $id) {
         $user = User::find($id);
 
         if (!$user) {
             return Response::json(['error' => 'O utilizador não existe.'], 404);
         }
 
-        $user->weight = $request->weight;
-        $user->height = $request->height;
-        $user->birthday = $request->birthday;
-        $user->active = $request->active;
-        $user->diseases = $request->diseases;
-
+        $user->nutriclockGroup = $request->nutriclockGroup;
         $user->save();
-
         return new UserResource($user);
-    }*/
+    }
 }

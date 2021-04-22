@@ -19,7 +19,6 @@ Route::middleware(['auth:api', 'admin'])->post('users/register', 'UserController
 Route::middleware(['auth:api'])->get('users/me', 'UserControllerAPI@getAuthenticatedUser');
 Route::middleware(['auth:api'])->get('users/{id}', 'UserControllerAPI@show');
 Route::post('users', 'UserControllerAPI@store');
-// Route::put('users/{id}/activate', 'UserControllerAPI@activate');
 Route::middleware(['auth:api', 'intern'])->post('patients', 'UserControllerAPI@getPatients');
 Route::middleware(['auth:api', 'professional'])->delete('patients/{id}', 'UserControllerAPI@deletePatient');
 Route::middleware(['auth:api', 'admin'])->delete('users/{id}', 'UserControllerAPI@destroy');
@@ -35,6 +34,7 @@ Route::middleware(['auth:api', 'patient'])->get('forgot-me', 'UserControllerAPI@
 Route::middleware(['auth:api', 'admin'])->get('forgot-me-count', 'UserControllerAPI@countForgetUserData');
 Route::middleware(['auth:api', 'admin'])->get('undo-forgot/{id}', 'UserControllerAPI@undoForgot');
 Route::middleware(['auth:api', 'patient'])->post('fcm', 'UserControllerAPI@fcmToken');
+Route::middleware(['auth:api', 'professional'])->put('users/{id}/nutriclock-group', 'UserControllerAPI@updateNutriclockGroup');
 
 // ProfessionalCategory API
 Route::middleware(['auth:api'])->get('professionalCategories', 'ProfessionalCategoryControllerAPI@index');
