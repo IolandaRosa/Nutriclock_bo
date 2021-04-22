@@ -94,13 +94,17 @@ export default {
             }, {
                 label: COLUMN_NAME.Email,
                 className: '',
-            }, EmptyObject],
+            }, {
+                label: COLUMN_NAME.NutriclockGroup,
+                className: 'text-center',
+            },  EmptyObject],
             columns: [
                 {...TableActionColumns.View, responsivePriority: 1},
                 {data: 'gender', responsivePriority: 6},
                 {data: 'parsedDate', responsivePriority: 7},
                 {data: 'ufc', responsivePriority: 5},
-                {data: 'email', responsivePriority: 4}
+                {data: 'email', responsivePriority: 4},
+                {...TableActionColumns.NutriclockGroup, responsivePriority: 2}
             ],
         };
     },
@@ -121,7 +125,7 @@ export default {
                     redrawTable(this.dataTable, this.data);
                     this.onCloseClick();
                 } catch(e) {
-                    this.showError('Não foi possivel eliminar o utente selecionado');
+                    this.showError('Não foi possivel eliminar o utente selecionado', 'error');
                 }
             }
         },
@@ -157,13 +161,13 @@ export default {
                     redrawTable(this.dataTable, this.data);
                     this.onCloseClick();
                 }).catch(() => {
-                    this.showError('Não foi possivel eliminar o utente selecionado');
+                    this.showError('Não foi possivel eliminar o utente selecionado', 'error');
                 });
             }
         },
-        showError(message) {
+        showError(message, className) {
             this.$toasted.show(message, {
-                type: 'error',
+                type: className,
                 duration: 3000,
                 position: 'top-right',
                 closeOnSwipe: true,
@@ -228,6 +232,22 @@ export default {
 
             this.selectedRow = row;
             this.showReplyModal = true;
+        },
+        onNutriclockGroupClick(row) {
+            console.log('group update', row.nutriclockGroup, !row.nutriclockGroup)
+            if (this.isFetching) return
+            this.isFetching = true;
+
+            axios.put(`api/users/${row.id}/nutriclock-group`, {
+                nutriclockGroup: !row.nutriclockGroup,
+            }).then(() => {
+                this.isFetching = false;
+                this.showError('O grupo foi atualizado', 'success');
+                this.onCloseClick();
+            }).catch(() => {
+                redrawTable(this.dataTable, this.data);
+                this.showError('Não foi possivel alterar o grupo do utilizador selecionado', 'error');
+            });
         }
     },
     async mounted() {
@@ -243,6 +263,7 @@ export default {
         onClickHandler(this.dataTable, this.onViewClick, '#patientsTable', TableActionClasses.View);
         if (this.$store.state.user.role === UserRoles.Admin) {
             onClickHandler(this.dataTable, this.onDeleteClick, '#patientsTable', TableActionClasses.Delete);
+            onClickHandler(this.dataTable, this.onNutriclockGroupClick, '#patientsTable', TableActionClasses.NutriclockGroup);
         }
         if (this.$store.state.user.role === UserRoles.Professional) {
             onClickHandler(this.dataTable, this.onMessageSend, '#patientsTable', TableActionClasses.Message);

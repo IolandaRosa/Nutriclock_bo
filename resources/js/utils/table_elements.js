@@ -44,5 +44,6 @@ export const COLUMN_NAME = {
     p_mg: 'Fósforo (mg)',
     mg_mg: 'Magnésio (mg)',
     fe_mg: 'Ferro (mg)',
-    zn_mg: 'Zinco (mg)'
+    zn_mg: 'Zinco (mg)',
+    NutriclockGroup: 'Grupo Nutriclock'
 };

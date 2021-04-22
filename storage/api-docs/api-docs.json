@@ -3514,6 +3514,47 @@
                     }
                 }
             }
+        },
+        "/api/users/{id}/nutriclock-group": {
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update nutriclock group",
+                "description": "Update nutriclock group",
+                "operationId": "Update nutriclock group",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nutriclockGroup": {
+                                        "type": "boolean"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return user"
+                    }
+                }
+            }
         }
     },
     "security": [
