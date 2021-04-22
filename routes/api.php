@@ -19,7 +19,7 @@ Route::middleware(['auth:api', 'admin'])->post('users/register', 'UserController
 Route::middleware(['auth:api'])->get('users/me', 'UserControllerAPI@getAuthenticatedUser');
 Route::middleware(['auth:api'])->get('users/{id}', 'UserControllerAPI@show');
 Route::post('users', 'UserControllerAPI@store');
-Route::put('users/{id}/activate', 'UserControllerAPI@activate');
+// Route::put('users/{id}/activate', 'UserControllerAPI@activate');
 Route::middleware(['auth:api', 'intern'])->post('patients', 'UserControllerAPI@getPatients');
 Route::middleware(['auth:api', 'professional'])->delete('patients/{id}', 'UserControllerAPI@deletePatient');
 Route::middleware(['auth:api', 'admin'])->delete('users/{id}', 'UserControllerAPI@destroy');
@@ -130,7 +130,7 @@ Route::middleware(['auth:api', 'professional'])->delete('messages/{id}', 'Messag
 Route::middleware(['auth:api', 'professional'])->put('messages/{id}', 'MessageControllerAPI@update');
 Route::middleware(['auth:api'])->post('messages', 'MessageControllerAPI@store');
 Route::middleware(['auth:api', 'professional'])->get('messages', 'MessageControllerAPI@messagesHistory');
-Route::middleware(['auth:api', 'patient'])->get('/messagesFromUser/{id}', 'MessageControllerAPI@getMessagesFromUser');
+Route::middleware(['auth:api', 'patient'])->get('messagesFromUser/{id}', 'MessageControllerAPI@getMessagesFromUser');
 
 // Exercise API
 Route::middleware(['auth:api', 'patient'])->post('/exercises', 'ExerciseControllerAPI@store');
@@ -153,13 +153,13 @@ Route::middleware(['auth:api', 'admin'])->put('/households/{id}', 'HouseholdStat
 Route::middleware(['auth:api', 'admin'])->delete('/households/{id}', 'HouseholdStaticControllerAPI@destroy');
 
 // Meal Plan API
+Route::middleware(['auth:api', 'intern'])->get('/meal-type-stats/{id}','MealPlanTypeControllerAPI@statsByPlanDay');
+Route::middleware(['auth:api', 'professional'])->post('/meal-type-stats','MealPlanTypeControllerAPI@statsMealType');
 Route::middleware(['auth:api', 'professional'])->post('/meal-plans','MealPlanTypeControllerAPI@store');
+Route::middleware(['auth:api', 'professional'])->post('/meal-type/{id}','MealPlanTypeControllerAPI@storeMealType');
 Route::middleware(['auth:api', 'intern'])->get('/meal-plans-dates/{id}', 'MealPlanTypeControllerAPI@getMealPlanDates');
 Route::middleware(['auth:api', 'intern'])->get('/meal-plans/{id}/{date}','MealPlanTypeControllerAPI@show');
 Route::middleware(['auth:api', 'professional'])->delete('/meal-type/{id}','MealPlanTypeControllerAPI@destroy');
-Route::middleware(['auth:api', 'professional'])->post('/meal-type/{id}','MealPlanTypeControllerAPI@storeMealType');
-Route::middleware(['auth:api', 'professional'])->post('/meal-type-stats','MealPlanTypeControllerAPI@statsMealType');
-Route::middleware(['auth:api', 'intern'])->get('/meal-type-stats/{id}','MealPlanTypeControllerAPI@statsByPlanDay');
 Route::middleware(['auth:api', 'patient'])->get('/meal-types-patient/{date}', 'MealPlanTypeControllerAPI@getPatientDailyPlan');
 Route::middleware(['auth:api', 'patient'])->get('/meal-history-patient/{date}', 'MealPlanTypeControllerAPI@getPatientHistory');
 

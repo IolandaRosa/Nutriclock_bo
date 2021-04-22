@@ -13,6 +13,66 @@ use Illuminate\Support\Facades\Response;
 
 class MessageControllerAPI extends Controller
 {
+    /**
+     * @OA\Post(
+     *      path="/api/messages",
+     *      operationId="Creates new message",
+     *      tags={"Message"},
+     *      summary="Creates new message",
+     *      description="Creates new message",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="senderId",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="senderName",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="senderPhotoUrl",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="receiverId",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="receiverName",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="receiverPhotoUrl",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="message",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="refMessageId",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="read",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="fromModal",
+     *                     type="string"
+     *                 ),
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return message"
+     *       )
+     *     )
+     */
     public function store(Request $request)
     {
         $message = new Message();
@@ -31,18 +91,67 @@ class MessageControllerAPI extends Controller
 
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/messages/unread",
+     *      operationId="messages unread",
+     *      tags={"Message"},
+     *      summary="Return this list of unread messages for auth user",
+     *      description="Return this list of unread messages for auth user",
+     *      @OA\Response(
+     *          response=200,
+     *          description="return the list of unread messages for auth user"
+     *       )
+     *     )
+     */
     public function getUnreadMessagesForAuthUser()
     {
         $messages = Message::where('receiverId', Auth::guard('api')->id())->where('read', false)->get();
         return MessageResource::collection($messages);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/messages/unread-count",
+     *      operationId="count messages unread",
+     *      tags={"Message"},
+     *      summary="Return total of unread messages for auth user",
+     *      description="Return total of unread messages for auth user",
+     *      @OA\Response(
+     *          response=200,
+     *          description="return total of unread messages for auth user"
+     *       )
+     *     )
+     */
     public function countUnreadMessagesForAuthUser()
     {
         $count = Message::where('receiverId', Auth::guard('api')->id())->where('read', false)->count();
         return Response::json(['data' => $count], 200);
     }
 
+    /**
+     * @OA\Put(
+     *      path="/api/messages/read/{id}",
+     *      operationId="Mark message as read",
+     *      tags={"Message"},
+     *      summary="Mark message as read",
+     *      description="Mark message as read",
+     *      @OA\Parameter(
+     *         description="ID of message",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Mark message as read"
+     *       )
+     *     )
+     */
     public function markAsRead(Request $request, $id)
     {
         $message = Message::find($id);
@@ -57,6 +166,29 @@ class MessageControllerAPI extends Controller
         return new MessageResource($message);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/messages",
+     *      operationId="get messages",
+     *      tags={"Message"},
+     *      summary="Return the message history",
+     *      description="Return the message history",
+     *      @OA\Parameter(
+     *         description="ID of message",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Return  the message history"
+     *       )
+     *     )
+     */
     public function messagesHistory(Request $request)
     {
         $contacts = [];
@@ -88,6 +220,19 @@ class MessageControllerAPI extends Controller
         return Response::json(['contacts' => [], 'messagesHistory' => []], 200);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/messagesFromUser/{id}",
+     *      operationId="get messages by receiver id",
+     *      tags={"Message"},
+     *      summary="Return the list of messages by receiver id",
+     *      description="Return the list of messages by receiver id",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Return the list of messages by receiver id"
+     *       )
+     *     )
+     */
     public function getMessagesFromUser(Request $request, $id)
     {
         $authId = Auth::guard('api')->id();

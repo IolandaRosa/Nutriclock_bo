@@ -16,6 +16,30 @@ use Response;
 
 class PasswordResetControllerAPI extends Controller
 {
+    /**
+     * @OA\Post(
+     *      path="/api/password",
+     *      operationId="Reset Password",
+     *      tags={"Authentication"},
+     *      summary="Reset Password",
+     *      description="Reset Password",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="email",
+     *                     type="string"
+     *                 ),
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="email password reset"
+     *       )
+     *     )
+     */
     public function store (Request $request) {
         $request->validate([
             'email' => 'required|email',
@@ -42,6 +66,34 @@ class PasswordResetControllerAPI extends Controller
         return new PasswordResetResource($passwordReset);
     }
 
+    /**
+     * @OA\Post(
+     *      path="/api/reset-password",
+     *      operationId="Reset Password",
+     *      tags={"Authentication"},
+     *      summary="Reset user password",
+     *      description="Reset user password",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="password",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="token",
+     *                     type="string"
+     *                 ),
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="reset user password"
+     *       )
+     *     )
+     */
     public function reset (Request $request) {
         $request->validate([
             'password' => 'required|string',
@@ -71,6 +123,34 @@ class PasswordResetControllerAPI extends Controller
          return new UserResource($user);
     }
 
+    /**
+     * @OA\Put(
+     *      path="/api/password/{id}",
+     *      operationId="Update user password by id",
+     *      tags={"Authentication"},
+     *      summary="Update user password by id",
+     *      description="Update user password by id",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="password",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="newPassword",
+     *                     type="string"
+     *                 ),
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="changes the actual user password"
+     *       )
+     *     )
+     */
     public function update (Request $request, $id) {
         $request->validate([
             'newPassword' => 'required|string',
@@ -92,6 +172,34 @@ class PasswordResetControllerAPI extends Controller
         return new UserResource($user);
     }
 
+    /**
+     * @OA\Put(
+     *      path="/api/email/{id}",
+     *      operationId="Update user email by id",
+     *      tags={"Authentication"},
+     *      summary="Update user email by id",
+     *      description="Update user email by id",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="email",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="newEmail",
+     *                     type="string"
+     *                 ),
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="changes the actual user email"
+     *       )
+     *     )
+     */
     public function updateEmail (Request $request, $id) {
         $request->validate([
             'newEmail' => 'required|email',

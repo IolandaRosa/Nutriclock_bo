@@ -14,6 +14,38 @@ use Illuminate\Support\Facades\Response;
 
 class NotificationControllerAPI extends Controller
 {
+    /**
+     * @OA\Post(
+     *      path="/api/notifications",
+     *      operationId="Creates new notification",
+     *      tags={"Notification"},
+     *      summary="Creates new notification",
+     *      description="Creates new notification",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="notificationsSleep",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="notificationsExercise",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="notificationsMealDiary",
+     *                     type="string"
+     *                 ),
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return notification"
+     *       )
+     *     )
+     */
     public function store(Request $request)
     {
         $user = User::find(Auth::guard('api')->id());
@@ -36,6 +68,19 @@ class NotificationControllerAPI extends Controller
         return new NotificationResource($notification);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/notifications",
+     *      operationId="Get notification from user",
+     *      tags={"Notification"},
+     *      summary="Get notification from user",
+     *      description="Get notification from user",
+     *      @OA\Response(
+     *          response=200,
+     *          description="return notification from user"
+     *       )
+     *     )
+     */
     public function show()
     {
         $user = User::find(Auth::guard('api')->user()->id);

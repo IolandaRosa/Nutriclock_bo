@@ -15,11 +15,46 @@ use Illuminate\Support\Facades\Response;
 
 class ExerciseControllerAPI extends Controller
 {
-    public function index()
-    {
-        //
-    }
-
+    /**
+     * @OA\Post(
+     *      path="/api/exercises",
+     *      operationId="Creates new exercise for auth user",
+     *      tags={"Exercise"},
+     *      summary="Creates new exercise",
+     *      description="Creates new exercise",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="name",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="endTime",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="startTime",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="date",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="type",
+     *                     type="string"
+     *                 )
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return exercise"
+     *       )
+     *     )
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -67,6 +102,19 @@ class ExerciseControllerAPI extends Controller
         return ($endTime - $startTime) / 60000;
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/exercises/dates",
+     *      operationId="exercises dates",
+     *      tags={"Exercise"},
+     *      summary="Return this list of exercises dates for auth user",
+     *      description="Return this list of exercises dates for auth user",
+     *      @OA\Response(
+     *          response=200,
+     *          description="return the list of exercises dates for auth user"
+     *       )
+     *     )
+     */
     public function getExerciseDates() {
         $dates = Exercise::where('userId', Auth::guard('api')->id())->get('date');
 
@@ -83,11 +131,47 @@ class ExerciseControllerAPI extends Controller
         return Response::json(['data' => $parsedDates]);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/exercises/detail/{date}",
+     *      operationId="get exercises by date for auth user",
+     *      tags={"Exercise"},
+     *      summary="Return this list of exercises by date for auth user",
+     *      description="Return this list of exercises by date for auth user",
+     *     @OA\Parameter(
+     *         description="date of exercise",
+     *         in="path",
+     *         name="date",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return the list of exercises by date for auth user"
+     *       )
+     *     )
+     */
     public function getExerciseByDate($date) {
         $exercises = Exercise::where('userId', Auth::guard('api')->id())->where('date', $date)->get();
         return ExerciseResource::collection($exercises);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/exercises/stats",
+     *      operationId="exercises stats for auth user",
+     *      tags={"Exercise"},
+     *      summary="Return this list of exercises stats for auth user",
+     *      description="Return this list of exercises stats for auth user",
+     *      @OA\Response(
+     *          response=200,
+     *          description="return the list of exercises stats for auth user"
+     *       )
+     *     )
+     */
     public static function getExerciseStats() {
         $exercises = Exercise::where('userId', Auth::guard('api')->id())->get();
 
@@ -116,6 +200,29 @@ class ExerciseControllerAPI extends Controller
         return Response::json(['data' => $valuesToFilter]);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/exercises/admin/{id}",
+     *      operationId="get exercises by user",
+     *      tags={"Exercise"},
+     *      summary="Return exercises by user",
+     *      description="Return exercises by user",
+     *     @OA\Parameter(
+     *         description="id of user",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="returnexercises by user"
+     *       )
+     *     )
+     */
     public function getExerciseByUser($id) {
         $user = User::find($id);
 
@@ -128,6 +235,29 @@ class ExerciseControllerAPI extends Controller
         return ExerciseResource::collection($exercises);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/exercises/admin/stats/{id}",
+     *      operationId="get exercises stats by user",
+     *      tags={"Exercise"},
+     *      summary="Return exercises stats by user",
+     *      description="Return exercises stats by user",
+     *     @OA\Parameter(
+     *         description="id of user",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return exercise stats by user"
+     *       )
+     *     )
+     */
     public function getStatsByUser($id)
     {
         $user = User::find($id);
@@ -188,15 +318,5 @@ class ExerciseControllerAPI extends Controller
             'averageCalories'=>round($averageCalories, 2),
             'chartStats' => $valuesToFilter
         ]]);
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }

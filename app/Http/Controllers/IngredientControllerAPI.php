@@ -8,6 +8,29 @@ use Illuminate\Http\Request;
 
 class IngredientControllerAPI extends Controller
 {
+    /**
+     * @OA\Delete(
+     *      path="/api/ingredient/{id}",
+     *      operationId="Delete ingredient",
+     *      tags={"Ingredient"},
+     *      summary="Delete ingredient",
+     *      description="Delete ingredient",
+     *      @OA\Parameter(
+     *         description="ID of ingredient",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return ingredient"
+     *       )
+     *     )
+     */
     public function destroy($id)
     {
         $ingredient = Ingredient::find($id);
@@ -21,6 +44,31 @@ class IngredientControllerAPI extends Controller
         return Response::json(['data' => 'Ingrediente eliminado com sucesso!']);
     }
 
+    /**
+     * @OA\Post(
+     *      path="/api/ingredient/{id}",
+     *      operationId="Creates new ingredient in meal plan",
+     *      tags={"Ingredient"},
+     *      summary="Creates new ingredient in meal plan",
+     *      description="Creates new ingredient in meal plan",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="ingredients",
+     *                     type="array",
+     *                     @OA\Items(type="string")
+     *                 ),
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return ingredient"
+     *       )
+     *     )
+     */
     public function store(Request $request, $id)  {
         $list = [];
         foreach ($request->ingredients as $ingredient) {

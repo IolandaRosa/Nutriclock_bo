@@ -9,6 +9,19 @@ use Illuminate\Http\Request;
 
 class AcceptanceTermsControllerAPI extends Controller
 {
+    /**
+     * @OA\Get(
+     *      path="/api/terms",
+     *      operationId="terms",
+     *      tags={"Acceptance Terms"},
+     *      summary="Return the last version acceptance terms",
+     *      description="Return the last version acceptance terms",
+     *      @OA\Response(
+     *          response=200,
+     *          description="return the last version acceptance terms"
+     *       )
+     *     )
+     */
     public function getTerms() {
         $version = AcceptanceTerms::max('version');
 
@@ -21,6 +34,44 @@ class AcceptanceTermsControllerAPI extends Controller
         return new AcceptanceTermsResource($terms);
     }
 
+    /**
+     * @OA\Put(
+     *      path="/api/terms/{id}",
+     *      operationId="Update terms",
+     *      tags={"Acceptance Terms"},
+     *      summary="Update usf",
+     *      description="Update usf",
+     *      @OA\Parameter(
+     *         description="ID of terms",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="title",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="description",
+     *                     type="string"
+     *                 ),
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return acceptance term"
+     *       )
+     *     )
+     */
     public function update(Request $request, $id) {
         $terms = AcceptanceTerms::where('version', $id)->first();
 

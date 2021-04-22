@@ -14,11 +14,29 @@ use Illuminate\Validation\Rule;
 
 class MealPlanTypeControllerAPI extends Controller
 {
-    public function index()
-    {
-        //
-    }
-
+    /**
+     * @OA\Get(
+     *      path="/api/meal-type-stats/{id}",
+     *      operationId="meal type stats by plan id",
+     *      tags={"Meal Plan"},
+     *      summary="Return stats by plan id",
+     *      description="Return stats by plan id",
+     *      @OA\Parameter(
+     *         description="ID of plan",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return stats by plan id"
+     *       )
+     *     )
+     */
     public function statsByPlanDay($id)
     {
         $totalProtein = 0;
@@ -101,6 +119,31 @@ class MealPlanTypeControllerAPI extends Controller
         ]);
     }
 
+    /**
+     * @OA\Post(
+     *      path="/api/meal-type-stats",
+     *      operationId="Update plan stat when add ingredients",
+     *      tags={"Meal Plan"},
+     *      summary="Update plan stat when add ingredients",
+     *      description="Update plan stat when add ingredients",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="ingredients",
+     *                     type="array",
+     *                     @OA\Items(type="string")
+     *                 ),
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return meal type stats"
+     *       )
+     *     )
+     */
     public function statsMealType(Request $request)
     {
         $totalProtein = 0;
@@ -142,6 +185,43 @@ class MealPlanTypeControllerAPI extends Controller
         ]);
     }
 
+    /**
+     * @OA\Post(
+     *      path="/api/meal-plans",
+     *      operationId="Creates new meal plan",
+     *      tags={"Meal Plan"},
+     *      summary="Creates new meal plan",
+     *      description="Creates new meal plan",
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="userId",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="date",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="dayOfWeek",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="meals",
+     *                     type="array",
+     *                     @OA\Items(type="string")
+     *                 ),
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return meal plan"
+     *       )
+     *     )
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -203,6 +283,48 @@ class MealPlanTypeControllerAPI extends Controller
         return Response::json(['data' => 'A refeição foi criada com sucesso']);
     }
 
+    /**
+     * @OA\Post(
+     *      path="/api/meal-type/{id}",
+     *      operationId="Add meal type to plan",
+     *      tags={"Meal Plan"},
+     *      summary="Add meal type to plan",
+     *      description="Add meal type to plan",
+     *     @OA\Parameter(
+     *         description="ID of plan",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="name",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="portion",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="time",
+     *                     type="string"
+     *                 ),
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return meal plan"
+     *       )
+     *     )
+     */
     public function storeMealType(Request $request, $id)
     {
         $mealPlanType = MealPlanType::where('planMealId', $id)->where('type', $request->name)->first();
@@ -276,6 +398,29 @@ class MealPlanTypeControllerAPI extends Controller
         return $value;
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/meal-plans-dates/{id}",
+     *      operationId="get meal plan dates list",
+     *      tags={"Meal Plan"},
+     *      summary="Return meal plan dates list",
+     *      description="Return meal plan dates list",
+     *     @OA\Parameter(
+     *         description="ID of plan",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return meal plan dates list"
+     *       )
+     *     )
+     */
     public function getMealPlanDates($id)
     {
         $plan = Plan::where('userId', $id)->first();
@@ -297,6 +442,38 @@ class MealPlanTypeControllerAPI extends Controller
         return null;
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/meal-plans/{id}/{date}",
+     *      operationId="get meal plan by id by date",
+     *      tags={"Meal Plan"},
+     *      summary="Return meal plan by id by date",
+     *      description="Return meal plan by id by date",
+     *      @OA\Parameter(
+     *         description="ID of plan",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\Parameter(
+     *         description="date",
+     *         in="path",
+     *         name="date",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="string"
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return meal plan"
+     *       )
+     *     )
+     */
     public function show($id, $date)
     {
         $plan = Plan::where('userId', $id)->first();
@@ -337,11 +514,29 @@ class MealPlanTypeControllerAPI extends Controller
         );
     }
 
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
+    /**
+     * @OA\Delete(
+     *      path="/api/meal-type/{id}",
+     *      operationId="Delete meal plan type",
+     *      tags={"Meal Plan"},
+     *      summary="Delete meal plan type",
+     *      description="Delete meal plan type",
+     *      @OA\Parameter(
+     *         description="ID of meal plan type",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return usf"
+     *       )
+     *     )
+     */
     public function destroy($id)
     {
         $mealPlanType = MealPlanType::find($id);
@@ -355,6 +550,28 @@ class MealPlanTypeControllerAPI extends Controller
         return Response::json(['data' => 'Refeição eliminada com sucesso!']);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/meal-types-patient/{date}",
+     *      operationId="get patient plan by date",
+     *      tags={"Meal Plan"},
+     *      summary="Return patient plan by date",
+     *      description="Return patient plan by date",
+     *      @OA\Parameter(
+     *         description="date",
+     *         in="path",
+     *         name="date",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="string"
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return meal plan from date"
+     *       )
+     *     )
+     */
     public function getPatientDailyPlan($date)
     {
         $plan = Plan::where('userId', auth()->id())->first('id');
@@ -380,6 +597,28 @@ class MealPlanTypeControllerAPI extends Controller
         return Response::json(['data' => $mealTypes]);
     }
 
+    /**
+     * @OA\Get(
+     *      path="/api/meal-history-patient/{date}",
+     *      operationId="get patient history time",
+     *      tags={"Meal Plan"},
+     *      summary="Return patient history time",
+     *      description="Return patient history time",
+     *      @OA\Parameter(
+     *         description="date",
+     *         in="path",
+     *         name="date",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="string"
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return patient history time"
+     *       )
+     *     )
+     */
     public function getPatientHistory($date)
     {
         $plan = Plan::where('userId', auth()->id())->first('id');
