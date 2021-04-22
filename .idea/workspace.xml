@@ -19,16 +19,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_04_22_200644_add_nutriclock_group_to_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/PatientsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/PatientsList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/utils/dataTables.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/dataTables.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/utils/table_elements.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/table_elements.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/api-docs/api-docs.json" beforeDir="false" afterPath="$PROJECT_DIR$/storage/api-docs/api-docs.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,12 +39,12 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/master" />
+    <option name="BRANCH" value="develop" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="develop" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -398,20 +390,6 @@
       <workItem from="1618954160875" duration="5852000" />
       <workItem from="1619113685038" duration="586000" />
     </task>
-    <task id="LOCAL-00114" summary="change the chat list to show all contact from user usf">
-      <created>1612714339700</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1612714339700</updated>
-    </task>
-    <task id="LOCAL-00115" summary="change under message controller for mark all read when patient opens chat">
-      <created>1612740402012</created>
-      <option name="number" value="00115" />
-      <option name="presentableId" value="LOCAL-00115" />
-      <option name="project" value="LOCAL" />
-      <updated>1612740402012</updated>
-    </task>
     <task id="LOCAL-00116" summary="add exercise api">
       <created>1613259481168</created>
       <option name="number" value="00116" />
@@ -741,7 +719,21 @@
       <option name="project" value="LOCAL" />
       <updated>1619114271673</updated>
     </task>
-    <option name="localTasksCounter" value="163" />
+    <task id="LOCAL-00163" summary="add nutriclock group to user">
+      <created>1619121676586</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1619121676586</updated>
+    </task>
+    <task id="LOCAL-00164" summary="update documentation">
+      <created>1619121757504</created>
+      <option name="number" value="00164" />
+      <option name="presentableId" value="LOCAL-00164" />
+      <option name="project" value="LOCAL" />
+      <updated>1619121757504</updated>
+    </task>
+    <option name="localTasksCounter" value="165" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -769,8 +761,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="design finished" />
-    <MESSAGE value="updated ui for meal of plan without meal saving data" />
     <MESSAGE value="prepared api models with new database" />
     <MESSAGE value="add plan to list" />
     <MESSAGE value="render meal plan type" />
@@ -794,6 +784,8 @@
     <MESSAGE value="continue to add swagger docs" />
     <MESSAGE value="finished documentation" />
     <MESSAGE value="build for development" />
-    <option name="LAST_COMMIT_MESSAGE" value="build for development" />
+    <MESSAGE value="add nutriclock group to user" />
+    <MESSAGE value="update documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="update documentation" />
   </component>
 </project>
