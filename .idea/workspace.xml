@@ -18,21 +18,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ConfigurationControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ConfigurationControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExerciseControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExerciseControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExerciseStaticControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExerciseStaticControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HouseholdStaticControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HouseholdStaticControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/IngredientControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/IngredientControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MealControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MealControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MealPlanTypeControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MealPlanTypeControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MessageControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MessageControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MobileStatsControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MobileStatsControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/NotificationControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/NotificationControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SleepTipControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SleepTipControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-    </list>
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -398,14 +384,7 @@
       <workItem from="1618684212562" duration="1476000" />
       <workItem from="1618741737110" duration="12630000" />
       <workItem from="1618866997072" duration="6605000" />
-      <workItem from="1618954160875" duration="5742000" />
-    </task>
-    <task id="LOCAL-00112" summary="add auth user api get">
-      <created>1612484352491</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1612484352491</updated>
+      <workItem from="1618954160875" duration="5852000" />
     </task>
     <task id="LOCAL-00113" summary="medications change for profile">
       <created>1612713035989</created>
@@ -743,7 +722,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618873627744</updated>
     </task>
-    <option name="localTasksCounter" value="161" />
+    <task id="LOCAL-00161" summary="finished documentation">
+      <created>1618960053702</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1618960053702</updated>
+    </task>
+    <option name="localTasksCounter" value="162" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -771,7 +757,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add exercises stats close" />
     <MESSAGE value="add meal plan pages" />
     <MESSAGE value="design finished" />
     <MESSAGE value="updated ui for meal of plan without meal saving data" />
@@ -796,6 +781,7 @@
     <MESSAGE value="change meal plan by day" />
     <MESSAGE value="add swagger docs" />
     <MESSAGE value="continue to add swagger docs" />
-    <option name="LAST_COMMIT_MESSAGE" value="continue to add swagger docs" />
+    <MESSAGE value="finished documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished documentation" />
   </component>
 </project>
