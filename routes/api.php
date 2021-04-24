@@ -119,6 +119,7 @@ Route::middleware(['auth:api', 'admin'])->delete('tips/{id}', 'SleepTipControlle
 
 //Configurations API
 Route::middleware(['auth:api'])->get('configs/tips', 'ConfigurationControllerAPI@getTipStatus');
+Route::middleware(['auth:api'])->get('configs/contacts', 'ConfigurationControllerAPI@getContacts');
 Route::middleware(['auth:api', 'admin'])->get('configs', 'ConfigurationControllerAPI@index');
 Route::middleware(['auth:api', 'admin'])->put('configs/{id}', 'ConfigurationControllerAPI@update');
 

@@ -47,6 +47,25 @@ class ConfigurationControllerAPI extends Controller
     }
 
     /**
+     * @OA\Get(
+     *      path="/api/configs/contacts",
+     *      operationId="get contacts from configuration",
+     *      tags={"Configurations"},
+     *      summary="Return contacts from configuration",
+     *      description="Return contacts from configuration",
+     *      @OA\Response(
+     *          response=200,
+     *          description="return contacts from configuration"
+     *       )
+     *     )
+     */
+    public function getContacts() {
+        $email = Configuration::where('key', 'GERAL_EMAIL')->first();
+        $phone = Configuration::where('key', 'GERAL_PHONE')->first();
+        return Response::json(['email' => $email->value, 'phone' => $phone->value]);
+    }
+
+    /**
      * @OA\Put(
      *      path="/api/configs/{id}",
      *      operationId="Update config status by id",

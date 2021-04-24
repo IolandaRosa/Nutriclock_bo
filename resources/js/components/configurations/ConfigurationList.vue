@@ -84,7 +84,7 @@ export default {
                 this.isFetching = false;
                 if (error.response && error.response.status === 401) {
                     this.$store.commit('clearUserAndToken');
-                    this.$router.push({path: ROUTE.Login });
+                    this.$router.push({path: ROUTE.Login});
                 }
             });
         },
@@ -102,7 +102,9 @@ export default {
                 case 'SLEEP_TIP_ENABLED':
                     return 'Ativar Dicas de Sono';
                 case 'GERAL_EMAIL':
-                    return 'Email Geral';
+                    return 'Contacto de Email';
+                case 'GERAL_PHONE':
+                    return 'Contacto Telefónico';
             }
         }
 
