@@ -78,7 +78,7 @@ export const routes = [
     {path: '/admin/users', component: AdminUsersList, name: 'AdminUsersList'},
     {path: '/profile', component: UserProfile, name: 'UserProfile'},
     {path: '/patients', component: PatientsList, name: 'PatientsList'},
-    {path: '/patients/:id', component: PatientTabs, name: 'PatientTabs', props: true},
+    {path: '/patients/:id/:nutriclockGroup', component: PatientTabs, name: 'PatientTabs', props: true},
     {path: '/terms', component: AcceptanceTerms, name: 'AcceptanceTerms'},
     {path: '/sleep-tips', component: SleepTipsList, name: 'SleepTipsList'},
     {path: '/diseases', component: DiseasesList, name: 'DiseasesList'},

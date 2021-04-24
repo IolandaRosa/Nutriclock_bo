@@ -28,7 +28,7 @@
                        role="tab" aria-controls="exercise"
                        aria-selected="false">Atividade Física</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" v-show="this.$route.params.nutriclockGroup">
                     <a class="nav-link" id="meal-plan-tab"
                        style="color: #FFF"
                        data-toggle="tab" href="#mealPlan"

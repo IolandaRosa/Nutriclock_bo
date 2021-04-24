@@ -143,6 +143,7 @@ export default {
                 name: 'PatientTabs',
                 params: {
                     id: row.id,
+                    nutriclockGroup: row.nutriclockGroup,
                 }
             });
         },
