@@ -10,7 +10,9 @@ use App\Plan;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class MealPlanTypeControllerAPI extends Controller
 {
@@ -643,7 +645,81 @@ class MealPlanTypeControllerAPI extends Controller
             }
         }
 
-
         return Response::json(['data' => $mealPlans]);
+    }
+
+    /**
+     * @OA\Post(
+     *      path="/api/meal-plan-type-confirm/{id}",
+     *      operationId="Auth user confirm meal type",
+     *      tags={"Meal Plan"},
+     *      summary="Auth user confirm meal type",
+     *      description="Auth user confirm meal type",
+     *     @OA\Parameter(
+     *         description="ID of meal type plan",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="multipart/form-data",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="confirmedHours",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     description="meal photo to upload",
+     *                     property="photo",
+     *                     type="string",
+     *                     format="file",
+     *                 ),
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return meal plan"
+     *       )
+     *     )
+     */
+    public function confirmAuthMealPlanType(Request $request, $id)
+    {
+        $mealPlanType = MealPlanType::find($id);
+        if (!$mealPlanType) {
+            return Response::json(['error' => 'A refeição não existe'], 400);
+        }
+
+        $request->validate([
+            'confirmedHours' => 'required|string|size:5',
+            'photo' => 'nullable|image|mimes:jpg,jpeg,png',
+        ]);
+
+        if ($mealPlanType->photoUrl) {
+            Storage::disk('s3')->delete('mealPlans/' . $mealPlanType->photoUrl);
+            Storage::disk('s3')->delete('mealPlans/thumb_' . $mealPlanType->photoUrl);
+        }
+
+        $mealPlanType->confirmed = true;
+        $mealPlanType->confirmedHours = $request->confirmedHours;
+
+        $image = $request->file('photo');
+        $thumbnail = Image::make($image);
+        $thumbnail->resize(null, 200, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+
+        $path = basename($image->store('mealPlans/', 's3'));
+        Storage::disk('s3')->put('mealPlans/thumb_' . $path, $thumbnail->stream());
+        $mealPlanType->photoUrl = basename($path);
+
+        $mealPlanType->save();
+
+        return new \App\Http\Resources\MealPlanType($mealPlanType);
     }
 }

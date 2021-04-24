@@ -1354,6 +1354,52 @@
                 }
             }
         },
+        "/api/meal-plan-type-confirm/{id}": {
+            "post": {
+                "tags": [
+                    "Meal Plan"
+                ],
+                "summary": "Auth user confirm meal type",
+                "description": "Auth user confirm meal type",
+                "operationId": "Auth user confirm meal type",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of meal type plan",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "confirmedHours": {
+                                        "type": "string"
+                                    },
+                                    "photo": {
+                                        "description": "meal photo to upload",
+                                        "type": "string",
+                                        "format": "file"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return meal plan"
+                    }
+                }
+            }
+        },
         "/api/medications": {
             "get": {
                 "tags": [
