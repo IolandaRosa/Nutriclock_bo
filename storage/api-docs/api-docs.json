@@ -94,6 +94,21 @@
                 }
             }
         },
+        "/api/configs/contacts": {
+            "get": {
+                "tags": [
+                    "Configurations"
+                ],
+                "summary": "Return contacts from configuration",
+                "description": "Return contacts from configuration",
+                "operationId": "get contacts from configuration",
+                "responses": {
+                    "200": {
+                        "description": "return contacts from configuration"
+                    }
+                }
+            }
+        },
         "/api/configs/{id}": {
             "put": {
                 "tags": [
