@@ -347,7 +347,7 @@ class UserControllerAPI extends Controller
 
         switch (Auth::guard('api')->user()->role) {
             case 'ADMIN':
-                $users = User::where('role', 'PATIENT')->get();
+                $users = User::where('role', 'PATIENT')->withTrashed()->get();
                 break;
             case 'INTERN':
                 $users = User::where('role', 'PATIENT')->where('active', true)->where('requestForget', false)->get();
