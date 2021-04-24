@@ -162,6 +162,7 @@ Route::middleware(['auth:api', 'intern'])->get('/meal-plans/{id}/{date}','MealPl
 Route::middleware(['auth:api', 'professional'])->delete('/meal-type/{id}','MealPlanTypeControllerAPI@destroy');
 Route::middleware(['auth:api', 'patient'])->get('/meal-types-patient/{date}', 'MealPlanTypeControllerAPI@getPatientDailyPlan');
 Route::middleware(['auth:api', 'patient'])->get('/meal-history-patient/{date}', 'MealPlanTypeControllerAPI@getPatientHistory');
+Route::middleware(['auth:api', 'patient'])->post('meal-plan-type-confirm/{id}', 'MealPlanTypeControllerAPI@confirmAuthMealPlanType');
 
 // Ingredient API
 Route::middleware(['auth:api', 'professional'])->delete('/ingredient/{id}','IngredientControllerAPI@destroy');
