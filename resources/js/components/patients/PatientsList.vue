@@ -49,9 +49,9 @@
 
 <script type="text/javascript">
 /*jshint esversion: 6 */
-import { getCategoryNameById, parseDateToString, renderGender } from '../../utils/misc';
-import { COLUMN_NAME } from '../../utils/table_elements';
-import { ROUTE } from '../../utils/routes';
+import {getCategoryNameById, parseDateToString, renderGender} from '../../utils/misc';
+import {COLUMN_NAME} from '../../utils/table_elements';
+import {ROUTE} from '../../utils/routes';
 import ConfirmationModal from '../modals/ConfirmationModal';
 import {
     EmptyObject,
@@ -61,7 +61,7 @@ import {
     TableActionClasses,
     TableActionColumns
 } from '../../utils/dataTables';
-import { UserRoles } from '../../constants/misc';
+import {UserRoles} from '../../constants/misc';
 import ChatResponseModal from '../modals/ChatResponseModal';
 import RequestForgotModal from '../modals/RequestForgotModal';
 
@@ -97,14 +97,15 @@ export default {
             }, {
                 label: COLUMN_NAME.NutriclockGroup,
                 className: 'text-center',
-            },  EmptyObject],
+            }, EmptyObject, EmptyObject],
             columns: [
                 {...TableActionColumns.View, responsivePriority: 1},
                 {data: 'gender', responsivePriority: 6},
                 {data: 'parsedDate', responsivePriority: 7},
                 {data: 'ufc', responsivePriority: 5},
                 {data: 'email', responsivePriority: 4},
-                {...TableActionColumns.NutriclockGroup, responsivePriority: 2}
+                {...TableActionColumns.NutriclockGroup, responsivePriority: 2},
+                {...TableActionColumns.Block, responsivePriority: 3}
             ],
         };
     },
@@ -124,7 +125,7 @@ export default {
                     await this.getUsers();
                     redrawTable(this.dataTable, this.data);
                     this.onCloseClick();
-                } catch(e) {
+                } catch (e) {
                     this.showError('Não foi possivel eliminar o utente selecionado', 'error');
                 }
             }
@@ -220,7 +221,7 @@ export default {
                 this.isFetching = false;
                 if (error.response && error.response.status === 401) {
                     this.$store.commit('clearUserAndToken');
-                    this.$router.push({path: ROUTE.Login });
+                    this.$router.push({path: ROUTE.Login});
                 }
             }
         },
@@ -235,7 +236,6 @@ export default {
             this.showReplyModal = true;
         },
         onNutriclockGroupClick(row) {
-            console.log('group update', row.nutriclockGroup, !row.nutriclockGroup)
             if (this.isFetching) return
             this.isFetching = true;
 
@@ -248,6 +248,22 @@ export default {
             }).catch(() => {
                 redrawTable(this.dataTable, this.data);
                 this.showError('Não foi possivel alterar o grupo do utilizador selecionado', 'error');
+            });
+        },
+        async showSuccess() {
+            this.isFetching = false;
+            await this.getUsers();
+            redrawTable(this.dataTable, this.data);
+        },
+        onBlockClick(row) {
+            if (this.isFetching) return
+            this.isFetching = true;
+
+            axios.delete(`api/users/${row.id}/status`).then(() => {
+                this.showError('O estado do utilizador foi atualizado', 'success');
+                this.showSuccess();
+            }).catch(() => {
+                this.showError('Ocorreu um erro', 'error');
             });
         }
     },
@@ -263,6 +279,7 @@ export default {
         this.dataTable = await initDataTable('#patientsTable', this.data, this.columns);
         onClickHandler(this.dataTable, this.onViewClick, '#patientsTable', TableActionClasses.View);
         if (this.$store.state.user.role === UserRoles.Admin) {
+            onClickHandler(this.dataTable, this.onBlockClick, '#patientsTable', TableActionClasses.Block);
             onClickHandler(this.dataTable, this.onDeleteClick, '#patientsTable', TableActionClasses.Delete);
             onClickHandler(this.dataTable, this.onNutriclockGroupClick, '#patientsTable', TableActionClasses.NutriclockGroup);
         }
