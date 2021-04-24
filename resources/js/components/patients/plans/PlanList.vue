@@ -83,7 +83,7 @@
                                 v-if="mealType.confirmed"
                                 @click="() => {
                                     zoomModal = true;
-                                    imageToZoom = `https://nutriclock.s3-eu-west-1.amazonaws.com/mealPlans/thumb_${mealType.photoUrl}`;
+                                    imageToZoom = `/mealPlans/${mealType.photoUrl}`;
                                 }"
                             />
                             <div class="flex-grow-1">
