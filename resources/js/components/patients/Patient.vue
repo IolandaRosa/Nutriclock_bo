@@ -369,7 +369,7 @@ export default {
     },
     methods: {
         setAltImage(event) {
-            event.target.src = '/images/avatar.jpg'
+            event.target.src = '/images/avatar.jpg';
         },
         getDiseases() {
             const diseasesList = [];
@@ -402,7 +402,7 @@ export default {
             if (this.id) {
                 axios.get(`api/users/${this.id}`).then(response => {
                     if (!response.data.data.avatarUrl) {
-                        this.avatarUrl = 'https://nutriclock.herokuapp.com/images/avatar.png';
+                        this.avatarUrl = 'https://nutriclock.herokuapp.com/images/avatar.jpg';
                     } else {
                         this.avatarUrl = `https://nutriclock.s3-eu-west-1.amazonaws.com/avatars/${response.data.data.avatarUrl}`;
                     }
