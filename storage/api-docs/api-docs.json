@@ -64,6 +64,267 @@
                 }
             }
         },
+        "/api/biometric-collection": {
+            "get": {
+                "tags": [
+                    "Biometric Collection"
+                ],
+                "summary": "Return a list of all biometric collections",
+                "description": "Return a list all biometric collections",
+                "operationId": "get all biometric collections",
+                "responses": {
+                    "200": {
+                        "description": "return a list of all biometric collections"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Biometric Collection"
+                ],
+                "summary": "Creates new biometric collection",
+                "description": "Creates new biometric collection",
+                "operationId": "Creates new biometric collection",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "orderNumber": {
+                                        "type": "number"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "date": {
+                                        "type": "string"
+                                    },
+                                    "intervals": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return new biometric collection"
+                    }
+                }
+            }
+        },
+        "/api/biometric-collection/{id}": {
+            "delete": {
+                "tags": [
+                    "Biometric Collection"
+                ],
+                "summary": "Delete biometric collection",
+                "description": "Delete biometric collection",
+                "operationId": "Delete biometric collection",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of biometric collection",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return biometric collection"
+                    }
+                }
+            }
+        },
+        "/api/biometric-collection-up/{id}": {
+            "get": {
+                "tags": [
+                    "Biometric Collection"
+                ],
+                "summary": "Downgrade order number",
+                "description": "Downgrade order number",
+                "operationId": "Downgrade order number",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of biometric collection",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return biometric list reordered"
+                    }
+                }
+            }
+        },
+        "/api/biometric-collection-down/{id}": {
+            "get": {
+                "tags": [
+                    "Biometric Collection"
+                ],
+                "summary": "Upgrade order number",
+                "description": "Upgrade order number",
+                "operationId": "Upgrade order number",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of biometric collection",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return biometric list reordered"
+                    }
+                }
+            }
+        },
+        "/api/biometric-procedure": {
+            "get": {
+                "tags": [
+                    "Biometric Procedure"
+                ],
+                "summary": "Return a list of all biometric procedures",
+                "description": "Return a list all biometric procedures",
+                "operationId": "get all biometric procedures",
+                "responses": {
+                    "200": {
+                        "description": "return a list of all biometric procedures"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Biometric Procedure"
+                ],
+                "summary": "Creates new biometric procedure",
+                "description": "Creates new biometric procedure",
+                "operationId": "Creates new biometric procedure",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "orderNumber": {
+                                        "type": "number"
+                                    },
+                                    "value": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return new biometric procedure"
+                    }
+                }
+            }
+        },
+        "/api/biometric-procedure/{id}": {
+            "delete": {
+                "tags": [
+                    "Biometric Collection"
+                ],
+                "summary": "Delete biometric procedure",
+                "description": "Delete biometric procedure",
+                "operationId": "Delete biometric procedure",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of biometric procedure",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return biometric procedure"
+                    }
+                }
+            }
+        },
+        "/api/biometric-procedure-up/{id}": {
+            "get": {
+                "tags": [
+                    "Biometric Procedure"
+                ],
+                "summary": "Downgrade order number",
+                "description": "Downgrade order number",
+                "operationId": "Downgrade order number",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of biometric procedure",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return biometric list reordered"
+                    }
+                }
+            }
+        },
+        "/api/biometric-procedure-down/{id}": {
+            "get": {
+                "tags": [
+                    "Biometric Procedure"
+                ],
+                "summary": "Upgrade order number",
+                "description": "Upgrade order number",
+                "operationId": "Upgrade order number",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of biometric procedure",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return biometric list reordered"
+                    }
+                }
+            }
+        },
         "/api/configs": {
             "get": {
                 "tags": [

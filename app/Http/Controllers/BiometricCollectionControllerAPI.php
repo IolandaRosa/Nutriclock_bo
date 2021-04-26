@@ -65,7 +65,7 @@ class BiometricCollectionControllerAPI extends Controller
      *                 ),
      *                 @OA\Property(
      *                     property="intervals",
-     *                     type="array"
+     *                     type="array",
      *                     @OA\Items(type="string")
      *                 ),
      *             )
