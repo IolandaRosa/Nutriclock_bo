@@ -25,7 +25,8 @@
                         <div v-if="samples.length === 0" class="with-shadow rounded p-2 my-2">
                             Não existem recolhas registadas
                         </div>
-                        <div v-else v-for="(sample, index) in samples" :key="sample.id" class="with-shadow rounded p-2 my-2">
+                        <div v-else v-for="(sample, index) in samples" :key="sample.id"
+                             class="with-shadow rounded p-2 my-2">
                             <div class="d-flex align-items-center">
                                 <div class="flex-grow-1">
                                     <div class="text-primary text-break">{{ sample.name }}</div>
@@ -48,7 +49,7 @@
                                               d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
                                     </svg>
                                 </div>
-                                <div @click="() => deleteItem(`api/biometric-collection/${sample.id}`)">
+                                <div @click="() => onDeleteClick(`api/biometric-collection/${sample.id}`)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#f56c6c"
                                          class="bi bi-trash-fill" viewBox="0 0 16 16">
                                         <path
@@ -82,7 +83,7 @@
                         </div>
                         <div v-else v-for="(step, index) in procedureSteps" :key="step.id"
                              class="d-flex p-2 my-2 with-shadow rounded">
-                            <div class="mr-1 font-weight-bold text-primary">{{ index + 1 }}.</div>
+                            <div class="mr-1 font-weight-bold text-primary">{{ step.orderNumber + 1 }}.</div>
                             <div class="flex-grow-1 mr-2 text-break">{{ step.value }}</div>
                             <div class="text-secondary mr-2" v-show="index > 0" @click="() => moveUp(step, 'STEP')">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -99,14 +100,7 @@
                                           d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
                                 </svg>
                             </div>
-                            <div class="mr-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#409eff"
-                                     class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-                                </svg>
-                            </div>
-                            <div @click="() => deleteItem(`api/biometric-procedure/${step.id}`)">
+                            <div @click="() => onDeleteClick(`api/biometric-procedure/${step.id}`)">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#f56c6c"
                                      class="bi bi-trash-fill" viewBox="0 0 16 16">
                                     <path
@@ -118,48 +112,147 @@
                 </div>
             </div>
         </div>
+        <ConfirmationModal
+            v-show="showConfirmation"
+            @close="this.closeModal"
+            title="Eliminar Item Selecionado"
+            cancel-button-text="Cancelar"
+            save-button-class="btn btn-bold btn-danger"
+            save-button-text="Eliminar"
+            @save="this.deleteItem"
+            message="Tem a certeza que deseja eliminar o item selecionado?"
+        />
+        <AddSampleModal
+            v-show="showSampleModal"
+            @close="this.closeModal"
+            @save="this.saveSample"
+            :size="samples.length"/>
+        <AddCategory
+            v-show="showProcedureModal"
+            @close="this.closeModal"
+            title="Novo Passo de Procedimento"
+            selectedName="null"
+            selectedId="null"
+            placeholder-name="Descrição"
+            :max-char="200"
+            @save="this.saveStep"
+        />
     </div>
 </template>
 
 <script type="text/javascript">
 /*jshint esversion: 6 */
 import {ROUTE} from '../../utils/routes';
+import AddCategory from '../modals/AddCategory';
+import AddSampleModal from '../modals/AddSampleModal';
+import ConfirmationModal from '../modals/ConfirmationModal';
+import { startsWith } from 'lodash';
 
 export default {
     data() {
         return {
             isFetching: false,
             showSampleModal: false,
+            showProcedureModal: false,
+            showConfirmation: false,
+            selectedUrl: null,
             samples: [],
             procedureSteps: []
         };
     },
     methods: {
-        deleteItem(url) {
+        saveStep(value, id) {
+            this.closeModal();
+            axios.post('api/biometric-procedure', {
+                orderNumber: this.procedureSteps.length,
+                value: value,
+            }).then((response) => {
+                this.procedureSteps = response.data.data;
+            }).catch(() => {
+                this.showMessage('Ocorreu um erro', 'error');
+            });
+        },
+        saveSample(data) {
+            if (data) {
+                this.samples = data;
+            } else {
+                this.showMessage('Ocorreu um erro', 'error');
+            }
+            this.closeModal();
+        },
+        showMessage(message, className) {
+            this.$toasted.show(message, {
+                type: className,
+                duration: 3000,
+                position: 'top-right',
+                closeOnSwipe: true,
+                theme: 'toasted-primary'
+            });
+        },
+        onDeleteClick(url) {
+            this.showConfirmation = true;
+            this.selectedUrl = url;
+        },
+        deleteItem() {
             if (this.isFetching) return;
             this.isFetching = true;
 
-            axios.delete(url).then(response => {
-                console.log(response.data.data);
+            axios.delete(this.selectedUrl).then(response => {
                 this.isFetching = false;
+                this.closeModal();
+                if (startsWith(this.selectedUrl, 'api/biometric-procedure')) {
+                    this.procedureSteps = response.data.data;
+                } else {
+                    this.samples = response.data.data;
+                }
+                this.selectedUrl = null;
             }).catch(() => {
+                this.showMessage('Ocorreu um erro', 'error');
+                this.closeModal();
                 this.isFetching = false;
+                this.selectedUrl = null;
             });
         },
         moveUp(item, type) {
-
+            let url = `api/biometric-collection-up/${item.id}`;
+            if (type === 'STEP') {
+                url = `api/biometric-procedure-up/${item.id}`;
+            }
+            this.reorderRequest(url, type);
         },
         moveDown(item, type) {
+            let url = `api/biometric-collection-down/${item.id}`;
+            if (type === 'STEP') {
+                url = `api/biometric-procedure-down/${item.id}`;
+            }
+            this.reorderRequest(url, type);
+        },
+        reorderRequest(url, type) {
+          if (this.isFetching) return;
+          this.isFetching = true;
 
+            axios.get(url).then(response => {
+                this.isFetching = false;
+                if (type === 'STEP') {
+                    this.procedureSteps = response.data.data;
+                } else {
+                    this.samples = response.data.data;
+                }
+            }).catch(() => {
+                this.isFetching = false;
+                this.showMessage('Ocorreu um erro', 'error');
+            });
         },
         addSample() {
             this.showSampleModal = true;
         },
         addProcedureStep() {
-
+            this.showProcedureModal = true;
         },
         closeModal() {
             this.showSampleModal = false;
+            this.showProcedureModal = false;
+            this.showConfirmation = false;
         },
         getBiometricCollection() {
             if (this.isFetching) return;
@@ -187,6 +280,11 @@ export default {
                 }
             });
         }
+    },
+    components: {
+        AddSampleModal,
+        AddCategory,
+        ConfirmationModal,
     },
     mounted() {
         this.getBiometricCollection();

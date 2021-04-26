@@ -176,11 +176,13 @@ Route::middleware(['auth:api', 'patient'])->get('/notifications', 'NotificationC
 // Biometric Collection API
 Route::middleware(['auth:api'])->get('/biometric-collection', 'BiometricCollectionControllerAPI@index');
 Route::middleware(['auth:api', 'admin'])->post('/biometric-collection', 'BiometricCollectionControllerAPI@store');
-Route::middleware(['auth:api', 'admin'])->put('/biometric-collection/{id}', 'BiometricCollectionControllerAPI@update');
 Route::middleware(['auth:api', 'admin'])->delete('/biometric-collection/{id}', 'BiometricCollectionControllerAPI@destroy');
+Route::middleware(['auth:api', 'admin'])->get('/biometric-collection-up/{id}', 'BiometricCollectionControllerAPI@movesUp');
+Route::middleware(['auth:api', 'admin'])->get('/biometric-collection-down/{id}', 'BiometricCollectionControllerAPI@movesDown');
 
 // Biometric Procedure API
 Route::middleware(['auth:api'])->get('/biometric-procedure', 'BiometricProcedureControllerAPI@index');
 Route::middleware(['auth:api', 'admin'])->post('/biometric-procedure', 'BiometricProcedureControllerAPI@store');
-Route::middleware(['auth:api', 'admin'])->put('/biometric-procedure/{id}', 'BiometricProcedureControllerAPI@update');
 Route::middleware(['auth:api', 'admin'])->delete('/biometric-procedure/{id}', 'BiometricProcedureControllerAPI@destroy');
+Route::middleware(['auth:api', 'admin'])->get('/biometric-procedure-up/{id}', 'BiometricProcedureControllerAPI@movesUp');
+Route::middleware(['auth:api', 'admin'])->get('/biometric-procedure-down/{id}', 'BiometricProcedureControllerAPI@movesDown');

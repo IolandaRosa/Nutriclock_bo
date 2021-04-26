@@ -29,6 +29,7 @@ class BiometricProcedureControllerAPI extends Controller
     }
 
 
+
     /**
      * @OA\Post(
      *      path="/api/biometric-procedure",
@@ -69,55 +70,7 @@ class BiometricProcedureControllerAPI extends Controller
         $biometricProcedure->orderNumber = $request->orderNumber;
         $biometricProcedure->save();
 
-        return new BiometricProceduresResource($biometricProcedure);
-    }
-
-
-    /**
-     * @OA\Put(
-     *      path="/api/biometric-procedure/{id}",
-     *      operationId="Update biometric procedure",
-     *      tags={"Biometric Procedure"},
-     *      summary="Update biometric procedure",
-     *      description="Update biometric procedure",
-     *      @OA\Parameter(
-     *         description="ID of biometric procedure",
-     *         in="path",
-     *         name="id",
-     *         required=true,
-     *         @OA\Schema(
-     *           type="integer",
-     *           format="int64"
-     *         )
-     *      ),
-     *      @OA\RequestBody(
-     *         @OA\MediaType(
-     *             mediaType="application/json",
-     *             @OA\Schema(
-     *                 @OA\Property(
-     *                     property="value",
-     *                     type="string"
-     *                 ),
-     *             )
-     *         )
-     *      ),
-     *      @OA\Response(
-     *          response=200,
-     *          description="return biometric procedure"
-     *       )
-     *     )
-     */
-    public function update(Request $request, $id)
-    {
-        $biometricProcedure = BiometricProcedures::find($id);
-
-        if (!$biometricProcedure) {
-            return Response::json(['error' => 'O procedimento não existe.'], 404);
-        }
-
-        $biometricProcedure->update($request->all());
-
-        return new BiometricProceduresResource($biometricProcedure);
+        return $this->index();
     }
 
     /**
@@ -151,7 +104,100 @@ class BiometricProcedureControllerAPI extends Controller
             return Response::json(['error' => 'O procedimento não existe.'], 400);
         }
 
+        $biometricProcedures = BiometricProcedures::where('orderNumber', '>', $biometricProcedure->orderNumber)->get();
+
+        if ($biometricProcedures) {
+            foreach ($biometricProcedures as $b) {
+                $b->orderNumber = $b->orderNumber - 1;
+                $b->save();
+            }
+        }
+
         $biometricProcedure->forceDelete();
-        return new BiometricProceduresResource($biometricProcedure);
+        return $this->index();
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/api/biometric-procedure-up/{id}",
+     *      operationId="Downgrade order number",
+     *      tags={"Biometric Procedure"},
+     *      summary="Downgrade order number",
+     *      description="Downgrade order number",
+     *      @OA\Parameter(
+     *         description="ID of biometric procedure",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return biometric list reordered"
+     *       )
+     *     )
+     */
+    public function movesUp($id) {
+        $biometricProcedure = BiometricProcedures::find($id);
+
+        if (!$biometricProcedure) {
+            return Response::json(['error' => 'O procedimento não existe.'], 400);
+        }
+
+        $biometricProcedureBefore = BiometricProcedures::where('orderNumber', $biometricProcedure->orderNumber-1)->first();
+
+        if ($biometricProcedureBefore) {
+            $biometricProcedureBefore->orderNumber = $biometricProcedure->orderNumber;
+            $biometricProcedureBefore->save();
+        }
+
+        $biometricProcedure->orderNumber = $biometricProcedure->orderNumber - 1;
+        $biometricProcedure->save();
+        return $this->index();
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/api/biometric-procedure-down/{id}",
+     *      operationId="Upgrade order number",
+     *      tags={"Biometric Procedure"},
+     *      summary="Upgrade order number",
+     *      description="Upgrade order number",
+     *      @OA\Parameter(
+     *         description="ID of biometric procedure",
+     *         in="path",
+     *         name="id",
+     *         required=true,
+     *         @OA\Schema(
+     *           type="integer",
+     *           format="int64"
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="return biometric list reordered"
+     *       )
+     *     )
+     */
+    public function  movesDown($id) {
+        $biometricProcedure = BiometricProcedures::find($id);
+
+        if (!$biometricProcedure) {
+            return Response::json(['error' => 'O procedimento não existe.'], 400);
+        }
+
+        $biometricProcedureAfter = BiometricProcedures::where('orderNumber', $biometricProcedure->orderNumber+1)->first();
+
+        if ($biometricProcedureAfter) {
+            $biometricProcedureAfter->orderNumber = $biometricProcedure->orderNumber;
+            $biometricProcedureAfter->save();
+        }
+
+        $biometricProcedure->orderNumber = $biometricProcedure->orderNumber + 1;
+        $biometricProcedure->save();
+        return $this->index();
     }
 }
