@@ -62,7 +62,7 @@ class BiometricProcedureControllerAPI extends Controller
     {
         $request->validate([
             'value' => 'required|string',
-            'orderNumber' => 'required|integer|unique:biometric_collections,orderNumber'
+            'orderNumber' => 'required|integer|unique:biometric_procedures,orderNumber'
         ]);
 
         $biometricProcedure = new BiometricProcedures();
