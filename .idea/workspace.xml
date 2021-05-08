@@ -20,7 +20,9 @@
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BiometricProcedureControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BiometricProcedureControllerAPI.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/biometricIndicators/BiometricIndicators.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/biometricIndicators/BiometricIndicators.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/navigation/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/navigation/Sidebar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/Patient.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/Patient.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,7 +232,7 @@
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\laragon\www\nutriclock\node_modules\prettier" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.pathVariables" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2020.2.4\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -394,6 +396,11 @@
       <workItem from="1619352606898" duration="20413000" />
       <workItem from="1619466433148" duration="3061000" />
       <workItem from="1619470547853" duration="27000" />
+      <workItem from="1619809182041" duration="1659000" />
+      <workItem from="1619812119407" duration="1110000" />
+      <workItem from="1619861752027" duration="110000" />
+      <workItem from="1619861893431" duration="28000" />
+      <workItem from="1620486139405" duration="114000" />
     </task>
     <task id="LOCAL-00117" summary="relatório gráfico de exercício">
       <created>1613305729163</created>
