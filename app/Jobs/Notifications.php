@@ -47,13 +47,11 @@ class Notifications implements ShouldQueue
                                     $intervals = BiometricCollectionIntervals::where('collectionId', $collection->id)->get();
 
                                     foreach ($intervals as $interval) {
-                                        for ($i = 0; $i <= 9; $i++) {
+                                        for ($i = 0; $i <= 12; $i++) {
                                             $intervalHour = $interval->hour;
                                             $minutes = 15 + $i;
 
                                             $intervalTime = date("H:i", strtotime($intervalHour . ' -1 hour' . ' -' . $minutes . ' minutes'));
-
-                                            $u->notify(new FCMNotification($u->fcmToken, 'test8', 'this hour' . $intervalHour . ' ' . $intervalTime . ' == ' . $hour . ' '. 'index' .$i));
 
                                             if ($intervalTime == $hour) {
                                                 $u->notify(new FCMNotification($u->fcmToken, 'Recolha de Saliva', 'Prepare-se para realizar a próxima recolha de saliva às ' . $intervalHour . ' horas.'));
