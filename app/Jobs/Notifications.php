@@ -51,10 +51,10 @@ class Notifications implements ShouldQueue
 
                                     foreach ($intervals as $interval) {
                                         for ($i = 0; $i <= 9; $i++) {
-                                            $intervalTime = date("H:i", strtotime($interval . ' -1 hour' . ' -'.(15+$i).' minutes'));
+                                            $intervalTime = date("H:i", strtotime(($interval->hour) . ' -1 hour' . ' -'.(15+$i).' minutes'));
 
                                             if ($intervalTime == $hour) {
-                                                $u->notify(new FCMNotification($u->fcmToken, 'Recolha de Saliva', 'Prepare-se para realizar a próxima recolha de saliva às '.$interval.' horas.'));
+                                                $u->notify(new FCMNotification($u->fcmToken, 'Recolha de Saliva', 'Prepare-se para realizar a próxima recolha de saliva às '.($interval->hour).' horas.'));
                                             }
                                         }
                                     }
