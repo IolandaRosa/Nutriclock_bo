@@ -392,14 +392,7 @@
       <workItem from="1619202466597" duration="5741000" />
       <workItem from="1619255281153" duration="337000" />
       <workItem from="1620554424239" duration="149000" />
-      <workItem from="1620571181652" duration="5487000" />
-    </task>
-    <task id="LOCAL-00124" summary="mandatory field on user ufcs in professional">
-      <created>1613831659197</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1613831659197</updated>
+      <workItem from="1620571181652" duration="6980000" />
     </task>
     <task id="LOCAL-00125" summary="fixed bug on delete user and avatar saving on register">
       <created>1613836956211</created>
@@ -737,7 +730,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620582785514</updated>
     </task>
-    <option name="localTasksCounter" value="173" />
+    <task id="LOCAL-00173" summary="test notifications">
+      <created>1620587183992</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1620587183992</updated>
+    </task>
+    <option name="localTasksCounter" value="174" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
