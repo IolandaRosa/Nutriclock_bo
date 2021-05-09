@@ -42,7 +42,7 @@ class Notifications implements ShouldQueue
                             $today = date("d-m-Y");
 
                             foreach ($collectionsDates as $collection) {
-                                $u->notify(new FCMNotification($u->fcmToken, 'test7', 'date' . $collection->date));
+
                                 if ($collection->date == $today) {
                                     $intervals = BiometricCollectionIntervals::where('collectionId', $collection->id)->get();
 
@@ -52,7 +52,7 @@ class Notifications implements ShouldQueue
 
                                             $intervalTime = date("H:i", strtotime($intervalHour . ' -1 hour' . ' -' . (15 + $i) . ' minutes'));
 
-                                            $u->notify(new FCMNotification($u->fcmToken, 'test5', 'this hour' . $intervalHour . ' ' . $intervalTime . ' == ' . $hour . ' '));
+                                            $u->notify(new FCMNotification($u->fcmToken, 'test8', 'this hour' . $intervalHour . ' ' . $intervalTime . ' == ' . $hour . ' '. 'index' .$i));
 
                                             if ($intervalTime == $hour) {
                                                 $u->notify(new FCMNotification($u->fcmToken, 'Recolha de Saliva', 'Prepare-se para realizar a próxima recolha de saliva às ' . $intervalHour . ' horas.'));
