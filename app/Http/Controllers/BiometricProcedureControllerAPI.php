@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BiometricProcedures;
-use App\Http\Resources\BiometricProcedures as BiometricProceduresResource;
+use App\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
@@ -27,7 +27,6 @@ class BiometricProcedureControllerAPI extends Controller
         $biometricProcedures = BiometricProcedures::orderBy('orderNumber')->get(['id', 'value', 'orderNumber']);
         return Response::json(['data' => $biometricProcedures]);
     }
-
 
 
     /**
@@ -140,14 +139,15 @@ class BiometricProcedureControllerAPI extends Controller
      *       )
      *     )
      */
-    public function movesUp($id) {
+    public function movesUp($id)
+    {
         $biometricProcedure = BiometricProcedures::find($id);
 
         if (!$biometricProcedure) {
             return Response::json(['error' => 'O procedimento não existe.'], 400);
         }
 
-        $biometricProcedureBefore = BiometricProcedures::where('orderNumber', $biometricProcedure->orderNumber-1)->first();
+        $biometricProcedureBefore = BiometricProcedures::where('orderNumber', $biometricProcedure->orderNumber - 1)->first();
 
         if ($biometricProcedureBefore) {
             $biometricProcedureBefore->orderNumber = $biometricProcedure->orderNumber;
@@ -182,14 +182,15 @@ class BiometricProcedureControllerAPI extends Controller
      *       )
      *     )
      */
-    public function  movesDown($id) {
+    public function movesDown($id)
+    {
         $biometricProcedure = BiometricProcedures::find($id);
 
         if (!$biometricProcedure) {
             return Response::json(['error' => 'O procedimento não existe.'], 400);
         }
 
-        $biometricProcedureAfter = BiometricProcedures::where('orderNumber', $biometricProcedure->orderNumber+1)->first();
+        $biometricProcedureAfter = BiometricProcedures::where('orderNumber', $biometricProcedure->orderNumber + 1)->first();
 
         if ($biometricProcedureAfter) {
             $biometricProcedureAfter->orderNumber = $biometricProcedure->orderNumber;
@@ -199,5 +200,24 @@ class BiometricProcedureControllerAPI extends Controller
         $biometricProcedure->orderNumber = $biometricProcedure->orderNumber + 1;
         $biometricProcedure->save();
         return $this->index();
+    }
+
+    public function test()
+    {
+        $hour = date("H:i");
+        $notifications = Notification::where('userId', '49')->first();
+        $today = date("d-m-Y");
+        $interval = '10:00';
+        $intervalTime = date("H:i", strtotime($interval . ' -1 hour' . ' -15 minutes'));
+        return Response::json([
+            'hour' => $hour,
+            'notificationsBiometric' => $notifications->notificationsBiometric,
+            'today' => $today,
+            'todayEqualsDate' => ($today == '09-05-2021'),
+            'interval' => $interval,
+            'intervalTime' => $intervalTime,
+            'intervalTimeEqualsHours' => $intervalTime == $hour,
+            'hourBigSmall' => $hour >= '12:00' && $hour <= '12:09'
+        ]);
     }
 }

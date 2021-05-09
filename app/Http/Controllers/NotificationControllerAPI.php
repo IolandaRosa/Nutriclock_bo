@@ -96,7 +96,7 @@ class NotificationControllerAPI extends Controller
 
         $notification = Notification::where('userId', $user->id)->first();
 
-        if (!$notification) {n
+        if (!$notification) {
             $notification = $this->createNewNotification($user->id);
             $notification->save();
         }
