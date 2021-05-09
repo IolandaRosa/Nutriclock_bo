@@ -49,8 +49,9 @@ class Notifications implements ShouldQueue
                                     foreach ($intervals as $interval) {
                                         for ($i = 0; $i <= 9; $i++) {
                                             $intervalHour = $interval->hour;
+                                            $minutes = 15 + $i;
 
-                                            $intervalTime = date("H:i", strtotime($intervalHour . ' -1 hour' . ' -' . (15 + $i) . ' minutes'));
+                                            $intervalTime = date("H:i", strtotime($intervalHour . ' -1 hour' . ' -' . $minutes . ' minutes'));
 
                                             $u->notify(new FCMNotification($u->fcmToken, 'test8', 'this hour' . $intervalHour . ' ' . $intervalTime . ' == ' . $hour . ' '. 'index' .$i));
 

@@ -392,14 +392,7 @@
       <workItem from="1619202466597" duration="5741000" />
       <workItem from="1619255281153" duration="337000" />
       <workItem from="1620554424239" duration="149000" />
-      <workItem from="1620571181652" duration="9708000" />
-    </task>
-    <task id="LOCAL-00129" summary="fixed snacks button not collapse">
-      <created>1613858060586</created>
-      <option name="number" value="00129" />
-      <option name="presentableId" value="LOCAL-00129" />
-      <option name="project" value="LOCAL" />
-      <updated>1613858060586</updated>
+      <workItem from="1620571181652" duration="10238000" />
     </task>
     <task id="LOCAL-00130" summary="fixed snacks button not collapse">
       <created>1613858605689</created>
@@ -737,7 +730,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620590339158</updated>
     </task>
-    <option name="localTasksCounter" value="178" />
+    <task id="LOCAL-00178" summary="test date again">
+      <created>1620591473388</created>
+      <option name="number" value="00178" />
+      <option name="presentableId" value="LOCAL-00178" />
+      <option name="project" value="LOCAL" />
+      <updated>1620591473388</updated>
+    </task>
+    <option name="localTasksCounter" value="179" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -765,7 +765,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add crud for food diseases" />
     <MESSAGE value="Add calendar to nutriclock" />
     <MESSAGE value="Forget data finished" />
     <MESSAGE value="Notifications api done" />
@@ -790,6 +789,7 @@
     <MESSAGE value="test hour and date" />
     <MESSAGE value="test hour" />
     <MESSAGE value="test date" />
-    <option name="LAST_COMMIT_MESSAGE" value="test date" />
+    <MESSAGE value="test date again" />
+    <option name="LAST_COMMIT_MESSAGE" value="test date again" />
   </component>
 </project>
