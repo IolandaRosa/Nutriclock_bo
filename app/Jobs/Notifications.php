@@ -41,20 +41,21 @@ class Notifications implements ShouldQueue
                             $collectionsDates = BiometricCollections::all();
                             $today = date("d-m-Y");
 
-                            $int = date("H:i", strtotime($hour . ' -1 hour' . ' -'.(15+0).' minutes'));
-
-                            $u->notify(new FCMNotification($u->fcmToken, 'test3', 'this hour'.$int.''));
-
                             foreach ($collectionsDates as $collection) {
+                                $u->notify(new FCMNotification($u->fcmToken, 'test7', 'date' . $collection->date));
                                 if ($collection->date == $today) {
                                     $intervals = BiometricCollectionIntervals::where('collectionId', $collection->id)->get();
 
                                     foreach ($intervals as $interval) {
                                         for ($i = 0; $i <= 9; $i++) {
-                                            $intervalTime = date("H:i", strtotime(($interval->hour) . ' -1 hour' . ' -'.(15+$i).' minutes'));
+                                            $intervalHour = $interval->hour;
+
+                                            $intervalTime = date("H:i", strtotime($intervalHour . ' -1 hour' . ' -' . (15 + $i) . ' minutes'));
+
+                                            $u->notify(new FCMNotification($u->fcmToken, 'test5', 'this hour' . $intervalHour . ' ' . $intervalTime . ' == ' . $hour . ' '));
 
                                             if ($intervalTime == $hour) {
-                                                $u->notify(new FCMNotification($u->fcmToken, 'Recolha de Saliva', 'Prepare-se para realizar a próxima recolha de saliva às '.($interval->hour).' horas.'));
+                                                $u->notify(new FCMNotification($u->fcmToken, 'Recolha de Saliva', 'Prepare-se para realizar a próxima recolha de saliva às ' . $intervalHour . ' horas.'));
                                             }
                                         }
                                     }

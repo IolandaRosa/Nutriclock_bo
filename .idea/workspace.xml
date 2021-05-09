@@ -19,6 +19,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Jobs/Notifications.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/Notifications.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -391,14 +392,7 @@
       <workItem from="1619202466597" duration="5741000" />
       <workItem from="1619255281153" duration="337000" />
       <workItem from="1620554424239" duration="149000" />
-      <workItem from="1620571181652" duration="7802000" />
-    </task>
-    <task id="LOCAL-00127" summary="fixed diseases delete on patient profile">
-      <created>1613844607153</created>
-      <option name="number" value="00127" />
-      <option name="presentableId" value="LOCAL-00127" />
-      <option name="project" value="LOCAL" />
-      <updated>1613844607154</updated>
+      <workItem from="1620571181652" duration="8586000" />
     </task>
     <task id="LOCAL-00128" summary="fixed snacks not appearing in meal details">
       <created>1613856778267</created>
@@ -736,7 +730,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620589428637</updated>
     </task>
-    <option name="localTasksCounter" value="176" />
+    <task id="LOCAL-00176" summary="test hour">
+      <created>1620589552060</created>
+      <option name="number" value="00176" />
+      <option name="presentableId" value="LOCAL-00176" />
+      <option name="project" value="LOCAL" />
+      <updated>1620589552060</updated>
+    </task>
+    <option name="localTasksCounter" value="177" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
