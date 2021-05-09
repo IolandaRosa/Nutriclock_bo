@@ -27,15 +27,19 @@ class NotificationControllerAPI extends Controller
      *             @OA\Schema(
      *                 @OA\Property(
      *                     property="notificationsSleep",
-     *                     type="string"
+     *                     type="boolean"
      *                 ),
      *                 @OA\Property(
      *                     property="notificationsExercise",
-     *                     type="string"
+     *                     type="boolean"
      *                 ),
      *                 @OA\Property(
      *                     property="notificationsMealDiary",
-     *                     type="string"
+     *                     type="boolean"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="notificationsBiometric",
+     *                     type="boolean"
      *                 ),
      *             )
      *         )
@@ -62,6 +66,7 @@ class NotificationControllerAPI extends Controller
             $notification->notificationsSleep = $request->notificationsSleep;
             $notification->notificationsExercise = $request->notificationsExercise;
             $notification->notificationsMealDiary = $request->notificationsMealDiary;
+            $notification->notificationsBiometric = $request->notificationsBiometric;
         }
 
         $notification->save();
@@ -106,6 +111,7 @@ class NotificationControllerAPI extends Controller
         $notification->notificationsSleep = true;
         $notification->notificationsExercise = true;
         $notification->notificationsMealDiary = true;
+        $notification->notificationsBiometric = true;
         return $notification;
     }
 }
