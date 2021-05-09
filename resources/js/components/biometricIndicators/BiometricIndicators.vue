@@ -4,7 +4,7 @@
             <div class="with-p-4 bg-light rounded with-shadow">
                 <div class="component-wrapper-header">
                     <h3 class="component-wrapper-left">
-                        Indicadores Biométricos
+                        Biomarcadores
                     </h3>
                     <div class="component-wrapper-right"/>
                 </div>
