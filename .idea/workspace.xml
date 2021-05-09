@@ -19,8 +19,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Notifications/PasswordResetRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Notifications/PasswordResetRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Jobs/Notifications.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/Notifications.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -392,14 +391,7 @@
       <workItem from="1619202466597" duration="5741000" />
       <workItem from="1619255281153" duration="337000" />
       <workItem from="1620554424239" duration="149000" />
-      <workItem from="1620571181652" duration="4131000" />
-    </task>
-    <task id="LOCAL-00122" summary="fix bug on render gender on patient list">
-      <created>1613691351274</created>
-      <option name="number" value="00122" />
-      <option name="presentableId" value="LOCAL-00122" />
-      <option name="project" value="LOCAL" />
-      <updated>1613691351274</updated>
+      <workItem from="1620571181652" duration="4369000" />
     </task>
     <task id="LOCAL-00123" summary="fix bug on render gender on patient list">
       <created>1613692102419</created>
@@ -737,7 +729,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620579749303</updated>
     </task>
-    <option name="localTasksCounter" value="171" />
+    <task id="LOCAL-00171" summary="reset password email change">
+      <created>1620582554511</created>
+      <option name="number" value="00171" />
+      <option name="presentableId" value="LOCAL-00171" />
+      <option name="project" value="LOCAL" />
+      <updated>1620582554511</updated>
+    </task>
+    <option name="localTasksCounter" value="172" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -765,7 +764,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add patient meal plan by date get" />
     <MESSAGE value="add patient history endpoint" />
     <MESSAGE value="return array instead of object" />
     <MESSAGE value="update usf for instituição" />
@@ -790,6 +788,7 @@
     <MESSAGE value="Change the notifications to run once a day" />
     <MESSAGE value="test method" />
     <MESSAGE value="notifications in one interval" />
-    <option name="LAST_COMMIT_MESSAGE" value="notifications in one interval" />
+    <MESSAGE value="reset password email change" />
+    <option name="LAST_COMMIT_MESSAGE" value="reset password email change" />
   </component>
 </project>
