@@ -35,10 +35,11 @@ class Notifications implements ShouldQueue
                     $notifications = Notification::where('userId', $u->id)->first();
 
                     if ($notifications) {
+                        $hour = date("H:i");
+
                         if ($notifications->notificationsBiometric) {
                             $collectionsDates = BiometricCollections::all();
                             $today = date("d-m-Y");
-                            $hour = date("H:i");
 
                             foreach ($collectionsDates as $collection) {
                                 if ($collection->date == $today) {
@@ -54,46 +55,47 @@ class Notifications implements ShouldQueue
                             }
                         }
 
+                        if ($hour >= '12:00' && $hour <= '12:09') {
+                            if ($notifications->notificationsSleep) {
+                                $sleep = Sleep::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
 
-                        if ($notifications->notificationsSleep) {
-                            $sleep = Sleep::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
-
-                            if ($sleep && $sleep->date) {
-                                $dateParts = explode('/', $sleep->date);
-                                $now = time();
-                                $sleepDate = strtotime($dateParts[2] . '-' . $dateParts[1] . '-' . $dateParts[0]);
-                                $sleepDays = round(($now - $sleepDate) / (60 * 60 * 24));
-                                if ($sleepDays > 3) {
-                                    $u->notify(new FCMNotification($u->fcmToken, 'Diário do Sono', 'Já não efetua um registo de sono desde o dia ' . $sleep->date . '. Por favor atualize o Diário de Sono.'));
+                                if ($sleep && $sleep->date) {
+                                    $dateParts = explode('/', $sleep->date);
+                                    $now = time();
+                                    $sleepDate = strtotime($dateParts[2] . '-' . $dateParts[1] . '-' . $dateParts[0]);
+                                    $sleepDays = round(($now - $sleepDate) / (60 * 60 * 24));
+                                    if ($sleepDays > 3) {
+                                        $u->notify(new FCMNotification($u->fcmToken, 'Diário do Sono', 'Já não efetua um registo de sono desde o dia ' . $sleep->date . '. Por favor atualize o Diário de Sono.'));
+                                    }
                                 }
                             }
-                        }
 
-                        if ($notifications->notificationsExercise) {
-                            $exercise = Exercise::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
-                            $exerciseDateParts = explode('T', $exercise->date);
-                            $exerciseParts = explode('-', $exerciseDateParts[0]);
-                            $dateE = $exerciseParts[2] . '-' . $exerciseParts[1] . '-' . $exerciseParts[0];
+                            if ($notifications->notificationsExercise) {
+                                $exercise = Exercise::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
+                                $exerciseDateParts = explode('T', $exercise->date);
+                                $exerciseParts = explode('-', $exerciseDateParts[0]);
+                                $dateE = $exerciseParts[2] . '-' . $exerciseParts[1] . '-' . $exerciseParts[0];
 
-                            if ($exercise) {
-                                $now = time();
-                                $exerciseDate = strtotime($exercise->date);
-                                $exerciseDays = round(($now - $exerciseDate) / (60 * 60 * 24));
-                                if ($exerciseDays > 3) {
-                                    $u->notify(new FCMNotification($u->fcmToken, 'Atividade física', 'Já não efetua um registo de atividade física desde o dia ' . $dateE . '. Por favor atualize a informação.'));
+                                if ($exercise) {
+                                    $now = time();
+                                    $exerciseDate = strtotime($exercise->date);
+                                    $exerciseDays = round(($now - $exerciseDate) / (60 * 60 * 24));
+                                    if ($exerciseDays > 3) {
+                                        $u->notify(new FCMNotification($u->fcmToken, 'Atividade física', 'Já não efetua um registo de atividade física desde o dia ' . $dateE . '. Por favor atualize a informação.'));
+                                    }
                                 }
                             }
-                        }
 
-                        if ($notifications->notificationsMealDiary) {
-                            $mealDiary = Meal::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
+                            if ($notifications->notificationsMealDiary) {
+                                $mealDiary = Meal::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
 
-                            if ($mealDiary) {
-                                $now = time();
-                                $mealDiaryDate = strtotime($mealDiary->date);
-                                $mealDiaryDays = round(($now - $mealDiaryDate) / (60 * 60 * 24));
-                                if ($mealDiaryDays > 0 && $mealDiaryDays < 2) {
-                                    $u->notify(new FCMNotification($u->fcmToken, 'Diário Alimentar', 'Não se esqueça de registar todas assuas refeições ao longo do dia'));
+                                if ($mealDiary) {
+                                    $now = time();
+                                    $mealDiaryDate = strtotime($mealDiary->date);
+                                    $mealDiaryDays = round(($now - $mealDiaryDate) / (60 * 60 * 24));
+                                    if ($mealDiaryDays > 0 && $mealDiaryDays < 2) {
+                                        $u->notify(new FCMNotification($u->fcmToken, 'Diário Alimentar', 'Não se esqueça de registar todas assuas refeições ao longo do dia'));
+                                    }
                                 }
                             }
                         }
