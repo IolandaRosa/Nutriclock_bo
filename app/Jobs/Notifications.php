@@ -37,15 +37,16 @@ class Notifications implements ShouldQueue
                     if ($notifications) {
                         $hour = date("H:i");
 
-                        $u->notify(new FCMNotification($u->fcmToken, 'test1', 'this hour'.$hour.''));
-
                         if ($notifications->notificationsBiometric) {
                             $collectionsDates = BiometricCollections::all();
                             $today = date("d-m-Y");
 
+                            $int = date("H:i", strtotime($hour . ' -1 hour' . ' -'.(15+0).' minutes'));
+
+                            $u->notify(new FCMNotification($u->fcmToken, 'test3', 'this hour'.$int.''));
+
                             foreach ($collectionsDates as $collection) {
                                 if ($collection->date == $today) {
-                                    $u->notify(new FCMNotification($u->fcmToken, 'test2', 'this date'.$today.''));
                                     $intervals = BiometricCollectionIntervals::where('collectionId', $collection->id)->get();
 
                                     foreach ($intervals as $interval) {
