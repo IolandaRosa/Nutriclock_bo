@@ -19,6 +19,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Jobs/Notifications.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/Notifications.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -391,14 +392,7 @@
       <workItem from="1619202466597" duration="5741000" />
       <workItem from="1619255281153" duration="337000" />
       <workItem from="1620554424239" duration="149000" />
-      <workItem from="1620571181652" duration="4369000" />
-    </task>
-    <task id="LOCAL-00123" summary="fix bug on render gender on patient list">
-      <created>1613692102419</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1613692102419</updated>
+      <workItem from="1620571181652" duration="5487000" />
     </task>
     <task id="LOCAL-00124" summary="mandatory field on user ufcs in professional">
       <created>1613831659197</created>
@@ -736,7 +730,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620582554511</updated>
     </task>
-    <option name="localTasksCounter" value="172" />
+    <task id="LOCAL-00172" summary="test notifications">
+      <created>1620582785514</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1620582785514</updated>
+    </task>
+    <option name="localTasksCounter" value="173" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -764,7 +765,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add patient history endpoint" />
     <MESSAGE value="return array instead of object" />
     <MESSAGE value="update usf for instituição" />
     <MESSAGE value="adicionar novo alimento e eliminar alimento" />
@@ -789,6 +789,7 @@
     <MESSAGE value="test method" />
     <MESSAGE value="notifications in one interval" />
     <MESSAGE value="reset password email change" />
-    <option name="LAST_COMMIT_MESSAGE" value="reset password email change" />
+    <MESSAGE value="test notifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="test notifications" />
   </component>
 </project>

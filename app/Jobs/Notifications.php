@@ -32,11 +32,12 @@ class Notifications implements ShouldQueue
         if ($users) {
             foreach ($users as $u) {
                 if ($u->fcmToken) {
-                    $u->notify(new FCMNotification($u->fcmToken, 'test', 'test'));
                     $notifications = Notification::where('userId', $u->id)->first();
 
                     if ($notifications) {
                         $hour = date("H:i");
+
+                        $u->notify(new FCMNotification($u->fcmToken, 'test', ''.$hour));
 
                         if ($notifications->notificationsBiometric) {
                             $collectionsDates = BiometricCollections::all();
