@@ -18,11 +18,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="Change biometric title page.">
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_05_08_225012_add_notification_biometric_to_notifications_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/biometricIndicators/BiometricIndicators.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/biometricIndicators/BiometricIndicators.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/navigation/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/navigation/Sidebar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/Patient.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/Patient.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Jobs/Notifications.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/Notifications.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -400,14 +399,9 @@
       <workItem from="1619812119407" duration="1110000" />
       <workItem from="1619861752027" duration="110000" />
       <workItem from="1619861893431" duration="28000" />
-      <workItem from="1620486139405" duration="114000" />
-    </task>
-    <task id="LOCAL-00117" summary="relatório gráfico de exercício">
-      <created>1613305729163</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1613305729163</updated>
+      <workItem from="1620486139405" duration="391000" />
+      <workItem from="1620500424887" duration="5247000" />
+      <workItem from="1620551139541" duration="1553000" />
     </task>
     <task id="LOCAL-00118" summary="exercise report api">
       <created>1613337916996</created>
@@ -745,7 +739,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619372291354</updated>
     </task>
-    <option name="localTasksCounter" value="166" />
+    <task id="LOCAL-00166" summary="Change biometric title page.">
+      <created>1620486534246</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1620486534246</updated>
+    </task>
+    <option name="localTasksCounter" value="167" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -773,7 +774,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add meal plan list actions" />
     <MESSAGE value="change strings by client sugestion" />
     <MESSAGE value="add description to meal plan ingredient" />
     <MESSAGE value="plan stats finished" />
@@ -798,6 +798,7 @@
     <MESSAGE value="fixed bug" />
     <MESSAGE value="Block user in production" />
     <MESSAGE value="Add biometric indicators page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add biometric indicators page" />
+    <MESSAGE value="Change biometric title page." />
+    <option name="LAST_COMMIT_MESSAGE" value="Change biometric title page." />
   </component>
 </project>

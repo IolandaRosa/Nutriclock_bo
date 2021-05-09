@@ -2,6 +2,8 @@
 
 namespace App\Jobs;
 
+use App\BiometricCollectionIntervals;
+use App\BiometricCollections;
 use App\Exercise;
 use App\Meal;
 use App\Notification;
@@ -33,6 +35,26 @@ class Notifications implements ShouldQueue
                     $notifications = Notification::where('userId', $u->id)->first();
 
                     if ($notifications) {
+                        if ($notifications->notificationsBiometric) {
+                            $collectionsDates = BiometricCollections::all();
+                            $today = date("d-m-Y");
+                            $hour = date("H:i");
+
+                            foreach ($collectionsDates as $collection) {
+                                if ($collection->date == $today) {
+                                    $intervals = BiometricCollectionIntervals::where('collectionId', $collection->id)->get();
+
+                                    foreach ($intervals as $interval) {
+                                        $intervalTime = date("H:i", strtotime($interval . ' -1 hour' . ' -15 minutes'));
+                                        if ($intervalTime == $hour) {
+                                            $u->notify(new FCMNotification($u->fcmToken, 'Recolha de Saliva', 'Prepare-se para realizar a próxima recolha de saliva às '.$interval.' horas.'));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+
                         if ($notifications->notificationsSleep) {
                             $sleep = Sleep::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
 
