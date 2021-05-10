@@ -19,7 +19,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Jobs/Notifications.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/Notifications.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -393,21 +392,7 @@
       <workItem from="1619255281153" duration="337000" />
       <workItem from="1620554424239" duration="149000" />
       <workItem from="1620571181652" duration="11468000" />
-      <workItem from="1620669500818" duration="6141000" />
-    </task>
-    <task id="LOCAL-00138" summary="add meal plan pages">
-      <created>1614465690231</created>
-      <option name="number" value="00138" />
-      <option name="presentableId" value="LOCAL-00138" />
-      <option name="project" value="LOCAL" />
-      <updated>1614465690231</updated>
-    </task>
-    <task id="LOCAL-00139" summary="design finished">
-      <created>1614553017636</created>
-      <option name="number" value="00139" />
-      <option name="presentableId" value="LOCAL-00139" />
-      <option name="project" value="LOCAL" />
-      <updated>1614553017637</updated>
+      <workItem from="1620669500818" duration="6513000" />
     </task>
     <task id="LOCAL-00140" summary="updated ui for meal of plan without meal saving data">
       <created>1614641699023</created>
@@ -738,7 +723,21 @@
       <option name="project" value="LOCAL" />
       <updated>1620676153875</updated>
     </task>
-    <option name="localTasksCounter" value="187" />
+    <task id="LOCAL-00187" summary="test notifications">
+      <created>1620677304039</created>
+      <option name="number" value="00187" />
+      <option name="presentableId" value="LOCAL-00187" />
+      <option name="project" value="LOCAL" />
+      <updated>1620677304039</updated>
+    </task>
+    <task id="LOCAL-00188" summary="test notifications">
+      <created>1620677384604</created>
+      <option name="number" value="00188" />
+      <option name="presentableId" value="LOCAL-00188" />
+      <option name="project" value="LOCAL" />
+      <updated>1620677384604</updated>
+    </task>
+    <option name="localTasksCounter" value="189" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
