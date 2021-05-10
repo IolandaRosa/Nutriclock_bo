@@ -19,6 +19,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Jobs/Notifications.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/Notifications.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -391,14 +392,8 @@
       <workItem from="1619202466597" duration="5741000" />
       <workItem from="1619255281153" duration="337000" />
       <workItem from="1620554424239" duration="149000" />
-      <workItem from="1620571181652" duration="10849000" />
-    </task>
-    <task id="LOCAL-00131" summary="fixed double value on burned calories calc">
-      <created>1613862863183</created>
-      <option name="number" value="00131" />
-      <option name="presentableId" value="LOCAL-00131" />
-      <option name="project" value="LOCAL" />
-      <updated>1613862863183</updated>
+      <workItem from="1620571181652" duration="11468000" />
+      <workItem from="1620669500818" duration="117000" />
     </task>
     <task id="LOCAL-00132" summary="add exercises table render">
       <created>1613865142800</created>
@@ -736,7 +731,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620592005999</updated>
     </task>
-    <option name="localTasksCounter" value="180" />
+    <task id="LOCAL-00180" summary="test notification">
+      <created>1620592628304</created>
+      <option name="number" value="00180" />
+      <option name="presentableId" value="LOCAL-00180" />
+      <option name="project" value="LOCAL" />
+      <updated>1620592628304</updated>
+    </task>
+    <option name="localTasksCounter" value="181" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -764,7 +766,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add calendar to nutriclock" />
     <MESSAGE value="Forget data finished" />
     <MESSAGE value="Notifications api done" />
     <MESSAGE value="Notification check" />
@@ -789,6 +790,7 @@
     <MESSAGE value="test hour" />
     <MESSAGE value="test date" />
     <MESSAGE value="test date again" />
-    <option name="LAST_COMMIT_MESSAGE" value="test date again" />
+    <MESSAGE value="test notification" />
+    <option name="LAST_COMMIT_MESSAGE" value="test notification" />
   </component>
 </project>

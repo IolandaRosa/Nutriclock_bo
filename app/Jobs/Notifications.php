@@ -47,9 +47,9 @@ class Notifications implements ShouldQueue
                                     $intervals = BiometricCollectionIntervals::where('collectionId', $collection->id)->get();
 
                                     foreach ($intervals as $interval) {
-                                        for ($i = 0; $i <= 12; $i++) {
+                                        for ($i = 0; $i <= 15; $i++) {
                                             $intervalHour = $interval->hour;
-                                            $minutes = 15 + $i;
+                                            $minutes = 12 + $i;
 
                                             $intervalTime = date("H:i", strtotime($intervalHour . ' -1 hour' . ' -' . $minutes . ' minutes'));
 
