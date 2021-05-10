@@ -49,17 +49,24 @@ class Notifications implements ShouldQueue
 
                                     foreach ($intervals as $interval) {
                                         $intervalHour = $interval->hour;
-                                        $intervalTime = date("H:i", strtotime($intervalHour . ' -1 hour' . ' -30 minutes'));
 
-                                        if ($intervalTime == $hour) {
-                                            $u->notify(new FCMNotification($u->fcmToken, 'Recolha de Saliva', 'Prepare-se para realizar a próxima recolha de saliva às ' . $intervalHour . ' horas.'));
+                                        for ($i = 0; $i < 3 ; $i++) {
+                                            $minAdd = 10 + $i;
+                                            $minMinus = 10 - $i;
+                                            $intervalTimeMinus = date("H:i", strtotime($intervalHour . ' -1 hour' . ' -'.$minMinus.' minutes'));
+                                            $intervalTimeAdd = date("H:i", strtotime($intervalHour . ' -1 hour' . ' -'.$minAdd.' minutes'));
+
+                                            if ($intervalTimeMinus == $hour || $intervalTimeAdd == $hour) {
+                                                $u->notify(new FCMNotification($u->fcmToken, 'Recolha de Saliva', 'Prepare-se para realizar a próxima recolha de saliva às ' . $intervalHour . ' horas.'));
+                                            }
                                         }
+
                                     }
                                 }
                             }
                         }
 
-                        if ($hour == '21:00') {
+                        if ($hour > '21:48' && $hour < '21:55') {
                             if ($notifications->notificationsSleep) {
                                 $sleep = Sleep::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
 

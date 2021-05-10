@@ -204,6 +204,10 @@ a.nav-link:hover {
     background: #fd7e14;
 }
 
+.gray {
+    background: #fd7e14;
+}
+
 @media only screen and (max-width: 600px) {
     .tab-wrapper {
         padding: 0;
