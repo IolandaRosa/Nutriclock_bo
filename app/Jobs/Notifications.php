@@ -27,6 +27,7 @@ class Notifications implements ShouldQueue
 
     public function handle()
     {
+        $hour = date("H:i");
         $users = User::all();
 
         if ($users) {
@@ -35,8 +36,6 @@ class Notifications implements ShouldQueue
                     $notifications = Notification::where('userId', $u->id)->first();
 
                     if ($notifications) {
-                        $hour = date("H:i");
-
                         if ($notifications->notificationsBiometric) {
                             $collectionsDates = BiometricCollections::all();
                             $today = date("d-m-Y");
