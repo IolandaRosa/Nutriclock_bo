@@ -34,9 +34,6 @@ class Notifications implements ShouldQueue
             foreach ($users as $u) {
                 if ($u->fcmToken) {
                     $notifications = Notification::where('userId', $u->id)->first();
-
-                    $u->notify(new FCMNotification($u->fcmToken, 'Teste Notificacao', 'Teste '.$hour.' '. date("H:i", strtotime($hour . ' -1 hour' . ' -30 minutes')).''));
-
                     if ($notifications) {
                         if ($notifications->notificationsBiometric) {
                             $collectionsDates = BiometricCollections::all();
@@ -50,23 +47,24 @@ class Notifications implements ShouldQueue
                                     foreach ($intervals as $interval) {
                                         $intervalHour = $interval->hour;
 
-                                        for ($i = 0; $i < 3 ; $i++) {
+                                        for ($i = 0; $i < 4 ; $i++) {
                                             $minAdd = 10 + $i;
                                             $minMinus = 10 - $i;
                                             $intervalTimeMinus = date("H:i", strtotime($intervalHour . ' -1 hour' . ' -'.$minMinus.' minutes'));
                                             $intervalTimeAdd = date("H:i", strtotime($intervalHour . ' -1 hour' . ' -'.$minAdd.' minutes'));
 
+                                            $u->notify(new FCMNotification($u->fcmToken, 'Recolha teste', 'interval hour ' . $intervalHour . ' hour'. $hour . 'minus'. $intervalTimeMinus . 'add'. $intervalTimeAdd.''));
+
                                             if ($intervalTimeMinus == $hour || $intervalTimeAdd == $hour) {
                                                 $u->notify(new FCMNotification($u->fcmToken, 'Recolha de Saliva', 'Prepare-se para realizar a próxima recolha de saliva às ' . $intervalHour . ' horas.'));
                                             }
                                         }
-
                                     }
                                 }
                             }
                         }
 
-                        if ($hour > '21:48' && $hour < '21:55') {
+                        if ($hour > '21:15' && $hour < '21:19') {
                             if ($notifications->notificationsSleep) {
                                 $sleep = Sleep::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
 
