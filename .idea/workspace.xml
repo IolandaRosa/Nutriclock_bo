@@ -19,7 +19,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Jobs/Notifications.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/Notifications.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -393,14 +392,7 @@
       <workItem from="1619255281153" duration="337000" />
       <workItem from="1620554424239" duration="149000" />
       <workItem from="1620571181652" duration="11468000" />
-      <workItem from="1620669500818" duration="117000" />
-    </task>
-    <task id="LOCAL-00132" summary="add exercises table render">
-      <created>1613865142800</created>
-      <option name="number" value="00132" />
-      <option name="presentableId" value="LOCAL-00132" />
-      <option name="project" value="LOCAL" />
-      <updated>1613865142800</updated>
+      <workItem from="1620669500818" duration="453000" />
     </task>
     <task id="LOCAL-00133" summary="render date startTime and endTime correctly">
       <created>1613865839774</created>
@@ -738,7 +730,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620592628304</updated>
     </task>
-    <option name="localTasksCounter" value="181" />
+    <task id="LOCAL-00181" summary="test notification">
+      <created>1620669646800</created>
+      <option name="number" value="00181" />
+      <option name="presentableId" value="LOCAL-00181" />
+      <option name="project" value="LOCAL" />
+      <updated>1620669646801</updated>
+    </task>
+    <option name="localTasksCounter" value="182" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
