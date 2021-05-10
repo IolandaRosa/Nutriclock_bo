@@ -13,7 +13,7 @@
                        style="color: #FFF"
                        data-toggle="tab" href="#meals"
                        role="tab" aria-controls="profile" aria-selected="false">
-                        <div class="green container-circle mr-2"/>
+                        <div class="green container-circle mr-2 rounded-circle"/>
                         Diário Alimentar
                     </a>
                 </li>
@@ -23,7 +23,7 @@
                        data-toggle="tab" href="#sleeps"
                        role="tab" aria-controls="sleep"
                        aria-selected="false">
-                        <div class="green container-circle mr-2"/>
+                        <div class="green container-circle mr-2 rounded-circle"/>
                         Diário Sono
                     </a>
                 </li>
@@ -37,12 +37,12 @@
                     </a>
                 </li>
                 <li class="nav-item" v-show="this.$route.params.nutriclockGroup">
-                    <a class="nav-link" id="meal-plan-tab"
+                    <a class="nav-link d-flex" id="meal-plan-tab"
                        style="color: #FFF"
                        data-toggle="tab" href="#mealPlan"
                        role="tab" aria-controls="mealPlan"
                        aria-selected="false">
-                        <div class="green container-circle mr-2"/>
+                        <div class="green container-circle mr-2 rounded-circle"/>
                         Plano Alimentar
                     </a>
                 </li>

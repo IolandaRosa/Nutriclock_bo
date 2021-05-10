@@ -59,7 +59,7 @@ class Notifications implements ShouldQueue
                             }
                         }
 
-                        if ($hour == '21:30') {
+                        if ($hour == '21:00') {
                             if ($notifications->notificationsSleep) {
                                 $sleep = Sleep::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
 
