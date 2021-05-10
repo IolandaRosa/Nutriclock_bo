@@ -47,7 +47,7 @@ class Notifications implements ShouldQueue
                                     foreach ($intervals as $interval) {
                                         $intervalHour = $interval->hour;
 
-                                        for ($i = 0; $i < 13 ; $i++) {
+                                        for ($i = 0; $i < 7 ; $i++) {
                                             $minAdd = 10 + $i;
                                             $minMinus = 10 - $i;
                                             $intervalTimeMinus = date("H:i", strtotime($intervalHour . ' -1 hour' . ' -'.$minMinus.' minutes'));
@@ -61,7 +61,7 @@ class Notifications implements ShouldQueue
                             }
                         }
 
-                        if ($hour > '22:27' && $hour < '21:43') {
+                        if ($hour > '11:53' && $hour < '12:07') {
                             if ($notifications->notificationsSleep) {
                                 $sleep = Sleep::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
 
