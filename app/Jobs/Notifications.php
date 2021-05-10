@@ -47,7 +47,7 @@ class Notifications implements ShouldQueue
                                     foreach ($intervals as $interval) {
                                         $intervalHour = $interval->hour;
 
-                                        for ($i = 0; $i < 4 ; $i++) {
+                                        for ($i = 0; $i < 13 ; $i++) {
                                             $minAdd = 10 + $i;
                                             $minMinus = 10 - $i;
                                             $intervalTimeMinus = date("H:i", strtotime($intervalHour . ' -1 hour' . ' -'.$minMinus.' minutes'));
