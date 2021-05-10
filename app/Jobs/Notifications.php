@@ -35,6 +35,8 @@ class Notifications implements ShouldQueue
                 if ($u->fcmToken) {
                     $notifications = Notification::where('userId', $u->id)->first();
 
+                    $u->notify(new FCMNotification($u->fcmToken, 'Teste Notificacao', 'Teste '.$hour.' '. date("H:i", strtotime($hour . ' -1 hour' . ' -30 minutes')).''));
+
                     if ($notifications) {
                         if ($notifications->notificationsBiometric) {
                             $collectionsDates = BiometricCollections::all();
@@ -57,7 +59,7 @@ class Notifications implements ShouldQueue
                             }
                         }
 
-                        if ($hour == '19:30') {
+                        if ($hour == '21:30') {
                             if ($notifications->notificationsSleep) {
                                 $sleep = Sleep::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
 

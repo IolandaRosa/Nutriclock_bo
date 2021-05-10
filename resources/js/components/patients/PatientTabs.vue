@@ -9,31 +9,42 @@
                        href="#profile" role="tab" aria-controls="home" aria-selected="true">Perfil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="profile-tab"
+                    <a class="nav-link d-flex" id="profile-tab"
                        style="color: #FFF"
                        data-toggle="tab" href="#meals"
-                       role="tab" aria-controls="profile" aria-selected="false">Diário Alimentar</a>
+                       role="tab" aria-controls="profile" aria-selected="false">
+                        <div class="green container-circle mr-2"/>
+                        Diário Alimentar
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="sleep-tab"
+                    <a class="nav-link d-flex" id="sleep-tab"
                        style="color: #FFF"
                        data-toggle="tab" href="#sleeps"
                        role="tab" aria-controls="sleep"
-                       aria-selected="false">Diário Sono</a>
+                       aria-selected="false">
+                        <div class="green container-circle mr-2"/>
+                        Diário Sono
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="exercise-tab"
                        style="color: #FFF"
                        data-toggle="tab" href="#exercises"
                        role="tab" aria-controls="exercise"
-                       aria-selected="false">Atividade Física</a>
+                       aria-selected="false">
+                        Atividade Física
+                    </a>
                 </li>
                 <li class="nav-item" v-show="this.$route.params.nutriclockGroup">
                     <a class="nav-link" id="meal-plan-tab"
                        style="color: #FFF"
                        data-toggle="tab" href="#mealPlan"
                        role="tab" aria-controls="mealPlan"
-                       aria-selected="false">Plano Alimentar</a>
+                       aria-selected="false">
+                        <div class="green container-circle mr-2"/>
+                        Plano Alimentar
+                    </a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
@@ -170,6 +181,27 @@ a.nav-link:hover {
     background-color: #f8fafc !important;
     border-color: #dee2e6 #dee2e6 #f8fafc !important;
     opacity: 0.9;
+}
+
+.container-circle {
+    height: 20px;
+    width: 20px;
+}
+
+.red {
+    background: #dc3545;
+}
+
+.yellow {
+    background: #fd7e14;
+}
+
+.green {
+    background: #198754;
+}
+
+.yellow {
+    background: #fd7e14;
 }
 
 @media only screen and (max-width: 600px) {
