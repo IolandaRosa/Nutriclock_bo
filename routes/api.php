@@ -110,6 +110,7 @@ Route::middleware(['auth:api', 'intern'])->get('sleeps/stats/{id}', 'SleepContro
 
 // Mobile Stats
 Route::middleware(['auth:api', 'patient'])->get('stats', 'MobileStatsControllerAPI@getStats');
+Route::get('traffic/{id}', 'MobileStatsControllerAPI@getUserFrequency');
 
 // SleepTips API
 Route::middleware(['auth:api'])->get('tips', 'SleepTipControllerAPI@index');

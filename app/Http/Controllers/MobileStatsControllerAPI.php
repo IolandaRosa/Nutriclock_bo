@@ -9,6 +9,7 @@ use App\Meal;
 use App\MealPlan;
 use App\Plan;
 use App\Sleep;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -128,6 +129,23 @@ class MobileStatsControllerAPI extends Controller
             'totalBurnedCals' => intval($totalBurnedCals),
             'averageBurnedCals' => intval($averageBurnedCals),
             'mealPlanType' => $mealPlanType
+        ]);
+    }
+
+    public function getUserFrequency(Request $request, $id) {
+        $parsedDates = [];
+        $i = 0;
+
+        $sleepDates = Sleep::where('userId', $id)->select('date')->orderBy('date')->get();
+
+        // todo get date from sleep register
+        // todo get date from meal diary
+        // todo ver quantos dias passaram desde o primeiro
+        // dividir total dos dias que passarm por 3 e ver se cumpre
+        // todo get meal plan
+
+        return Response::json([
+            'sleepDates' => $sleepDates
         ]);
     }
 }
