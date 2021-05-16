@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Exercise;
-use App\MealPlanType;
 use App\Ingredient;
 use App\Meal;
 use App\MealPlan;
+use App\MealPlanType;
 use App\Plan;
 use App\Sleep;
-use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,8 +29,9 @@ class MobileStatsControllerAPI extends Controller
      *       )
      *     )
      */
-    public function getStats(Request $request) {
-        if($request->user()->role != 'PATIENT') {
+    public function getStats(Request $request)
+    {
+        if ($request->user()->role != 'PATIENT') {
             return Response::json(['error' => 'Accesso proibido!'], 401);
         }
 
@@ -55,7 +55,7 @@ class MobileStatsControllerAPI extends Controller
         }
 
         $dates = Meal::where('userId', $id)->select('date')->get();
-        $totalMeals= Meal::where('userId', $id)->count();
+        $totalMeals = Meal::where('userId', $id)->count();
         $sleeps = Sleep::where('userId', Auth::guard('api')->id())->get();
         $exercises = Exercise::where('userId', Auth::guard('api')->id())->get();
         $parsedDates = [];
@@ -70,12 +70,12 @@ class MobileStatsControllerAPI extends Controller
         $totalDuration = 0;
         $averageDuration = 0;
 
-        foreach($sleeps as $sleep) {
+        foreach ($sleeps as $sleep) {
             $diff = SleepControllerAPI::computeTimeInHours($sleep->sleepTime, $sleep->wakeUpTime);
             $sum = $sum + $diff;
         }
 
-        foreach($exercises as $e) {
+        foreach ($exercises as $e) {
             $totalBurnedCals += $e->burnedCalories;
             $totalDuration += $e->duration;
             $parsed = Carbon::parse($e->date)->format('d/m/Y');
@@ -132,20 +132,135 @@ class MobileStatsControllerAPI extends Controller
         ]);
     }
 
-    public function getUserFrequency(Request $request, $id) {
-        $parsedDates = [];
+    public function getUserFrequency(Request $request, $id)
+    {
+        $sleepColor = 'GRAY';
+        $mealColor = 'GRAY';
+        $planColor = 'GRAY';
+
+        $sleepDates = [];
+        $mealDates = [];
+        $mealPlansStats = [];
         $i = 0;
 
-        $sleepDates = Sleep::where('userId', $id)->select('date')->orderBy('date')->get();
+        $sleeps = Sleep::where('userId', $id)->orderBy('date')->get('date');
+        $meals = Meal::where('userId', $id)->orderBy('date')->get('date');
+        $plan = Plan::where('userId', $id)->first();
 
-        // todo get date from sleep register
-        // todo get date from meal diary
-        // todo ver quantos dias passaram desde o primeiro
-        // dividir total dos dias que passarm por 3 e ver se cumpre
-        // todo get meal plan
+        if ($sleeps && count($sleeps) > 0) {
+            foreach ($sleeps as $sleep) {
+                $sleepDates[$i] = $sleep->date;
+                $sleepDates = array_unique($sleepDates);
+                $i++;
+            }
+
+            $totalDaysRegistered = count($sleepDates);
+            if ($totalDaysRegistered > 0) {
+                $sleepColor = $this->getSleepColor($sleepDates, true);
+            }
+        }
+
+        if ($meals && count($meals) > 0) {
+            foreach ($meals as $meal) {
+                array_push($mealDates, date('Y-m-d', strtotime($meal->date)));
+                $mealDates = array_unique($mealDates);
+            }
+
+            $totalDaysRegistered = count($mealDates);
+            if ($totalDaysRegistered > 0) {
+                $lastDate = $mealDates[$totalDaysRegistered - 1];
+                $now = time();
+                $dateDiff = round(($now - strtotime($lastDate)) / (60 * 60 * 24)) - 1;
+
+                if ($totalDaysRegistered >= 3) $mealColor = 'GREEN';
+                else if ($totalDaysRegistered > 0) {
+                    if ($dateDiff == 0) $mealColor = 'GREEN';
+                    else if ($dateDiff == 1) $mealColor = 'YELLOW';
+                    else $mealColor = $this->setStatusTreeColor($totalDaysRegistered/3, 1 / 3);
+                }
+            }
+        }
+
+        if ($plan) {
+            $mealsPlans = MealPlan::where('planId', $plan->id)->get();
+            foreach ($mealsPlans as $mealPlan) {
+                $nowParts = explode('-', date('d-m-Y'));
+                $planDateParts = explode('-', $mealPlan->date);
+
+                if ($nowParts[2] < $planDateParts[2]) {
+                    array_push($mealPlansStats, $mealPlan);
+                } else if ($nowParts[2] == $planDateParts[2] && $planDateParts[1] < $nowParts[1]) {
+                    array_push($mealPlansStats, $mealPlan);
+                } else if ($nowParts[2] == $planDateParts[2] && $nowParts[1] == $planDateParts[1] && $planDateParts[0] <= $nowParts[0]) {
+                    array_push($mealPlansStats, $mealPlan);
+                }
+            }
+
+            $totalConfirmed = 0;
+            $total = 0;
+
+            foreach ($mealPlansStats as $mealPlansStat) {
+                $mealPlanTypes = MealPlanType::where('planMealId', $mealPlansStat->id)->get();
+
+                if($mealPlanTypes) {
+                    foreach ($mealPlanTypes as $mealPlanType) {
+                        $total++;
+                        if ($mealPlanType->confirmed) $totalConfirmed ++;
+                    }
+                }
+            }
+
+            if ($totalConfirmed > 0) {
+                $planColor = $this->setStatusColor($totalConfirmed / $total, 1/4);
+            }
+        }
 
         return Response::json([
-            'sleepDates' => $sleepDates
+            'sleepColor' => $sleepColor,
+            'mealColor' => $mealColor,
+            'planColor' => $planColor
         ]);
+    }
+
+    private function getSleepColor($sleepDates, $isQuarter)
+    {
+        $total = count($sleepDates);
+        $dateParts = explode('/', $sleepDates[0]);
+        $firstDate = strtotime($dateParts[2] . '-' . $dateParts[1] . '-' . $dateParts[0]);
+        $now = time();
+        $dateDiff = round(($now - $firstDate) / (60 * 60 * 24)) - 1; // excluir data de fim
+
+        if ($isQuarter) return $this->setStatusColor($total, $dateDiff / 4);
+        return $this->setStatusTreeColor($total, $dateDiff / 3);
+    }
+
+    private function setStatusColor($total, $quarterDay)
+    {
+        if ($total < $quarterDay) {
+            return 'RED';
+        }
+
+        if ($total < ($quarterDay * 2)) {
+            return 'ORANGE';
+        }
+
+        if ($total < ($quarterDay * 3)) {
+            return 'YELLOW';
+        }
+
+        return 'GREEN';
+    }
+
+    private function setStatusTreeColor($total, $thirdDay)
+    {
+        if ($total <= $thirdDay) {
+            return 'RED';
+        }
+
+        if ($total <= ($thirdDay * 2)) {
+            return 'YELLOW';
+        }
+
+        return 'GREEN';
     }
 }

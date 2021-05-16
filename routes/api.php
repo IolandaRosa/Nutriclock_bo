@@ -110,7 +110,7 @@ Route::middleware(['auth:api', 'intern'])->get('sleeps/stats/{id}', 'SleepContro
 
 // Mobile Stats
 Route::middleware(['auth:api', 'patient'])->get('stats', 'MobileStatsControllerAPI@getStats');
-Route::get('traffic/{id}', 'MobileStatsControllerAPI@getUserFrequency');
+Route::middleware(['auth:api', 'intern'])->get('data-status/{id}', 'MobileStatsControllerAPI@getUserFrequency');
 
 // SleepTips API
 Route::middleware(['auth:api'])->get('tips', 'SleepTipControllerAPI@index');
@@ -187,4 +187,3 @@ Route::middleware(['auth:api', 'admin'])->post('/biometric-procedure', 'Biometri
 Route::middleware(['auth:api', 'admin'])->delete('/biometric-procedure/{id}', 'BiometricProcedureControllerAPI@destroy');
 Route::middleware(['auth:api', 'admin'])->get('/biometric-procedure-up/{id}', 'BiometricProcedureControllerAPI@movesUp');
 Route::middleware(['auth:api', 'admin'])->get('/biometric-procedure-down/{id}', 'BiometricProcedureControllerAPI@movesDown');
-Route::get('/test', 'BiometricProcedureControllerAPI@test');

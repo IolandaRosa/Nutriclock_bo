@@ -201,23 +201,4 @@ class BiometricProcedureControllerAPI extends Controller
         $biometricProcedure->save();
         return $this->index();
     }
-
-    public function test()
-    {
-        $hour = date("H:i");
-        $notifications = Notification::where('userId', '49')->first();
-        $today = date("d-m-Y");
-        $interval = '10:00';
-        $intervalTime = date("H:i", strtotime($interval . ' -1 hour' . ' -15 minutes'));
-        return Response::json([
-            'hour' => $hour,
-            'notificationsBiometric' => $notifications->notificationsBiometric,
-            'today' => $today,
-            'todayEqualsDate' => ($today == '09-05-2021'),
-            'interval' => $interval,
-            'intervalTime' => $intervalTime,
-            'intervalTimeEqualsHours' => $intervalTime == $hour,
-            'hourBigSmall' => $hour >= '12:00' && $hour <= '12:09'
-        ]);
-    }
 }

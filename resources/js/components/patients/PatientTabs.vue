@@ -13,7 +13,7 @@
                        style="color: #FFF"
                        data-toggle="tab" href="#meals"
                        role="tab" aria-controls="profile" aria-selected="false">
-                        <div class="green container-circle mr-2 rounded-circle"/>
+                        <div class="green container-circle mr-2 rounded-circle" :class="mealClass"/>
                         Diário Alimentar
                     </a>
                 </li>
@@ -23,7 +23,7 @@
                        data-toggle="tab" href="#sleeps"
                        role="tab" aria-controls="sleep"
                        aria-selected="false">
-                        <div class="green container-circle mr-2 rounded-circle"/>
+                        <div class="container-circle mr-2 rounded-circle" :class="sleepClass"/>
                         Diário Sono
                     </a>
                 </li>
@@ -42,7 +42,7 @@
                        data-toggle="tab" href="#mealPlan"
                        role="tab" aria-controls="mealPlan"
                        aria-selected="false">
-                        <div class="green container-circle mr-2 rounded-circle"/>
+                        <div class="container-circle mr-2 rounded-circle" :class="planClass"/>
                         Plano Alimentar
                     </a>
                 </li>
@@ -118,6 +118,9 @@ export default {
             dateString: '',
             showPlanStats: false,
             selectedPlan: null,
+            sleepClass: 'GRAY',
+            mealClass: 'GRAY',
+            planClass: 'GRAY'
         };
     },
     components: {
@@ -165,7 +168,19 @@ export default {
             this.selectedPlan = id;
             this.showPlanStats = true;
         },
+        getDataStatus() {
+            axios.get(`api/data-status/${this.$route.params.id}`).then(response => {
+                this.sleepClass = response.data.sleepColor;
+                this.mealClass = response.data.mealColor;
+                this.planClass = response.data.planColor;
+            }).catch(error => {
+                console.log(error)
+            });
+        },
     },
+    mounted() {
+        this.getDataStatus();
+    }
 };
 </script>
 
@@ -188,24 +203,24 @@ a.nav-link:hover {
     width: 20px;
 }
 
-.red {
+.RED {
     background: #dc3545;
 }
 
-.yellow {
+.ORANGE {
     background: #fd7e14;
 }
 
-.green {
+.GREEN {
     background: #198754;
 }
 
-.yellow {
-    background: #fd7e14;
+.YELLOW {
+    background: #ffc107;
 }
 
-.gray {
-    background: #fd7e14;
+.GRAY {
+    background: #adb5bd;
 }
 
 @media only screen and (max-width: 600px) {
