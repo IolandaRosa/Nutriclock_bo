@@ -108,7 +108,7 @@ class NotificationControllerAPI extends Controller
     {
         $notification = new Notification();
         $notification->userId = $id;
-        $notification->notificationsSleep = true;n
+        $notification->notificationsSleep = true;
         $notification->notificationsExercise = true;
         $notification->notificationsMealDiary = true;
         $notification->notificationsBiometric = true;
