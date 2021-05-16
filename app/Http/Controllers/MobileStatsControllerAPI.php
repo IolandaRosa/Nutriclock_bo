@@ -259,84 +259,84 @@ class MobileStatsControllerAPI extends Controller
 
             if ($monT > 0) {
                 $value = round($monD / $monT, 1);
-                $averageSleepArray[0] = $value;
+                $averageSleepArray[0] = ''.$value;
 
                 if ($value > $maxValue) {
                     $maxValue = $value;
                 }
             } else {
-                $averageSleepArray[0] = 0;
+                $averageSleepArray[0] = '0';
             }
 
             if ($tueT > 0) {
                 $value = round($tueD / $tueT, 1);
-                $averageSleepArray[1] = $value;
+                $averageSleepArray[1] = ''.$value;
 
                 if ($value > $maxValue) {
                     $maxValue = $value;
                 }
             } else {
-                $averageSleepArray[1] = 0;
+                $averageSleepArray[1] = '0';
             }
 
             if ($wedT > 0) {
                 $value = round($wedD / $wedT, 1);
-                $averageSleepArray[2] = $value;
+                $averageSleepArray[2] = ''.$value;
 
                 if ($value > $maxValue) {
                     $maxValue = $value;
                 }
             } else {
-                $averageSleepArray[2] = 0;
+                $averageSleepArray[2] = '0';
             }
 
             if ($thuT > 0) {
                 $value = round($thuD / $thuT, 1);
-                $averageSleepArray[3] = $value;
+                $averageSleepArray[3] = ''.$value;
 
                 if ($value > $maxValue) {
                     $maxValue = $value;
                 }
             } else {
-                $averageSleepArray[3] = 0;
+                $averageSleepArray[3] = '0';
             }
 
             if ($friT > 0) {
                 $value = round($friD / $friT, 1);
-                $averageSleepArray[4] = $value;
+                $averageSleepArray[4] = ''.$value;
 
                 if ($value > $maxValue) {
                     $maxValue = $value;
                 }
             } else {
-                $averageSleepArray[4] = 0;
+                $averageSleepArray[4] = '0';
             }
 
             if ($satT > 0) {
                 $value = round($satD / $satT, 1);
-                $averageSleepArray[5] = $value;
+                $averageSleepArray[5] = ''.$value;
 
                 if ($value > $maxValue) {
                     $maxValue = $value;
                 }
             } else {
-                $averageSleepArray[5] = 0;
+                $averageSleepArray[5] = '0';
             }
 
             if ($sunT > 0) {
                 $value = round($sunD / $sunT, 1);
-                $averageSleepArray[6] = $value;
+                $averageSleepArray[6] = ''.$value;
 
                 if ($value > $maxValue) {
                     $maxValue = $value;
                 }
             } else {
-                $averageSleepArray[6] = 0;
+                $averageSleepArray[6] = '0';
             }
 
             if ($maxValue > 0)
                 foreach ($averageSleepArray as $av) {
-                    array_push($percentageSleepArray, (round(($av / $maxValue) * 100)));
+                    array_push($percentageSleepArray, ''.(round(($av / $maxValue) * 100)));
                 }
 
             $averageSleepTime = $duration / count($sleeps);
@@ -450,8 +450,8 @@ class MobileStatsControllerAPI extends Controller
             if ($monT > 0) {
                 $value = round($monExerciseD / $monT, 1);
                 $valueCalories = round($monCaloriesD / $monT, 1);
-                $averageExerciseArray[0] = $value;
-                $averageCaloriesArray[0] = $valueCalories;
+                $averageExerciseArray[0] = ''.$value;
+                $averageCaloriesArray[0] = ''.$valueCalories;
 
                 if ($value > $maxExerciseValue) {
                     $maxExerciseValue = $value;
@@ -461,15 +461,15 @@ class MobileStatsControllerAPI extends Controller
                     $maxCaloriesValue = $value;
                 }
             } else {
-                $averageExerciseArray[0] = 0;
-                $averageCaloriesArray[0] = 0;
+                $averageExerciseArray[0] = '0';
+                $averageCaloriesArray[0] = '0';
             }
 
             if ($tueT > 0) {
                 $value = round($tueExerciseD / $tueT, 1);
                 $valueCalories = round($tueCaloriesD / $tueT, 1);
-                $averageExerciseArray[1] = $value;
-                $averageCaloriesArray[1] = $valueCalories;
+                $averageExerciseArray[1] = ''.$value;
+                $averageCaloriesArray[1] = ''.$valueCalories;
 
                 if ($value > $maxExerciseValue) {
                     $maxExerciseValue = $value;
@@ -479,15 +479,15 @@ class MobileStatsControllerAPI extends Controller
                     $maxCaloriesValue = $value;
                 }
             } else {
-                $averageExerciseArray[1] = 0;
-                $averageCaloriesArray[1] = 0;
+                $averageExerciseArray[1] = '0';
+                $averageCaloriesArray[1] = '0';
             }
 
             if ($wedT > 0) {
                 $value = round($wedExerciseD / $wedT, 1);
                 $valueCalories = round($wedCaloriesD / $wedT, 1);
-                $averageExerciseArray[2] = $value;
-                $averageCaloriesArray[2] = $valueCalories;
+                $averageExerciseArray[2] = ''.$value;
+                $averageCaloriesArray[2] = ''.$valueCalories;
 
                 if ($value > $maxExerciseValue) {
                     $maxExerciseValue = $value;
@@ -497,15 +497,15 @@ class MobileStatsControllerAPI extends Controller
                     $maxCaloriesValue = $value;
                 }
             } else {
-                $averageExerciseArray[2] = 0;
-                $averageCaloriesArray[2] = 0;
+                $averageExerciseArray[2] = '0';
+                $averageCaloriesArray[2] = '0';
             }
 
             if ($thuT > 0) {
                 $value = round($thuExerciseD / $thuT, 1);
                 $valueCalories = round($thuCaloriesD / $thuT, 1);
-                $averageExerciseArray[3] = $value;
-                $averageCaloriesArray[3] = $valueCalories;
+                $averageExerciseArray[3] = ''.$value;
+                $averageCaloriesArray[3] = ''.$valueCalories;
 
                 if ($value > $maxExerciseValue) {
                     $maxExerciseValue = $value;
@@ -515,15 +515,15 @@ class MobileStatsControllerAPI extends Controller
                     $maxCaloriesValue = $value;
                 }
             } else {
-                $averageExerciseArray[3] = 0;
-                $averageCaloriesArray[3] = 0;
+                $averageExerciseArray[3] = '0';
+                $averageCaloriesArray[3] = '0';
             }
 
             if ($friT > 0) {
                 $value = round($friExerciseD / $friT, 1);
                 $valueCalories = round($friCaloriesD / $friT, 1);
-                $averageExerciseArray[4] = $value;
-                $averageCaloriesArray[4] = $valueCalories;
+                $averageExerciseArray[4] = ''.$value;
+                $averageCaloriesArray[4] = ''.$valueCalories;
 
                 if ($value > $maxExerciseValue) {
                     $maxExerciseValue = $value;
@@ -533,15 +533,15 @@ class MobileStatsControllerAPI extends Controller
                     $maxCaloriesValue = $value;
                 }
             } else {
-                $averageExerciseArray[4] = 0;
-                $averageCaloriesArray[4] = 0;
+                $averageExerciseArray[4] = '0';
+                $averageCaloriesArray[4] = '0';
             }
 
             if ($satT > 0) {
                 $value = round($satExerciseD / $satT, 1);
                 $valueCalories = round($satCaloriesD / $satT, 1);
-                $averageExerciseArray[5] = $value;
-                $averageCaloriesArray[5] = $valueCalories;
+                $averageExerciseArray[5] = ''.$value;
+                $averageCaloriesArray[5] = ''.$valueCalories;
 
                 if ($value > $maxExerciseValue) {
                     $maxExerciseValue = $value;
@@ -551,15 +551,15 @@ class MobileStatsControllerAPI extends Controller
                     $maxCaloriesValue = $value;
                 }
             } else {
-                $averageExerciseArray[5] = 0;
-                $averageCaloriesArray[5] = 0;
+                $averageExerciseArray[5] = '0';
+                $averageCaloriesArray[5] = '0';
             }
 
             if ($sunT > 0) {
                 $value = round($sunExerciseD / $sunT, 1);
                 $valueCalories = round($sunCaloriesD / $sunT, 1);
-                $averageExerciseArray[6] = $value;
-                $averageCaloriesArray[6] = $valueCalories;
+                $averageExerciseArray[6] = ''.$value;
+                $averageCaloriesArray[6] = ''.$valueCalories;
 
                 if ($value > $maxExerciseValue) {
                     $maxExerciseValue = $value;
@@ -569,18 +569,18 @@ class MobileStatsControllerAPI extends Controller
                     $maxCaloriesValue = $value;
                 }
             } else {
-                $averageExerciseArray[6] = 0;
-                $averageCaloriesArray[6] = 0;
+                $averageExerciseArray[6] = '0';
+                $averageCaloriesArray[6] = '0';
             }
 
             if ($maxExerciseValue > 0)
                 foreach ($averageExerciseArray as $av) {
-                    array_push($percentageExerciseArray, (round(($av / $maxExerciseValue) * 100)));
+                    array_push($percentageExerciseArray, ''.(round(($av / $maxExerciseValue) * 100)));
                 }
 
             if ($maxCaloriesValue > 0)
                 foreach ($averageCaloriesArray as $av) {
-                    array_push($percentageCaloriesArray, (round(($av/$maxCaloriesValue) * 100)));
+                    array_push($percentageCaloriesArray, ''.(round(($av/$maxCaloriesValue) * 100)));
                 }
 
             if ($duration > 0) $averageExerciseTime = $duration / count($exercises);
@@ -589,20 +589,20 @@ class MobileStatsControllerAPI extends Controller
 
         return Response::json([
             'totalSleeps' => $totalSleep,
-            'averageSleepTime' => round($averageSleepTime, 1),
-            'maximumSleepHour' => $maximumSleepHour,
+            'averageSleepTime' => ''.round($averageSleepTime, 1),
+            'maximumSleepHour' => ''.$maximumSleepHour,
             'maximumSleepDate' => $maximumSleepDate,
-            'minimumSleepHour' => $minimumSleepHour,
+            'minimumSleepHour' => ''.$minimumSleepHour,
             'minimumSleepDate' => $minimumSleepDate,
             'averageSleepArray' => $averageSleepArray,
             'percentageSleepArray' => $percentageSleepArray,
             'totalExercises' => $totalExercise,
-            'averageExerciseTime' => round($averageExerciseTime, 1),
-            'averageExerciseCalories' => round($averageExerciseCalories, 1),
-            'maximumExercise' => $maximumExercise,
-            'minimumExercise' => $minimumExercise,
-            'maximumCalories' => $maximumCalories,
-            'minimumCalories' => $minimumCalories,
+            'averageExerciseTime' => ''.round($averageExerciseTime, 1),
+            'averageExerciseCalories' => ''.round($averageExerciseCalories, 1),
+            'maximumExercise' => ''.$maximumExercise,
+            'minimumExercise' => ''.$minimumExercise,
+            'maximumCalories' => ''.$maximumCalories,
+            'minimumCalories' => ''.$minimumCalories,
             'averageExerciseArray' => $averageExerciseArray,
             'percentageExerciseArray' => $percentageExerciseArray,
             'averageCaloriesArray' => $averageCaloriesArray,
