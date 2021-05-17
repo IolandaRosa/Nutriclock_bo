@@ -458,7 +458,7 @@ class MobileStatsControllerAPI extends Controller
                 }
 
                 if ($valueCalories > $maxCaloriesValue) {
-                    $maxCaloriesValue = $value;
+                    $maxCaloriesValue = $valueCalories;
                 }
             } else {
                 $averageExerciseArray[0] = '0';
@@ -476,7 +476,7 @@ class MobileStatsControllerAPI extends Controller
                 }
 
                 if ($valueCalories > $maxCaloriesValue) {
-                    $maxCaloriesValue = $value;
+                    $maxCaloriesValue = $valueCalories;
                 }
             } else {
                 $averageExerciseArray[1] = '0';
@@ -494,7 +494,7 @@ class MobileStatsControllerAPI extends Controller
                 }
 
                 if ($valueCalories > $maxCaloriesValue) {
-                    $maxCaloriesValue = $value;
+                    $maxCaloriesValue = $valueCalories;
                 }
             } else {
                 $averageExerciseArray[2] = '0';
@@ -512,7 +512,7 @@ class MobileStatsControllerAPI extends Controller
                 }
 
                 if ($valueCalories > $maxCaloriesValue) {
-                    $maxCaloriesValue = $value;
+                    $maxCaloriesValue = $valueCalories;
                 }
             } else {
                 $averageExerciseArray[3] = '0';
@@ -530,7 +530,7 @@ class MobileStatsControllerAPI extends Controller
                 }
 
                 if ($valueCalories > $maxCaloriesValue) {
-                    $maxCaloriesValue = $value;
+                    $maxCaloriesValue = $valueCalories;
                 }
             } else {
                 $averageExerciseArray[4] = '0';
@@ -548,7 +548,7 @@ class MobileStatsControllerAPI extends Controller
                 }
 
                 if ($valueCalories > $maxCaloriesValue) {
-                    $maxCaloriesValue = $value;
+                    $maxCaloriesValue = $valueCalories;
                 }
             } else {
                 $averageExerciseArray[5] = '0';
@@ -566,7 +566,7 @@ class MobileStatsControllerAPI extends Controller
                 }
 
                 if ($valueCalories > $maxCaloriesValue) {
-                    $maxCaloriesValue = $value;
+                    $maxCaloriesValue = $valueCalories;
                 }
             } else {
                 $averageExerciseArray[6] = '0';
