@@ -188,3 +188,8 @@ Route::middleware(['auth:api', 'admin'])->post('/biometric-procedure', 'Biometri
 Route::middleware(['auth:api', 'admin'])->delete('/biometric-procedure/{id}', 'BiometricProcedureControllerAPI@destroy');
 Route::middleware(['auth:api', 'admin'])->get('/biometric-procedure-up/{id}', 'BiometricProcedureControllerAPI@movesUp');
 Route::middleware(['auth:api', 'admin'])->get('/biometric-procedure-down/{id}', 'BiometricProcedureControllerAPI@movesDown');
+
+// Evaluation API
+Route::middleware(['auth:api', 'patient'])->post('evaluation', 'EvaluationControllerAPI@store');
+Route::middleware(['auth:api', 'patient'])->get('has-evaluation', 'EvaluationControllerAPI@getUserEvaluation');
+Route::middleware(['auth:api', 'admin'])->get('average-evaluation', 'EvaluationControllerAPI@getAverageEvaluation');

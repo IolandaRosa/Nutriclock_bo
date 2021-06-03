@@ -525,6 +525,92 @@
                 }
             }
         },
+        "/api/evaluation": {
+            "post": {
+                "tags": [
+                    "Evaluation"
+                ],
+                "summary": "Creates new evaluation",
+                "description": "Creates new evaluation",
+                "operationId": "Creates new evaluation for auth user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "question1": {
+                                        "type": "number"
+                                    },
+                                    "question2": {
+                                        "type": "number"
+                                    },
+                                    "question3": {
+                                        "type": "number"
+                                    },
+                                    "question4": {
+                                        "type": "number"
+                                    },
+                                    "question5": {
+                                        "type": "number"
+                                    },
+                                    "question6": {
+                                        "type": "number"
+                                    },
+                                    "question7": {
+                                        "type": "number"
+                                    },
+                                    "question8": {
+                                        "type": "number"
+                                    },
+                                    "question9": {
+                                        "type": "number"
+                                    },
+                                    "question10": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return evaluation"
+                    }
+                }
+            }
+        },
+        "/api/average-evaluation": {
+            "get": {
+                "tags": [
+                    "Evaluation"
+                ],
+                "summary": "Return this list of evaluation averages for admin",
+                "description": "Return this list of evaluation averages for admin",
+                "operationId": "Evaluation average",
+                "responses": {
+                    "200": {
+                        "description": "Return this list of evaluation averages for admin"
+                    }
+                }
+            }
+        },
+        "/api/has-evaluation": {
+            "get": {
+                "tags": [
+                    "Evaluation"
+                ],
+                "summary": "Check if auth user has done an evaluation",
+                "description": "Check if auth user has done an evaluation",
+                "operationId": "Evaluation check",
+                "responses": {
+                    "200": {
+                        "description": "Check if auth user has done an evaluation"
+                    }
+                }
+            }
+        },
         "/api/exercises": {
             "post": {
                 "tags": [
@@ -2096,6 +2182,48 @@
                 }
             }
         },
+        "/api/reports": {
+            "get": {
+                "tags": [
+                    "Mobile reports"
+                ],
+                "summary": "Return mobile reports",
+                "description": "Return mobile reports",
+                "operationId": "reports",
+                "responses": {
+                    "200": {
+                        "description": "return mobile reports"
+                    }
+                }
+            }
+        },
+        "/api/data-status/{id}": {
+            "get": {
+                "tags": [
+                    "Return the status to sinalize on backoffice"
+                ],
+                "summary": "Return patient register status",
+                "description": "Return patient register status",
+                "operationId": "dataStatus",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of patient",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return patient register status"
+                    }
+                }
+            }
+        },
         "/api/notifications": {
             "get": {
                 "tags": [
@@ -2123,13 +2251,16 @@
                             "schema": {
                                 "properties": {
                                     "notificationsSleep": {
-                                        "type": "string"
+                                        "type": "boolean"
                                     },
                                     "notificationsExercise": {
-                                        "type": "string"
+                                        "type": "boolean"
                                     },
                                     "notificationsMealDiary": {
-                                        "type": "string"
+                                        "type": "boolean"
+                                    },
+                                    "notificationsBiometric": {
+                                        "type": "boolean"
                                     }
                                 },
                                 "type": "object"
