@@ -18,14 +18,18 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="dabase updated">
-      <change afterPath="$PROJECT_DIR$/app/Evaluation.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/EvaluationControllerAPI.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Resources/Evaluation.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_06_03_205100_evaluations_table.php" afterDir="false" />
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="Add evaluation to">
+      <change afterPath="$PROJECT_DIR$/public/images/likert1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/likert2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/likert3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/likert4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/likert5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/evaluation/Evaluation.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/evaluation/EvaluationItem.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/api-docs/api-docs.json" beforeDir="false" afterPath="$PROJECT_DIR$/storage/api-docs/api-docs.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/navigation/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/navigation/Sidebar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/utils/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/routes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,7 +234,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/images" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\laragon\www\nutriclock\node_modules\prettier" />
@@ -402,13 +406,7 @@
       <workItem from="1620766596517" duration="624000" />
       <workItem from="1620934665903" duration="7284000" />
       <workItem from="1621175290033" duration="10368000" />
-    </task>
-    <task id="LOCAL-00143" summary="render meal plan type">
-      <created>1614730765853</created>
-      <option name="number" value="00143" />
-      <option name="presentableId" value="LOCAL-00143" />
-      <option name="project" value="LOCAL" />
-      <updated>1614730765853</updated>
+      <workItem from="1622787645901" duration="5517000" />
     </task>
     <task id="LOCAL-00144" summary="add meal plan list actions">
       <created>1614986465652</created>
@@ -746,7 +744,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621175381400</updated>
     </task>
-    <option name="localTasksCounter" value="192" />
+    <task id="LOCAL-00192" summary="evaluation api">
+      <created>1622753896068</created>
+      <option name="number" value="00192" />
+      <option name="presentableId" value="LOCAL-00192" />
+      <option name="project" value="LOCAL" />
+      <updated>1622753896069</updated>
+    </task>
+    <option name="localTasksCounter" value="193" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -774,7 +779,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Notifications api done" />
     <MESSAGE value="Notification check" />
     <MESSAGE value="notifications api" />
     <MESSAGE value="change meal plan by day" />
@@ -799,6 +803,7 @@
     <MESSAGE value="test notification" />
     <MESSAGE value="test notifications" />
     <MESSAGE value="report endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="report endpoint" />
+    <MESSAGE value="evaluation api" />
+    <option name="LAST_COMMIT_MESSAGE" value="evaluation api" />
   </component>
 </project>
