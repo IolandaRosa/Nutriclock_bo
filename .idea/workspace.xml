@@ -20,6 +20,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="dabase updated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MobileStatsControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MobileStatsControllerAPI.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,12 +40,12 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="develop" />
+    <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -398,6 +399,13 @@
       <workItem from="1620934665903" duration="7284000" />
       <workItem from="1621175290033" duration="10368000" />
     </task>
+    <task id="LOCAL-00143" summary="render meal plan type">
+      <created>1614730765853</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1614730765853</updated>
+    </task>
     <task id="LOCAL-00144" summary="add meal plan list actions">
       <created>1614986465652</created>
       <option name="number" value="00144" />
@@ -734,14 +742,7 @@
       <option name="project" value="LOCAL" />
       <updated>1621175381400</updated>
     </task>
-    <task id="LOCAL-00192" summary="fixed bug under reports">
-      <created>1621280894570</created>
-      <option name="number" value="00192" />
-      <option name="presentableId" value="LOCAL-00192" />
-      <option name="project" value="LOCAL" />
-      <updated>1621280894571</updated>
-    </task>
-    <option name="localTasksCounter" value="193" />
+    <option name="localTasksCounter" value="192" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -769,6 +770,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Notifications api done" />
     <MESSAGE value="Notification check" />
     <MESSAGE value="notifications api" />
     <MESSAGE value="change meal plan by day" />
@@ -793,7 +795,6 @@
     <MESSAGE value="test notification" />
     <MESSAGE value="test notifications" />
     <MESSAGE value="report endpoint" />
-    <MESSAGE value="fixed bug under reports" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed bug under reports" />
+    <option name="LAST_COMMIT_MESSAGE" value="report endpoint" />
   </component>
 </project>

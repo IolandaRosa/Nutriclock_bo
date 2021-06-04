@@ -17,6 +17,7 @@ import MessagesHistory from '../components/messages/MessagesHistory';
 import ExercisesList from '../components/exercises/ExercisesList';
 import FoodList from '../components/food/FoodList';
 import BiometricIndicators from '../components/biometricIndicators/BiometricIndicators';
+import Evaluation from '../components/evaluation/Evaluation';
 
 Vue.component('Login', Login);
 
@@ -52,6 +53,8 @@ Vue.component('ExercisesList', ExercisesList);
 
 Vue.component('BiometricIndicators', BiometricIndicators);
 
+Vue.component('Evaluation', Evaluation);
+
 export const ROUTE = {
     Index: '/',
     Login: '/login',
@@ -70,6 +73,7 @@ export const ROUTE = {
     Food: '/food',
     Exercises: '/exercises',
     BiometricIndicators: '/biometric-indicators',
+    Evaluation: '/evaluation',
 };
 
 export const routes = [
@@ -90,5 +94,6 @@ export const routes = [
     {path: '/messages/:id', component: MessagesHistory, name: 'MessagesHistory', props: true},
     {path: '/food', component: FoodList, name: 'FoodList'},
     {path: '/exercises', component: ExercisesList, name: 'ExercisesList'},
-    {path: '/biometric-indicators', component: BiometricIndicators, name: 'BiometricIndicators'}
+    {path: '/biometric-indicators', component: BiometricIndicators, name: 'BiometricIndicators'},
+    {path: '/evaluation', component: Evaluation, name: 'Evaluation'}
 ];
