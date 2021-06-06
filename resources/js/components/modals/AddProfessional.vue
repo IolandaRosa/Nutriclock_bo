@@ -74,7 +74,7 @@
                             </div>
                         </div>
                         <div class="form-group mt-2" v-show="selectedRole === 'PROFESSIONAL'">
-                            <label for="add-professional-modal-select-ufc" class="green-label">Unidade de Saúde Familiar</label>
+                            <label for="add-professional-modal-select-ufc" class="green-label">Instituição</label>
                             <div>
                                 <select
                                     class="form-control"
