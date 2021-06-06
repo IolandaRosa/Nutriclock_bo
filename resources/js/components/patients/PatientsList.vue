@@ -11,7 +11,7 @@
                     <table id="patientsTable" class="table-wrapper table table-hover dt-responsive w-100">
                         <thead>
                         <tr>
-                            <th v-for="title in titles" :class="title.className">
+                            <th v-for="title in getTitlesByRole()" :class="title.className">
                                 {{ title.label }}
                             </th>
                         </tr>
@@ -98,14 +98,44 @@ export default {
                 label: COLUMN_NAME.NutriclockGroup,
                 className: 'text-center',
             }, EmptyObject, EmptyObject],
+            titlesProfessional: [{
+                label: COLUMN_NAME.Name,
+                className: '',
+            }, {
+                label: COLUMN_NAME.Gender,
+                className: '',
+            }, {
+                label: COLUMN_NAME.Birthday,
+                className: '',
+            }, {
+                label: COLUMN_NAME.Usf,
+                className: '',
+            }, {
+                label: COLUMN_NAME.Email,
+                className: '',
+            }, EmptyObject],
+            titlesInvestigator: [{
+                label: COLUMN_NAME.Name,
+                className: '',
+            }, {
+                label: COLUMN_NAME.Gender,
+                className: '',
+            }, {
+                label: COLUMN_NAME.Birthday,
+                className: '',
+            }, {
+                label: COLUMN_NAME.Usf,
+                className: '',
+            }, {
+                label: COLUMN_NAME.Email,
+                className: '',
+            }],
             columns: [
                 {...TableActionColumns.View, responsivePriority: 1},
                 {data: 'gender', responsivePriority: 6},
                 {data: 'parsedDate', responsivePriority: 7},
                 {data: 'ufc', responsivePriority: 5},
                 {data: 'email', responsivePriority: 4},
-                {...TableActionColumns.NutriclockGroup, responsivePriority: 2},
-                {...TableActionColumns.Block, responsivePriority: 3}
             ],
         };
     },
@@ -265,11 +295,24 @@ export default {
             }).catch(() => {
                 this.showError('Ocorreu um erro', 'error');
             });
+        },
+        getTitlesByRole() {
+            if (this.$store.state.user.role === UserRoles.Admin) {
+                return this.titles;
+            }
+            if (this.$store.state.user.role === UserRoles.Professional) {
+                return this.titlesProfessional;
+            }
+            if (this.$store.state.user.role === UserRoles.Intern) {
+                return this.titlesInvestigator;
+            }
         }
     },
     async mounted() {
         await this.getUsers();
         if (this.$store.state.user.role === UserRoles.Admin) {
+            this.columns.push({...TableActionColumns.NutriclockGroup, responsivePriority: 3})
+            this.columns.push({...TableActionColumns.Block, responsivePriority: 3})
             this.columns.push({...TableActionColumns.Delete, responsivePriority: 2});
         }
 
@@ -279,9 +322,9 @@ export default {
         this.dataTable = await initDataTable('#patientsTable', this.data, this.columns);
         onClickHandler(this.dataTable, this.onViewClick, '#patientsTable', TableActionClasses.View);
         if (this.$store.state.user.role === UserRoles.Admin) {
+            onClickHandler(this.dataTable, this.onNutriclockGroupClick, '#patientsTable', TableActionClasses.NutriclockGroup);
             onClickHandler(this.dataTable, this.onBlockClick, '#patientsTable', TableActionClasses.Block);
             onClickHandler(this.dataTable, this.onDeleteClick, '#patientsTable', TableActionClasses.Delete);
-            onClickHandler(this.dataTable, this.onNutriclockGroupClick, '#patientsTable', TableActionClasses.NutriclockGroup);
         }
         if (this.$store.state.user.role === UserRoles.Professional) {
             onClickHandler(this.dataTable, this.onMessageSend, '#patientsTable', TableActionClasses.Message);
