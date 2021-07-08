@@ -79,7 +79,7 @@
                     </div>
                 </div>
                 <div class="card p-2 pt-3 mt-2 text-dark">
-                    <h5 class="card-title">Biomarcadores</h5>
+                    <h5 class="card-title">Antropometria</h5>
                     <div class="card-text">
                         <div class="form-group">
                             <label for="weight" class="small-text text-secondary">Peso (kg)</label>

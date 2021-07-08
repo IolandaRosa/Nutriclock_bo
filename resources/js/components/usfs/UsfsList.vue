@@ -4,7 +4,7 @@
             <div class="with-p-4 bg-light rounded with-shadow">
                 <div class="component-wrapper-header">
                     <h3 class="component-wrapper-left">
-                        Unidades de Saúde Familiar
+                        Instituições
                     </h3>
                     <div class="component-wrapper-right">
                         <button class="btn-bold btn btn-primary" v-on:click.prevent="add" type="button"

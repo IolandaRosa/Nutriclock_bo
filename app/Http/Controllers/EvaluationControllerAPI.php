@@ -129,13 +129,85 @@ class EvaluationControllerAPI extends Controller
      *       )
      *     )
      */
-    public function getAverageEvaluation() {
-        $averages = Evaluation::
-            select(DB::raw('avg(question1) question1, avg(question2) question2, avg(question3) question3, avg(question4) question4,
-            avg(question5) question5, avg(question6) question6, avg(question7) question7, avg(question8) question8, avg(question9) question9, avg(question10) question10'))
-            ->first();
+    public function getAverageEvaluation()
+    {
+        $questions = Evaluation::all();
 
-        return Response::json(['averages' => $averages]);
+        $totalZero1 = 0;
+        $totalQuestion1 = 0;
+        $totalZero2 = 0;
+        $totalQuestion2 = 0;
+        $totalZero3 = 0;
+        $totalQuestion3 = 0;
+        $totalZero4 = 0;
+        $totalQuestion4 = 0;
+        $totalZero5 = 0;
+        $totalQuestion5 = 0;
+        $totalZero6 = 0;
+        $totalQuestion6 = 0;
+        $totalZero7 = 0;
+        $totalQuestion7 = 0;
+        $totalZero8 = 0;
+        $totalQuestion8 = 0;
+        $totalZero9 = 0;
+        $totalQuestion9 = 0;
+        $totalZero10 = 0;
+        $totalQuestion10 = 0;
+
+        foreach ($questions as $q) {
+            if ($q->question1 == 0) $totalZero1++;
+            $totalQuestion1 += $q->question1;
+
+            if ($q->question2 == 0) $totalZero2++;
+            $totalQuestion2 += $q->question2;
+
+            if ($q->question3 == 0) $totalZero3++;
+            $totalQuestion3 += $q->question3;
+
+            if ($q->question4 == 0) $totalZero4++;
+            $totalQuestion4 += $q->question4;
+
+            if ($q->question5 == 0) $totalZero5++;
+            $totalQuestion5 += $q->question5;
+
+            if ($q->question6 == 0) $totalZero6++;
+            $totalQuestion6 += $q->question6;
+
+            if ($q->question7 == 0) $totalZero7++;
+            $totalQuestion7 += $q->question7;
+
+            if ($q->question8 == 0) $totalZero8++;
+            $totalQuestion8 += $q->question8;
+
+            if ($q->question9 == 0) $totalZero9++;
+            $totalQuestion9 += $q->question9;
+
+            if ($q->question10 == 0) $totalZero10++;
+            $totalQuestion10 += $q->question10;
+        }
+
+        return Response::json([
+            'question1' => $totalQuestion1 / (count($questions) - $totalZero1),
+            'answer1' => count($questions) - $totalZero1,
+            'question2' => $totalQuestion2 / (count($questions) - $totalZero2),
+            'answer2' => count($questions) - $totalZero2,
+            'question3' => $totalQuestion3 / (count($questions) - $totalZero3),
+            'answer3' => count($questions) - $totalZero3,
+            'question4' => $totalQuestion4 / (count($questions) - $totalZero4),
+            'answer4' => count($questions) - $totalZero4,
+            'question5' => $totalQuestion5 / (count($questions) - $totalZero5),
+            'answer5' => count($questions) - $totalZero5,
+            'question6' => $totalQuestion6 / (count($questions) - $totalZero6),
+            'answer6' => count($questions) - $totalZero6,
+            'question7' => $totalQuestion7 / (count($questions) - $totalZero7),
+            'answer7' => count($questions) - $totalZero7,
+            'question8' => $totalQuestion8 / (count($questions) - $totalZero8),
+            'answer8' => count($questions) - $totalZero8,
+            'question9' => $totalQuestion9 / (count($questions) - $totalZero9),
+            'answer9' => count($questions) - $totalZero9,
+            'question10' => $totalQuestion10 / (count($questions) - $totalZero10),
+            'answer10' => count($questions) - $totalZero10
+        ]);
     }
 
     /**
@@ -151,7 +223,8 @@ class EvaluationControllerAPI extends Controller
      *       )
      *     )
      */
-    public function getUserEvaluation() {
+    public function getUserEvaluation()
+    {
         $user = User::find(Auth::guard('api')->id());
 
         if (!$user) {

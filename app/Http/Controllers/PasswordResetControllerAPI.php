@@ -60,7 +60,7 @@ class PasswordResetControllerAPI extends Controller
         if ($request->register) {
             $user->notify(new PasswordResetRequest($passwordReset->token, $user, 'Confirmação de Registo', 'Clique no link abaixo para  finalizar o processo de autenticação.'));
         } else {
-            $user->notify(new PasswordResetRequest($passwordReset->token, $user, 'Recuperação de Password', 'Clique no link abaixo para  submeter a sua passsword de autenticação.'));
+            $user->notify(new PasswordResetRequest($passwordReset->token, $user, 'Recuperação de Password', 'Clique no link abaixo para recuperar a sua password.'));
         }
 
         return new PasswordResetResource($passwordReset);
