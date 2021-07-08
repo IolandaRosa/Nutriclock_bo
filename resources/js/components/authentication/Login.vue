@@ -13,7 +13,7 @@
                            placeholder="email@mail.pt"
                            v-model.trim="email"
                     >
-                    <div v-if="errors.email" class="invalid-feedback">
+                    <div v-if="errors.email" class="invalid-feedback" id="login-form-error-email">
                         {{errors.email}}
                     </div>
                 </div>
@@ -26,12 +26,12 @@
                         v-model.trim="password"
                         placeholder="password"
                     >
-                    <div v-if="errors.password" class="invalid-feedback">
+                    <div v-if="errors.password" class="invalid-feedback" id="login-form-error-password">
                         {{errors.password}}
                     </div>
                 </div>
                 <div class="col-md-8 mb-3">
-                    <button class="full-width btn btn-primary" v-on:click.prevent="submit" type="submit">
+                    <button class="full-width btn btn-primary" v-on:click.prevent="submit" type="submit" id="login-form-btn">
                         <span v-if="isFetching" class="spinner-border spinner-border-sm" role="status"
                               aria-hidden="true"></span>
                         <span>Login</span>
@@ -39,7 +39,7 @@
                 </div>
             </form>
             <div>
-                <a href="#" v-on:click.prevent="redirectForgotPassword" class="password-link">Recuperar a Password</a>
+                <a href="#" v-on:click.prevent="redirectForgotPassword" class="password-link" id="login-form-redirect-password">Recuperar a Password</a>
             </div>
         </div>
     </div>
