@@ -9,7 +9,7 @@
                     <div class="component-wrapper-right">
                         <button class="btn-bold btn btn-primary" v-on:click.prevent="add" type="button"
                                 data-toggle="tooltip"
-                                title="Nova Categoria">
+                                title="Nova Categoria" id="categories-new-btn">
                     <span v-if="isFetching" class="spinner-border spinner-border-sm" role="status"
                           aria-hidden="true"></span>
                             <span class="full-text">Nova Categoria Profissional</span>

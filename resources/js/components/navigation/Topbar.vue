@@ -4,12 +4,13 @@
             <div style="display: flex">
                 <div class="top-bar-items">
                     <button type="button" class="btn btn-outline-primary btn-sm mr-2" data-toggle="tooltip"
-                            title="Logout" v-on:click="logout">Logout
+                            title="Logout" v-on:click="logout" id="top-bar-logout-btn">Logout
                     </button>
                     <button
                         type="button" data-toggle="tooltip" title="Configurações"
                         v-if="$store.state.user && $store.state.user.role === 'ADMIN'"
                         class="btn btn-outline-primary btn-sm mr-2"
+                        id="top-bar-configurations-btn"
                         v-on:click="() => {this.$router.push('/configurations')}"
                     >
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-tools" fill="currentColor"
@@ -24,6 +25,7 @@
                         v-if="$store.state.user && $store.state.user.role === 'PROFESSIONAL'"
                         type="button" data-toggle="tooltip" title="Mensagens"
                         class="btn btn-outline-primary btn-sm mr-2"
+                        id="top-bar-chat-btn"
                         v-on:click="() => { this.showMessageSidebar = true; }"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -38,7 +40,7 @@
                 </div>
             </div>
             <div class="top-bar-info pointer" data-toggle="tooltip" title="Perfil"
-                 v-on:click="() => {this.$router.push('/profile')}">
+                 v-on:click="() => {this.$router.push('/profile')}" id="top-bar-profile-div">
                 <div class="top-bar-avatar" v-if="!this.$store.state.user || !this.$store.state.user.avatarUrl">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor"
                          xmlns="http://www.w3.org/2000/svg">

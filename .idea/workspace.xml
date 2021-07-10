@@ -16,9 +16,27 @@
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
-  </component>l
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="" />
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/categories/CategoriesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/categories/CategoriesList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/configurations/ConfigurationList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/configurations/ConfigurationList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/diseases/DiseasesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/diseases/DiseasesList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/exercises/ExercisesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/exercises/ExercisesList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/food/FoodList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/food/FoodList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/AddCategory.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/AddCategory.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/AddDisease.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/AddDisease.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/AddExerciseModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/AddExerciseModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/AddFoodModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/AddFoodModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/AddProfessional.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/AddProfessional.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/ConfirmationModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/ConfirmationModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/Profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/Profile.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/ResendEmail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/ResendEmail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/navigation/Topbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/navigation/Topbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/users/AdminUsersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/users/AdminUsersList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/users/UserProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/users/UserProfile.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -399,13 +417,8 @@
       <workItem from="1623874230458" duration="1792000" />
       <workItem from="1625692988326" duration="2974000" />
       <workItem from="1625776719412" duration="1168000" />
-    </task>
-    <task id="LOCAL-00146" summary="add description to meal plan ingredient">
-      <created>1615032858722</created>
-      <option name="number" value="00146" />
-      <option name="presentableId" value="LOCAL-00146" />
-      <option name="project" value="LOCAL" />
-      <updated>1615032858722</updated>
+      <workItem from="1625783797720" duration="208000" />
+      <workItem from="1625909189425" duration="1555000" />
     </task>
     <task id="LOCAL-00147" summary="plan stats finished">
       <created>1615120391402</created>
@@ -743,7 +756,14 @@
       <option name="project" value="LOCAL" />
       <updated>1625778477770</updated>
     </task>
-    <option name="localTasksCounter" value="195" />
+    <task id="LOCAL-00195" summary="Add id to login for test">
+      <created>1625783996373</created>
+      <option name="number" value="00195" />
+      <option name="presentableId" value="LOCAL-00195" />
+      <option name="project" value="LOCAL" />
+      <updated>1625783996374</updated>
+    </task>
+    <option name="localTasksCounter" value="196" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -771,7 +791,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add swagger docs" />
     <MESSAGE value="continue to add swagger docs" />
     <MESSAGE value="finished documentation" />
     <MESSAGE value="build for development" />
@@ -796,6 +815,7 @@
     <MESSAGE value="Changed string Unidade de Saude Familiar to Instituição" />
     <MESSAGE value="Changed string" />
     <MESSAGE value="Add thecorrections to evaluation and other UI elements from the screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add thecorrections to evaluation and other UI elements from the screen" />
+    <MESSAGE value="Add id to login for test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add id to login for test" />
   </component>
 </project>

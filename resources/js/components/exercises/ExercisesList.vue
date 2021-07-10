@@ -4,11 +4,11 @@
             <div class="with-p-4 bg-light rounded with-shadow">
                 <div class="btn-group btn-group-sm w-100"  style="z-index: 0 !important;"  role="group">
                     <button :class="exerciseActive ? 'btn btn-primary w-50' : 'btn btn-outline-primary w-50'"
-                            v-on:click.prevent="() => updateTable('Exercício Desportivo')">
+                            v-on:click.prevent="() => updateTable('Exercício Desportivo')" id="exercises-toggle-sport-btn">
                         Exercício Desportivo
                     </button>
                     <button :class="!exerciseActive ? 'btn btn-primary w-50' : 'btn btn-outline-primary w-50'"
-                            v-on:click.prevent="() => updateTable('Tarefa Doméstica')">
+                            v-on:click.prevent="() => updateTable('Tarefa Doméstica')" id="exercises-toggle-home-btn">
                         Tarefa Doméstica
                     </button>
                 </div>
@@ -19,7 +19,7 @@
                     <div class="component-wrapper-right">
                         <button class="btn-bold btn btn-primary" v-on:click.prevent="add" type="button"
                                 data-toggle="tooltip"
-                                title="Novo Exercício">
+                                title="Novo Exercício" id="exercises-new-btn">
                     <span v-if="isFetching" class="spinner-border spinner-border-sm" role="status"
                           aria-hidden="true"></span>
                             <span class="full-text">Novo Exercício</span>

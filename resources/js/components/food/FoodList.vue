@@ -10,6 +10,7 @@
                         <button class="btn-bold btn btn-primary" type="button"
                                 data-toggle="tooltip"
                                 v-on:click.prevent="onClickNewFood"
+                                id="food-list-new-food-btn"
                                 title="Novo Alimento">
                     <span v-if="isFetching" class="spinner-border spinner-border-sm" role="status"
                           aria-hidden="true"></span>

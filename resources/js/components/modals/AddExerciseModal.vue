@@ -44,10 +44,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn-bold btn btn-primary" @click="onSaveClick">
+                        <button class="btn-bold btn btn-primary" @click="onSaveClick" id="add-exercises-modal-save-btn">
                             Guardar
                         </button>
-                        <button class="btn-bold btn btn-secondary" @click="onCloseClick">
+                        <button class="btn-bold btn btn-secondary" @click="onCloseClick" id="add-exercises-modal-close-btn">
                             Cancelar
                         </button>
                     </div>

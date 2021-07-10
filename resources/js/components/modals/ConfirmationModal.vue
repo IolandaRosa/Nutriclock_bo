@@ -7,16 +7,16 @@
                         <img class="modal-logo" :src="'images/only_logo.png'" alt=""/>
                     </div>
                     <div class="modal-header">
-                        <span class="title">{{title}}</span>
+                        <span class="title" id="confirmation-modal-title-span">{{title}}</span>
                     </div>
                     <div class="modal-body">
-                        <p style="color: #000">{{message}}</p>
+                        <p style="color: #000" id="confirmation-modal-message">{{message}}</p>
                     </div>
                     <div class="modal-footer">
-                        <button :class="saveButtonClass" @click="onSaveClick">
+                        <button :class="saveButtonClass" @click="onSaveClick" id="confirmation-modal-save-btn">
                             {{saveButtonText}}
                         </button>
-                        <button class="btn-bold btn btn-secondary" @click="onCloseClick">
+                        <button class="btn-bold btn btn-secondary" @click="onCloseClick" id="confirmation-modal-close-btn">
                             {{cancelButtonText}}
                         </button>
                     </div>

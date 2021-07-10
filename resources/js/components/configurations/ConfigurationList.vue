@@ -23,6 +23,7 @@
                                         v-if="d.key !== 'SLEEP_TIP_ENABLED'"
                                         type="text"
                                         class="form-control"
+                                        id="configurations-sleep-tip-input"
                                         v-model="d.value"
                                         v-on:change="() => updateConfiguration(d.id, d.value)"
                                     >
@@ -31,7 +32,7 @@
                                             class="form-check-input"
                                             type="checkbox"
                                             v-model="d.value"
-                                            id="enableTipCheck"
+                                            id="configurations-sleep-tip-checkbox""
                                             v-on:change="() => updateConfiguration(d.id, d.value)"
                                         >
                                     </div>

@@ -85,16 +85,16 @@
                                     <option v-for="ufs in ufcs" :value="ufs.id">{{ufs.name}}</option>
                                 </select>
                             </div>
-                            <div v-if="errors.selectedUsfs" class="invalid-feedback">
+                            <div v-if="errors.selectedUsfs" class="invalid-feedback" id="add-professional-modal-error">
                                 {{errors.selectedUsfs}}
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn-bold btn btn-primary" @click="onSaveClick">
+                        <button class="btn-bold btn btn-primary" @click="onSaveClick" id="add-professional-modal-save-btn">
                             Guardar
                         </button>
-                        <button class="btn-bold btn btn-secondary" @click="onCloseClick">
+                        <button class="btn-bold btn btn-secondary" @click="onCloseClick" id="add-professional-modal-close-btn">
                             Cancelar
                         </button>
                     </div>

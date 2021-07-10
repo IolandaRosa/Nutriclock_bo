@@ -29,10 +29,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn-bold btn btn-primary" @click="onSaveClick">
+                        <button class="btn-bold btn btn-primary" @click="onSaveClick" id="resend-email-modal-save-btn">
                             Reenviar
                         </button>
-                        <button class="btn-bold btn btn-secondary" @click="onCloseClick">
+                        <button class="btn-bold btn btn-secondary" @click="onCloseClick" id="resend-email-modal-close-btn">
                             Cancelar
                         </button>
                     </div>

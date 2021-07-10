@@ -28,10 +28,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn-bold btn btn-primary" @click="onSaveClick">
+                        <button class="btn-bold btn btn-primary" @click="onSaveClick" id="save-category-modal-btn">
                             Guardar
                         </button>
-                        <button class="btn-bold btn btn-secondary" @click="onCloseClick">
+                        <button class="btn-bold btn btn-secondary" @click="onCloseClick" id="close-category-modal-btn">
                             Cancelar
                         </button>
                     </div>

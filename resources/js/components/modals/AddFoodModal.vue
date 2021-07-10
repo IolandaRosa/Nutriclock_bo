@@ -396,7 +396,7 @@
                                     v-bind:class="{ 'is-invalid': errors.zn_mg !== null }"
                                     v-model.trim="zn_mg"a
                                 >
-                                <div v-if="errors.zn_mg" class="invalid-feedback">
+                                <div v-if="errors.zn_mg" class="invalid-feedback" id="error-add-food-modal">
                                     {{ errors.zn_mg }}
                                 </div>
                             </div>
@@ -404,10 +404,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn-bold btn btn-primary" @click="onSaveClick">
+                        <button class="btn-bold btn btn-primary" @click="onSaveClick" id="add-food-modal-save-btn">
                             Guardar
                         </button>
-                        <button class="btn-bold btn btn-secondary" @click="onCloseClick">
+                        <button class="btn-bold btn btn-secondary" @click="onCloseClick" id="add-food-modal-close-btn">
                             Cancelar
                         </button>
                     </div>

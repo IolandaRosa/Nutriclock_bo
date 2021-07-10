@@ -13,7 +13,7 @@
                     <div class="component-wrapper-right">
                         <button class="btn-bold btn btn-primary" v-on:click.prevent="save" type="button"
                                 data-toggle="tooltip"
-                                title="Guardar alterações">
+                                title="Guardar alterações" id="user-profile-save-btn">
                     <span v-if="isFetching" class="spinner-border spinner-border-sm" role="status"
                           aria-hidden="true"></span>
                             <span>Guardar alterações</span>

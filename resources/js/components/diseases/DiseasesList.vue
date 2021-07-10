@@ -4,11 +4,11 @@
             <div class="with-p-4 bg-light rounded with-shadow">
                 <div class="btn-group btn-group-sm w-100"  style="z-index: 0 !important;"  role="group">
                     <button :class="diseaseActive ? 'btn btn-primary w-50' : 'btn btn-outline-primary w-50'"
-                            v-on:click.prevent="() => updateTable('Patologia')">
+                            v-on:click.prevent="() => updateTable('Patologia')" id="diseases-toggle-disease-btn">
                         Patologia
                     </button>
                     <button :class="!diseaseActive ? 'btn btn-primary w-50' : 'btn btn-outline-primary w-50'"
-                            v-on:click.prevent="() => updateTable('Alergia')">
+                            v-on:click.prevent="() => updateTable('Alergia')" id="diseases-toggle-allergy-btn">
                         Alergia Alimentar
                     </button>
                 </div>
@@ -19,7 +19,7 @@
                     <div class="component-wrapper-right">
                         <button class="btn-bold btn btn-primary" v-on:click.prevent="add" type="button"
                                 data-toggle="tooltip"
-                                :title="tooltip">
+                                :title="tooltip" id="diseases-new-disease-btn">
                     <span v-if="isFetching" class="spinner-border spinner-border-sm" role="status"
                           aria-hidden="true"></span>
                             <span class="full-text">{{ tooltip }}</span>
