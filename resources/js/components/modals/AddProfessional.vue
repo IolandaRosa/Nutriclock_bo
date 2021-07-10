@@ -21,7 +21,7 @@
                                         id="add-professional-modal-input-name"
                                         v-model.trim="name"
                                     >
-                                    <div v-if="errors.name" class="invalid-feedback">
+                                    <div v-if="errors.name" class="invalid-feedback" id="add-professional-modal-input-error-name">
                                         {{errors.name}}
                                     </div>
                                 </div>
@@ -37,7 +37,7 @@
                                         v-model.trim="email"
                                         placeholder='email@mail.pt'
                                     >
-                                    <div v-if="errors.email" class="invalid-feedback">
+                                    <div v-if="errors.email" class="invalid-feedback" id="add-professional-modal-input-error-email">
                                         {{errors.email}}
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                                         <option value="" disabled selected>Selecione um perfil...</option>
                                         <option v-for="role in roles" :value="role.value">{{role.label}}</option>
                                     </select>
-                                    <div v-if="errors.selectedRole" class="invalid-feedback">
+                                    <div v-if="errors.selectedRole" class="invalid-feedback" id="add-professional-modal-error-select-role">
                                         {{errors.selectedRole}}
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
                                     <option v-for="ufs in ufcs" :value="ufs.id">{{ufs.name}}</option>
                                 </select>
                             </div>
-                            <div v-if="errors.selectedUsfs" class="invalid-feedback" id="add-professional-modal-error">
+                            <div v-if="errors.selectedUsfs" class="invalid-feedback" id="add-professional-modal-ufcs-error">
                                 {{errors.selectedUsfs}}
                             </div>
                         </div>
