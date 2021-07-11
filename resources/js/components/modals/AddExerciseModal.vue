@@ -151,6 +151,7 @@ export default {
   },
   watch: {
     selectedRow: function (newVal, oldVal) {
+        console.log(newVal)
       if (newVal) {
         this.id = newVal.id;
         this.name = newVal.name;
