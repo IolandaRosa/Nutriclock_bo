@@ -18,7 +18,13 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="" />
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/exercises/ExercisesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/exercises/ExercisesList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/AddExerciseModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/AddExerciseModal.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -401,13 +407,8 @@
       <workItem from="1625776719412" duration="1168000" />
       <workItem from="1625783797720" duration="208000" />
       <workItem from="1625909189425" duration="1774000" />
-    </task>
-    <task id="LOCAL-00148" summary="add patient meal plan by date get">
-      <created>1615161408331</created>
-      <option name="number" value="00148" />
-      <option name="presentableId" value="LOCAL-00148" />
-      <option name="project" value="LOCAL" />
-      <updated>1615161408331</updated>
+      <workItem from="1625911141065" duration="209000" />
+      <workItem from="1626033688729" duration="775000" />
     </task>
     <task id="LOCAL-00149" summary="add patient history endpoint">
       <created>1615211458418</created>
@@ -745,7 +746,14 @@
       <option name="project" value="LOCAL" />
       <updated>1625910953331</updated>
     </task>
-    <option name="localTasksCounter" value="197" />
+    <task id="LOCAL-00197" summary="Add id to add admin user modal errors">
+      <created>1625911336615</created>
+      <option name="number" value="00197" />
+      <option name="presentableId" value="LOCAL-00197" />
+      <option name="project" value="LOCAL" />
+      <updated>1625911336615</updated>
+    </task>
+    <option name="localTasksCounter" value="198" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -773,7 +781,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="continue to add swagger docs" />
     <MESSAGE value="finished documentation" />
     <MESSAGE value="build for development" />
     <MESSAGE value="generated docs for production" />
@@ -798,6 +805,7 @@
     <MESSAGE value="Changed string" />
     <MESSAGE value="Add thecorrections to evaluation and other UI elements from the screen" />
     <MESSAGE value="Add id to login for test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add id to login for test" />
+    <MESSAGE value="Add id to add admin user modal errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add id to add admin user modal errors" />
   </component>
 </project>

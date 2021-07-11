@@ -159,6 +159,7 @@ export default {
         async handleSuccess(message) {
             this.isFetching = false;
             if (message) this.showMessage(message, 'success');
+            this.selectedRow = null;
             this.onCloseClick();
             if (this.exerciseActive) {
                 await this.getSports();
