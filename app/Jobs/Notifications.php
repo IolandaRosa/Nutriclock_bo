@@ -61,7 +61,7 @@ class Notifications implements ShouldQueue
                             }
                         }
 
-                        if ($hour > '12:00' && $hour < '12:20') {
+                        if ($hour > date('H:i', strtotime('12:00')) && $hour < date('H:i', strtotime('12:20'))) {
                             if ($notifications->notificationsSleep) {
                                 $sleep = Sleep::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
 
