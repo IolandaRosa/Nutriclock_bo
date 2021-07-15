@@ -194,7 +194,7 @@ Route::middleware(['auth:api', 'admin'])->post('/biometric-group-user-add', 'Bio
 Route::middleware(['auth:api', 'admin'])->post('/biometric-group-user-remove', 'BiometricGroupControllerAPI@removeUserFromGroup');
 Route::middleware(['auth:api', 'admin'])->post('/biometric-group-biometric-collection-add', 'BiometricGroupControllerAPI@addBiometricCollectionToGroup');
 Route::middleware(['auth:api', 'admin'])->post('/biometric-group-biometric-collection-remove', 'BiometricGroupControllerAPI@removeBiometricCollectionToGroup');
-
+Route::middleware(['auth:api', 'admin'])->get('/biometric-group', 'BiometricGroupControllerAPI@index');
 
 // Evaluation API
 Route::middleware(['auth:api', 'patient'])->post('evaluation', 'EvaluationControllerAPI@store');

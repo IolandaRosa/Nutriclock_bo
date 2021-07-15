@@ -157,7 +157,8 @@ export default {
             showConfirmation: false,
             selectedUrl: null,
             samples: [],
-            procedureSteps: []
+            procedureSteps: [],
+            groups: [],
         };
     },
     methods: {
@@ -254,6 +255,21 @@ export default {
             this.showProcedureModal = false;
             this.showConfirmation = false;
         },
+        getCollectionGroups() {
+            if (this.isFetching) return;
+            this.isFetching = true;
+
+            axios.get('api/biometric-group').then(response => {
+                this.isFetching = false;
+                this.groups = response.data.data;
+            }).catch(error => {
+                this.isFetching = false;
+                if (error.response && error.response.status === 401) {
+                    this.$store.commit('clearUserAndToken');
+                    this.$router.push({path: ROUTE.Login});
+                }
+            });
+        },
         getBiometricCollection() {
             if (this.isFetching) return;
             this.isFetching = true;
@@ -289,6 +305,7 @@ export default {
     mounted() {
         this.getBiometricCollection();
         this.getProcedure();
+        this.getCollectionGroups();
     },
 };
 </script>

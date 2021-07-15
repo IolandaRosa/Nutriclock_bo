@@ -14,6 +14,42 @@ use Illuminate\Support\Facades\Response;
 class BiometricGroupControllerAPI extends Controller
 {
     /**
+     * @OA\Get(
+     *      path="/api/biometric-group",
+     *      operationId="get all biometric groups",
+     *      tags={"Biometric Group"},
+     *      summary="Return a list of all biometric groups and collections",
+     *      description="Return a list all biometric groups and collections",
+     *      @OA\Response(
+     *          response=200,
+     *          description="return a list of all biometric groups and collections"
+     *       )
+     *     )
+     */
+    public function index()
+    {
+        $groups = BiometricGroup::all();
+
+        if (!$groups) {
+            return Response::json(['error' => 'Não existem gruops de recolhas'], 400);
+        }
+
+        $index = 0;
+
+        foreach ($groups as $group) {
+            $biometricCollections = BiometricCollections::where('biometric_group_id', $group->id)->get();
+            $group['collections'] = $biometricCollections;
+
+            foreach ($biometricCollections as $biometricCollection) {
+                $intervals = BiometricCollectionIntervals::where('collectionId', $biometricCollection->id)->get(['id', 'hour']);
+                $biometricCollections[$index]['intervals'] = $intervals;
+                $index++;
+            }
+        }
+        return Response::json(['data' => $groups]);
+    }
+
+    /**
      * @OA\Post(
      *      path="/api/biometric-group",
      *      operationId="Creates new biometric group",
