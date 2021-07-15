@@ -33,7 +33,8 @@ class User extends Authenticatable
         'terms_accepted',
         'requestForget',
         'fcmToken',
-        'nutriclockGroup'
+        'nutriclockGroup',
+        'biometric_group_id'
     ];
 
     /**

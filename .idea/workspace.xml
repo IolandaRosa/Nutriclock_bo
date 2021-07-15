@@ -18,9 +18,19 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="Fixed delete on exercise">
+      <change afterPath="$PROJECT_DIR$/app/BiometricGroup.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/BiometricGroupControllerAPI.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Resources/BiometricGroup.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_07_15_213634_biometric_groups.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_07_15_214028_add_biometric_group_to_biometric_collections_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_07_15_221039_add_biometric_group_id_to_users_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/exercises/ExercisesList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/exercises/ExercisesList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/BiometricCollections.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/BiometricCollections.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/api-docs/api-docs.json" beforeDir="false" afterPath="$PROJECT_DIR$/storage/api-docs/api-docs.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

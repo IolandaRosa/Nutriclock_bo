@@ -185,9 +185,16 @@ Route::middleware(['auth:api', 'admin'])->get('/biometric-collection-down/{id}',
 // Biometric Procedure API
 Route::middleware(['auth:api'])->get('/biometric-procedure', 'BiometricProcedureControllerAPI@index');
 Route::middleware(['auth:api', 'admin'])->post('/biometric-procedure', 'BiometricProcedureControllerAPI@store');
+Route::middleware(['auth:api', 'admin'])->post('/biometric-group', 'BiometricGroupControllerAPI@store');
 Route::middleware(['auth:api', 'admin'])->delete('/biometric-procedure/{id}', 'BiometricProcedureControllerAPI@destroy');
 Route::middleware(['auth:api', 'admin'])->get('/biometric-procedure-up/{id}', 'BiometricProcedureControllerAPI@movesUp');
 Route::middleware(['auth:api', 'admin'])->get('/biometric-procedure-down/{id}', 'BiometricProcedureControllerAPI@movesDown');
+Route::middleware(['auth:api', 'admin'])->delete('/biometric-group/{id}', 'BiometricGroupControllerAPI@destroy');
+Route::middleware(['auth:api', 'admin'])->post('/biometric-group-user-add', 'BiometricGroupControllerAPI@addUserToGroup');
+Route::middleware(['auth:api', 'admin'])->post('/biometric-group-user-remove', 'BiometricGroupControllerAPI@removeUserFromGroup');
+Route::middleware(['auth:api', 'admin'])->post('/biometric-group-biometric-collection-add', 'BiometricGroupControllerAPI@addBiometricCollectionToGroup');
+Route::middleware(['auth:api', 'admin'])->post('/biometric-group-biometric-collection-remove', 'BiometricGroupControllerAPI@removeBiometricCollectionToGroup');
+
 
 // Evaluation API
 Route::middleware(['auth:api', 'patient'])->post('evaluation', 'EvaluationControllerAPI@store');
