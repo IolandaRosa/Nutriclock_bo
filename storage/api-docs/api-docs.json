@@ -200,6 +200,19 @@
             }
         },
         "/api/biometric-group": {
+            "get": {
+                "tags": [
+                    "Biometric Group"
+                ],
+                "summary": "Return a list of all biometric groups and collections",
+                "description": "Return a list all biometric groups and collections",
+                "operationId": "get all biometric groups",
+                "responses": {
+                    "200": {
+                        "description": "return a list of all biometric groups and collections"
+                    }
+                }
+            },
             "post": {
                 "tags": [
                     "Biometric Collection"
@@ -255,7 +268,7 @@
                 }
             }
         },
-        "/api/biometric-group-user": {
+        "/api/biometric-group-user-add": {
             "post": {
                 "tags": [
                     "Biometric Collection"
@@ -280,6 +293,93 @@
                 "responses": {
                     "200": {
                         "description": "return biometric group"
+                    }
+                }
+            }
+        },
+        "/api/biometric-group-user-remove": {
+            "post": {
+                "tags": [
+                    "Biometric Collection"
+                ],
+                "summary": "Dissociates a biometric group with user",
+                "description": "Dissociates a biometric group with user",
+                "operationId": "Dissociates a biometric group with user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "userId": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return user"
+                    }
+                }
+            }
+        },
+        "/api/biometric-group-biometric-collection-add": {
+            "post": {
+                "tags": [
+                    "Biometric Collection"
+                ],
+                "summary": "Associates a biometric group with biometric collection",
+                "description": "Associates a biometric group with biometric collection",
+                "operationId": "Associates a biometric group with biometric collection",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "collectionId": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return biometric group"
+                    }
+                }
+            }
+        },
+        "/api/biometric-group-biometric-collection-remove": {
+            "post": {
+                "tags": [
+                    "Biometric Collection"
+                ],
+                "summary": "Dissociates a biometric group with biometric collection",
+                "description": "Dissociates a biometric group with biometric collection",
+                "operationId": "Dissociates a biometric group with biometric collection",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "collectionId": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "return biometric collection"
                     }
                 }
             }
