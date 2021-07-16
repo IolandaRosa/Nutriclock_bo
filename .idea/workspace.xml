@@ -19,7 +19,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/UserGroupModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/UserGroupModal.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -409,13 +411,6 @@
       <workItem from="1626213792058" duration="578000" />
       <workItem from="1626466679823" duration="9005000" />
     </task>
-    <task id="LOCAL-00154" summary="Forget data finished">
-      <created>1617397322269</created>
-      <option name="number" value="00154" />
-      <option name="presentableId" value="LOCAL-00154" />
-      <option name="project" value="LOCAL" />
-      <updated>1617397322269</updated>
-    </task>
     <task id="LOCAL-00155" summary="Notifications api done">
       <created>1617473277642</created>
       <option name="number" value="00155" />
@@ -752,7 +747,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626390029276</updated>
     </task>
-    <option name="localTasksCounter" value="203" />
+    <task id="LOCAL-00203" summary="Change the databse file">
+      <created>1626476078089</created>
+      <option name="number" value="00203" />
+      <option name="presentableId" value="LOCAL-00203" />
+      <option name="project" value="LOCAL" />
+      <updated>1626476078089</updated>
+    </task>
+    <option name="localTasksCounter" value="204" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -780,7 +782,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed bug" />
     <MESSAGE value="Add compiled version" />
     <MESSAGE value="Add compiled workspace" />
     <MESSAGE value="Change api for notification biometric" />
@@ -805,6 +806,7 @@
     <MESSAGE value="Add the api to add group to biometric collections" />
     <MESSAGE value="Add the api to get the groups" />
     <MESSAGE value="Add the collection group ui" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add the collection group ui" />
+    <MESSAGE value="Change the databse file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change the databse file" />
   </component>
 </project>

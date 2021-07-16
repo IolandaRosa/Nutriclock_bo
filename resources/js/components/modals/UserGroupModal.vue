@@ -11,7 +11,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="font-weight-bold text-dark">Utilizadores no grupo</div>
-                        <div class="with-p-4 bg-light rounded with-shadow mb-3">
+                        <div class="with-p-4 bg-light rounded with-shadow mb-3 text-dark">
                             <div v-if="this.usersFromGroup.length === 0" class="m-2">
                                 Ainda não foram adicinados utilizadores na recolha.
                             </div>
@@ -27,7 +27,7 @@
                             </div>
                         </div>
                         <div class="font-weight-bold text-dark">Utilizadores para adicionar</div>
-                        <div class="with-p-4 bg-light rounded with-shadow">
+                        <div class="with-p-4 bg-light rounded with-shadow text-dark">
                             <div v-if="this.users.length === 0" class="m-2">
                                 Não existem utilizadores para adicionar.
                             </div>
