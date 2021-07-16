@@ -25,7 +25,7 @@ class BiometricCollectionControllerAPI extends Controller
     public function index()
     {
         $index = 0;
-        $biometricCollections = BiometricCollections::orderBy('orderNumber')->get(['id', 'orderNumber', 'name', 'date']);
+        $biometricCollections = BiometricCollections::orderBy('date')->get(['id', 'name', 'date']);
 
         if (!$biometricCollections) {
             return Response::json(['error' => 'Não existem recolhas'], 400);
@@ -52,10 +52,6 @@ class BiometricCollectionControllerAPI extends Controller
      *             mediaType="application/json",
      *             @OA\Schema(
      *                 @OA\Property(
-     *                     property="orderNumber",
-     *                     type="number"
-     *                 ),
-     *                 @OA\Property(
      *                     property="name",
      *                     type="string"
      *                 ),
@@ -67,6 +63,10 @@ class BiometricCollectionControllerAPI extends Controller
      *                     property="intervals",
      *                     type="array",
      *                     @OA\Items(type="string")
+     *                 ),
+     *                 @OA\Property(
+     *                     property="groupId",
+     *                     type="number"
      *                 ),
      *             )
      *         )
@@ -81,14 +81,14 @@ class BiometricCollectionControllerAPI extends Controller
     {
         $request->validate([
             'name' => 'required|string',
-            'orderNumber' => 'required|integer|unique:biometric_collections,orderNumber',
             'date' => 'required|string',
+            'groupId' => 'required'
         ]);
 
         $biometricCollection = new BiometricCollections();
         $biometricCollection->name = $request->name;
-        $biometricCollection->orderNumber = $request->orderNumber;
         $biometricCollection->date = $request->date;
+        $biometricCollection->biometric_group_id = $request->groupId;
         $biometricCollection->save();
 
         if ($request->intervals) {
@@ -133,100 +133,7 @@ class BiometricCollectionControllerAPI extends Controller
             return Response::json(['error' => 'A recolha não existe.'], 400);
         }
 
-        $biometricCollections = BiometricCollections::where('orderNumber', '>', $biometricCollection->orderNumber)->get();
-
-        if ($biometricCollections) {
-            foreach ($biometricCollections as $b) {
-                $b->orderNumber = $b->orderNumber - 1;
-                $b->save();
-            }
-        }
-
         $biometricCollection->forceDelete();
-        return $this->index();
-    }
-
-    /**
-     * @OA\Get(
-     *      path="/api/biometric-collection-up/{id}",
-     *      operationId="Downgrade order number",
-     *      tags={"Biometric Collection"},
-     *      summary="Downgrade order number",
-     *      description="Downgrade order number",
-     *      @OA\Parameter(
-     *         description="ID of biometric collection",
-     *         in="path",
-     *         name="id",
-     *         required=true,
-     *         @OA\Schema(
-     *           type="integer",
-     *           format="int64"
-     *         )
-     *      ),
-     *      @OA\Response(
-     *          response=200,
-     *          description="return biometric list reordered"
-     *       )
-     *     )
-     */
-    public function movesUp($id) {
-        $biometricCollection = BiometricCollections::find($id);
-
-        if (!$biometricCollection) {
-            return Response::json(['error' => 'O procedimento não existe.'], 400);
-        }
-
-        $biometricCollectionBefore = BiometricCollections::where('orderNumber', $biometricCollection->orderNumber-1)->first();
-
-        if ($biometricCollectionBefore) {
-            $biometricCollectionBefore->orderNumber = $biometricCollection->orderNumber;
-            $biometricCollectionBefore->save();
-        }
-
-        $biometricCollection->orderNumber = $biometricCollection->orderNumber - 1;
-        $biometricCollection->save();
-        return $this->index();
-    }
-
-    /**
-     * @OA\Get(
-     *      path="/api/biometric-collection-down/{id}",
-     *      operationId="Upgrade order number",
-     *      tags={"Biometric Collection"},
-     *      summary="Upgrade order number",
-     *      description="Upgrade order number",
-     *      @OA\Parameter(
-     *         description="ID of biometric collection",
-     *         in="path",
-     *         name="id",
-     *         required=true,
-     *         @OA\Schema(
-     *           type="integer",
-     *           format="int64"
-     *         )
-     *      ),
-     *      @OA\Response(
-     *          response=200,
-     *          description="return biometric list reordered"
-     *       )
-     *     )
-     */
-    public function  movesDown($id) {
-        $biometricCollection = BiometricCollections::find($id);
-
-        if (!$biometricCollection) {
-            return Response::json(['error' => 'O procedimento não existe.'], 400);
-        }
-
-        $biometricCollectionAfter = BiometricCollections::where('orderNumber', $biometricCollection->orderNumber+1)->first();
-
-        if ($biometricCollectionAfter) {
-            $biometricCollectionAfter->orderNumber = $biometricCollection->orderNumber;
-            $biometricCollectionAfter->save();
-        }
-
-        $biometricCollection->orderNumber = $biometricCollection->orderNumber + 1;
-        $biometricCollection->save();
         return $this->index();
     }
 }

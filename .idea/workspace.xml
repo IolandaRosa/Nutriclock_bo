@@ -19,9 +19,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/database/migrations/2021_07_16_232238_remove_order_number_biometric_collection_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/components/modals/UserGroupModal.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/BiometricCollections.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/BiometricCollections.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BiometricCollectionControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BiometricCollectionControllerAPI.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BiometricGroupControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BiometricGroupControllerAPI.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/biometricIndicators/BiometricIndicators.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/biometricIndicators/BiometricIndicators.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/AddSampleModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/AddSampleModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/storage/api-docs/api-docs.json" beforeDir="false" afterPath="$PROJECT_DIR$/storage/api-docs/api-docs.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -410,13 +417,7 @@
       <workItem from="1626033688729" duration="1149000" />
       <workItem from="1626035544955" duration="410000" />
       <workItem from="1626213792058" duration="578000" />
-    </task>
-    <task id="LOCAL-00153" summary="Add crud for food diseases">
-      <created>1616084250825</created>
-      <option name="number" value="00153" />
-      <option name="presentableId" value="LOCAL-00153" />
-      <option name="project" value="LOCAL" />
-      <updated>1616084250826</updated>
+      <workItem from="1626466679823" duration="9005000" />
     </task>
     <task id="LOCAL-00154" summary="Forget data finished">
       <created>1617397322269</created>
@@ -754,7 +755,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626387852604</updated>
     </task>
-    <option name="localTasksCounter" value="202" />
+    <task id="LOCAL-00202" summary="Add the collection group ui">
+      <created>1626390029276</created>
+      <option name="number" value="00202" />
+      <option name="presentableId" value="LOCAL-00202" />
+      <option name="project" value="LOCAL" />
+      <updated>1626390029276</updated>
+    </task>
+    <option name="localTasksCounter" value="203" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -782,7 +790,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add meal type confirmation to production" />
     <MESSAGE value="fixed bug" />
     <MESSAGE value="Add compiled version" />
     <MESSAGE value="Add compiled workspace" />
@@ -807,6 +814,7 @@
     <MESSAGE value="Fixed delete on exercise" />
     <MESSAGE value="Add the api to add group to biometric collections" />
     <MESSAGE value="Add the api to get the groups" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add the api to get the groups" />
+    <MESSAGE value="Add the collection group ui" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add the collection group ui" />
   </component>
 </project>

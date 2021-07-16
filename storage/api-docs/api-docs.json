@@ -90,9 +90,6 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
-                                    "orderNumber": {
-                                        "type": "number"
-                                    },
                                     "name": {
                                         "type": "string"
                                     },
@@ -104,6 +101,9 @@
                                         "items": {
                                             "type": "string"
                                         }
+                                    },
+                                    "groupId": {
+                                        "type": "number"
                                     }
                                 },
                                 "type": "object"
@@ -141,60 +141,6 @@
                 "responses": {
                     "200": {
                         "description": "return biometric collection"
-                    }
-                }
-            }
-        },
-        "/api/biometric-collection-up/{id}": {
-            "get": {
-                "tags": [
-                    "Biometric Collection"
-                ],
-                "summary": "Downgrade order number",
-                "description": "Downgrade order number",
-                "operationId": "Downgrade order number",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "ID of biometric collection",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "return biometric list reordered"
-                    }
-                }
-            }
-        },
-        "/api/biometric-collection-down/{id}": {
-            "get": {
-                "tags": [
-                    "Biometric Collection"
-                ],
-                "summary": "Upgrade order number",
-                "description": "Upgrade order number",
-                "operationId": "Upgrade order number",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "ID of biometric collection",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "return biometric list reordered"
                     }
                 }
             }
@@ -326,35 +272,6 @@
                 }
             }
         },
-        "/api/biometric-group-biometric-collection-add": {
-            "post": {
-                "tags": [
-                    "Biometric Collection"
-                ],
-                "summary": "Associates a biometric group with biometric collection",
-                "description": "Associates a biometric group with biometric collection",
-                "operationId": "Associates a biometric group with biometric collection",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "collectionId": {
-                                        "type": "number"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "return biometric group"
-                    }
-                }
-            }
-        },
         "/api/biometric-group-biometric-collection-remove": {
             "post": {
                 "tags": [
@@ -380,6 +297,21 @@
                 "responses": {
                     "200": {
                         "description": "return biometric collection"
+                    }
+                }
+            }
+        },
+        "/api/biometric-group/users/{id}": {
+            "get": {
+                "tags": [
+                    "Biometric Group"
+                ],
+                "summary": "Return a list of all users from biometric group and without a group",
+                "description": "Return a list of all users from biometric group and without a group",
+                "operationId": "get all biometric users by group",
+                "responses": {
+                    "200": {
+                        "description": "Return a list of all users from biometric group and without a group"
                     }
                 }
             }

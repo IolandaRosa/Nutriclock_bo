@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class BiometricCollections extends Model
 {
-    protected $fillable = [ 'id', 'orderNumber', 'name', 'date', 'biometric_group_id' ];
+    protected $fillable = [ 'id', 'name', 'date', 'biometric_group_id' ];
 }

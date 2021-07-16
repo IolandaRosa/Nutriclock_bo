@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\BiometricCollectionIntervals;
 use App\BiometricCollections;
 use App\BiometricGroup;
+use App\Http\Resources\BiometricGroup as BiometricGroupResource;
+use App\Http\Resources\User as UserResource;
 use App\User;
 use Illuminate\Http\Request;
-use \App\Http\Resources\BiometricGroup as BiometricGroupResource;
-use \App\Http\Resources\User as UserResource;
 use Illuminate\Support\Facades\Response;
 
 class BiometricGroupControllerAPI extends Controller
@@ -188,7 +188,9 @@ class BiometricGroupControllerAPI extends Controller
         $user->biometric_group_id = $request->groupId;
         $user->save();
 
-        return new BiometricGroupResource($group);
+        $usersFromGroup = User::where('biometric_group_id', $group->id)->where('role', 'PATIENT')->get();
+        $usersWithoutGroup = User::where('biometric_group_id', null)->where('role', 'PATIENT')->get();
+        return Response::json(['usersFromGroup' => $usersFromGroup, 'usersWithoutGroup' => $usersWithoutGroup]);
     }
 
     /**
@@ -227,106 +229,39 @@ class BiometricGroupControllerAPI extends Controller
             return Response::json(['error' => 'O utilizador não existe.'], 400);
         }
 
+        $id = $user->biometric_group_id;
+
         $user->biometric_group_id = null;
         $user->save();
 
-        return new UserResource($user);
+        $usersFromGroup = User::where('biometric_group_id', $id)->where('role', 'PATIENT')->get();
+        $usersWithoutGroup = User::where('biometric_group_id', null)->where('role', 'PATIENT')->get();
+        return Response::json(['usersFromGroup' => $usersFromGroup, 'usersWithoutGroup' => $usersWithoutGroup]);
     }
 
     /**
-     * @OA\Post(
-     *      path="/api/biometric-group-biometric-collection-add",
-     *      operationId="Associates a biometric group with biometric collection",
-     *      tags={"Biometric Collection"},
-     *      summary="Associates a biometric group with biometric collection",
-     *      description="Associates a biometric group with biometric collection",
-     *      @OA\RequestBody(
-     *         @OA\MediaType(
-     *             mediaType="application/json",
-     *             @OA\Schema(
-     *                 @OA\Property(
-     *                     property="collectionId",
-     *                     type="number"
-     *                 ),
-     *             ),
-     *             @OA\Schema(
-     *                 @OA\Property(
-     *                     property="groupId",
-     *                     type="number"
-     *                 ),
-     *             )
-     *         )
-     *      ),
+     * @OA\Get(
+     *      path="/api/biometric-group/users/{id}",
+     *      operationId="get all biometric users by group",
+     *      tags={"Biometric Group"},
+     *      summary="Return a list of all users from biometric group and without a group",
+     *      description="Return a list of all users from biometric group and without a group",
      *      @OA\Response(
      *          response=200,
-     *          description="return biometric group"
+     *          description="Return a list of all users from biometric group and without a group"
      *       )
      *     )
      */
-    public function addBiometricCollectionToGroup(Request $request)
+    public function usersByBiometricGroup($id)
     {
-        $request->validate([
-            'collectionId' => 'required',
-            'groupId' => 'required',
-        ]);
-
-        $group = BiometricGroup::find($request->groupId);
+        $group = BiometricGroup::where('id', $id);
 
         if (!$group) {
-            return Response::json(['error' => 'O grupo de recolha não existe.'], 400);
+            return Response::json(['error' => 'Não existe o grupo de recolha'], 400);
         }
 
-        $collection = BiometricCollections::find($request->collectionId);
-
-        if (!$collection) {
-            return Response::json(['error' => 'A recolha não existe.'], 400);
-        }
-
-        $collection->biometric_group_id = $request->groupId;
-        $collection->save();
-
-        return new BiometricGroupResource($group);
-    }
-
-    /**
-     * @OA\Post(
-     *      path="/api/biometric-group-biometric-collection-remove",
-     *      operationId="Dissociates a biometric group with biometric collection",
-     *      tags={"Biometric Collection"},
-     *      summary="Dissociates a biometric group with biometric collection",
-     *      description="Dissociates a biometric group with biometric collection",
-     *      @OA\RequestBody(
-     *         @OA\MediaType(
-     *             mediaType="application/json",
-     *             @OA\Schema(
-     *                 @OA\Property(
-     *                     property="collectionId",
-     *                     type="number"
-     *                 ),
-     *             )
-     *         )
-     *      ),
-     *      @OA\Response(
-     *          response=200,
-     *          description="return biometric collection"
-     *       )
-     *     )
-     */
-    public function removeBiometricCollectionToGroup(Request $request)
-    {
-        $request->validate([
-            'collectionId' => 'required'
-        ]);
-
-        $collection = BiometricCollections::find($request->collectionId);
-
-        if (!$collection) {
-            return Response::json(['error' => 'A recolha não existe.'], 400);
-        }
-
-        BiometricCollectionIntervals::where('collectionId', $collection->id)->delete();
-        $collection->delete();
-
-        return new \App\Http\Resources\BiometricCollections($collection);
+        $usersFromGroup = User::where('biometric_group_id', $id)->where('role', 'PATIENT')->get();
+        $usersWithoutGroup = User::where('biometric_group_id', null)->where('role', 'PATIENT')->get();
+        return Response::json(['usersFromGroup' => $usersFromGroup, 'usersWithoutGroup' => $usersWithoutGroup]);
     }
 }

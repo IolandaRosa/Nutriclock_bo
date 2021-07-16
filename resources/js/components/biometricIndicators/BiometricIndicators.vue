@@ -27,12 +27,32 @@
                         </div>
                         <div v-else v-for="(group, index) in groups" :key="group.id"
                              class="with-shadow rounded p-2 my-2">
-                            <div class="text-primary text-break mb-4">{{ group.name }}</div>
+                            <div class="d-flex mb-2">
+                                <div class="flex-grow-1 text-primary text-break font-weight-bold">{{ group.name }}</div>
+
+                                <div @click="onAssociateUserClick(group.id)" class="mr-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-person-plus-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                        <path fill-rule="evenodd"
+                                              d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                                    </svg>
+                                </div>
+
+                                <div @click="() => onDeleteClick(`api/biometric-group/${group.id}`)" class="mr-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#f56c6c"
+                                         class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                    </svg>
+                                </div>
+                            </div>
 
                             <div class="d-flex">
                                 <div class="flex-grow-1 text-secondary font-weight-bold">Recolhas</div>
                                 <button type="button" class="btn btn-outline-primary btn-sm mr-2" data-toggle="tooltip"
-                                        title="Nova Recolha" v-on:click="addSample">
+                                        title="Nova Recolha" v-on:click="() => addSample(group.id)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                          class="bi bi-plus" viewBox="0 0 16 16">
                                         <path
@@ -50,25 +70,6 @@
                                     <div class="flex-grow-1">
                                         <div class="text-primary text-break">{{ sample.name }}</div>
                                         <div class="mt-1 text-break">{{ sample.date }}</div>
-                                    </div>
-                                    <div class="text-secondary mr-2" v-show="index > 0"
-                                         @click="() => moveUp(sample, 'SAMPLE')">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                             fill="currentColor"
-                                             class="bi bi-arrow-up" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd"
-                                                  d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
-                                        </svg>
-                                    </div>
-
-                                    <div class="text-secondary mr-2"
-                                         v-show="index < samples.length - 1" @click="() => moveDown(sample, 'SAMPLE')">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                             fill="currentColor"
-                                             class="bi bi-arrow-down" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd"
-                                                  d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
-                                        </svg>
                                     </div>
                                     <div @click="() => onDeleteClick(`api/biometric-collection/${sample.id}`)">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#f56c6c"
@@ -148,6 +149,7 @@
             v-show="showSampleModal"
             @close="this.closeModal"
             @save="this.saveSample"
+            :groupId="selectedGroupId"
             :size="samples.length"/>
         <AddCategory
             v-show="showProcedureModal"
@@ -159,6 +161,10 @@
             :max-char="200"
             @save="this.saveStep"
         />
+        <UserGroupModal
+            v-show="showGroupUsersModal"
+            :groupId="selectedGroupId"
+            @close="this.closeModal" />
     </div>
 </template>
 
@@ -168,6 +174,7 @@ import {ROUTE} from '../../utils/routes';
 import AddCategory from '../modals/AddCategory';
 import AddSampleModal from '../modals/AddSampleModal';
 import ConfirmationModal from '../modals/ConfirmationModal';
+import UserGroupModal from '../modals/UserGroupModal';
 import {startsWith} from 'lodash';
 
 export default {
@@ -177,6 +184,8 @@ export default {
             showSampleModal: false,
             showProcedureModal: false,
             showConfirmation: false,
+            showGroupUsersModal: false,
+            selectedGroupId: null,
             selectedUrl: null,
             samples: [],
             procedureSteps: [],
@@ -209,7 +218,7 @@ export default {
         },
         saveSample(data) {
             if (data) {
-                this.samples = data;
+                this.getCollectionGroups();
             } else {
                 this.showMessage('Ocorreu um erro', 'error');
             }
@@ -228,6 +237,10 @@ export default {
             this.showConfirmation = true;
             this.selectedUrl = url;
         },
+        onAssociateUserClick(groupId) {
+            this.showGroupUsersModal = true;
+            this.selectedGroupId = groupId;
+        },
         deleteItem() {
             if (this.isFetching) return;
             this.isFetching = true;
@@ -235,10 +248,11 @@ export default {
             axios.delete(this.selectedUrl).then(response => {
                 this.isFetching = false;
                 this.closeModal();
+
                 if (startsWith(this.selectedUrl, 'api/biometric-procedure')) {
                     this.procedureSteps = response.data.data;
                 } else {
-                    this.samples = response.data.data;
+                    this.getCollectionGroups();
                 }
                 this.selectedUrl = null;
             }).catch(() => {
@@ -248,43 +262,14 @@ export default {
                 this.selectedUrl = null;
             });
         },
-        moveUp(item, type) {
-            let url = `api/biometric-collection-up/${item.id}`;
-            if (type === 'STEP') {
-                url = `api/biometric-procedure-up/${item.id}`;
-            }
-            this.reorderRequest(url, type);
-        },
-        moveDown(item, type) {
-            let url = `api/biometric-collection-down/${item.id}`;
-            if (type === 'STEP') {
-                url = `api/biometric-procedure-down/${item.id}`;
-            }
-            this.reorderRequest(url, type);
-        },
-        reorderRequest(url, type) {
-            if (this.isFetching) return;
-            this.isFetching = true;
-
-            axios.get(url).then(response => {
-                this.isFetching = false;
-                if (type === 'STEP') {
-                    this.procedureSteps = response.data.data;
-                } else {
-                    this.samples = response.data.data;
-                }
-            }).catch(() => {
-                this.isFetching = false;
-                this.showMessage('Ocorreu um erro', 'error');
-            });
-        },
         addGroup() {
             this.showProcedureModal = true;
             this.procedureModalTitle = 'Novo Grupo de Recolha';
             this.procedureModalPlaceName = 'Nome';
         },
-        addSample() {
+        addSample(groupId) {
             this.showSampleModal = true;
+            this.selectedGroupId = groupId;
         },
         addProcedureStep() {
             this.showProcedureModal = true;
@@ -295,17 +280,13 @@ export default {
             this.showSampleModal = false;
             this.showProcedureModal = false;
             this.showConfirmation = false;
+            this.showGroupUsersModal = false;
+            this.selectedGroupId = null;
         },
         getCollectionGroups() {
-            if (this.isFetching) return;
-            this.isFetching = true;
-
             axios.get('api/biometric-group').then(response => {
-                this.isFetching = false;
-                console.log(response.data);
                 this.groups = response.data.data;
             }).catch(error => {
-                this.isFetching = false;
                 if (error.response && error.response.status === 401) {
                     this.$store.commit('clearUserAndToken');
                     this.$router.push({path: ROUTE.Login});
@@ -343,10 +324,13 @@ export default {
         AddSampleModal,
         AddCategory,
         ConfirmationModal,
+        UserGroupModal,
     },
     mounted() {
         this.getCollectionGroups();
         this.getProcedure();
     },
 };
+
+// adicionar e remover recolhas
 </script>

@@ -90,7 +90,7 @@ import {parseDateToString} from '../../utils/misc';
 import {ERROR_MESSAGES, isEmptyField} from '../../utils/validations';
 
 export default {
-    props: ['size'],
+    props: ['size', 'groupId'],
     data() {
         return {
             name: '',
@@ -106,6 +106,7 @@ export default {
                 to: new Date(Date.now() - 86400000),
             },
             pt: ptBR,
+            groupId: null,
         };
     },
     methods: {
@@ -158,10 +159,10 @@ export default {
             }
 
             axios.post('api/biometric-collection', {
-                orderNumber: this.size,
                 name: this.name,
                 date: parseDateToString(this.date),
                 intervals: this.hours,
+                groupId: this.groupId,
             }).then(response => {
                 this.resetFields();
                 this.$emit('save',  response.data.data);
@@ -173,6 +174,13 @@ export default {
     },
     components: {
         Datepicker,
-    }
+    },
+    watch: {
+        groupId: function (newVal, oldVal) {
+            if (newVal) {
+                this.groupId = newVal;
+            }
+        }
+    },
 };
 </script>
