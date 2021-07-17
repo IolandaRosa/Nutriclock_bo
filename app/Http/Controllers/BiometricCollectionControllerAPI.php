@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\BiometricCollectionIntervals;
 use App\BiometricCollections;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 
 class BiometricCollectionControllerAPI extends Controller
@@ -24,8 +26,14 @@ class BiometricCollectionControllerAPI extends Controller
      */
     public function index()
     {
+        $user = User::find(Auth::guard('api')->id());
+
+        if (!$user) {
+            return Response::json(['error' => 'O utilizador não existe.'], 404);
+        }
+
         $index = 0;
-        $biometricCollections = BiometricCollections::orderBy('date')->get(['id', 'name', 'date']);
+        $biometricCollections = BiometricCollections::where('biometric_group_id', $user->biometric_group_id)->orderBy('date')->get(['id', 'name', 'date']);
 
         if (!$biometricCollections) {
             return Response::json(['error' => 'Não existem recolhas'], 400);

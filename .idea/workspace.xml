@@ -19,8 +19,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/biometricIndicators/BiometricIndicators.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/biometricIndicators/BiometricIndicators.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BiometricCollectionControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BiometricCollectionControllerAPI.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -410,13 +410,6 @@
       <workItem from="1626213792058" duration="578000" />
       <workItem from="1626466679823" duration="9005000" />
     </task>
-    <task id="LOCAL-00155" summary="Notifications api done">
-      <created>1617473277642</created>
-      <option name="number" value="00155" />
-      <option name="presentableId" value="LOCAL-00155" />
-      <option name="project" value="LOCAL" />
-      <updated>1617473277642</updated>
-    </task>
     <task id="LOCAL-00156" summary="Notification check">
       <created>1617489233612</created>
       <option name="number" value="00156" />
@@ -753,7 +746,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626476078089</updated>
     </task>
-    <option name="localTasksCounter" value="204" />
+    <task id="LOCAL-00204" summary="Change the database file for dev">
+      <created>1626515279227</created>
+      <option name="number" value="00204" />
+      <option name="presentableId" value="LOCAL-00204" />
+      <option name="project" value="LOCAL" />
+      <updated>1626515279228</updated>
+    </task>
+    <option name="localTasksCounter" value="205" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -781,7 +781,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add compiled version" />
     <MESSAGE value="Add compiled workspace" />
     <MESSAGE value="Change api for notification biometric" />
     <MESSAGE value="Change the notifications to run once a day" />
@@ -806,6 +805,7 @@
     <MESSAGE value="Add the api to get the groups" />
     <MESSAGE value="Add the collection group ui" />
     <MESSAGE value="Change the databse file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change the databse file" />
+    <MESSAGE value="Change the database file for dev" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change the database file for dev" />
   </component>
 </project>
