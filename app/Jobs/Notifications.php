@@ -35,7 +35,7 @@ class Notifications implements ShouldQueue
                 if ($u->fcmToken) {
                     $notifications = Notification::where('userId', $u->id)->first();
                     if ($notifications) {
-                        if ($hour > date('H:i', strtotime('22:27')) && $hour < date('H:i', strtotime('22:37'))) {
+                        if ($hour > date('H:i', strtotime('12:00')) && $hour < date('H:i', strtotime('12:10'))) {
                             if ($notifications->notificationsSleep) {
                                 $sleep = Sleep::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
 
