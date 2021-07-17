@@ -36,7 +36,7 @@ class Notifications implements ShouldQueue
                     $notifications = Notification::where('userId', $u->id)->first();
                     if ($notifications) {
                         if ($notifications->notificationsBiometric) {
-                            $collectionsDates = BiometricCollections::all();
+                            $collectionsDates = BiometricCollections::where('biometric_group_id', $u->biometric_group_id)->get();
                             $today = date("d-m-Y");
 
                             foreach ($collectionsDates as $collection) {
