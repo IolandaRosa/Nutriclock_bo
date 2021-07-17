@@ -33,7 +33,6 @@
                             v-model="date"
                             input-class="form-control"
                             calendar-class="text-secondary"
-                            :disabledDates="disabledDates"
                             :language="pt"
                             inline
                             :highlighted="highlighted"
@@ -216,9 +215,6 @@ export default {
                 dates: [],
             },
             date: new Date(),
-            disabledDates: {
-                from: new Date(Date.now()),
-            },
             pt: ptBR,
             isShowCalendar: false,
             zoomModal: false,

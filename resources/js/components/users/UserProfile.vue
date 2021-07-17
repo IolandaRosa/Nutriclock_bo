@@ -146,7 +146,7 @@
 
 <script type="text/javascript">
 import FileUpload from '../utils/FileUpload';
-import {getCategoryNameById, renderGender, renderRole} from "../../utils/misc";
+import {getCategoryNameById, renderRole} from "../../utils/misc";
 import {equalFields, ERROR_MESSAGES, isEmailFormatInvalid, isEmptyField} from "../../utils/validations";
 import {ROUTE} from "../../utils/routes";
 import {UserRoles} from "../../constants/misc";
@@ -243,6 +243,13 @@ export default {
             axios.post(`api/users/profile/${this.$store.state.user.id}`, formData).then(response => {
                 this.isFetching = false;
                 this.$store.commit('setUser', response.data.data);
+                this.$toasted.show('A informação foi atualizada com sucesso!', {
+                    type: 'success',
+                    duration: 3000,
+                    position: 'top-right',
+                    closeOnSwipe: true,
+                    theme: 'toasted-primary'
+                });
             }).catch(() => {
                 this.isFetching = false;
             });
@@ -281,7 +288,7 @@ export default {
                 if (error.response && error.response.status === 401) {
                     this.isFetching = false;
                     this.$store.commit('clearUserAndToken');
-                    this.$router.push({path: ROUTE.Login });
+                    this.$router.push({path: ROUTE.Login});
                 }
             });
         }
@@ -293,7 +300,7 @@ export default {
             this.isFetching = false;
             if (error.response && error.response.status === 401) {
                 this.$store.commit('clearUserAndToken');
-                this.$router.push({path: ROUTE.Login });
+                this.$router.push({path: ROUTE.Login});
             }
         });
     },
@@ -308,6 +315,7 @@ export default {
     padding-left: 1.5rem !important;
     padding-right: 1.5rem !important;
 }
+
 @media only screen and (max-width: 600px) {
     .mobile-header-wrapper {
         flex-direction: column !important;

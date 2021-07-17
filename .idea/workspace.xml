@@ -19,7 +19,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/plans/PlanList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/plans/PlanList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/users/UserProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/users/UserProfile.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -408,13 +413,7 @@
       <workItem from="1626035544955" duration="410000" />
       <workItem from="1626213792058" duration="578000" />
       <workItem from="1626466679823" duration="9005000" />
-    </task>
-    <task id="LOCAL-00156" summary="Notification check">
-      <created>1617489233612</created>
-      <option name="number" value="00156" />
-      <option name="presentableId" value="LOCAL-00156" />
-      <option name="project" value="LOCAL" />
-      <updated>1617489233612</updated>
+      <workItem from="1626552638484" duration="937000" />
     </task>
     <task id="LOCAL-00157" summary="notifications api">
       <created>1618055151793</created>
@@ -752,7 +751,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626515279228</updated>
     </task>
-    <option name="localTasksCounter" value="205" />
+    <task id="LOCAL-00205" summary="Change database for production">
+      <created>1626518064373</created>
+      <option name="number" value="00205" />
+      <option name="presentableId" value="LOCAL-00205" />
+      <option name="project" value="LOCAL" />
+      <updated>1626518064373</updated>
+    </task>
+    <option name="localTasksCounter" value="206" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -780,7 +786,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add compiled workspace" />
     <MESSAGE value="Change api for notification biometric" />
     <MESSAGE value="Change the notifications to run once a day" />
     <MESSAGE value="test method" />
@@ -805,6 +810,7 @@
     <MESSAGE value="Add the collection group ui" />
     <MESSAGE value="Change the databse file" />
     <MESSAGE value="Change the database file for dev" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change the database file for dev" />
+    <MESSAGE value="Change database for production" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change database for production" />
   </component>
 </project>

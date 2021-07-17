@@ -58,6 +58,11 @@
     box-shadow: 0 0 0 0.2rem rgba(180, 228, 164, 0.5);
 }
 
+.btn:focus{
+    box-shadow: none;
+    outline: none;
+}
+
 .form-control:focus {
     color: #495057;
     background-color: #fff;
