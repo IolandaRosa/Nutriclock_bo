@@ -1105,6 +1105,8 @@ class UserControllerAPI extends Controller
         $hour = date("H:i");
         $users = User::all();
 
+        $notifications = [];
+
         if ($users) {
             foreach ($users as $u) {
                 if ($u->fcmToken) {
@@ -1120,7 +1122,7 @@ class UserControllerAPI extends Controller
                                     $sleepDate = strtotime($dateParts[2] . '-' . $dateParts[1] . '-' . $dateParts[0]);
                                     $sleepDays = round(($now - $sleepDate) / (60 * 60 * 24));
                                     if ($sleepDays > 3) {
-                                        return Response::json(['error' => 'Notificacao de sono '.$u->email.' id '.$u->id]);
+                                        array_push($notifications, 'Notificacao de sono '.$u->email.' id '.$u->id);
                                     }
                                 }
                             }
@@ -1136,7 +1138,7 @@ class UserControllerAPI extends Controller
                                     $exerciseDate = strtotime($exercise->date);
                                     $exerciseDays = round(($now - $exerciseDate) / (60 * 60 * 24));
                                     if ($exerciseDays > 3) {
-                                        return Response::json(['error' => 'Notificacao de exercicio '.$u->email.' id '.$u->id]);
+                                        array_push($notifications, 'Notificacao de exercicio '.$u->email.' id '.$u->id);
                                     }
                                 }
                             }
@@ -1149,7 +1151,7 @@ class UserControllerAPI extends Controller
                                     $mealDiaryDate = strtotime($mealDiary->date);
                                     $mealDiaryDays = round(($now - $mealDiaryDate) / (60 * 60 * 24));
                                     if ($mealDiaryDays > 0 && $mealDiaryDays < 2) {
-                                        return Response::json(['error' => 'Notificacao de sono '.$u->email.' id '.$u->id]);
+                                        array_push($notifications, 'Notificacao de alimentar '.$u->email.' id '.$u->id);
                                     }
                                 }
                             }
@@ -1174,7 +1176,7 @@ class UserControllerAPI extends Controller
                                             $intervalTimeMinus = date("H:i", strtotime($intervalHour . ' -1 hour' . ' -'.$minMinus.' minutes'));
                                             $intervalTimeAdd = date("H:i", strtotime($intervalHour . ' -1 hour' . ' -'.$minAdd.' minutes'));
                                             if ($intervalTimeMinus == $hour || $intervalTimeAdd == $hour) {
-                                                return Response::json(['error' => 'Notificacao de bometrica '.$u->email.' id '.$u->id]);
+                                                array_push($notifications, 'Notificacao de biometrica '.$u->email.' id '.$u->id);
                                             }
                                         }
                                     }
@@ -1185,5 +1187,7 @@ class UserControllerAPI extends Controller
                 }
             }
         }
+
+        return Response::json(['error' => 'Notificacao de sono '.$u->email.' id '.$u->id]);
     }
 }
