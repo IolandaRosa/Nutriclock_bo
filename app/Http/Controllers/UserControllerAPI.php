@@ -1127,7 +1127,7 @@ class UserControllerAPI extends Controller
                                 }
                             }
 
-                            if ($notifications->notificationsExercise) {
+                            /*if ($notifications->notificationsExercise) {
                                 $exercise = Exercise::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
                                 $exerciseDateParts = explode('T', $exercise->date);
                                 $exerciseParts = explode('-', $exerciseDateParts[0]);
@@ -1154,7 +1154,7 @@ class UserControllerAPI extends Controller
                                         array_push($notificationsArray, 'Notificacao de alimentar '.$u->email.' id '.$u->id);
                                     }
                                 }
-                            }
+                            }*/
                         }
 
 
