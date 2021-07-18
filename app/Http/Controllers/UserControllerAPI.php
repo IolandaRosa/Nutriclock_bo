@@ -1108,6 +1108,7 @@ class UserControllerAPI extends Controller
         if ($users) {
             foreach ($users as $u) {
                 if ($u->fcmToken) {
+                    $u->notify(new FCMNotification($u->fcmToken, 'Diário do Sono', $u->name.', comece já a efetuar registos no diário de sono.'));
                     $notifications = Notification::where('userId', $u->id)->first();
                     if ($notifications) {
                         if ($hour > date('H:i', strtotime('14:25')) && $hour < date('H:i', strtotime('23:40'))) {

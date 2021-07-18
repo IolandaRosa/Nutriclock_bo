@@ -19,6 +19,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserControllerAPI.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -410,35 +411,8 @@
       <workItem from="1626466679823" duration="9005000" />
       <workItem from="1626552638484" duration="4796000" />
       <workItem from="1626561215074" duration="15000" />
-      <workItem from="1626613479341" duration="3478000" />
-    </task>
-    <task id="LOCAL-00173" summary="test notifications">
-      <created>1620587183992</created>
-      <option name="number" value="00173" />
-      <option name="presentableId" value="LOCAL-00173" />
-      <option name="project" value="LOCAL" />
-      <updated>1620587183992</updated>
-    </task>
-    <task id="LOCAL-00174" summary="test hour and date">
-      <created>1620588699414</created>
-      <option name="number" value="00174" />
-      <option name="presentableId" value="LOCAL-00174" />
-      <option name="project" value="LOCAL" />
-      <updated>1620588699414</updated>
-    </task>
-    <task id="LOCAL-00175" summary="test hour">
-      <created>1620589428637</created>
-      <option name="number" value="00175" />
-      <option name="presentableId" value="LOCAL-00175" />
-      <option name="project" value="LOCAL" />
-      <updated>1620589428637</updated>
-    </task>
-    <task id="LOCAL-00176" summary="test hour">
-      <created>1620589552060</created>
-      <option name="number" value="00176" />
-      <option name="presentableId" value="LOCAL-00176" />
-      <option name="project" value="LOCAL" />
-      <updated>1620589552060</updated>
+      <workItem from="1626613479341" duration="4637000" />
+      <workItem from="1626641311926" duration="505000" />
     </task>
     <task id="LOCAL-00177" summary="test date">
       <created>1620590339158</created>
@@ -755,7 +729,35 @@
       <option name="project" value="LOCAL" />
       <updated>1626617034183</updated>
     </task>
-    <option name="localTasksCounter" value="222" />
+    <task id="LOCAL-00222" summary="Remove count in array">
+      <created>1626617229334</created>
+      <option name="number" value="00222" />
+      <option name="presentableId" value="LOCAL-00222" />
+      <option name="project" value="LOCAL" />
+      <updated>1626617229334</updated>
+    </task>
+    <task id="LOCAL-00223" summary="Remove count in array">
+      <created>1626617420831</created>
+      <option name="number" value="00223" />
+      <option name="presentableId" value="LOCAL-00223" />
+      <option name="project" value="LOCAL" />
+      <updated>1626617420831</updated>
+    </task>
+    <task id="LOCAL-00224" summary="Changed notifications">
+      <created>1626617750396</created>
+      <option name="number" value="00224" />
+      <option name="presentableId" value="LOCAL-00224" />
+      <option name="project" value="LOCAL" />
+      <updated>1626617750396</updated>
+    </task>
+    <task id="LOCAL-00225" summary="Changed notifications">
+      <created>1626641669931</created>
+      <option name="number" value="00225" />
+      <option name="presentableId" value="LOCAL-00225" />
+      <option name="project" value="LOCAL" />
+      <updated>1626641669931</updated>
+    </task>
+    <option name="localTasksCounter" value="226" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -783,7 +785,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test hour and date" />
     <MESSAGE value="test hour" />
     <MESSAGE value="test date" />
     <MESSAGE value="test date again" />
@@ -808,6 +809,7 @@
     <MESSAGE value="Sono esta vazio" />
     <MESSAGE value="Fixed bug on exercise notifications" />
     <MESSAGE value="Remove count in array" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove count in array" />
+    <MESSAGE value="Changed notifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed notifications" />
   </component>
 </project>
