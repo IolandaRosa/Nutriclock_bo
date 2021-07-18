@@ -19,7 +19,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserControllerAPI.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -411,14 +410,7 @@
       <workItem from="1626466679823" duration="9005000" />
       <workItem from="1626552638484" duration="4796000" />
       <workItem from="1626561215074" duration="15000" />
-      <workItem from="1626613479341" duration="3056000" />
-    </task>
-    <task id="LOCAL-00170" summary="notifications in one interval">
-      <created>1620579749302</created>
-      <option name="number" value="00170" />
-      <option name="presentableId" value="LOCAL-00170" />
-      <option name="project" value="LOCAL" />
-      <updated>1620579749303</updated>
+      <workItem from="1626613479341" duration="3188000" />
     </task>
     <task id="LOCAL-00171" summary="reset password email change">
       <created>1620582554511</created>
@@ -756,7 +748,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626616741607</updated>
     </task>
-    <option name="localTasksCounter" value="219" />
+    <task id="LOCAL-00219" summary="Sono esta vazio">
+      <created>1626616790134</created>
+      <option name="number" value="00219" />
+      <option name="presentableId" value="LOCAL-00219" />
+      <option name="project" value="LOCAL" />
+      <updated>1626616790134</updated>
+    </task>
+    <option name="localTasksCounter" value="220" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -1131,11 +1131,11 @@ class UserControllerAPI extends Controller
 
                             if ($notifications->notificationsExercise) {
                                 $exercise = Exercise::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
-                                $exerciseDateParts = explode('T', $exercise->date);
-                                $exerciseParts = explode('-', $exerciseDateParts[0]);
-                                $dateE = $exerciseParts[2] . '-' . $exerciseParts[1] . '-' . $exerciseParts[0];
 
-                                if ($exercise) {
+                                if ($exercise && $exercise->date) {
+                                    $exerciseDateParts = explode('T', $exercise->date);
+                                    $exerciseParts = explode('-', $exerciseDateParts[0]);
+                                    $dateE = $exerciseParts[2] . '-' . $exerciseParts[1] . '-' . $exerciseParts[0];
                                     $now = time();
                                     $exerciseDate = strtotime($exercise->date);
                                     $exerciseDays = round(($now - $exerciseDate) / (60 * 60 * 24));
