@@ -1105,8 +1105,6 @@ class UserControllerAPI extends Controller
         $hour = date("H:i");
         $users = User::where('id', 49)->get();
 
-        return Response::json(['data' => $users]);
-
         if ($users) {
             foreach ($users as $u) {
                 if ($u->fcmToken) {
