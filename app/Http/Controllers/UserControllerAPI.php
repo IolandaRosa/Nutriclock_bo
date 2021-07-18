@@ -1112,8 +1112,8 @@ class UserControllerAPI extends Controller
                 if ($u->fcmToken) {
                     $notifications = Notification::where('userId', $u->id)->first();
                     if ($notifications) {
-                        if ($hour > date('H:i', strtotime('14:25')) && $hour < date('H:i', strtotime('15:00'))) {
-                            /*if ($notifications->notificationsSleep) {
+                        if ($hour > date('H:i', strtotime('14:25')) && $hour < date('H:i', strtotime('15:30'))) {
+                            if ($notifications->notificationsSleep) {
                                 $sleep = Sleep::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
 
                                 if ($sleep && $sleep->date) {
@@ -1125,7 +1125,7 @@ class UserControllerAPI extends Controller
                                         array_push($notificationsArray, 'Notificacao de sono '.$u->email.' id '.$u->id);
                                     }
                                 }
-                            }*/
+                            }
 
                             /*if ($notifications->notificationsExercise) {
                                 $exercise = Exercise::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
