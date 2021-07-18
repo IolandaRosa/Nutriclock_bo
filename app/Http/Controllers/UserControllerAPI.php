@@ -1116,7 +1116,7 @@ class UserControllerAPI extends Controller
                             if ($notifications->notificationsSleep) {
                                 $sleep = Sleep::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
 
-                                if (!$sleep || count($sleep) == 0) {
+                                if (!$sleep) {
                                     array_push($notificationsArray, 'Sono esta vazio '.$u->email.' id '.$u->id);
                                 } else if ($sleep->date) {
                                     $dateParts = explode('/', $sleep->date);

@@ -410,14 +410,7 @@
       <workItem from="1626466679823" duration="9005000" />
       <workItem from="1626552638484" duration="4796000" />
       <workItem from="1626561215074" duration="15000" />
-      <workItem from="1626613479341" duration="3188000" />
-    </task>
-    <task id="LOCAL-00171" summary="reset password email change">
-      <created>1620582554511</created>
-      <option name="number" value="00171" />
-      <option name="presentableId" value="LOCAL-00171" />
-      <option name="project" value="LOCAL" />
-      <updated>1620582554511</updated>
+      <workItem from="1626613479341" duration="3291000" />
     </task>
     <task id="LOCAL-00172" summary="test notifications">
       <created>1620582785514</created>
@@ -755,7 +748,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626616790134</updated>
     </task>
-    <option name="localTasksCounter" value="220" />
+    <task id="LOCAL-00220" summary="Fixed bug on exercise notifications">
+      <created>1626616922701</created>
+      <option name="number" value="00220" />
+      <option name="presentableId" value="LOCAL-00220" />
+      <option name="project" value="LOCAL" />
+      <updated>1626616922701</updated>
+    </task>
+    <option name="localTasksCounter" value="221" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -783,7 +783,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="notifications in one interval" />
     <MESSAGE value="reset password email change" />
     <MESSAGE value="test hour and date" />
     <MESSAGE value="test hour" />
@@ -808,6 +807,7 @@
     <MESSAGE value="Change some bugs reported" />
     <MESSAGE value="Add test method for notifications" />
     <MESSAGE value="Sono esta vazio" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sono esta vazio" />
+    <MESSAGE value="Fixed bug on exercise notifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug on exercise notifications" />
   </component>
 </project>
