@@ -1116,7 +1116,10 @@ class UserControllerAPI extends Controller
                             if ($notifications->notificationsSleep) {
                                 $sleep = Sleep::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
 
-                                if ($sleep && $sleep->date) {
+                                if (!sleep || count($sleep) == 0) {
+                                    array_push($notificationsArray, 'Sono esta vazio '.$u->email.' id '.$u->id);
+                                }
+                                else if ($sleep && $sleep->date) {
                                     $dateParts = explode('/', $sleep->date);
                                     $now = time();
                                     $sleepDate = strtotime($dateParts[2] . '-' . $dateParts[1] . '-' . $dateParts[0]);
@@ -1127,7 +1130,7 @@ class UserControllerAPI extends Controller
                                 }
                             }
 
-                            /*if ($notifications->notificationsExercise) {
+                            if ($notifications->notificationsExercise) {
                                 $exercise = Exercise::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
                                 $exerciseDateParts = explode('T', $exercise->date);
                                 $exerciseParts = explode('-', $exerciseDateParts[0]);
@@ -1142,7 +1145,7 @@ class UserControllerAPI extends Controller
                                     }
                                 }
                             }
-
+/*
                             if ($notifications->notificationsMealDiary) {
                                 $mealDiary = Meal::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
 
