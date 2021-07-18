@@ -198,3 +198,6 @@ Route::middleware(['auth:api', 'admin'])->get('/biometric-group/users/{id}', 'Bi
 Route::middleware(['auth:api', 'patient'])->post('evaluation', 'EvaluationControllerAPI@store');
 Route::middleware(['auth:api', 'patient'])->get('has-evaluation', 'EvaluationControllerAPI@getUserEvaluation');
 Route::middleware(['auth:api', 'admin'])->get('average-evaluation', 'EvaluationControllerAPI@getAverageEvaluation');
+
+
+Route::get('test', 'UserControllerAPI@test');

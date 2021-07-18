@@ -1096,4 +1096,10 @@ class UserControllerAPI extends Controller
         $user->save();
         return new UserResource($user);
     }
+
+    public function test() {
+        $hour = date("H:i");
+        $hour1 =  date('H:i', strtotime('12:00'));
+        return Response::json(['hour' => $hour, 'hour1' => $hour1]);
+    }
 }
