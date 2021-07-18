@@ -19,6 +19,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserControllerAPI.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -410,28 +411,7 @@
       <workItem from="1626466679823" duration="9005000" />
       <workItem from="1626552638484" duration="4796000" />
       <workItem from="1626561215074" duration="15000" />
-      <workItem from="1626613479341" duration="2640000" />
-    </task>
-    <task id="LOCAL-00167" summary="Change api for notification biometric">
-      <created>1620554561599</created>
-      <option name="number" value="00167" />
-      <option name="presentableId" value="LOCAL-00167" />
-      <option name="project" value="LOCAL" />
-      <updated>1620554561599</updated>
-    </task>
-    <task id="LOCAL-00168" summary="Change the notifications to run once a day">
-      <created>1620571617742</created>
-      <option name="number" value="00168" />
-      <option name="presentableId" value="LOCAL-00168" />
-      <option name="project" value="LOCAL" />
-      <updated>1620571617742</updated>
-    </task>
-    <task id="LOCAL-00169" summary="test method">
-      <created>1620579076073</created>
-      <option name="number" value="00169" />
-      <option name="presentableId" value="LOCAL-00169" />
-      <option name="project" value="LOCAL" />
-      <updated>1620579076073</updated>
+      <workItem from="1626613479341" duration="3056000" />
     </task>
     <task id="LOCAL-00170" summary="notifications in one interval">
       <created>1620579749302</created>
@@ -755,7 +735,28 @@
       <option name="project" value="LOCAL" />
       <updated>1626616290360</updated>
     </task>
-    <option name="localTasksCounter" value="216" />
+    <task id="LOCAL-00216" summary="Add test method for notifications">
+      <created>1626616359558</created>
+      <option name="number" value="00216" />
+      <option name="presentableId" value="LOCAL-00216" />
+      <option name="project" value="LOCAL" />
+      <updated>1626616359558</updated>
+    </task>
+    <task id="LOCAL-00217" summary="Add test method for notifications">
+      <created>1626616417246</created>
+      <option name="number" value="00217" />
+      <option name="presentableId" value="LOCAL-00217" />
+      <option name="project" value="LOCAL" />
+      <updated>1626616417246</updated>
+    </task>
+    <task id="LOCAL-00218" summary="Sono esta vazio">
+      <created>1626616741607</created>
+      <option name="number" value="00218" />
+      <option name="presentableId" value="LOCAL-00218" />
+      <option name="project" value="LOCAL" />
+      <updated>1626616741607</updated>
+    </task>
+    <option name="localTasksCounter" value="219" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -783,7 +784,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test method" />
     <MESSAGE value="notifications in one interval" />
     <MESSAGE value="reset password email change" />
     <MESSAGE value="test hour and date" />
@@ -808,6 +808,7 @@
     <MESSAGE value="Change database for production" />
     <MESSAGE value="Change some bugs reported" />
     <MESSAGE value="Add test method for notifications" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add test method for notifications" />
+    <MESSAGE value="Sono esta vazio" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sono esta vazio" />
   </component>
 </project>
