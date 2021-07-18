@@ -39,7 +39,9 @@ class Notifications implements ShouldQueue
                             if ($notifications->notificationsSleep) {
                                 $sleep = Sleep::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
 
-                                if ($sleep && $sleep->date) {
+                                if (!$sleep) {
+                                    $u->notify(new FCMNotification($u->fcmToken, 'Diário do Sono', $u->name.', comece já a efetuar registos no diário de sono.'));
+                                } else if ($sleep && $sleep->date) {
                                     $dateParts = explode('/', $sleep->date);
                                     $now = time();
                                     $sleepDate = strtotime($dateParts[2] . '-' . $dateParts[1] . '-' . $dateParts[0]);
@@ -52,11 +54,11 @@ class Notifications implements ShouldQueue
 
                             if ($notifications->notificationsExercise) {
                                 $exercise = Exercise::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
-                                $exerciseDateParts = explode('T', $exercise->date);
-                                $exerciseParts = explode('-', $exerciseDateParts[0]);
-                                $dateE = $exerciseParts[2] . '-' . $exerciseParts[1] . '-' . $exerciseParts[0];
 
-                                if ($exercise) {
+                                if ($exercise && $exercise->date) {
+                                    $exerciseDateParts = explode('T', $exercise->date);
+                                    $exerciseParts = explode('-', $exerciseDateParts[0]);
+                                    $dateE = $exerciseParts[2] . '-' . $exerciseParts[1] . '-' . $exerciseParts[0];
                                     $now = time();
                                     $exerciseDate = strtotime($exercise->date);
                                     $exerciseDays = round(($now - $exerciseDate) / (60 * 60 * 24));
@@ -69,7 +71,9 @@ class Notifications implements ShouldQueue
                             if ($notifications->notificationsMealDiary) {
                                 $mealDiary = Meal::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
 
-                                if ($mealDiary) {
+                                if (!$mealDiary) {
+                                    $u->notify(new FCMNotification($u->fcmToken, 'Diário Alimentar', $u->name.', comece já a efetuar registos no diário alimentar.'));
+                                } else {
                                     $now = time();
                                     $mealDiaryDate = strtotime($mealDiary->date);
                                     $mealDiaryDays = round(($now - $mealDiaryDate) / (60 * 60 * 24));
