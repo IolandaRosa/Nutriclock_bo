@@ -21,7 +21,6 @@
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -412,21 +411,7 @@
       <workItem from="1626466679823" duration="9005000" />
       <workItem from="1626552638484" duration="4796000" />
       <workItem from="1626561215074" duration="15000" />
-      <workItem from="1626613479341" duration="624000" />
-    </task>
-    <task id="LOCAL-00160" summary="continue to add swagger docs">
-      <created>1618873627743</created>
-      <option name="number" value="00160" />
-      <option name="presentableId" value="LOCAL-00160" />
-      <option name="project" value="LOCAL" />
-      <updated>1618873627744</updated>
-    </task>
-    <task id="LOCAL-00161" summary="finished documentation">
-      <created>1618960053702</created>
-      <option name="number" value="00161" />
-      <option name="presentableId" value="LOCAL-00161" />
-      <option name="project" value="LOCAL" />
-      <updated>1618960053702</updated>
+      <workItem from="1626613479341" duration="1320000" />
     </task>
     <task id="LOCAL-00162" summary="build for development">
       <created>1619114271673</created>
@@ -757,7 +742,21 @@
       <option name="project" value="LOCAL" />
       <updated>1626561164042</updated>
     </task>
-    <option name="localTasksCounter" value="209" />
+    <task id="LOCAL-00209" summary="Add test method for notifications">
+      <created>1626614151709</created>
+      <option name="number" value="00209" />
+      <option name="presentableId" value="LOCAL-00209" />
+      <option name="project" value="LOCAL" />
+      <updated>1626614151710</updated>
+    </task>
+    <task id="LOCAL-00210" summary="Add test method for notifications">
+      <created>1626614490851</created>
+      <option name="number" value="00210" />
+      <option name="presentableId" value="LOCAL-00210" />
+      <option name="project" value="LOCAL" />
+      <updated>1626614490851</updated>
+    </task>
+    <option name="localTasksCounter" value="211" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -785,7 +784,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Change the notifications to run once a day" />
     <MESSAGE value="test method" />
     <MESSAGE value="notifications in one interval" />
     <MESSAGE value="reset password email change" />
@@ -810,6 +808,7 @@
     <MESSAGE value="Change the database file for dev" />
     <MESSAGE value="Change database for production" />
     <MESSAGE value="Change some bugs reported" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change some bugs reported" />
+    <MESSAGE value="Add test method for notifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add test method for notifications" />
   </component>
 </project>

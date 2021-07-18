@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\BiometricCollectionIntervals;
+use App\BiometricCollections;
+use App\Exercise;
 use App\Http\Resources\User as UserResource;
 use App\Ingredient;
 use App\Meal;
@@ -10,6 +13,7 @@ use App\MealPlanType;
 use App\Medication;
 use App\Message;
 use App\Notification;
+use App\Notifications\FCMNotification;
 use App\NutritionalInfo;
 use App\Plan;
 use App\Sleep;
@@ -1099,7 +1103,87 @@ class UserControllerAPI extends Controller
 
     public function test() {
         $hour = date("H:i");
-        $hour1 =  date('H:i', strtotime('12:00'));
-        return Response::json(['hour' => $hour, 'hour1' => $hour1]);
+        $users = User::all();
+
+        if ($users) {
+            foreach ($users as $u) {
+                if ($u->fcmToken) {
+                    $notifications = Notification::where('userId', $u->id)->first();
+                    if ($notifications) {
+                        if ($hour > date('H:i', strtotime('14:25')) && $hour < date('H:i', strtotime('14:40'))) {
+                            if ($notifications->notificationsSleep) {
+                                $sleep = Sleep::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
+
+                                if ($sleep && $sleep->date) {
+                                    $dateParts = explode('/', $sleep->date);
+                                    $now = time();
+                                    $sleepDate = strtotime($dateParts[2] . '-' . $dateParts[1] . '-' . $dateParts[0]);
+                                    $sleepDays = round(($now - $sleepDate) / (60 * 60 * 24));
+                                    if ($sleepDays > 3) {
+                                        return Response::json(['error' => 'Notificacao de sono '.$u->email.' id '.$u->id]);
+                                    }
+                                }
+                            }
+
+                            if ($notifications->notificationsExercise) {
+                                $exercise = Exercise::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
+                                $exerciseDateParts = explode('T', $exercise->date);
+                                $exerciseParts = explode('-', $exerciseDateParts[0]);
+                                $dateE = $exerciseParts[2] . '-' . $exerciseParts[1] . '-' . $exerciseParts[0];
+
+                                if ($exercise) {
+                                    $now = time();
+                                    $exerciseDate = strtotime($exercise->date);
+                                    $exerciseDays = round(($now - $exerciseDate) / (60 * 60 * 24));
+                                    if ($exerciseDays > 3) {
+                                        return Response::json(['error' => 'Notificacao de exercicio '.$u->email.' id '.$u->id]);
+                                    }
+                                }
+                            }
+
+                            if ($notifications->notificationsMealDiary) {
+                                $mealDiary = Meal::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
+
+                                if ($mealDiary) {
+                                    $now = time();
+                                    $mealDiaryDate = strtotime($mealDiary->date);
+                                    $mealDiaryDays = round(($now - $mealDiaryDate) / (60 * 60 * 24));
+                                    if ($mealDiaryDays > 0 && $mealDiaryDays < 2) {
+                                        return Response::json(['error' => 'Notificacao de sono '.$u->email.' id '.$u->id]);
+                                    }
+                                }
+                            }
+                        }
+
+
+                        if ($notifications->notificationsBiometric) {
+                            $collectionsDates = BiometricCollections::where('biometric_group_id', $u->biometric_group_id)->get();
+                            $today = date("d-m-Y");
+
+                            foreach ($collectionsDates as $collection) {
+
+                                if ($collection->date == $today) {
+                                    $intervals = BiometricCollectionIntervals::where('collectionId', $collection->id)->get();
+
+                                    foreach ($intervals as $interval) {
+                                        $intervalHour = $interval->hour;
+
+                                        for ($i = 0; $i < 7 ; $i++) {
+                                            $minAdd = 10 + $i;
+                                            $minMinus = 10 - $i;
+                                            $intervalTimeMinus = date("H:i", strtotime($intervalHour . ' -1 hour' . ' -'.$minMinus.' minutes'));
+                                            $intervalTimeAdd = date("H:i", strtotime($intervalHour . ' -1 hour' . ' -'.$minAdd.' minutes'));
+                                            if ($intervalTimeMinus == $hour || $intervalTimeAdd == $hour) {
+                                                return Response::json(['error' => 'Notificacao de bometrica '.$u->email.' id '.$u->id]);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
