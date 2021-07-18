@@ -1148,7 +1148,9 @@ class UserControllerAPI extends Controller
                             if ($notifications->notificationsMealDiary) {
                                 $mealDiary = Meal::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
 
-                                if ($mealDiary) {
+                                if (!$mealDiary) {
+                                    array_push($notificationsArray, 'O diario alimentar esta vazio '.$u->email.' id '.$u->id);
+                                } else {
                                     $now = time();
                                     $mealDiaryDate = strtotime($mealDiary->date);
                                     $mealDiaryDays = round(($now - $mealDiaryDate) / (60 * 60 * 24));
