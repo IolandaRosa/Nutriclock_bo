@@ -1103,28 +1103,26 @@ class UserControllerAPI extends Controller
 
     public function test() {
         $hour = date("H:i");
-        $users = User::all();
-
-        $notificationsArray = [];
+        $users = User::where('id', 49)->get();
 
         if ($users) {
             foreach ($users as $u) {
                 if ($u->fcmToken) {
                     $notifications = Notification::where('userId', $u->id)->first();
                     if ($notifications) {
-                        if ($hour > date('H:i', strtotime('14:25')) && $hour < date('H:i', strtotime('15:30'))) {
+                        if ($hour > date('H:i', strtotime('14:25')) && $hour < date('H:i', strtotime('23:40'))) {
                             if ($notifications->notificationsSleep) {
                                 $sleep = Sleep::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
 
                                 if (!$sleep) {
-                                    array_push($notificationsArray, 'Sono esta vazio '.$u->email.' id '.$u->id);
-                                } else if ($sleep->date) {
+                                    $u->notify(new FCMNotification($u->fcmToken, 'Diário do Sono', $u->name.', comece já a efetuar registos no diário de sono.'));
+                                } else if ($sleep && $sleep->date) {
                                     $dateParts = explode('/', $sleep->date);
                                     $now = time();
                                     $sleepDate = strtotime($dateParts[2] . '-' . $dateParts[1] . '-' . $dateParts[0]);
                                     $sleepDays = round(($now - $sleepDate) / (60 * 60 * 24));
                                     if ($sleepDays > 3) {
-                                        array_push($notificationsArray, 'Notificacao de sono '.$u->email.' id '.$u->id);
+                                        $u->notify(new FCMNotification($u->fcmToken, 'Diário do Sono', 'Já não efetua um registo de sono desde o dia ' . $sleep->date . '. Por favor atualize o Diário de Sono.'));
                                     }
                                 }
                             }
@@ -1140,7 +1138,7 @@ class UserControllerAPI extends Controller
                                     $exerciseDate = strtotime($exercise->date);
                                     $exerciseDays = round(($now - $exerciseDate) / (60 * 60 * 24));
                                     if ($exerciseDays > 3) {
-                                        array_push($notificationsArray, 'Notificacao de exercicio '.$u->email.' id '.$u->id);
+                                        $u->notify(new FCMNotification($u->fcmToken, 'Atividade física', 'Já não efetua um registo de atividade física desde o dia ' . $dateE . '. Por favor atualize a informação.'));
                                     }
                                 }
                             }
@@ -1149,13 +1147,13 @@ class UserControllerAPI extends Controller
                                 $mealDiary = Meal::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
 
                                 if (!$mealDiary) {
-                                    array_push($notificationsArray, 'O diario alimentar esta vazio '.$u->email.' id '.$u->id);
+                                    $u->notify(new FCMNotification($u->fcmToken, 'Diário Alimentar', $u->name.', comece já a efetuar registos no diário alimentar.'));
                                 } else {
                                     $now = time();
                                     $mealDiaryDate = strtotime($mealDiary->date);
                                     $mealDiaryDays = round(($now - $mealDiaryDate) / (60 * 60 * 24));
                                     if ($mealDiaryDays > 0 && $mealDiaryDays < 2) {
-                                        array_push($notificationsArray, 'Notificacao de alimentar '.$u->email.' id '.$u->id);
+                                        $u->notify(new FCMNotification($u->fcmToken, 'Diário Alimentar', 'Não se esqueça de registar todas assuas refeições ao longo do dia'));
                                     }
                                 }
                             }
@@ -1180,7 +1178,7 @@ class UserControllerAPI extends Controller
                                             $intervalTimeMinus = date("H:i", strtotime($intervalHour . ' -1 hour' . ' -'.$minMinus.' minutes'));
                                             $intervalTimeAdd = date("H:i", strtotime($intervalHour . ' -1 hour' . ' -'.$minAdd.' minutes'));
                                             if ($intervalTimeMinus == $hour || $intervalTimeAdd == $hour) {
-                                                array_push($notificationsArray, 'Notificacao de biometrica '.$u->email.' id '.$u->id);
+                                                $u->notify(new FCMNotification($u->fcmToken, 'Recolha de Saliva', 'Prepare-se para realizar a próxima recolha de saliva às ' . $intervalHour . ' horas.'));
                                             }
                                         }
                                     }
@@ -1191,7 +1189,5 @@ class UserControllerAPI extends Controller
                 }
             }
         }
-
-        return Response::json(['data' => $notificationsArray]);
     }
 }
