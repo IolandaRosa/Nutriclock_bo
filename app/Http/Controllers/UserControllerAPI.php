@@ -1144,7 +1144,7 @@ class UserControllerAPI extends Controller
                                     }
                                 }
                             }
-/*
+
                             if ($notifications->notificationsMealDiary) {
                                 $mealDiary = Meal::where('userId', $u->id)->orderBy('date', 'desc')->first('date');
 
@@ -1156,7 +1156,7 @@ class UserControllerAPI extends Controller
                                         array_push($notificationsArray, 'Notificacao de alimentar '.$u->email.' id '.$u->id);
                                     }
                                 }
-                            }*/
+                            }
                         }
 
 

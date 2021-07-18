@@ -410,14 +410,7 @@
       <workItem from="1626466679823" duration="9005000" />
       <workItem from="1626552638484" duration="4796000" />
       <workItem from="1626561215074" duration="15000" />
-      <workItem from="1626613479341" duration="3291000" />
-    </task>
-    <task id="LOCAL-00172" summary="test notifications">
-      <created>1620582785514</created>
-      <option name="number" value="00172" />
-      <option name="presentableId" value="LOCAL-00172" />
-      <option name="project" value="LOCAL" />
-      <updated>1620582785514</updated>
+      <workItem from="1626613479341" duration="3478000" />
     </task>
     <task id="LOCAL-00173" summary="test notifications">
       <created>1620587183992</created>
@@ -755,7 +748,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626616922701</updated>
     </task>
-    <option name="localTasksCounter" value="221" />
+    <task id="LOCAL-00221" summary="Remove count in array">
+      <created>1626617034183</created>
+      <option name="number" value="00221" />
+      <option name="presentableId" value="LOCAL-00221" />
+      <option name="project" value="LOCAL" />
+      <updated>1626617034183</updated>
+    </task>
+    <option name="localTasksCounter" value="222" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -783,7 +783,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="reset password email change" />
     <MESSAGE value="test hour and date" />
     <MESSAGE value="test hour" />
     <MESSAGE value="test date" />
@@ -808,6 +807,7 @@
     <MESSAGE value="Add test method for notifications" />
     <MESSAGE value="Sono esta vazio" />
     <MESSAGE value="Fixed bug on exercise notifications" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug on exercise notifications" />
+    <MESSAGE value="Remove count in array" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove count in array" />
   </component>
 </project>
