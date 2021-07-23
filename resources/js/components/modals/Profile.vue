@@ -183,7 +183,7 @@
                     hasErrors = true;
                 }
 
-                if (isEmptyField(this.professionalCategoryId)) {
+                if (this.role === UserRoles.Professional && isEmptyField(this.professionalCategoryId)) {
                     this.errors.professionalCategoryId = ERROR_MESSAGES.mandatoryField;
                     hasErrors = true;
                 }
@@ -193,6 +193,11 @@
                 if (this.role === UserRoles.Professional && (!this.userUfcs || this.userUfcs.length === 0)) {
                     this.errors.userUfcs = ERROR_MESSAGES.mandatoryField;
                     return;
+                }
+
+                if (this.role !== UserRoles.Professional) {
+                    this.professionalCategoryId = null;
+                    this.userUfcs = null;
                 }
 
                 this.$emit('save', this.id, {

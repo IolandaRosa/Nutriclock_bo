@@ -20,7 +20,9 @@
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/Profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/Profile.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/users/AdminUsersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/users/AdminUsersList.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -414,13 +416,6 @@
       <workItem from="1626613479341" duration="4637000" />
       <workItem from="1626641311926" duration="1197000" />
     </task>
-    <task id="LOCAL-00178" summary="test date again">
-      <created>1620591473388</created>
-      <option name="number" value="00178" />
-      <option name="presentableId" value="LOCAL-00178" />
-      <option name="project" value="LOCAL" />
-      <updated>1620591473388</updated>
-    </task>
     <task id="LOCAL-00179" summary="test date again">
       <created>1620592005999</created>
       <option name="number" value="00179" />
@@ -757,7 +752,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626641846556</updated>
     </task>
-    <option name="localTasksCounter" value="227" />
+    <task id="LOCAL-00227" summary="database development">
+      <created>1627073995836</created>
+      <option name="number" value="00227" />
+      <option name="presentableId" value="LOCAL-00227" />
+      <option name="project" value="LOCAL" />
+      <updated>1627073995837</updated>
+    </task>
+    <option name="localTasksCounter" value="228" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -785,7 +787,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test hour" />
     <MESSAGE value="test date" />
     <MESSAGE value="test date again" />
     <MESSAGE value="test notification" />
@@ -810,6 +811,7 @@
     <MESSAGE value="Fixed bug on exercise notifications" />
     <MESSAGE value="Remove count in array" />
     <MESSAGE value="Changed notifications" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed notifications" />
+    <MESSAGE value="database development" />
+    <option name="LAST_COMMIT_MESSAGE" value="database development" />
   </component>
 </project>
