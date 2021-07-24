@@ -597,99 +597,99 @@ export default {
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.energy_kcal)) {
-                this.errors.energy_kcal = ERROR_MESSAGES.mandatoryField;
+                this.errors.energy_kcal = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.energy_kJ)) {
-                this.errors.energy_kJ = ERROR_MESSAGES.mandatoryField;
+                this.errors.energy_kJ = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.water_g)) {
-                this.errors.water_g = ERROR_MESSAGES.mandatoryField;
+                this.errors.water_g = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.protein_g)) {
-                this.errors.protein_g = ERROR_MESSAGES.mandatoryField;
+                this.errors.protein_g = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.fats_g)) {
-                this.errors.fats_g = ERROR_MESSAGES.mandatoryField;
+                this.errors.fats_g = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.fiber_g)) {
-                this.errors.fiber_g = ERROR_MESSAGES.mandatoryField;
+                this.errors.fiber_g = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.colesterol_mg)) {
-                this.errors.colesterol_mg = ERROR_MESSAGES.mandatoryField;
+                this.errors.colesterol_mg = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.vitD_pg)) {
-                this.errors.vitD_pg = ERROR_MESSAGES.mandatoryField;
+                this.errors.vitD_pg = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.vitA_mg)) {
-                this.errors.vitA_mg = ERROR_MESSAGES.mandatoryField;
+                this.errors.vitA_mg = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.tiamina_mg)) {
-                this.errors.tiamina_mg = ERROR_MESSAGES.mandatoryField;
+                this.errors.tiamina_mg = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.fats_g)) {
-                this.errors.fats_g = ERROR_MESSAGES.mandatoryField;
+                this.errors.fats_g = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.riboflavina_mg)) {
-                this.errors.riboflavina_mg = ERROR_MESSAGES.mandatoryField;
+                this.errors.riboflavina_mg = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.niacina_mg)) {
-                this.errors.niacina_mg = ERROR_MESSAGES.mandatoryField;
+                this.errors.niacina_mg = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.vitB6_mg)) {
-                this.errors.vitB6_mg = ERROR_MESSAGES.mandatoryField;
+                this.errors.vitB6_mg = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.vitA_mg)) {
-                this.errors.vitA_mg = ERROR_MESSAGES.mandatoryField;
+                this.errors.vitA_mg = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.vit_B12_pg)) {
-                this.errors.vit_B12_pg = ERROR_MESSAGES.mandatoryField;
+                this.errors.vit_B12_pg = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.vitC_mg)) {
-                this.errors.vitC_mg = ERROR_MESSAGES.mandatoryField;
+                this.errors.vitC_mg = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.na_mg)) {
-                this.errors.na_mg = ERROR_MESSAGES.mandatoryField;
+                this.errors.na_mg = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.k_mg)) {
-                this.errors.k_mg = ERROR_MESSAGES.mandatoryField;
+                this.errors.k_mg = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.ca_mg)) {
-                this.errors.ca_mg = ERROR_MESSAGES.mandatoryField;
+                this.errors.ca_mg = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.p_mg)) {
-                this.errors.p_mg = ERROR_MESSAGES.mandatoryField;
+                this.errors.p_mg = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.mg_mg)) {
-                this.errors.mg_mg = ERROR_MESSAGES.mandatoryField;
+                this.errors.mg_mg = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.fe_mg)) {
-                this.errors.fe_mg = ERROR_MESSAGES.mandatoryField;
+                this.errors.fe_mg = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             if (isDecimalOrEmpty(this.zn_mg)) {
-                this.errors.zn_mg = ERROR_MESSAGES.mandatoryField;
+                this.errors.zn_mg = ERROR_MESSAGES.invalidValue;
                 hasErrors = true;
             }
             return hasErrors

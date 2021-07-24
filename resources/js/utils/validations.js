@@ -10,10 +10,8 @@ export const isDecimalOrEmpty = field => {
     if (isEmptyField(field)) return true
 
     try {
-        parseFloat(field)
+        return parseFloat(field) < 0
     } catch (e) { return true}
-
-    return false
 }
 
 export const isStringLowerThanMin = (field, min) => {
@@ -38,6 +36,7 @@ export const isPositiveNumber = field => {
 
 export const ERROR_MESSAGES = {
     mandatoryField: 'Campo obrigatório!',
+    invalidValue: 'Valor inválido!',
     invalidFormat: 'Formato inválido!',
     invalidNegative: 'O valor não pode ser negativo',
     invalidCredentials: 'Credenciais inválidas!',
