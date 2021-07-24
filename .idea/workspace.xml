@@ -20,10 +20,9 @@
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UfcControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UfcControllerAPI.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/PatientsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/PatientsList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/users/AdminUsersList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/users/AdminUsersList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/utils/dataTables.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/dataTables.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/Profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/Profile.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -416,14 +415,7 @@
       <workItem from="1626561215074" duration="15000" />
       <workItem from="1626613479341" duration="4637000" />
       <workItem from="1626641311926" duration="1197000" />
-      <workItem from="1627135073720" duration="2192000" />
-    </task>
-    <task id="LOCAL-00180" summary="test notification">
-      <created>1620592628304</created>
-      <option name="number" value="00180" />
-      <option name="presentableId" value="LOCAL-00180" />
-      <option name="project" value="LOCAL" />
-      <updated>1620592628304</updated>
+      <workItem from="1627135073720" duration="7631000" />
     </task>
     <task id="LOCAL-00181" summary="test notification">
       <created>1620669646800</created>
@@ -761,7 +753,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627074911560</updated>
     </task>
-    <option name="localTasksCounter" value="229" />
+    <task id="LOCAL-00229" summary="Fixed sorting on backoffice table">
+      <created>1627141519481</created>
+      <option name="number" value="00229" />
+      <option name="presentableId" value="LOCAL-00229" />
+      <option name="project" value="LOCAL" />
+      <updated>1627141519482</updated>
+    </task>
+    <option name="localTasksCounter" value="230" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -789,7 +788,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test date again" />
     <MESSAGE value="test notification" />
     <MESSAGE value="test notifications" />
     <MESSAGE value="report endpoint" />
@@ -814,6 +812,7 @@
     <MESSAGE value="Changed notifications" />
     <MESSAGE value="database development" />
     <MESSAGE value="Fixed bug on admin user update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug on admin user update" />
+    <MESSAGE value="Fixed sorting on backoffice table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed sorting on backoffice table" />
   </component>
 </project>

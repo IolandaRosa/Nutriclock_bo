@@ -244,7 +244,9 @@
                                 array.push(d.id);
                             })
                         }
+                        console.log(this.userUfcs)
                         this.userUfcs = array;
+                        console.log(this.userUfcs)
                     }).catch(() => {});
 
                     axios.get(`api/users/${this.id}`).then(response => {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\Ufc as UfcResource;
 use App\Ufc;
+use App\User;
 use App\UsersUfc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -187,11 +188,10 @@ class UfcControllerAPI extends Controller
      */
     public function getUserUfcs(Request $request, $id) {
         $usersUfcs=[];
-        if(Auth::guard('api')->user()->role == 'PATIENT'){
-            return Response::json(['error' => 'Accesso proibido!'], 401);
-        }
 
-        if(Auth::guard('api')->user()->role != 'PROFESSIONAL'){
+        $user = User::find($id);
+
+        if($user->role != 'PROFESSIONAL'){
             return UfcResource::collection(Ufc::all());
         } else {
             $usersUfcs = UsersUfc::where('user_id', $id)->get();
