@@ -64,7 +64,7 @@
 <script type="text/javascript">
 /*jshint esversion: 6 */
 import {COLUMN_NAME} from '../../utils/table_elements';
-import {renderGender, renderRole, getCategoryNameById} from '../../utils/misc';
+import {getCategoryNameById, renderGender, renderRole} from '../../utils/misc';
 import AddProfessional from '../modals/AddProfessional';
 import Profile from '../modals/Profile';
 import ResendEmail from '../modals/ResendEmail';
@@ -114,7 +114,7 @@ export default {
                 className: '',
             }, EmptyObject, EmptyObject, EmptyObject, EmptyObject],
             columns: [
-                {data: 'name', responsivePriority: 5},
+                {data: 'name', responsivePriority: 5, type: 'locale-compare', target: 0},
                 {data: 'email', responsivePriority: 6},
                 {data: 'role', responsivePriority: 7},
                 {data: 'category', responsivePriority: 8},
@@ -122,7 +122,7 @@ export default {
                 {...TableActionColumns.Resend, responsivePriority: 4},
                 {...TableActionColumns.Block, responsivePriority: 3},
                 {...TableActionColumns.Delete, responsivePriority: 2},
-            ],
+            ]
         };
     },
     methods: {
@@ -199,7 +199,7 @@ export default {
                 this.isFetching = false;
                 if (error.response && error.response.status === 401) {
                     this.$store.commit('clearUserAndToken');
-                    this.$router.push({path: ROUTE.Login });
+                    this.$router.push({path: ROUTE.Login});
                 }
             }
         },

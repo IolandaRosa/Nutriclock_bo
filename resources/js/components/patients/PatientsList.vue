@@ -131,7 +131,7 @@ export default {
                 className: '',
             }],
             columns: [
-                {...TableActionColumns.View, responsivePriority: 1},
+                {...TableActionColumns.View, responsivePriority: 1, type: 'locale-compare', target: 0},
                 {data: 'gender', responsivePriority: 6},
                 {data: 'parsedDate', responsivePriority: 7},
                 {data: 'ufc', responsivePriority: 5},
