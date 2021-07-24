@@ -25,7 +25,7 @@ class MedicationControllerAPI extends Controller
      */
     public function index()
     {
-        return MedicationResource::collection(Medication::all());
+        return MedicationResource::collection(Medication::all()->orderBy('name'));
     }
 
     /**
