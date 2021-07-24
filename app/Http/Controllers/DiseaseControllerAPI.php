@@ -25,7 +25,7 @@ class DiseaseControllerAPI extends Controller
      */
     public function index()
     {
-        return DiseaseResource::collection(Disease::all());
+        return DiseaseResource::collection(Disease::all()->orderBy('name'));
     }
 
     /**
