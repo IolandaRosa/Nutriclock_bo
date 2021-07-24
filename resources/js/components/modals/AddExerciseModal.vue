@@ -97,7 +97,7 @@ export default {
       }
 
       if (isDecimalOrEmpty(this.met)) {
-        this.errors.met = ERROR_MESSAGES.mandatoryField;
+        this.errors.met = ERROR_MESSAGES.invalidValue;
         return;
       }
 

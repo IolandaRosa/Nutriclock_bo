@@ -156,7 +156,7 @@ export default {
             this.showModal = false;
             this.handleSuccess();
         },
-        async nhandleSuccess(message) {
+        async handleSuccess(message) {
             this.isFetching = false;
             if (message) this.showMessage(message, 'success');
             this.selectedRow = null;
