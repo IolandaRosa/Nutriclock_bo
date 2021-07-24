@@ -233,6 +233,35 @@ export default {
                 theme: 'toasted-primary'
             });
         },
+        moveUp(item, type) {
+            let url = `api/biometric-collection-up/${item.id}`;
+            if (type === 'STEP') {
+                url = `api/biometric-procedure-up/${item.id}`;
+            }
+            this.reorderRequest(url, type);
+        },
+        moveDown(item, type) {
+            let url = `api/biometric-collection-down/${item.id}`;
+            if (type === 'STEP') {
+                url = `api/biometric-procedure-down/${item.id}`;
+            }
+            this.reorderRequest(url, type);
+        },
+        reorderRequest(url, type) {
+            if (this.isFetching) return;
+            this.isFetching = true;
+            axios.get(url).then(response => {
+                this.isFetching = false;
+                if (type === 'STEP') {
+                    this.procedureSteps = response.data.data;
+                } else {
+                    this.samples = response.data.data;
+                }
+            }).catch(() => {
+                this.isFetching = false;
+                this.showMessage('Ocorreu um erro', 'error');
+            });
+        },
         onDeleteClick(url) {
             this.showConfirmation = true;
             this.selectedUrl = url;

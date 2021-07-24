@@ -106,7 +106,7 @@ export default {
                 to: new Date(Date.now() - 86400000),
             },
             pt: ptBR,
-            groupId: null,
+            group: null,
         };
     },
     methods: {
@@ -162,7 +162,7 @@ export default {
                 name: this.name,
                 date: parseDateToString(this.date),
                 intervals: this.hours,
-                groupId: this.groupId,
+                groupId: this.group,
             }).then(response => {
                 this.resetFields();
                 this.$emit('save',  response.data.data);
@@ -178,7 +178,7 @@ export default {
     watch: {
         groupId: function (newVal, oldVal) {
             if (newVal) {
-                this.groupId = newVal;
+                this.group = newVal;
             }
         }
     },
