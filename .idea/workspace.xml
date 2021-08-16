@@ -19,7 +19,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MessageControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MessageControllerAPI.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/messages/MessagesHistory.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/messages/MessagesHistory.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -415,14 +415,7 @@
       <workItem from="1627135073720" duration="9644000" />
       <workItem from="1627595823485" duration="1197000" />
       <workItem from="1628080265392" duration="2211000" />
-      <workItem from="1629145862635" duration="4422000" />
-    </task>
-    <task id="LOCAL-00195" summary="Add id to login for test">
-      <created>1625783996373</created>
-      <option name="number" value="00195" />
-      <option name="presentableId" value="LOCAL-00195" />
-      <option name="project" value="LOCAL" />
-      <updated>1625783996374</updated>
+      <workItem from="1629145862635" duration="4800000" />
     </task>
     <task id="LOCAL-00196" summary="Add id to login for test">
       <created>1625910953331</created>
@@ -760,7 +753,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629150508900</updated>
     </task>
-    <option name="localTasksCounter" value="244" />
+    <task id="LOCAL-00244" summary="fixed bug on messages unread in contacts">
+      <created>1629150918272</created>
+      <option name="number" value="00244" />
+      <option name="presentableId" value="LOCAL-00244" />
+      <option name="project" value="LOCAL" />
+      <updated>1629150918272</updated>
+    </task>
+    <option name="localTasksCounter" value="245" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -788,7 +788,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add the collection group ui" />
     <MESSAGE value="Change the databse file" />
     <MESSAGE value="Change the database file for dev" />
     <MESSAGE value="Change database for production" />
@@ -813,6 +812,7 @@
     <MESSAGE value="render red dot on user with unread messages" />
     <MESSAGE value="fixed rendered om wromg place" />
     <MESSAGE value="highligh selected user" />
-    <option name="LAST_COMMIT_MESSAGE" value="highligh selected user" />
+    <MESSAGE value="fixed bug on messages unread in contacts" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bug on messages unread in contacts" />
   </component>
 </project>

@@ -5,8 +5,7 @@
                 <div class="font-weight-bold">Contactos</div>
                 <div
                     v-for="item in contacts"
-                    class="text-secondary pointer p-1 d-flex shadow justify-content-center align-items-center mb-2 bg-light border rounded-sm mobile-container"
-                    :class="[selectedId === item.id ? 'border-success' : 'border-secondary']"
+                    :class="[selectedId === item.senderId ? 'border-success' : 'border-secondary', 'text-secondary pointer p-1 d-flex shadow justify-content-center align-items-center mb-2 bg-light border rounded-sm mobile-container']"
                     @click="() => { redirectMessages(item.senderId)}"
                 >
                     <div v-show="item.hasUnread"
@@ -162,6 +161,7 @@ export default {
     methods: {
         redirectMessages(id) {
             this.selectedId = id;
+            console.log(this.selectedId);
             if (id !== this.$route.params.id) {
                 this.$router.push({
                     name: 'MessagesHistory',
