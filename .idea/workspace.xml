@@ -19,6 +19,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/messages/MessagesHistory.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/messages/MessagesHistory.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -415,14 +416,7 @@
       <workItem from="1627135073720" duration="9644000" />
       <workItem from="1627595823485" duration="1197000" />
       <workItem from="1628080265392" duration="2211000" />
-      <workItem from="1629145862635" duration="3507000" />
-    </task>
-    <task id="LOCAL-00193" summary="Changed string">
-      <created>1623004088280</created>
-      <option name="number" value="00193" />
-      <option name="presentableId" value="LOCAL-00193" />
-      <option name="project" value="LOCAL" />
-      <updated>1623004088280</updated>
+      <workItem from="1629145862635" duration="4051000" />
     </task>
     <task id="LOCAL-00194" summary="Add thecorrections to evaluation and other UI elements from the screen">
       <created>1625778477769</created>
@@ -760,7 +754,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629149426251</updated>
     </task>
-    <option name="localTasksCounter" value="242" />
+    <task id="LOCAL-00242" summary="fixed rendered om wromg place">
+      <created>1629149925438</created>
+      <option name="number" value="00242" />
+      <option name="presentableId" value="LOCAL-00242" />
+      <option name="project" value="LOCAL" />
+      <updated>1629149925439</updated>
+    </task>
+    <option name="localTasksCounter" value="243" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -788,7 +789,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add the api to add group to biometric collections" />
     <MESSAGE value="Add the api to get the groups" />
     <MESSAGE value="Add the collection group ui" />
     <MESSAGE value="Change the databse file" />
@@ -813,6 +813,7 @@
     <MESSAGE value="remove unsed method and addd test console log" />
     <MESSAGE value="changed the api to have the property unread in contacts" />
     <MESSAGE value="render red dot on user with unread messages" />
-    <option name="LAST_COMMIT_MESSAGE" value="render red dot on user with unread messages" />
+    <MESSAGE value="fixed rendered om wromg place" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed rendered om wromg place" />
   </component>
 </project>

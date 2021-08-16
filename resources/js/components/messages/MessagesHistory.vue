@@ -6,9 +6,10 @@
                 <div
                     v-for="item in contacts"
                     class="text-secondary pointer p-1 d-flex shadow justify-content-center align-items-center mb-2 bg-light border border-secondary rounded-sm mobile-container"
+                    :class="{ 'border-success': selectedId === item.id }"
                     @click="() => { redirectMessages(item.senderId)}"
                 >
-                    <div v-show="item.unread"
+                    <div v-show="item.hasUnread"
                          class="bg-danger rounded-circle mr-1" style="width: 10px; height: 10px"/>
                     <div class="rounded-circle mr-1 hidden-image" style="overflow: hidden; width: 30px; height: 30px">
                         <img
@@ -154,11 +155,13 @@ export default {
             isFetching: false,
             errors: {
                 response: null,
-            }
+            },
+            selectedId: null
         };
     },
     methods: {
         redirectMessages(id) {
+            this.selectedId = id;
             if (id !== this.$route.params.id) {
                 this.$router.push({
                     name: 'MessagesHistory',
