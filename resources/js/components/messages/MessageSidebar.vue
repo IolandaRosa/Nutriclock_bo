@@ -131,6 +131,7 @@ export default {
         }
     },
     mounted() {
+        console.log('mounted');
         this.getUnreadMessages();
         this.$options.sockets.onmessage = (data) => {
             if (data && data.data) {

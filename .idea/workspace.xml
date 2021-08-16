@@ -18,10 +18,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/messages/MessageSidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/messages/MessageSidebar.vue" afterDir="false" />
-    </list>
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -416,14 +413,7 @@
       <workItem from="1627135073720" duration="9644000" />
       <workItem from="1627595823485" duration="1197000" />
       <workItem from="1628080265392" duration="2211000" />
-      <workItem from="1629145862635" duration="661000" />
-    </task>
-    <task id="LOCAL-00186" summary="test notifications">
-      <created>1620676153875</created>
-      <option name="number" value="00186" />
-      <option name="presentableId" value="LOCAL-00186" />
-      <option name="project" value="LOCAL" />
-      <updated>1620676153875</updated>
+      <workItem from="1629145862635" duration="1138000" />
     </task>
     <task id="LOCAL-00187" summary="test notifications">
       <created>1620677304039</created>
@@ -761,7 +751,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627149491905</updated>
     </task>
-    <option name="localTasksCounter" value="235" />
+    <task id="LOCAL-00235" summary="Fixed bug on sidebar get unread messages">
+      <created>1629147089549</created>
+      <option name="number" value="00235" />
+      <option name="presentableId" value="LOCAL-00235" />
+      <option name="project" value="LOCAL" />
+      <updated>1629147089550</updated>
+    </task>
+    <option name="localTasksCounter" value="236" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -789,7 +786,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Changed string Unidade de Saude Familiar to Instituição" />
     <MESSAGE value="Changed string" />
     <MESSAGE value="Add thecorrections to evaluation and other UI elements from the screen" />
     <MESSAGE value="Add id to login for test" />
@@ -814,6 +810,7 @@
     <MESSAGE value="Fixed validations of food form" />
     <MESSAGE value="Prepare deploy for production" />
     <MESSAGE value="Ordered diseases by name" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ordered diseases by name" />
+    <MESSAGE value="Fixed bug on sidebar get unread messages" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug on sidebar get unread messages" />
   </component>
 </project>
