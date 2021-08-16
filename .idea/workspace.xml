@@ -413,21 +413,7 @@
       <workItem from="1627135073720" duration="9644000" />
       <workItem from="1627595823485" duration="1197000" />
       <workItem from="1628080265392" duration="2211000" />
-      <workItem from="1629145862635" duration="1138000" />
-    </task>
-    <task id="LOCAL-00187" summary="test notifications">
-      <created>1620677304039</created>
-      <option name="number" value="00187" />
-      <option name="presentableId" value="LOCAL-00187" />
-      <option name="project" value="LOCAL" />
-      <updated>1620677304039</updated>
-    </task>
-    <task id="LOCAL-00188" summary="test notifications">
-      <created>1620677384604</created>
-      <option name="number" value="00188" />
-      <option name="presentableId" value="LOCAL-00188" />
-      <option name="project" value="LOCAL" />
-      <updated>1620677384604</updated>
+      <workItem from="1629145862635" duration="1528000" />
     </task>
     <task id="LOCAL-00189" summary="test notifications">
       <created>1620677748786</created>
@@ -758,7 +744,21 @@
       <option name="project" value="LOCAL" />
       <updated>1629147089550</updated>
     </task>
-    <option name="localTasksCounter" value="236" />
+    <task id="LOCAL-00236" summary="test console log">
+      <created>1629147549604</created>
+      <option name="number" value="00236" />
+      <option name="presentableId" value="LOCAL-00236" />
+      <option name="project" value="LOCAL" />
+      <updated>1629147549604</updated>
+    </task>
+    <task id="LOCAL-00237" summary="test console log">
+      <created>1629147616690</created>
+      <option name="number" value="00237" />
+      <option name="presentableId" value="LOCAL-00237" />
+      <option name="project" value="LOCAL" />
+      <updated>1629147616690</updated>
+    </task>
+    <option name="localTasksCounter" value="238" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -786,7 +786,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Changed string" />
     <MESSAGE value="Add thecorrections to evaluation and other UI elements from the screen" />
     <MESSAGE value="Add id to login for test" />
     <MESSAGE value="Add id to add admin user modal errors" />
@@ -811,6 +810,7 @@
     <MESSAGE value="Prepare deploy for production" />
     <MESSAGE value="Ordered diseases by name" />
     <MESSAGE value="Fixed bug on sidebar get unread messages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug on sidebar get unread messages" />
+    <MESSAGE value="test console log" />
+    <option name="LAST_COMMIT_MESSAGE" value="test console log" />
   </component>
 </project>

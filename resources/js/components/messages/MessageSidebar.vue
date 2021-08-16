@@ -66,6 +66,7 @@
 import ChatResponseModal from '../modals/ChatResponseModal';
 import { ROUTE } from '../../utils/routes';
 import { parseSocketMessage } from '../../utils/misc';
+import {UserRoles} from "../../constants/misc";
 
 export default {
     data() {
@@ -128,6 +129,14 @@ export default {
         onNewResponseClick() {
             this.showReplyModal = false;
             this.getUnreadMessages();
+        }
+    },
+    watch: {
+        '$store.state.user': function() {
+            console.log(this.$store.state.user)
+            if (this.$store.state.user != null && this.$store.state.user.role === UserRoles.Professional) {
+                this.getUnreadMessages();
+            }
         }
     },
     mounted() {
