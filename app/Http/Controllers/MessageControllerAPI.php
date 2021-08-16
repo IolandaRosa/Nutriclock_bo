@@ -215,7 +215,7 @@ class MessageControllerAPI extends Controller
                 $hasUnread = false;
 
                 foreach ($messages as $m) {
-                    if ($m->read == true) $hasUnread = true;
+                    if ($m->read == false) $hasUnread = true;
                 }
 
                 $c->hasUnread = $hasUnread;

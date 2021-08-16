@@ -9,6 +9,8 @@
                     @click="() => { redirectMessages(item.senderId)}"
                 >
                     <div class="rounded-circle mr-1 hidden-image" style="overflow: hidden; width: 30px; height: 30px">
+                        <div v-show="item.unread"
+                             class="bg-danger rounded-circle mr-1" style="width: 10px; height: 10px"/>
                         <img
                             height="25"
                             width="25"
