@@ -379,6 +379,7 @@ export default {
         '$route.params.id': function () {
             this.messages = {};
             this.loadMore = true;
+            console.log(this.$route.params.id);
             this.selectedId = this.$route.params.id;
             this.getMessages();
         }

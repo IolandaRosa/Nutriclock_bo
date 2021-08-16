@@ -415,14 +415,7 @@
       <workItem from="1627135073720" duration="9644000" />
       <workItem from="1627595823485" duration="1197000" />
       <workItem from="1628080265392" duration="2211000" />
-      <workItem from="1629145862635" duration="5312000" />
-    </task>
-    <task id="LOCAL-00197" summary="Add id to add admin user modal errors">
-      <created>1625911336615</created>
-      <option name="number" value="00197" />
-      <option name="presentableId" value="LOCAL-00197" />
-      <option name="project" value="LOCAL" />
-      <updated>1625911336615</updated>
+      <workItem from="1629145862635" duration="5555000" />
     </task>
     <task id="LOCAL-00198" summary="Fixed delete on exercise">
       <created>1626034792675</created>
@@ -760,7 +753,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629151334656</updated>
     </task>
-    <option name="localTasksCounter" value="246" />
+    <task id="LOCAL-00246" summary="mark initial selected user">
+      <created>1629151644791</created>
+      <option name="number" value="00246" />
+      <option name="presentableId" value="LOCAL-00246" />
+      <option name="project" value="LOCAL" />
+      <updated>1629151644792</updated>
+    </task>
+    <option name="localTasksCounter" value="247" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -788,7 +788,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Change the database file for dev" />
     <MESSAGE value="Change database for production" />
     <MESSAGE value="Change some bugs reported" />
     <MESSAGE value="Add test method for notifications" />
@@ -813,6 +812,7 @@
     <MESSAGE value="highligh selected user" />
     <MESSAGE value="fixed bug on messages unread in contacts" />
     <MESSAGE value="fixed bug on userId" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed bug on userId" />
+    <MESSAGE value="mark initial selected user" />
+    <option name="LAST_COMMIT_MESSAGE" value="mark initial selected user" />
   </component>
 </project>
