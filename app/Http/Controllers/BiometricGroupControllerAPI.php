@@ -42,7 +42,9 @@ class BiometricGroupControllerAPI extends Controller
 
             foreach ($biometricCollections as $biometricCollection) {
                 $intervals = BiometricCollectionIntervals::where('collectionId', $biometricCollection->id)->get(['id', 'hour']);
-                $biometricCollections[$index]['intervals'] = $intervals;
+                if ($biometricCollection[$index] != null) {
+                    $biometricCollections[$index]['intervals'] = $intervals;
+                }
                 $index++;
             }
         }
