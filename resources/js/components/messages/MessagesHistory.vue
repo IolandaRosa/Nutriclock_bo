@@ -5,8 +5,8 @@
                 <div class="font-weight-bold">Contactos</div>
                 <div
                     v-for="item in contacts"
-                    class="text-secondary pointer p-1 d-flex shadow justify-content-center align-items-center mb-2 bg-light border border-secondary rounded-sm mobile-container"
-                    :class="{ 'border-success': selectedId === item.id }"
+                    class="text-secondary pointer p-1 d-flex shadow justify-content-center align-items-center mb-2 bg-light border rounded-sm mobile-container"
+                    :class="[selectedId === item.id ? 'border-success' : 'border-secondary']"
                     @click="() => { redirectMessages(item.senderId)}"
                 >
                     <div v-show="item.hasUnread"

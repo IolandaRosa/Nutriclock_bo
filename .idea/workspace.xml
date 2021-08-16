@@ -19,8 +19,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/messages/MessagesHistory.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/messages/MessagesHistory.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MessageControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MessageControllerAPI.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -416,14 +415,7 @@
       <workItem from="1627135073720" duration="9644000" />
       <workItem from="1627595823485" duration="1197000" />
       <workItem from="1628080265392" duration="2211000" />
-      <workItem from="1629145862635" duration="4051000" />
-    </task>
-    <task id="LOCAL-00194" summary="Add thecorrections to evaluation and other UI elements from the screen">
-      <created>1625778477769</created>
-      <option name="number" value="00194" />
-      <option name="presentableId" value="LOCAL-00194" />
-      <option name="project" value="LOCAL" />
-      <updated>1625778477770</updated>
+      <workItem from="1629145862635" duration="4422000" />
     </task>
     <task id="LOCAL-00195" summary="Add id to login for test">
       <created>1625783996373</created>
@@ -761,7 +753,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629149925439</updated>
     </task>
-    <option name="localTasksCounter" value="243" />
+    <task id="LOCAL-00243" summary="highligh selected user">
+      <created>1629150508900</created>
+      <option name="number" value="00243" />
+      <option name="presentableId" value="LOCAL-00243" />
+      <option name="project" value="LOCAL" />
+      <updated>1629150508900</updated>
+    </task>
+    <option name="localTasksCounter" value="244" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -789,7 +788,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add the api to get the groups" />
     <MESSAGE value="Add the collection group ui" />
     <MESSAGE value="Change the databse file" />
     <MESSAGE value="Change the database file for dev" />
@@ -814,6 +812,7 @@
     <MESSAGE value="changed the api to have the property unread in contacts" />
     <MESSAGE value="render red dot on user with unread messages" />
     <MESSAGE value="fixed rendered om wromg place" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed rendered om wromg place" />
+    <MESSAGE value="highligh selected user" />
+    <option name="LAST_COMMIT_MESSAGE" value="highligh selected user" />
   </component>
 </project>
