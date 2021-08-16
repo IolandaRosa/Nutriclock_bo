@@ -34,17 +34,14 @@ class BiometricGroupControllerAPI extends Controller
             return Response::json(['error' => 'Não existem gruops de recolhas'], 400);
         }
 
-        $index = 0;
-
         foreach ($groups as $group) {
+            $index = 0;
             $biometricCollections = BiometricCollections::where('biometric_group_id', $group->id)->get();
             $group['collections'] = $biometricCollections;
 
             foreach ($biometricCollections as $biometricCollection) {
                 $intervals = BiometricCollectionIntervals::where('collectionId', $biometricCollection->id)->get(['id', 'hour']);
-                if ($biometricCollection[$index] != null) {
-                    $biometricCollections[$index]['intervals'] = $intervals;
-                }
+                $biometricCollections[$index]['intervals'] = $intervals;
                 $index++;
             }
         }

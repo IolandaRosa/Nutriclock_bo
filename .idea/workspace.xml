@@ -19,9 +19,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BiometricGroupControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BiometricGroupControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/messages/MessagesHistory.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/messages/MessagesHistory.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -418,14 +416,7 @@
       <workItem from="1627595823485" duration="1197000" />
       <workItem from="1628080265392" duration="2211000" />
       <workItem from="1629145862635" duration="6069000" />
-      <workItem from="1629153534244" duration="146000" />
-    </task>
-    <task id="LOCAL-00200" summary="Add the api to add group to biometric collections">
-      <created>1626386681513</created>
-      <option name="number" value="00200" />
-      <option name="presentableId" value="LOCAL-00200" />
-      <option name="project" value="LOCAL" />
-      <updated>1626386681514</updated>
+      <workItem from="1629153534244" duration="393000" />
     </task>
     <task id="LOCAL-00201" summary="Add the api to get the groups">
       <created>1626387852604</created>
@@ -763,7 +754,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629152179413</updated>
     </task>
-    <option name="localTasksCounter" value="249" />
+    <task id="LOCAL-00249" summary="fixed bug on biometric collection get">
+      <created>1629153728787</created>
+      <option name="number" value="00249" />
+      <option name="presentableId" value="LOCAL-00249" />
+      <option name="project" value="LOCAL" />
+      <updated>1629153728788</updated>
+    </task>
+    <option name="localTasksCounter" value="250" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -791,7 +789,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add test method for notifications" />
     <MESSAGE value="Sono esta vazio" />
     <MESSAGE value="Fixed bug on exercise notifications" />
     <MESSAGE value="Remove count in array" />
@@ -816,6 +813,7 @@
     <MESSAGE value="mark initial selected user" />
     <MESSAGE value="test inital selection" />
     <MESSAGE value="change the highligh" />
-    <option name="LAST_COMMIT_MESSAGE" value="change the highligh" />
+    <MESSAGE value="fixed bug on biometric collection get" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bug on biometric collection get" />
   </component>
 </project>
