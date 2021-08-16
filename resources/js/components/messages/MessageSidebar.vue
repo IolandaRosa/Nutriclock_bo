@@ -131,8 +131,7 @@ export default {
         }
     },
     mounted() {
-        if (this.$store.state.unread > 0) this.getUnreadMessages();
-
+        this.getUnreadMessages();
         this.$options.sockets.onmessage = (data) => {
             if (data && data.data) {
                 const message = parseSocketMessage(data.data);

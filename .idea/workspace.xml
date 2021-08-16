@@ -20,9 +20,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MedicationControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MedicationControllerAPI.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/messages/MessageSidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/messages/MessageSidebar.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -416,27 +414,9 @@
       <workItem from="1626613479341" duration="4637000" />
       <workItem from="1626641311926" duration="1197000" />
       <workItem from="1627135073720" duration="9644000" />
-    </task>
-    <task id="LOCAL-00183" summary="test notifications">
-      <created>1620670048596</created>
-      <option name="number" value="00183" />
-      <option name="presentableId" value="LOCAL-00183" />
-      <option name="project" value="LOCAL" />
-      <updated>1620670048596</updated>
-    </task>
-    <task id="LOCAL-00184" summary="test notifications">
-      <created>1620671806135</created>
-      <option name="number" value="00184" />
-      <option name="presentableId" value="LOCAL-00184" />
-      <option name="project" value="LOCAL" />
-      <updated>1620671806135</updated>
-    </task>
-    <task id="LOCAL-00185" summary="test notifications">
-      <created>1620672824992</created>
-      <option name="number" value="00185" />
-      <option name="presentableId" value="LOCAL-00185" />
-      <option name="project" value="LOCAL" />
-      <updated>1620672824992</updated>
+      <workItem from="1627595823485" duration="1197000" />
+      <workItem from="1628080265392" duration="2211000" />
+      <workItem from="1629145862635" duration="661000" />
     </task>
     <task id="LOCAL-00186" summary="test notifications">
       <created>1620676153875</created>
@@ -760,7 +740,28 @@
       <option name="project" value="LOCAL" />
       <updated>1627144292217</updated>
     </task>
-    <option name="localTasksCounter" value="232" />
+    <task id="LOCAL-00232" summary="Prepare deploy for production">
+      <created>1627148405159</created>
+      <option name="number" value="00232" />
+      <option name="presentableId" value="LOCAL-00232" />
+      <option name="project" value="LOCAL" />
+      <updated>1627148405159</updated>
+    </task>
+    <task id="LOCAL-00233" summary="Ordered diseases by name">
+      <created>1627149191519</created>
+      <option name="number" value="00233" />
+      <option name="presentableId" value="LOCAL-00233" />
+      <option name="project" value="LOCAL" />
+      <updated>1627149191519</updated>
+    </task>
+    <task id="LOCAL-00234" summary="Ordered diseases by name">
+      <created>1627149491905</created>
+      <option name="number" value="00234" />
+      <option name="presentableId" value="LOCAL-00234" />
+      <option name="project" value="LOCAL" />
+      <updated>1627149491905</updated>
+    </task>
+    <option name="localTasksCounter" value="235" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -788,8 +789,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="report endpoint" />
-    <MESSAGE value="evaluation api" />
     <MESSAGE value="Changed string Unidade de Saude Familiar to Instituição" />
     <MESSAGE value="Changed string" />
     <MESSAGE value="Add thecorrections to evaluation and other UI elements from the screen" />
@@ -813,6 +812,8 @@
     <MESSAGE value="Fixed sorting on backoffice table" />
     <MESSAGE value="Fixed user preselect" />
     <MESSAGE value="Fixed validations of food form" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed validations of food form" />
+    <MESSAGE value="Prepare deploy for production" />
+    <MESSAGE value="Ordered diseases by name" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ordered diseases by name" />
   </component>
 </project>
