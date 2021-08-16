@@ -19,7 +19,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MessageControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MessageControllerAPI.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/messages/MessagesHistory.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/messages/MessagesHistory.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -416,14 +415,7 @@
       <workItem from="1627135073720" duration="9644000" />
       <workItem from="1627595823485" duration="1197000" />
       <workItem from="1628080265392" duration="2211000" />
-      <workItem from="1629145862635" duration="3009000" />
-    </task>
-    <task id="LOCAL-00192" summary="evaluation api">
-      <created>1622753896068</created>
-      <option name="number" value="00192" />
-      <option name="presentableId" value="LOCAL-00192" />
-      <option name="project" value="LOCAL" />
-      <updated>1622753896069</updated>
+      <workItem from="1629145862635" duration="3507000" />
     </task>
     <task id="LOCAL-00193" summary="Changed string">
       <created>1623004088280</created>
@@ -761,7 +753,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629148993542</updated>
     </task>
-    <option name="localTasksCounter" value="241" />
+    <task id="LOCAL-00241" summary="render red dot on user with unread messages">
+      <created>1629149426251</created>
+      <option name="number" value="00241" />
+      <option name="presentableId" value="LOCAL-00241" />
+      <option name="project" value="LOCAL" />
+      <updated>1629149426251</updated>
+    </task>
+    <option name="localTasksCounter" value="242" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -789,7 +788,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed delete on exercise" />
     <MESSAGE value="Add the api to add group to biometric collections" />
     <MESSAGE value="Add the api to get the groups" />
     <MESSAGE value="Add the collection group ui" />
@@ -814,6 +812,7 @@
     <MESSAGE value="add watch properti for getMessage" />
     <MESSAGE value="remove unsed method and addd test console log" />
     <MESSAGE value="changed the api to have the property unread in contacts" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed the api to have the property unread in contacts" />
+    <MESSAGE value="render red dot on user with unread messages" />
+    <option name="LAST_COMMIT_MESSAGE" value="render red dot on user with unread messages" />
   </component>
 </project>
