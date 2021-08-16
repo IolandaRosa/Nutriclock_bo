@@ -299,6 +299,9 @@ export default {
                     this.messagesHistory = response.data.messagesHistory;
 
                     if (this.$route.params.id && this.loadMore) {
+                        console.log(this.$route.params.id);
+                        this.selectedId = this.$route.params.id;
+
                         if (this.messagesHistory[this.$route.params.id].length === 0) {
                             this.loadMore = false;
                             return;
@@ -379,8 +382,6 @@ export default {
         '$route.params.id': function () {
             this.messages = {};
             this.loadMore = true;
-            console.log(this.$route.params.id);
-            this.selectedId = this.$route.params.id;
             this.getMessages();
         }
     },
