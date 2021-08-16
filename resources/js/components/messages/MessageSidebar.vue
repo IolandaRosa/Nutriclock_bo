@@ -133,15 +133,14 @@ export default {
     },
     watch: {
         '$store.state.user': function() {
-            console.log(this.$store.state.user)
+            console.log('watch user state store');
+            console.log(this.$store.state.user);
             if (this.$store.state.user != null && this.$store.state.user.role === UserRoles.Professional) {
                 this.getUnreadMessages();
             }
         }
     },
     mounted() {
-        console.log('mounted');
-        this.getUnreadMessages();
         this.$options.sockets.onmessage = (data) => {
             if (data && data.data) {
                 const message = parseSocketMessage(data.data);
