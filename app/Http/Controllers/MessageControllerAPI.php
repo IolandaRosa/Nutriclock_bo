@@ -211,6 +211,15 @@ class MessageControllerAPI extends Controller
                     ->take(10)
                     ->skip($skipPages)
                     ->get();
+
+                $hasUnread = false;
+
+                foreach ($messages as $m) {
+                    if ($m->read == true) $hasUnread = true;
+                }
+
+                $c->hasUnread = $hasUnread;
+
                 $messagesHistory[$c->senderId] = $messages;
             }
 

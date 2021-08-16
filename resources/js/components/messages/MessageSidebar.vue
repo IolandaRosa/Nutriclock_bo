@@ -133,8 +133,6 @@ export default {
     },
     watch: {
         '$store.state.user': function() {
-            console.log('watch user state store');
-            console.log(this.$store.state.user);
             if (this.$store.state.user != null && this.$store.state.user.role === UserRoles.Professional) {
                 this.getUnreadMessages();
             }

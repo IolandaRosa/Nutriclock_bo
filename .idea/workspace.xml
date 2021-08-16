@@ -18,7 +18,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="remove unsu">
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MessageControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MessageControllerAPI.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/messages/MessageSidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/messages/MessageSidebar.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -415,14 +417,7 @@
       <workItem from="1627135073720" duration="9644000" />
       <workItem from="1627595823485" duration="1197000" />
       <workItem from="1628080265392" duration="2211000" />
-      <workItem from="1629145862635" duration="1831000" />
-    </task>
-    <task id="LOCAL-00190" summary="test notifications">
-      <created>1620679899118</created>
-      <option name="number" value="00190" />
-      <option name="presentableId" value="LOCAL-00190" />
-      <option name="project" value="LOCAL" />
-      <updated>1620679899118</updated>
+      <workItem from="1629145862635" duration="2664000" />
     </task>
     <task id="LOCAL-00191" summary="test notifications">
       <created>1621175381400</created>
@@ -760,7 +755,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629148034831</updated>
     </task>
-    <option name="localTasksCounter" value="239" />
+    <task id="LOCAL-00239" summary="remove unsed method and addd test console log">
+      <created>1629148146546</created>
+      <option name="number" value="00239" />
+      <option name="presentableId" value="LOCAL-00239" />
+      <option name="project" value="LOCAL" />
+      <updated>1629148146546</updated>
+    </task>
+    <option name="localTasksCounter" value="240" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -788,7 +790,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add id to login for test" />
     <MESSAGE value="Add id to add admin user modal errors" />
     <MESSAGE value="Fixed delete on exercise" />
     <MESSAGE value="Add the api to add group to biometric collections" />
@@ -813,6 +814,7 @@
     <MESSAGE value="Fixed bug on sidebar get unread messages" />
     <MESSAGE value="test console log" />
     <MESSAGE value="add watch properti for getMessage" />
-    <option name="LAST_COMMIT_MESSAGE" value="add watch properti for getMessage" />
+    <MESSAGE value="remove unsed method and addd test console log" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove unsed method and addd test console log" />
   </component>
 </project>
