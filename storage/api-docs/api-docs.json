@@ -272,35 +272,6 @@
                 }
             }
         },
-        "/api/biometric-group-biometric-collection-remove": {
-            "post": {
-                "tags": [
-                    "Biometric Collection"
-                ],
-                "summary": "Dissociates a biometric group with biometric collection",
-                "description": "Dissociates a biometric group with biometric collection",
-                "operationId": "Dissociates a biometric group with biometric collection",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "collectionId": {
-                                        "type": "number"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "return biometric collection"
-                    }
-                }
-            }
-        },
         "/api/biometric-group/users/{id}": {
             "get": {
                 "tags": [

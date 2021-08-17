@@ -186,7 +186,7 @@ export default {
                 hasErrors = true;
             }
 
-            if (isNaN(this.posology)) {
+            if (isNaN(this.posology) || this.posology <= 0) {
                 this.errors.posology = ERROR_MESSAGES.invalidFormat;
                 hasErrors = true;
             }

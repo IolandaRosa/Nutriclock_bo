@@ -19,9 +19,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/UserGroupModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/UserGroupModal.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/PatientsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/PatientsList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/AddMedication.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/AddMedication.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -419,14 +417,7 @@
       <workItem from="1628080265392" duration="2211000" />
       <workItem from="1629145862635" duration="6069000" />
       <workItem from="1629153534244" duration="766000" />
-      <workItem from="1629224829065" duration="3335000" />
-    </task>
-    <task id="LOCAL-00203" summary="Change the databse file">
-      <created>1626476078089</created>
-      <option name="number" value="00203" />
-      <option name="presentableId" value="LOCAL-00203" />
-      <option name="project" value="LOCAL" />
-      <updated>1626476078089</updated>
+      <workItem from="1629224829065" duration="4176000" />
     </task>
     <task id="LOCAL-00204" summary="Change the database file for dev">
       <created>1626515279227</created>
@@ -764,7 +755,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629232823760</updated>
     </task>
-    <option name="localTasksCounter" value="252" />
+    <task id="LOCAL-00252" summary="fixed bug on user group update click">
+      <created>1629234937768</created>
+      <option name="number" value="00252" />
+      <option name="presentableId" value="LOCAL-00252" />
+      <option name="project" value="LOCAL" />
+      <updated>1629234937768</updated>
+    </task>
+    <option name="localTasksCounter" value="253" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -792,7 +790,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Remove count in array" />
     <MESSAGE value="Changed notifications" />
     <MESSAGE value="database development" />
     <MESSAGE value="Fixed bug on admin user update" />
@@ -817,6 +814,7 @@
     <MESSAGE value="fixed bug on biometric collection get" />
     <MESSAGE value="fixed bug on biometric collection index get" />
     <MESSAGE value="fixed bug on block user details click" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed bug on block user details click" />
+    <MESSAGE value="fixed bug on user group update click" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bug on user group update click" />
   </component>
 </project>
