@@ -276,6 +276,11 @@ export default {
             }).then(() => {
                 this.isFetching = false;
                 this.showError('O grupo foi atualizado', 'success');
+                this.data.forEach(item => {
+                    if (item.id === row.id) {
+                        item.nutriclockGroup = !row.nutriclockGroup;
+                    }
+                });
                 this.onCloseClick();
             }).catch(() => {
                 redrawTable(this.dataTable, this.data);

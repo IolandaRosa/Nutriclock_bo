@@ -13,7 +13,7 @@
                         <div class="font-weight-bold text-dark">Utilizadores no grupo</div>
                         <div class="with-p-4 bg-light rounded with-shadow mb-3 text-dark">
                             <div v-if="this.usersFromGroup.length === 0" class="m-2">
-                                Ainda não foram adicinados utilizadores na recolha.
+                                Ainda não foram adicionados utilizadores na recolha.
                             </div>
                             <div v-else v-for="(user, index) in this.usersFromGroup" :key="user.id" class="d-flex m-2">
                                 <div class="mr-2 flex-grow-1">{{ user.name }}</div>
