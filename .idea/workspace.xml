@@ -19,7 +19,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BiometricGroupControllerAPI.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BiometricGroupControllerAPI.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/PatientsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/PatientsList.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -416,14 +418,8 @@
       <workItem from="1627595823485" duration="1197000" />
       <workItem from="1628080265392" duration="2211000" />
       <workItem from="1629145862635" duration="6069000" />
-      <workItem from="1629153534244" duration="393000" />
-    </task>
-    <task id="LOCAL-00201" summary="Add the api to get the groups">
-      <created>1626387852604</created>
-      <option name="number" value="00201" />
-      <option name="presentableId" value="LOCAL-00201" />
-      <option name="project" value="LOCAL" />
-      <updated>1626387852604</updated>
+      <workItem from="1629153534244" duration="766000" />
+      <workItem from="1629224829065" duration="1281000" />
     </task>
     <task id="LOCAL-00202" summary="Add the collection group ui">
       <created>1626390029276</created>
@@ -761,7 +757,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629153728788</updated>
     </task>
-    <option name="localTasksCounter" value="250" />
+    <task id="LOCAL-00250" summary="fixed bug on biometric collection index get">
+      <created>1629153960403</created>
+      <option name="number" value="00250" />
+      <option name="presentableId" value="LOCAL-00250" />
+      <option name="project" value="LOCAL" />
+      <updated>1629153960403</updated>
+    </task>
+    <option name="localTasksCounter" value="251" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -789,7 +792,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Sono esta vazio" />
     <MESSAGE value="Fixed bug on exercise notifications" />
     <MESSAGE value="Remove count in array" />
     <MESSAGE value="Changed notifications" />
@@ -814,6 +816,7 @@
     <MESSAGE value="test inital selection" />
     <MESSAGE value="change the highligh" />
     <MESSAGE value="fixed bug on biometric collection get" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed bug on biometric collection get" />
+    <MESSAGE value="fixed bug on biometric collection index get" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bug on biometric collection index get" />
   </component>
 </project>

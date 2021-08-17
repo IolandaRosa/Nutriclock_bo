@@ -164,6 +164,8 @@ export default {
             this.deletePatient();
         },
         onViewClick(row) {
+            if (row.deleted_at) return;
+
             if (row.requestForget) {
                 this.selectedRow = row;
                 this.showForgetRequestData = true;
