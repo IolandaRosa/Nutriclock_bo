@@ -19,7 +19,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/AddMedication.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/AddMedication.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/meals/MealDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/meals/MealDetails.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/meals/MealsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/meals/MealsList.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -417,14 +419,8 @@
       <workItem from="1628080265392" duration="2211000" />
       <workItem from="1629145862635" duration="6069000" />
       <workItem from="1629153534244" duration="766000" />
-      <workItem from="1629224829065" duration="4176000" />
-    </task>
-    <task id="LOCAL-00204" summary="Change the database file for dev">
-      <created>1626515279227</created>
-      <option name="number" value="00204" />
-      <option name="presentableId" value="LOCAL-00204" />
-      <option name="project" value="LOCAL" />
-      <updated>1626515279228</updated>
+      <workItem from="1629224829065" duration="4939000" />
+      <workItem from="1629321386849" duration="1401000" />
     </task>
     <task id="LOCAL-00205" summary="Change database for production">
       <created>1626518064373</created>
@@ -762,7 +758,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629234937768</updated>
     </task>
-    <option name="localTasksCounter" value="253" />
+    <task id="LOCAL-00253" summary="fixed medication posology allowing null">
+      <created>1629237325733</created>
+      <option name="number" value="00253" />
+      <option name="presentableId" value="LOCAL-00253" />
+      <option name="project" value="LOCAL" />
+      <updated>1629237325733</updated>
+    </task>
+    <option name="localTasksCounter" value="254" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -790,7 +793,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Changed notifications" />
     <MESSAGE value="database development" />
     <MESSAGE value="Fixed bug on admin user update" />
     <MESSAGE value="Fixed sorting on backoffice table" />
@@ -815,6 +817,7 @@
     <MESSAGE value="fixed bug on biometric collection index get" />
     <MESSAGE value="fixed bug on block user details click" />
     <MESSAGE value="fixed bug on user group update click" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed bug on user group update click" />
+    <MESSAGE value="fixed medication posology allowing null" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed medication posology allowing null" />
   </component>
 </project>

@@ -38,9 +38,6 @@ export default {
         showDetails(row, date) {
             this.$emit('meal-details', row, date);
         },
-        calculateSubtotals() {
-
-        },
         getUserMeals() {
             if (this.isFetching) return;
             this.isFetching = true;

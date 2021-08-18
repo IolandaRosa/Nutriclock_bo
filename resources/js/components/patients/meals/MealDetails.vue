@@ -550,8 +550,9 @@ export default {
                 this.isFetching = false;
                 this.showToast('A informação foi atualizada com sucesso!', 'success');
                 this.computeSubtotals();
-            }).catch(() => {
+            }).catch(error => {
                 this.isFetching = false;
+                console.log(error);
                 this.showToast('Ocorreu um erro durante a atualização da informação', 'error');
             });
         },
@@ -592,6 +593,8 @@ export default {
                 Fe: 0,
                 Zn: 0,
             };
+
+            console.log(this.data);
 
             Object.keys(this.data).forEach(key => {
                 const subtotals = {
