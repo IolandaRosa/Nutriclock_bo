@@ -561,12 +561,22 @@ export default {
             event.target.src = '/images/avatar.jpg'
         },
         computeSum(value, object, index) {
-            console.log('compute sum', index)
-            return (Number(value) + Number(object.nutritionalInfo[index].value)).toFixed(2);
+            try{
+                console.log('compute sum', index)
+                return (Number(value) + Number(object.nutritionalInfo[index].value)).toFixed(2);
+            } catch (e) {
+                console.log('compute sum error', e)
+                return "0.00";
+            }
         },
         computeSumTotal(value1, value2) {
-            console.log('compute sum total', index)
-            return (Number(value1) + Number(value2)).toFixed(2);
+            try{
+                console.log('compute sum total', index)
+                return (Number(value1) + Number(value2)).toFixed(2);
+            } catch (e) {
+                console.log('compute sum total error', e)
+                return "0.00";
+            }
         },
         computeSubtotals() {
             const totals = {
