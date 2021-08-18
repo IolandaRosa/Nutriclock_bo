@@ -419,14 +419,7 @@
       <workItem from="1629145862635" duration="6069000" />
       <workItem from="1629153534244" duration="766000" />
       <workItem from="1629224829065" duration="4939000" />
-      <workItem from="1629321386849" duration="2391000" />
-    </task>
-    <task id="LOCAL-00206" summary="Change some bugs reported">
-      <created>1626553730452</created>
-      <option name="number" value="00206" />
-      <option name="presentableId" value="LOCAL-00206" />
-      <option name="project" value="LOCAL" />
-      <updated>1626553730452</updated>
+      <workItem from="1629321386849" duration="3085000" />
     </task>
     <task id="LOCAL-00207" summary="Change some bugs reported">
       <created>1626559277514</created>
@@ -764,7 +757,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629323312644</updated>
     </task>
-    <option name="localTasksCounter" value="255" />
+    <task id="LOCAL-00255" summary="diagnose a bug on nutritional subtotals compute">
+      <created>1629324199262</created>
+      <option name="number" value="00255" />
+      <option name="presentableId" value="LOCAL-00255" />
+      <option name="project" value="LOCAL" />
+      <updated>1629324199262</updated>
+    </task>
+    <option name="localTasksCounter" value="256" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
