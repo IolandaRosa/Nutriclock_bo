@@ -594,8 +594,6 @@ export default {
                 Zn: 0,
             };
 
-            console.log(this.data);
-
             Object.keys(this.data).forEach(key => {
                 const subtotals = {
                     sumQuant: 0,
@@ -623,14 +621,18 @@ export default {
                     sumZn: 0,
                 };
 
+                console.log(key)
+                console.log(this.data[key])
+
                 this.data[key].forEach(object => {
+                    console.log(object)
                     subtotals.sumQuant = (Number(subtotals.sumQuant) + Number(object.meal.numericUnit)).toFixed(2);
-                    subtotals.sumEnergy = this.computeSum(subtotals.sumEnergy, object, 0);
-                    subtotals.sumWater = this.computeSum(subtotals.sumWater, object, 2);
-                    subtotals.sumProtein = this.computeSum(subtotals.sumProtein, object, 3);
-                    subtotals.sumFat = this.computeSum(subtotals.sumFat, object, 4);
-                    subtotals.sumCarbs = this.computeSum(subtotals.sumCarbs, object, 5);
-                    subtotals.sumFiber = this.computeSum(subtotals.sumFiber, object, 6);
+                    subtotals.sumEnergy = this.computeSum(subtotals.sumEnergy, object.nutritionalInfo, 0);
+                    subtotals.sumWater = this.computeSum(subtotals.sumWater, object.nutritionalInfo, 2);
+                    subtotals.sumProtein = this.computeSum(subtotals.sumProtein, object.nutritionalInfo, 3);
+                    subtotals.sumFat = this.computeSum(subtotals.sumFat, object.nutritionalInfo, 4);
+                    subtotals.sumCarbs = this.computeSum(subtotals.sumCarbs, object.nutritionalInfo, 5);
+                    subtotals.sumFiber = this.computeSum(subtotals.sumFiber, object.nutritionalInfo, 6);
                     subtotals.sumColetrol = this.computeSum(subtotals.sumColetrol, object, 7);
                     subtotals.sumA = this.computeSum(subtotals.sumA, object, 8);
                     subtotals.sumD = this.computeSum(subtotals.sumD, object, 9);
