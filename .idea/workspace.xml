@@ -418,14 +418,7 @@
       <workItem from="1629145862635" duration="6069000" />
       <workItem from="1629153534244" duration="766000" />
       <workItem from="1629224829065" duration="4939000" />
-      <workItem from="1629321386849" duration="4418000" />
-    </task>
-    <task id="LOCAL-00211" summary="Add test method for notifications">
-      <created>1626614828990</created>
-      <option name="number" value="00211" />
-      <option name="presentableId" value="LOCAL-00211" />
-      <option name="project" value="LOCAL" />
-      <updated>1626614828990</updated>
+      <workItem from="1629321386849" duration="4779000" />
     </task>
     <task id="LOCAL-00212" summary="Add test method for notifications">
       <created>1626615656559</created>
@@ -763,7 +756,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629325848953</updated>
     </task>
-    <option name="localTasksCounter" value="260" />
+    <task id="LOCAL-00260" summary="diagnose a bug on nutritional subtotals compute">
+      <created>1629326159405</created>
+      <option name="number" value="00260" />
+      <option name="presentableId" value="LOCAL-00260" />
+      <option name="project" value="LOCAL" />
+      <updated>1629326159405</updated>
+    </task>
+    <option name="localTasksCounter" value="261" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -605,6 +605,8 @@ export default {
                 Zn: 0,
             };
 
+            console.log(this.data)
+
             Object.keys(this.data).forEach(key => {
                 const subtotals = {
                     sumQuant: 0,
@@ -689,6 +691,8 @@ export default {
                 ...this.data,
                 total: totals,
             }
+
+            console.log(this.data)
         }
     },
     watch: {
