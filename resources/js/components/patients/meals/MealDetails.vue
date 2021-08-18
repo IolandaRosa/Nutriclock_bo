@@ -550,6 +550,7 @@ export default {
             axios.put(`api/nutritional-info/${id}`, {"value": value}).then(() => {
                 this.isFetching = false;
                 this.showToast('A informação foi atualizada com sucesso!', 'success');
+                this.$forceUpdate();
                 this.computeSubtotals();
             }).catch(error => {
                 this.isFetching = false;

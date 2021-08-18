@@ -418,14 +418,7 @@
       <workItem from="1629145862635" duration="6069000" />
       <workItem from="1629153534244" duration="766000" />
       <workItem from="1629224829065" duration="4939000" />
-      <workItem from="1629321386849" duration="5096000" />
-    </task>
-    <task id="LOCAL-00213" summary="Add test method for notifications">
-      <created>1626615840950</created>
-      <option name="number" value="00213" />
-      <option name="presentableId" value="LOCAL-00213" />
-      <option name="project" value="LOCAL" />
-      <updated>1626615840950</updated>
+      <workItem from="1629321386849" duration="5414000" />
     </task>
     <task id="LOCAL-00214" summary="Add test method for notifications">
       <created>1626616106097</created>
@@ -763,7 +756,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629326496421</updated>
     </task>
-    <option name="localTasksCounter" value="262" />
+    <task id="LOCAL-00262" summary="fixed bug">
+      <created>1629326824719</created>
+      <option name="number" value="00262" />
+      <option name="presentableId" value="LOCAL-00262" />
+      <option name="project" value="LOCAL" />
+      <updated>1629326824719</updated>
+    </task>
+    <option name="localTasksCounter" value="263" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -791,7 +791,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed bug on admin user update" />
     <MESSAGE value="Fixed sorting on backoffice table" />
     <MESSAGE value="Fixed user preselect" />
     <MESSAGE value="Fixed validations of food form" />
@@ -816,6 +815,7 @@
     <MESSAGE value="fixed bug on user group update click" />
     <MESSAGE value="fixed medication posology allowing null" />
     <MESSAGE value="diagnose a bug on nutritional subtotals compute" />
-    <option name="LAST_COMMIT_MESSAGE" value="diagnose a bug on nutritional subtotals compute" />
+    <MESSAGE value="fixed bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bug" />
   </component>
 </project>
