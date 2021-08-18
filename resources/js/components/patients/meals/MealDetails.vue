@@ -571,7 +571,7 @@ export default {
         },
         computeSumTotal(value1, value2) {
             try{
-                console.log('compute sum total', index)
+                console.log('compute sum total')
                 return (Number(value1) + Number(value2)).toFixed(2);
             } catch (e) {
                 console.log('compute sum total error', e)
