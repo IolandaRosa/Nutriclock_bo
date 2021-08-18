@@ -608,83 +608,85 @@ export default {
             console.log(this.data)
 
             Object.keys(this.data).forEach(key => {
-                const subtotals = {
-                    sumQuant: 0,
-                    sumEnergy: 0,
-                    sumWater: 0,
-                    sumProtein: 0,
-                    sumFat: 0,
-                    sumCarbs: 0,
-                    sumFiber: 0,
-                    sumColetrol: 0,
-                    sumA: 0,
-                    sumD: 0,
-                    sumTiamina: 0,
-                    sumRiboflavina: 0,
-                    sumNiacina: 0,
-                    sumB6: 0,
-                    sumB12: 0,
-                    sumC: 0,
-                    sumNa: 0,
-                    sumK: 0,
-                    sumCa: 0,
-                    sumP: 0,
-                    sumMg: 0,
-                    sumFe: 0,
-                    sumZn: 0,
-                };
+                if (key !== 'total') {
+                    const subtotals = {
+                        sumQuant: 0,
+                        sumEnergy: 0,
+                        sumWater: 0,
+                        sumProtein: 0,
+                        sumFat: 0,
+                        sumCarbs: 0,
+                        sumFiber: 0,
+                        sumColetrol: 0,
+                        sumA: 0,
+                        sumD: 0,
+                        sumTiamina: 0,
+                        sumRiboflavina: 0,
+                        sumNiacina: 0,
+                        sumB6: 0,
+                        sumB12: 0,
+                        sumC: 0,
+                        sumNa: 0,
+                        sumK: 0,
+                        sumCa: 0,
+                        sumP: 0,
+                        sumMg: 0,
+                        sumFe: 0,
+                        sumZn: 0,
+                    };
 
-                this.data[key].forEach(object => {
-                    subtotals.sumQuant = (Number(subtotals.sumQuant) + Number(object.meal.numericUnit)).toFixed(2);
-                    subtotals.sumEnergy = this.computeSum(subtotals.sumEnergy, object, 0);
-                    subtotals.sumWater = this.computeSum(subtotals.sumWater, object, 2);
-                    subtotals.sumProtein = this.computeSum(subtotals.sumProtein, object, 3);
-                    subtotals.sumFat = this.computeSum(subtotals.sumFat, object, 4);
-                    subtotals.sumCarbs = this.computeSum(subtotals.sumCarbs, object, 5);
-                    subtotals.sumFiber = this.computeSum(subtotals.sumFiber, object, 6);
-                    subtotals.sumColetrol = this.computeSum(subtotals.sumColetrol, object, 7);
-                    subtotals.sumA = this.computeSum(subtotals.sumA, object, 8);
-                    subtotals.sumD = this.computeSum(subtotals.sumD, object, 9);
-                    subtotals.sumTiamina = this.computeSum(subtotals.sumTiamina, object, 10);
-                    subtotals.sumRiboflavina = this.computeSum(subtotals.sumRiboflavina, object, 11);
-                    subtotals.sumNiacina = this.computeSum(subtotals.sumNiacina, object, 12);
-                    subtotals.sumB6 = this.computeSum(subtotals.sumB6, object, 13);
-                    subtotals.sumB12 = this.computeSum(subtotals.sumB12, object, 14);
-                    subtotals.sumC = this.computeSum(subtotals.sumC, object, 15);
-                    subtotals.sumNa = this.computeSum(subtotals.sumNa, object, 16);
-                    subtotals.sumK = this.computeSum(subtotals.sumK, object, 17);
-                    subtotals.sumCa = this.computeSum(subtotals.sumCa, object, 18);
-                    subtotals.sumP = this.computeSum(subtotals.sumP, object, 19);
-                    subtotals.sumMg = this.computeSum(subtotals.sumMg, object, 20);
-                    subtotals.sumFe = this.computeSum(subtotals.sumFe, object, 21);
-                    subtotals.sumZn = this.computeSum(subtotals.sumZn, object, 22);
-                });
+                    this.data[key].forEach(object => {
+                        subtotals.sumQuant = (Number(subtotals.sumQuant) + Number(object.meal.numericUnit)).toFixed(2);
+                        subtotals.sumEnergy = this.computeSum(subtotals.sumEnergy, object, 0);
+                        subtotals.sumWater = this.computeSum(subtotals.sumWater, object, 2);
+                        subtotals.sumProtein = this.computeSum(subtotals.sumProtein, object, 3);
+                        subtotals.sumFat = this.computeSum(subtotals.sumFat, object, 4);
+                        subtotals.sumCarbs = this.computeSum(subtotals.sumCarbs, object, 5);
+                        subtotals.sumFiber = this.computeSum(subtotals.sumFiber, object, 6);
+                        subtotals.sumColetrol = this.computeSum(subtotals.sumColetrol, object, 7);
+                        subtotals.sumA = this.computeSum(subtotals.sumA, object, 8);
+                        subtotals.sumD = this.computeSum(subtotals.sumD, object, 9);
+                        subtotals.sumTiamina = this.computeSum(subtotals.sumTiamina, object, 10);
+                        subtotals.sumRiboflavina = this.computeSum(subtotals.sumRiboflavina, object, 11);
+                        subtotals.sumNiacina = this.computeSum(subtotals.sumNiacina, object, 12);
+                        subtotals.sumB6 = this.computeSum(subtotals.sumB6, object, 13);
+                        subtotals.sumB12 = this.computeSum(subtotals.sumB12, object, 14);
+                        subtotals.sumC = this.computeSum(subtotals.sumC, object, 15);
+                        subtotals.sumNa = this.computeSum(subtotals.sumNa, object, 16);
+                        subtotals.sumK = this.computeSum(subtotals.sumK, object, 17);
+                        subtotals.sumCa = this.computeSum(subtotals.sumCa, object, 18);
+                        subtotals.sumP = this.computeSum(subtotals.sumP, object, 19);
+                        subtotals.sumMg = this.computeSum(subtotals.sumMg, object, 20);
+                        subtotals.sumFe = this.computeSum(subtotals.sumFe, object, 21);
+                        subtotals.sumZn = this.computeSum(subtotals.sumZn, object, 22);
+                    });
 
-                totals.quant = (Number(totals.quant) + Number(subtotals.sumQuant)).toFixed(2);
-                totals.energy = this.computeSumTotal(totals.energy, subtotals.sumEnergy);
-                totals.water = this.computeSumTotal(totals.water, subtotals.sumWater);
-                totals.protein = this.computeSumTotal(totals.protein, subtotals.sumProtein);
-                totals.fat = this.computeSumTotal(totals.fat, subtotals.sumFat);
-                totals.carbs = this.computeSumTotal(totals.carbs, subtotals.sumCarbs);
-                totals.fiber = this.computeSumTotal(totals.fiber, subtotals.sumFiber);
-                totals.coletrol = this.computeSumTotal(totals.coletrol, subtotals.sumColetrol);
-                totals.A = this.computeSumTotal(totals.A, subtotals.sumA);
-                totals.D = this.computeSumTotal(totals.D, subtotals.sumD);
-                totals.tiamina = this.computeSumTotal(totals.tiamina, subtotals.sumTiamina);
-                totals.riboflavina = this.computeSumTotal(totals.riboflavina, subtotals.sumRiboflavina);
-                totals.niacina = this.computeSumTotal(totals.niacina, subtotals.sumNiacina);
-                totals.B6 = this.computeSumTotal(totals.B6, subtotals.sumB6);
-                totals.B12 = this.computeSumTotal(totals.B12, subtotals.sumB12);
-                totals.C = this.computeSumTotal(totals.C, subtotals.sumC);
-                totals.Na = this.computeSumTotal(totals.Na, subtotals.sumNa);
-                totals.K = this.computeSumTotal(totals.K, subtotals.sumK);
-                totals.Ca = this.computeSumTotal(totals.Ca, subtotals.sumCa);
-                totals.P = this.computeSumTotal(totals.P, subtotals.sumP);
-                totals.Mg = this.computeSumTotal(totals.Mg, subtotals.sumMg);
-                totals.Fe = this.computeSumTotal(totals.Fe, subtotals.sumFe);
-                totals.Zn = this.computeSumTotal(totals.Zn, subtotals.sumZn);
+                    totals.quant = (Number(totals.quant) + Number(subtotals.sumQuant)).toFixed(2);
+                    totals.energy = this.computeSumTotal(totals.energy, subtotals.sumEnergy);
+                    totals.water = this.computeSumTotal(totals.water, subtotals.sumWater);
+                    totals.protein = this.computeSumTotal(totals.protein, subtotals.sumProtein);
+                    totals.fat = this.computeSumTotal(totals.fat, subtotals.sumFat);
+                    totals.carbs = this.computeSumTotal(totals.carbs, subtotals.sumCarbs);
+                    totals.fiber = this.computeSumTotal(totals.fiber, subtotals.sumFiber);
+                    totals.coletrol = this.computeSumTotal(totals.coletrol, subtotals.sumColetrol);
+                    totals.A = this.computeSumTotal(totals.A, subtotals.sumA);
+                    totals.D = this.computeSumTotal(totals.D, subtotals.sumD);
+                    totals.tiamina = this.computeSumTotal(totals.tiamina, subtotals.sumTiamina);
+                    totals.riboflavina = this.computeSumTotal(totals.riboflavina, subtotals.sumRiboflavina);
+                    totals.niacina = this.computeSumTotal(totals.niacina, subtotals.sumNiacina);
+                    totals.B6 = this.computeSumTotal(totals.B6, subtotals.sumB6);
+                    totals.B12 = this.computeSumTotal(totals.B12, subtotals.sumB12);
+                    totals.C = this.computeSumTotal(totals.C, subtotals.sumC);
+                    totals.Na = this.computeSumTotal(totals.Na, subtotals.sumNa);
+                    totals.K = this.computeSumTotal(totals.K, subtotals.sumK);
+                    totals.Ca = this.computeSumTotal(totals.Ca, subtotals.sumCa);
+                    totals.P = this.computeSumTotal(totals.P, subtotals.sumP);
+                    totals.Mg = this.computeSumTotal(totals.Mg, subtotals.sumMg);
+                    totals.Fe = this.computeSumTotal(totals.Fe, subtotals.sumFe);
+                    totals.Zn = this.computeSumTotal(totals.Zn, subtotals.sumZn);
 
-                this.data[key].subtotals = subtotals;
+                    this.data[key].subtotals = subtotals;
+                }
             });
 
             this.data = {
