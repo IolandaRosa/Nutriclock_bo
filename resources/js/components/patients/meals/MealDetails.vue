@@ -561,9 +561,11 @@ export default {
             event.target.src = '/images/avatar.jpg'
         },
         computeSum(value, object, index) {
+            console.log('compute sum', index)
             return (Number(value) + Number(object.nutritionalInfo[index].value)).toFixed(2);
         },
         computeSumTotal(value1, value2) {
+            console.log('compute sum total', index)
             return (Number(value1) + Number(value2)).toFixed(2);
         },
         computeSubtotals() {
@@ -620,12 +622,7 @@ export default {
                     sumZn: 0,
                 };
 
-                forEach(this.data[key], function (value) {
-                    console.log('lodash value', value);
-                });
-
                 this.data[key].forEach(object => {
-                    console.log('data', object)
                     subtotals.sumQuant = (Number(subtotals.sumQuant) + Number(object.meal.numericUnit)).toFixed(2);
                     subtotals.sumEnergy = this.computeSum(subtotals.sumEnergy, object, 0);
                     subtotals.sumWater = this.computeSum(subtotals.sumWater, object, 2);
@@ -651,7 +648,7 @@ export default {
                     subtotals.sumZn = this.computeSum(subtotals.sumZn, object, 22);
                 });
 
-                /* totals.quant = (Number(totals.quant) + Number(subtotals.sumQuant)).toFixed(2);
+                totals.quant = (Number(totals.quant) + Number(subtotals.sumQuant)).toFixed(2);
                 totals.energy = this.computeSumTotal(totals.energy, subtotals.sumEnergy);
                 totals.water = this.computeSumTotal(totals.water, subtotals.sumWater);
                 totals.protein = this.computeSumTotal(totals.protein, subtotals.sumProtein);
@@ -675,7 +672,7 @@ export default {
                 totals.Fe = this.computeSumTotal(totals.Fe, subtotals.sumFe);
                 totals.Zn = this.computeSumTotal(totals.Zn, subtotals.sumZn);
 
-                this.data[key].subtotals = subtotals; */
+                this.data[key].subtotals = subtotals;
             });
 
             this.data = {
