@@ -19,7 +19,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/meals/MacroNutrientsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/meals/MacroNutrientsTable.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/patients/meals/MealDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/meals/MealDetails.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/meals/MineralsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/meals/MineralsTable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/meals/VitaminsTable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/meals/VitaminsTable.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -418,14 +424,10 @@
       <workItem from="1629145862635" duration="6069000" />
       <workItem from="1629153534244" duration="766000" />
       <workItem from="1629224829065" duration="4939000" />
-      <workItem from="1629321386849" duration="5414000" />
-    </task>
-    <task id="LOCAL-00214" summary="Add test method for notifications">
-      <created>1626616106097</created>
-      <option name="number" value="00214" />
-      <option name="presentableId" value="LOCAL-00214" />
-      <option name="project" value="LOCAL" />
-      <updated>1626616106097</updated>
+      <workItem from="1629321386849" duration="5687000" />
+      <workItem from="1629405512172" duration="7029000" />
+      <workItem from="1629412637038" duration="471000" />
+      <workItem from="1629490136443" duration="2237000" />
     </task>
     <task id="LOCAL-00215" summary="Add test method for notifications">
       <created>1626616290360</created>
@@ -763,7 +765,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629326824719</updated>
     </task>
-    <option name="localTasksCounter" value="263" />
+    <task id="LOCAL-00263" summary="fixed bug">
+      <created>1629327231207</created>
+      <option name="number" value="00263" />
+      <option name="presentableId" value="LOCAL-00263" />
+      <option name="project" value="LOCAL" />
+      <updated>1629327231207</updated>
+    </task>
+    <option name="localTasksCounter" value="264" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

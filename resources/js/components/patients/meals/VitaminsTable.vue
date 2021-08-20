@@ -96,15 +96,15 @@
             </tr>
             <tr>
                 <td colspan="3"><strong>SUBTOTAL</strong></td>
-                <td>{{this.data.subtotals.sumQuant}}</td>
-                <td>{{this.data.subtotals.sumA}}</td>
-                <td>{{this.data.subtotals.sumD}}</td>
-                <td>{{this.data.subtotals.sumTiamina}}</td>
-                <td>{{this.data.subtotals.sumRiboflavina}}</td>
-                <td>{{this.data.subtotals.sumNiacina}}</td>
-                <td>{{this.data.subtotals.sumB6}}</td>
-                <td>{{this.data.subtotals.sumB12}}</td>
-                <td>{{this.data.subtotals.sumC}}</td>
+                <td>{{this.subtotals.sumQuant}}</td>
+                <td>{{this.subtotals.sumA}}</td>
+                <td>{{this.subtotals.sumD}}</td>
+                <td>{{this.subtotals.sumTiamina}}</td>
+                <td>{{this.subtotals.sumRiboflavina}}</td>
+                <td>{{this.subtotals.sumNiacina}}</td>
+                <td>{{this.subtotals.sumB6}}</td>
+                <td>{{this.subtotals.sumB12}}</td>
+                <td>{{this.subtotals.sumC}}</td>
                 <td/>
             </tr>
             </tbody>
@@ -117,7 +117,7 @@
 import { UserRoles } from '../../../constants/misc';
 
 export default{
-    props: ['data'],
+    props: ['data', 'subtotals'],
     data(){
         return {
             readonly: false,

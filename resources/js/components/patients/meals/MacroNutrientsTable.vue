@@ -106,14 +106,14 @@
             </tr>
             <tr>
                 <td colspan="3"><strong>SUBTOTAL</strong></td>
-                <td>{{this.data.subtotals.sumQuant}}</td>
-                <td>{{this.data.subtotals.sumEnergy}}</td>
-                <td>{{this.data.subtotals.sumWater}}</td>
-                <td>{{this.data.subtotals.sumProtein}}</td>
-                <td>{{this.data.subtotals.sumFat}}</td>
-                <td>{{this.data.subtotals.sumCarbs}}</td>
-                <td>{{this.data.subtotals.sumFiber}}</td>
-                <td>{{this.data.subtotals.sumColetrol}}</td>
+                <td>{{this.subtotals.sumQuant}}</td>
+                <td>{{this.subtotals.sumEnergy}}</td>
+                <td>{{this.subtotals.sumWater}}</td>
+                <td>{{this.subtotals.sumProtein}}</td>
+                <td>{{this.subtotals.sumFat}}</td>
+                <td>{{this.subtotals.sumCarbs}}</td>
+                <td>{{this.subtotals.sumFiber}}</td>
+                <td>{{this.subtotals.sumColetrol}}</td>
                 <td/>
             </tr>
             </tbody>
@@ -126,7 +126,7 @@
     import { UserRoles } from '../../../constants/misc';
 
     export default{
-        props: ['data'],
+        props: ['data', 'subtotals'],
         data(){
             return {
                 readonly: false,
@@ -153,6 +153,6 @@
             if (this.$store.state.user) {
                 this.readonly = this.$store.state.user.role === UserRoles.Intern
             }
-        },
+        }
     };
 </script>

@@ -131,6 +131,7 @@
                         <MacroNutrientsTable
                             v-show="showMacroBreakfast"
                             :data="data['P']"
+                            :subtotals="data['P'].subtotals"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
                             @update-nutritional-value="updateNutritionalValue"
@@ -142,6 +143,7 @@
                         <MacroNutrientsTable
                             v-show="showMacroMidDay"
                             :data="data['M']"
+                            :subtotals="data['M'].subtotals"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
                             @update-nutritional-value="updateNutritionalValue"
@@ -153,6 +155,7 @@
                         <MacroNutrientsTable
                             v-show="showMacroLunch"
                             :data="data['A']"
+                            :subtotals="data['A'].subtotals"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
                             @update-nutritional-value="updateNutritionalValue"
@@ -164,6 +167,7 @@
                         <MacroNutrientsTable
                             v-show="showMacroMidAfternoon"
                             :data="data['L']"
+                            :subtotals="data['L'].subtotals"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
                             @update-nutritional-value="updateNutritionalValue"
@@ -175,6 +179,7 @@
                         <MacroNutrientsTable
                             v-show="showMacroDinner"
                             :data="data['J']"
+                            :subtotals="data['J'].subtotals"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
                             @update-nutritional-value="updateNutritionalValue"
@@ -186,6 +191,7 @@
                         <MacroNutrientsTable
                             v-show="showMacroNight"
                             :data="data['O']"
+                            :subtotals="data['O'].subtotals"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
                             @update-nutritional-value="updateNutritionalValue"
@@ -197,6 +203,7 @@
                         <MacroNutrientsTable
                             v-show="showMacroSnack"
                             :data="data['S']"
+                            :subtotals="data['S'].subtotals"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
                             @update-nutritional-value="updateNutritionalValue"
@@ -210,6 +217,7 @@
                         <VitaminsTable
                             v-show="showVitBreakfast"
                             :data="data['P']"
+                            :subtotals="data['P'].subtotals"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
                             @update-nutritional-value="updateNutritionalValue"
@@ -221,6 +229,7 @@
                         <VitaminsTable
                             v-show="showVitMidDay"
                             :data="data['M']"
+                            :subtotals="data['M'].subtotals"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
                             @update-nutritional-value="updateNutritionalValue"
@@ -232,6 +241,7 @@
                         <VitaminsTable
                             v-show="showVitLunch"
                             :data="data['A']"
+                            :subtotals="data['A'].subtotals"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
                             @update-nutritional-value="updateNutritionalValue"
@@ -243,6 +253,7 @@
                         <VitaminsTable
                             v-show="showVitMidAfternoon"
                             :data="data['L']"
+                            :subtotals="data['L'].subtotals"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
                             @update-nutritional-value="updateNutritionalValue"
@@ -254,6 +265,7 @@
                         <VitaminsTable
                             v-show="showVitDinner"
                             :data="data['J']"
+                            :subtotals="data['J'].subtotals"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
                             @update-nutritional-value="updateNutritionalValue"
@@ -265,6 +277,7 @@
                         <VitaminsTable
                             v-show="showVitNight"
                             :data="data['O']"
+                            :subtotals="data['O'].subtotals"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
                             @update-nutritional-value="updateNutritionalValue"
@@ -276,6 +289,7 @@
                         <VitaminsTable
                             v-show="showVitSnack"
                             :data="data['S']"
+                            :subtotals="data['S'].subtotals"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
                             @update-nutritional-value="updateNutritionalValue"
@@ -289,6 +303,7 @@
                         <MineralsTable
                             v-show="showMinBreakfast"
                             :data="data['P']"
+                            :subtotals="data['P'].subtotals"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
                             @update-nutritional-value="updateNutritionalValue"
@@ -300,6 +315,7 @@
                         <MineralsTable
                             v-show="showMinMidDay"
                             :data="data['M']"
+                            :subtotals="data['M'].subtotals"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
                             @update-nutritional-value="updateNutritionalValue"
@@ -311,6 +327,7 @@
                         <MineralsTable
                             v-show="showMinLunch"
                             :data="data['A']"
+                            :subtotals="data['A'].subtotals"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
                             @update-nutritional-value="updateNutritionalValue"
@@ -322,6 +339,7 @@
                         <MineralsTable
                             v-show="showMinMidAfternoon"
                             :data="data['L']"
+                            :subtotals="data['L'].subtotals"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
                             @update-nutritional-value="updateNutritionalValue"
@@ -333,6 +351,7 @@
                         <MineralsTable
                             v-show="showMinDinner"
                             :data="data['J']"
+                            :subtotals="data['J'].subtotals"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
                             @update-nutritional-value="updateNutritionalValue"
@@ -344,6 +363,7 @@
                         <MineralsTable
                             v-show="showMinNight"
                             :data="data['O']"
+                            :subtotals="data['O'].subtotals"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
                             @update-nutritional-value="updateNutritionalValue"
@@ -355,6 +375,7 @@
                         <MineralsTable
                             v-show="showMinSnack"
                             :data="data['S']"
+                            :subtotals="data['S'].subtotals"
                             @show-zoom-modal="showZoomModal"
                             @update-quantity-value="updateQuantityValue"
                             @update-nutritional-value="updateNutritionalValue"
@@ -376,7 +397,6 @@ import VitaminsTable from './VitaminsTable';
 import MineralsTable from './MineralsTable';
 import ImageZoomModal from '../../modals/ImageZoomModal';
 import MealDetailsGeralInfoItem from './MealDetailsGeralInfoItem';
-import {forEach} from 'lodash';
 
 export default {
     props: ['meal', 'date'],
@@ -562,8 +582,7 @@ export default {
             event.target.src = '/images/avatar.jpg'
         },
         computeSum(value, object, index) {
-            try{
-                console.log('compute sum', index)
+            try {
                 return (Number(value) + Number(object.nutritionalInfo[index].value)).toFixed(2);
             } catch (e) {
                 console.log('compute sum error', e)
@@ -571,8 +590,7 @@ export default {
             }
         },
         computeSumTotal(value1, value2) {
-            try{
-                console.log('compute sum total')
+            try {
                 return (Number(value1) + Number(value2)).toFixed(2);
             } catch (e) {
                 console.log('compute sum total error', e)
@@ -605,8 +623,6 @@ export default {
                 Fe: 0,
                 Zn: 0,
             };
-
-            console.log(this.data)
 
             Object.keys(this.data).forEach(key => {
                 if (key !== 'total') {
@@ -694,8 +710,6 @@ export default {
                 ...this.data,
                 total: totals,
             }
-
-            console.log(this.data)
         }
     },
     watch: {
