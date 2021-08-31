@@ -708,15 +708,17 @@ class MealPlanTypeControllerAPI extends Controller
         $mealPlanType->confirmed = true;
         $mealPlanType->confirmedHours = $request->confirmedHours;
 
-        $image = $request->file('photo');
-        $thumbnail = Image::make($image);
-        $thumbnail->resize(null, 200, function ($constraint) {
-            $constraint->aspectRatio();
-        });
+        if ($request->file('photo') != null) {
+            $image = $request->file('photo');
+            $thumbnail = Image::make($image);
+            $thumbnail->resize(null, 200, function ($constraint) {
+                $constraint->aspectRatio();
+            });
 
-        $path = basename($image->store('mealPlans/', 's3'));
-        Storage::disk('s3')->put('mealPlans/thumb_' . $path, $thumbnail->stream());
-        $mealPlanType->photoUrl = basename($path);
+            $path = basename($image->store('mealPlans/', 's3'));
+            Storage::disk('s3')->put('mealPlans/thumb_' . $path, $thumbnail->stream());
+            $mealPlanType->photoUrl = basename($path);
+        }
 
         $mealPlanType->save();
 
