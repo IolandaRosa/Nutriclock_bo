@@ -18,9 +18,8 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="change the placeholder color">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/styles.css" afterDir="false" />
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/PatientsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/PatientsList.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -424,21 +423,7 @@
       <workItem from="1629412637038" duration="471000" />
       <workItem from="1629490136443" duration="2237000" />
       <workItem from="1630528304332" duration="596000" />
-      <workItem from="1632042421720" duration="316000" />
-    </task>
-    <task id="LOCAL-00215" summary="Add test method for notifications">
-      <created>1626616290360</created>
-      <option name="number" value="00215" />
-      <option name="presentableId" value="LOCAL-00215" />
-      <option name="project" value="LOCAL" />
-      <updated>1626616290360</updated>
-    </task>
-    <task id="LOCAL-00216" summary="Add test method for notifications">
-      <created>1626616359558</created>
-      <option name="number" value="00216" />
-      <option name="presentableId" value="LOCAL-00216" />
-      <option name="project" value="LOCAL" />
-      <updated>1626616359558</updated>
+      <workItem from="1632042421720" duration="981000" />
     </task>
     <task id="LOCAL-00217" summary="Add test method for notifications">
       <created>1626616417246</created>
@@ -769,7 +754,21 @@
       <option name="project" value="LOCAL" />
       <updated>1629327231207</updated>
     </task>
-    <option name="localTasksCounter" value="264" />
+    <task id="LOCAL-00264" summary="change the placeholder color">
+      <created>1632042753054</created>
+      <option name="number" value="00264" />
+      <option name="presentableId" value="LOCAL-00264" />
+      <option name="project" value="LOCAL" />
+      <updated>1632042753055</updated>
+    </task>
+    <task id="LOCAL-00265" summary="change the placeholder color">
+      <created>1632043018848</created>
+      <option name="number" value="00265" />
+      <option name="presentableId" value="LOCAL-00265" />
+      <option name="project" value="LOCAL" />
+      <updated>1632043018848</updated>
+    </task>
+    <option name="localTasksCounter" value="266" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -797,7 +796,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed sorting on backoffice table" />
     <MESSAGE value="Fixed user preselect" />
     <MESSAGE value="Fixed validations of food form" />
     <MESSAGE value="Prepare deploy for production" />
@@ -822,6 +820,7 @@
     <MESSAGE value="fixed medication posology allowing null" />
     <MESSAGE value="diagnose a bug on nutritional subtotals compute" />
     <MESSAGE value="fixed bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed bug" />
+    <MESSAGE value="change the placeholder color" />
+    <option name="LAST_COMMIT_MESSAGE" value="change the placeholder color" />
   </component>
 </project>
