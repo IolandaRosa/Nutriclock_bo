@@ -368,5 +368,5 @@ input:checked + .slider:before {
 }
 
 ::placeholder {
-    color: #9d9d9d !important;
+    color: #bababa !important;
 }
