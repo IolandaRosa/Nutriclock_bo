@@ -81,7 +81,7 @@ export default {
             selectedUsf: 'ALL',
             titles: [{
                 label: COLUMN_NAME.Name,
-                className: 'pointer',
+                className: '',
             }, {
                 label: COLUMN_NAME.Gender,
                 className: '',

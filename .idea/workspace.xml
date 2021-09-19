@@ -20,6 +20,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/resources/js/components/patients/PatientsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/PatientsList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/utils/dataTables.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/dataTables.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -423,14 +424,7 @@
       <workItem from="1629412637038" duration="471000" />
       <workItem from="1629490136443" duration="2237000" />
       <workItem from="1630528304332" duration="596000" />
-      <workItem from="1632042421720" duration="981000" />
-    </task>
-    <task id="LOCAL-00217" summary="Add test method for notifications">
-      <created>1626616417246</created>
-      <option name="number" value="00217" />
-      <option name="presentableId" value="LOCAL-00217" />
-      <option name="project" value="LOCAL" />
-      <updated>1626616417246</updated>
+      <workItem from="1632042421720" duration="1451000" />
     </task>
     <task id="LOCAL-00218" summary="Sono esta vazio">
       <created>1626616741607</created>
@@ -768,7 +762,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632043018848</updated>
     </task>
-    <option name="localTasksCounter" value="266" />
+    <task id="LOCAL-00266" summary="add pointer to patient table">
+      <created>1632043521338</created>
+      <option name="number" value="00266" />
+      <option name="presentableId" value="LOCAL-00266" />
+      <option name="project" value="LOCAL" />
+      <updated>1632043521338</updated>
+    </task>
+    <option name="localTasksCounter" value="267" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -796,7 +797,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed user preselect" />
     <MESSAGE value="Fixed validations of food form" />
     <MESSAGE value="Prepare deploy for production" />
     <MESSAGE value="Ordered diseases by name" />
@@ -821,6 +821,7 @@
     <MESSAGE value="diagnose a bug on nutritional subtotals compute" />
     <MESSAGE value="fixed bug" />
     <MESSAGE value="change the placeholder color" />
-    <option name="LAST_COMMIT_MESSAGE" value="change the placeholder color" />
+    <MESSAGE value="add pointer to patient table" />
+    <option name="LAST_COMMIT_MESSAGE" value="add pointer to patient table" />
   </component>
 </project>
