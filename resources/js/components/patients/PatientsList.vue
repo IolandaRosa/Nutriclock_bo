@@ -164,7 +164,10 @@ export default {
             this.deletePatient();
         },
         onViewClick(row) {
-            if (row.deleted_at) return;
+            if (row.deleted_at) {
+                this.showError('Não é possivel aceder aos detalhes pois o utente está bloqueado / inativo.', 'info');
+                return;
+            }
 
             if (row.requestForget) {
                 this.selectedRow = row;
