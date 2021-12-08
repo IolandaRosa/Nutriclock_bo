@@ -20,7 +20,8 @@
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/patients/PatientsList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/PatientsList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/MealTypePlanStatsModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/MealTypePlanStatsModal.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -425,14 +426,8 @@
       <workItem from="1629490136443" duration="2237000" />
       <workItem from="1630528304332" duration="596000" />
       <workItem from="1632042421720" duration="2405000" />
-      <workItem from="1635453715092" duration="202000" />
-    </task>
-    <task id="LOCAL-00220" summary="Fixed bug on exercise notifications">
-      <created>1626616922701</created>
-      <option name="number" value="00220" />
-      <option name="presentableId" value="LOCAL-00220" />
-      <option name="project" value="LOCAL" />
-      <updated>1626616922701</updated>
+      <workItem from="1635453715092" duration="572000" />
+      <workItem from="1638961919981" duration="572000" />
     </task>
     <task id="LOCAL-00221" summary="Remove count in array">
       <created>1626617034183</created>
@@ -770,7 +765,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632044648558</updated>
     </task>
-    <option name="localTasksCounter" value="269" />
+    <task id="LOCAL-00269" summary="Add info message when user is blocked and admin try to access details">
+      <created>1635454099093</created>
+      <option name="number" value="00269" />
+      <option name="presentableId" value="LOCAL-00269" />
+      <option name="project" value="LOCAL" />
+      <updated>1635454099093</updated>
+    </task>
+    <option name="localTasksCounter" value="270" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -798,7 +800,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed validations of food form" />
     <MESSAGE value="Prepare deploy for production" />
     <MESSAGE value="Ordered diseases by name" />
     <MESSAGE value="Fixed bug on sidebar get unread messages" />
@@ -823,6 +824,7 @@
     <MESSAGE value="fixed bug" />
     <MESSAGE value="change the placeholder color" />
     <MESSAGE value="add pointer to patient table" />
-    <option name="LAST_COMMIT_MESSAGE" value="add pointer to patient table" />
+    <MESSAGE value="Add info message when user is blocked and admin try to access details" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add info message when user is blocked and admin try to access details" />
   </component>
 </project>
