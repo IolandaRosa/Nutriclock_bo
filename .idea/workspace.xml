@@ -19,11 +19,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/js/components/utils/TermsAndConditionsPublic.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/modals/MealTypePlanStatsModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/modals/MealTypePlanStatsModal.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/patients/plans/PlanListStats.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/patients/plans/PlanListStats.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/utils/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/utils/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +40,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="composer.json" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
   </component>
@@ -429,14 +432,8 @@
       <workItem from="1630528304332" duration="596000" />
       <workItem from="1632042421720" duration="2405000" />
       <workItem from="1635453715092" duration="572000" />
-      <workItem from="1638961919981" duration="2547000" />
-    </task>
-    <task id="LOCAL-00222" summary="Remove count in array">
-      <created>1626617229334</created>
-      <option name="number" value="00222" />
-      <option name="presentableId" value="LOCAL-00222" />
-      <option name="project" value="LOCAL" />
-      <updated>1626617229334</updated>
+      <workItem from="1638961919981" duration="2729000" />
+      <workItem from="1639778971199" duration="2335000" />
     </task>
     <task id="LOCAL-00223" summary="Remove count in array">
       <created>1626617420831</created>
@@ -774,7 +771,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638962589656</updated>
     </task>
-    <option name="localTasksCounter" value="271" />
+    <task id="LOCAL-00271" summary="Fix renderization of water levels">
+      <created>1638964626213</created>
+      <option name="number" value="00271" />
+      <option name="presentableId" value="LOCAL-00271" />
+      <option name="project" value="LOCAL" />
+      <updated>1638964626213</updated>
+    </task>
+    <option name="localTasksCounter" value="272" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -802,7 +806,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Ordered diseases by name" />
     <MESSAGE value="Fixed bug on sidebar get unread messages" />
     <MESSAGE value="test console log" />
     <MESSAGE value="add watch properti for getMessage" />
@@ -827,6 +830,7 @@
     <MESSAGE value="add pointer to patient table" />
     <MESSAGE value="Add info message when user is blocked and admin try to access details" />
     <MESSAGE value="Fix bug on meal type plan modal" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix bug on meal type plan modal" />
+    <MESSAGE value="Fix renderization of water levels" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix renderization of water levels" />
   </component>
 </project>

@@ -18,6 +18,7 @@ import ExercisesList from '../components/exercises/ExercisesList';
 import FoodList from '../components/food/FoodList';
 import BiometricIndicators from '../components/biometricIndicators/BiometricIndicators';
 import Evaluation from '../components/evaluation/Evaluation';
+import TermsAndConditionsPublic from '../components/utils/TermsAndConditionsPublic';
 
 Vue.component('Login', Login);
 
@@ -55,6 +56,8 @@ Vue.component('BiometricIndicators', BiometricIndicators);
 
 Vue.component('Evaluation', Evaluation);
 
+Vue.component('TermsAndConditionsPublic', TermsAndConditionsPublic);
+
 export const ROUTE = {
     Index: '/',
     Login: '/login',
@@ -74,6 +77,7 @@ export const ROUTE = {
     Exercises: '/exercises',
     BiometricIndicators: '/biometric-indicators',
     Evaluation: '/evaluation',
+    TermsAndConditionsPublic: '/terms_and_conditions',
 };
 
 export const routes = [
@@ -95,5 +99,6 @@ export const routes = [
     {path: '/food', component: FoodList, name: 'FoodList'},
     {path: '/exercises', component: ExercisesList, name: 'ExercisesList'},
     {path: '/biometric-indicators', component: BiometricIndicators, name: 'BiometricIndicators'},
-    {path: '/evaluation', component: Evaluation, name: 'Evaluation'}
+    {path: '/evaluation', component: Evaluation, name: 'Evaluation'},
+    {path: '/terms_and_conditions', component: TermsAndConditionsPublic, name: 'TermsAndConditionsPublic'}
 ];
