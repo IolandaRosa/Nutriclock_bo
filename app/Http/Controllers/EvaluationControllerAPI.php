@@ -241,7 +241,7 @@ class EvaluationControllerAPI extends Controller
     }
 
     public function getTest() {
-        return json_encode('{
+        return json_decode('{
   "version": 8,
   "name": "Standard Layout v1.2.2",
   "zoom": 12,
