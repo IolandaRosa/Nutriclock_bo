@@ -256,6 +256,12 @@ class EvaluationControllerAPI extends Controller
       "url": "mapbox://mapbox.naip",
       "type": "raster"
     },
+    "near-maps": {
+      "tiles": [
+        "https://api.nearmap.com/tiles/v3/Vert/{z}/{x}/{y}.jpg?apikey=M2U3ZDYzMmEtYmZmZS00MmMxLWIzNjQtZGNkMTc3M2UzNGE5"
+      ],
+      "type": "raster"
+    },
     "composite": {
       "url": "mapbox://mapbox.mapbox-terrain-v2,mapbox.mapbox-streets-v8,spartanforgellc.property-boundary-group-0,spartanforgellc.property-boundary-group-1,spartanforgellc.property-boundary-group-2,spartanforgellc.property-boundary-group-3,spartanforgellc.property-boundary-group-4,spartanforgellc.property-boundary-group-5,spartanforgellc.property-boundary-group-6,spartanforgellc.property-boundary-group-7,spartanforgellc.usfs-trails,spartanforgellc.public-land,spartanforgellc.property_boundary_20220405T2155",
       "type": "vector"
