@@ -240,10 +240,8 @@ class EvaluationControllerAPI extends Controller
         }
     }
 
-    public function getTest() 
-    {
-        return json_decode(
-            '{
+    public function getTest() {
+        return json_decode('{
   "version": 8,
   "name": "Standard Layout v1.2.2",
   "zoom": 12,
@@ -65479,7 +65477,6 @@ class EvaluationControllerAPI extends Controller
   "id": "sf-SpartanForge_v-1.2.2",
   "owner": "spartanforgellc"
 }
-'
-        );
+');
     }
 }
