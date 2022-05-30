@@ -18,11 +18,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/utils/TermsAndConditionsPublic.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/utils/TermsAndConditionsPublic.vue" afterDir="false" />
-    </list>
+    <list default="true" id="fee6bc74-6d5a-4997-8681-df0591ad176f" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -430,14 +426,7 @@
       <workItem from="1635453715092" duration="572000" />
       <workItem from="1638961919981" duration="2729000" />
       <workItem from="1639778971199" duration="2411000" />
-      <workItem from="1639781593794" duration="1671000" />
-    </task>
-    <task id="LOCAL-00224" summary="Changed notifications">
-      <created>1626617750396</created>
-      <option name="number" value="00224" />
-      <option name="presentableId" value="LOCAL-00224" />
-      <option name="project" value="LOCAL" />
-      <updated>1626617750396</updated>
+      <workItem from="1639781593794" duration="1727000" />
     </task>
     <task id="LOCAL-00225" summary="Changed notifications">
       <created>1626641669931</created>
@@ -775,7 +764,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639781399212</updated>
     </task>
-    <option name="localTasksCounter" value="273" />
+    <task id="LOCAL-00273" summary="improve renderization of terms and conditions">
+      <created>1639783303110</created>
+      <option name="number" value="00273" />
+      <option name="presentableId" value="LOCAL-00273" />
+      <option name="project" value="LOCAL" />
+      <updated>1639783303111</updated>
+    </task>
+    <option name="localTasksCounter" value="274" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -803,7 +799,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test console log" />
     <MESSAGE value="add watch properti for getMessage" />
     <MESSAGE value="remove unsed method and addd test console log" />
     <MESSAGE value="changed the api to have the property unread in contacts" />
@@ -828,6 +823,7 @@
     <MESSAGE value="Fix bug on meal type plan modal" />
     <MESSAGE value="Fix renderization of water levels" />
     <MESSAGE value="Add public terms and conditions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add public terms and conditions" />
+    <MESSAGE value="improve renderization of terms and conditions" />
+    <option name="LAST_COMMIT_MESSAGE" value="improve renderization of terms and conditions" />
   </component>
 </project>
