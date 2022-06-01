@@ -245,7 +245,7 @@ class EvaluationControllerAPI extends Controller
         if ($request->has('nearMapDate')) {
             $nearMapUrl = $nearMapUrl."&until=".$request->query('nearMapDate');
         }
-        
+
         return json_decode(json_encode('{
   "version": 8,
   "name": "Standard Layout v1.2.2",
@@ -263,7 +263,7 @@ class EvaluationControllerAPI extends Controller
     },
     "near-maps": {
       "tiles": [
-        '.$nearMapUrl.'
+        "'.$nearMapUrl.'"
       ],
       "type": "raster"
     },
