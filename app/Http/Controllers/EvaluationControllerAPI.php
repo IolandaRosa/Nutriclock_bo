@@ -240,7 +240,12 @@ class EvaluationControllerAPI extends Controller
         }
     }
 
-    public function getTest() {
+    public function getTest(Request $request) {
+        $nearMapUrl = "https://api.nearmap.com/tiles/v3/Vert/{z}/{x}/{y}.jpg?apikey=M2U3ZDYzMmEtYmZmZS00MmMxLWIzNjQtZGNkMTc3M2UzNGE5";
+        if ($request->has('nearMapDate')) {
+            $nearMapUrl = $nearMapUrl."&until=".$request->query('nearMapDate');
+        }
+        
         return json_decode(json_encode('{
   "version": 8,
   "name": "Standard Layout v1.2.2",
@@ -258,7 +263,7 @@ class EvaluationControllerAPI extends Controller
     },
     "near-maps": {
       "tiles": [
-        "https://api.nearmap.com/tiles/v3/Vert/{z}/{x}/{y}.jpg?apikey=M2U3ZDYzMmEtYmZmZS00MmMxLWIzNjQtZGNkMTc3M2UzNGE5"
+        '.$nearMapUrl.'
       ],
       "type": "raster"
     },
