@@ -241,7 +241,7 @@ class EvaluationControllerAPI extends Controller
     }
 
     public function getTest(Request $request) {
-        $nearMapUrl = "https://api.nearmap.com/tiles/v3/Vert/{z}/{x}/{y}.img?apikey=M2U3ZDYzMmEtYmZmZS00MmMxLWIzNjQtZGNkMTc3M2UzNGE5";
+        $nearMapUrl = "https://api.nearmap.com/tiles/v3/Vert/{z}/{x}/{y}.img?apikey=M2VlMzg4NjQtZDMxNi00MmU4LTkwODAtZGM3YzZlZjllMTM4";
         if ($request->has('nearMapDate')) {
             $nearMapUrl = $nearMapUrl."&until=".$request->query('nearMapDate');
         }
