@@ -4,7 +4,7 @@
             <div class="modal-wrapper">
                 <div class="modal-container">
                     <div class="modal-logo">
-                        <img class="modal-logo" src="http://nutriclock.test:81/images/only_logo.png" alt=""/>
+                        <img class="modal-logo" src="http://nutriclock9.test:81/images/only_logo.png" alt=""/>
                     </div>
                     <div class="modal-header">
                         <div class="title">

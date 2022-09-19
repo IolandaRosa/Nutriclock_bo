@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 define('SERVER_URL', env('APP_URL'));
 define('CLIENT_ID', '2');
+//define('CLIENT_SECRET', 'e6J2giMHEnGVIWMoH1bVXAFmS8dk2dDhZuSosU2d');
 define('CLIENT_SECRET', 'Duc2Pacdpd2C3IrSt2rx1gIDANlk8VaTk5RJOozd');
 
 class LoginControllerAPI extends Controller

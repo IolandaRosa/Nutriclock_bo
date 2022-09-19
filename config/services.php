@@ -13,14 +13,12 @@ return [
     | a conventional file to locate the various service credentials.
     |
     */
-    'fcm' => [
-        'key' => env('FCM_SECRET_KEY')
-    ],
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
+        'scheme' => 'https',
     ],
 
     'postmark' => [

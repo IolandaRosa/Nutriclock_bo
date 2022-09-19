@@ -29,6 +29,7 @@
         "chartjs": "^0.3.24",
         "datatables.net": "^1.10.22",
         "datatables.net-responsive-bs4": "^2.2.6",
+        "element-ui": "^2.15.10",
         "laravel-echo": "^1.10.0",
         "pusher-js": "^7.0.2",
         "vue-chartjs": "^3.5.1",
